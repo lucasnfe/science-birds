@@ -14,7 +14,6 @@ GameObject:
   - 114: {fileID: 11400000}
   - 95: {fileID: 9500000}
   - 82: {fileID: 8200002}
-  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: bird
   m_TagString: Bird
@@ -125,7 +124,7 @@ AudioSource:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -200,10 +199,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54227e97307014f17a7ad8032433bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clips:
+  - {fileID: 8300000, guid: fd94b77d668aa433c8b2d703cbabfd38, type: 3}
+  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
   mouseSensitivity: 250
   birdFollowSpeed: 10
   movementRadius: 1
+  stretchedRadius: .300000012
   _isMainBird: 1
+  stretchedTime: 1
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
