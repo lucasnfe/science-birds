@@ -1,0 +1,1179 @@
+fileFormatVersion: 2
+guid: 6f10dc69aeb3d4ca492f4de25a93b4b5
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: AllBlocks_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_2
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_3
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_4
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_5
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_6
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_7
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_8
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_9
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_10
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_11
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 917
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 833
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_13
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 833
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_14
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 833
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_15
+      rect:
+        serializedVersion: 2
+        x: 250
+        y: 833
+        width: 82
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_16
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 833
+        width: 78
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_17
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 833
+        width: 77
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_18
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 833
+        width: 76
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_19
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 833
+        width: 78
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_20
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 841
+        width: 76
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_21
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 840
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_22
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 840
+        width: 78
+        height: 77
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_23
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 840
+        width: 76
+        height: 77
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 749
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_25
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 749
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_26
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 758
+        width: 76
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_27
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 759
+        width: 75
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_28
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 759
+        width: 76
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_29
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 759
+        width: 75
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_30
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 759
+        width: 75
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_31
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 759
+        width: 75
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_32
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 760
+        width: 77
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_33
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 760
+        width: 78
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_34
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 760
+        width: 79
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_35
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 760
+        width: 79
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 665
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_37
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 666
+        width: 82
+        height: 83
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_38
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 681
+        width: 76
+        height: 77
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_39
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 684
+        width: 78
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_40
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 714
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_41
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 714
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_42
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 716
+        width: 85
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_43
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 716
+        width: 85
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_44
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 716
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_45
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 716
+        width: 84
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_46
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 716
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_47
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 672
+        width: 84
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 580
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_49
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 584
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_50
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 604
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_51
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 608
+        width: 78
+        height: 74
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_52
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 671
+        width: 85
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_53
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 671
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_54
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 671
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_55
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 671
+        width: 84
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_56
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 671
+        width: 84
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_57
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 671
+        width: 87
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_58
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 671
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_59
+      rect:
+        serializedVersion: 2
+        x: 918
+        y: 628
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 497
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_61
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 497
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_62
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 528
+        width: 75
+        height: 76
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_63
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 535
+        width: 77
+        height: 73
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_64
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 585
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_65
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 585
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 413
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_73
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 420
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 329
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_85
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 339
+        width: 84
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_96
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 245
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_97
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 257
+        width: 84
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_108
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 161
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_109
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 175
+        width: 84
+        height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_120
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 77
+        width: 84
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_121
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 93
+        width: 84
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_132
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 840
+        width: 77
+        height: 77
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_133
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 760
+        width: 77
+        height: 75
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_134
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 714
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_135
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 716
+        width: 87
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_136
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 716
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_137
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 628
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_138
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 628
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_139
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 628
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_140
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 628
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_141
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 628
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_142
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 629
+        width: 84
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_143
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 628
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_144
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 629
+        width: 41
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_145
+      rect:
+        serializedVersion: 2
+        x: 1006
+        y: 628
+        width: 43
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_146
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 585
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_147
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 585
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_148
+      rect:
+        serializedVersion: 2
+        x: 537
+        y: 585
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_149
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 584
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_150
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 585
+        width: 44
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_151
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 585
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_152
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 585
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_153
+      rect:
+        serializedVersion: 2
+        x: 753
+        y: 585
+        width: 40
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_154
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 585
+        width: 42
+        height: 44
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_155
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 585
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_156
+      rect:
+        serializedVersion: 2
+        x: 881
+        y: 585
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_101
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 585
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_102
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 585
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_103
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 585
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_104
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 542
+        width: 85
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_105
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 542
+        width: 41
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_106
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 542
+        width: 43
+        height: 43
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_107
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 543
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_108
+      rect:
+        serializedVersion: 2
+        x: 536
+        y: 544
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_109
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 543
+        width: 40
+        height: 42
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_110
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 546
+        width: 40
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_111
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 545
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_112
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 546
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_113
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 545
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_114
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 546
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_115
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 545
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_116
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 545
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_117
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 546
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_118
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 546
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_119
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 545
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_120
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 546
+        width: 42
+        height: 39
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_121
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 521
+        width: 208
+        height: 23
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_122
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 345
+        width: 170
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_123
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 236
+        width: 84
+        height: 20
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_124
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 213
+        width: 43
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: AllBlocks_125
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 235
+        width: 169
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

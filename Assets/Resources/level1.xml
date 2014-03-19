@@ -1,0 +1,24 @@
+<AngryBirdsLevel>
+	<Catapult x="-6" y="0.25"/>
+	<Birds>
+		<bird n="2" x="-6.521029" y="0.888783" rotation="0" isMainBird="true"/>
+		<bird n="2" x="-4.828973" y="-0.9024457" rotation="0" isMainBird="false"/>
+		<bird n="2" x="-4.032244" y="-0.9089348" rotation="0" isMainBird="false"/>
+	</Birds>
+	<Pigs>
+		<pig n="0" x="3.791692" y="1.549225" rotation="23"/>
+	</Pigs>
+	<Blocks>
+		<block n="122" x="3.425711" y="1.9" rotation="90"/>
+		<block n="122" x="3.02" y="0.2" rotation="90"/>
+		<block n="122" x="4.46832" y="0.2" rotation="90"/>
+		<block n="122" x="4.130966" y="1.9" rotation="90"/>
+		<block n="123" x="3.788071" y="2.9" rotation="0"/>
+		<block n="124" x="3.774656" y="1.2" rotation="0"/>
+		<block n="124" x="2.252747" y="-1.003604" rotation="90"/>
+		<block n="124" x="5.137096" y="-1.040523" rotation="90"/>
+		<block n="124" x="3.797271" y="3.659687" rotation="90"/>
+		<block n="125" x="3.749949" y="1.0" rotation="0"/>
+		<block n="145" x="3.801586" y="3.3" rotation="0"/>
+	</Blocks>
+</AngryBirdsLevel>
