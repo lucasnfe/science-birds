@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
+using System.IO;
 
 public struct LevelData
 {
@@ -22,6 +23,8 @@ public class LevelParser : MonoBehaviour {
 	public GameObject catapult_parent;
 	public GameObject blocks_parent;
 	public GameObject characters_parent;
+	
+	public Timer gameTimer;
 
 	LevelData catapult;
 	List <LevelData> birds;
@@ -42,18 +45,40 @@ public class LevelParser : MonoBehaviour {
 		blocks = new List<LevelData>();
 		
         //Load xml file
-        TextAsset textXML = (TextAsset)Resources.Load(filename, typeof(TextAsset));
-        XmlDocument xml = new XmlDocument();
-        xml.LoadXml(textXML.text);
+		FileInfo theSourceFile = null;
+		TextReader reader = null;
 
-        // Parsing Catapul Data
-        XmlNode root = xml.FirstChild;
+		// Read from plain text file if it exists
+		theSourceFile = new FileInfo (Application.dataPath + "/Levels/level1.xml");
+		if (theSourceFile != null && theSourceFile.Exists)
+		{
+			reader = theSourceFile.OpenText();  // returns StreamReader
+		}
 		
-		catapult.x = float.Parse(root.FirstChild.Attributes.GetNamedItem("x").Value);
-		catapult.y = float.Parse(root.FirstChild.Attributes.GetNamedItem("y").Value);
+		if ( reader == null )
+		{
+		   Debug.Log("Level file not found or not readable.");
+		   return;
+		}
+		
+		string text = reader.ReadToEnd();
+		
+        //TextAsset textXML = (TextAsset)Resources.Load(filename, typeof(TextAsset));
+        XmlDocument xml = new XmlDocument();
+        xml.LoadXml(text);
+
+		// Parsing Simulation Data
+        XmlNode root = xml.FirstChild;
+		gameTimer.endTime = int.Parse(root.FirstChild.Attributes.GetNamedItem("time").Value);
+		
+        // Parsing Catapul Data
+		XmlNode catapultData = root.FirstChild.NextSibling;
+		
+		catapult.x = float.Parse(catapultData.Attributes.GetNamedItem("x").Value);
+		catapult.y = float.Parse(catapultData.Attributes.GetNamedItem("y").Value);
 		
 		// Parsing birds Data
-		XmlNode birdsData = root.FirstChild.NextSibling;
+		XmlNode birdsData = catapultData.NextSibling;
 		
         foreach(XmlNode node in birdsData)
         {

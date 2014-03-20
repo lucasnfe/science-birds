@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<GameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <killedPigs>3</killedPigs>
+  <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+  <movedObjects>1</movedObjects>
+  <averageYVelociy>2.77890626E-06</averageYVelociy>
+</GameData>

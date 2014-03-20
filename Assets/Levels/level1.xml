@@ -1,4 +1,5 @@
 <AngryBirdsLevel>
+	<Simulation time="10"/>
 	<Catapult x="-6" y="0.25"/>
 	<Birds>
 		<bird n="2" x="-6.521029" y="0.888783" rotation="0" isMainBird="true"/>
