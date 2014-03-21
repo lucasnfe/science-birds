@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.52102947, y: .888782978, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .5, y: .5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!50 &5000000
@@ -206,8 +206,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 24360b5bc58d04f5c993d06fb7c4ce74, type: 3}
   mouseSensitivity: 250
   birdFollowSpeed: 10
-  movementRadius: 1
-  stretchedRadius: .300000012
+  movementRadius: .699999988
+  stretchedRadius: .200000003
   _isMainBird: 1
   stretchedTime: 3
 --- !u!212 &21200000
