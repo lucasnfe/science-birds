@@ -53,9 +53,9 @@ TextureImporter:
     - name: AllBlocks_1
       rect:
         serializedVersion: 2
-        x: 84
+        x: 85
         y: 917
-        width: 84
+        width: 82
         height: 84
       alignment: 0
       pivot: {x: .5, y: .5}
@@ -89,18 +89,18 @@ TextureImporter:
     - name: AllBlocks_5
       rect:
         serializedVersion: 2
-        x: 420
+        x: 421
         y: 917
-        width: 84
+        width: 82
         height: 84
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_6
       rect:
         serializedVersion: 2
-        x: 504
+        x: 505
         y: 917
-        width: 84
+        width: 82
         height: 84
       alignment: 0
       pivot: {x: .5, y: .5}
@@ -109,7 +109,7 @@ TextureImporter:
         serializedVersion: 2
         x: 588
         y: 917
-        width: 84
+        width: 83.5
         height: 84
       alignment: 0
       pivot: {x: .5, y: .5}
@@ -188,10 +188,10 @@ TextureImporter:
     - name: AllBlocks_16
       rect:
         serializedVersion: 2
-        x: 336
+        x: 333
         y: 833
         width: 78
-        height: 84
+        height: 82
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_17
@@ -380,7 +380,7 @@ TextureImporter:
         x: 84
         y: 666
         width: 82
-        height: 83
+        height: 82
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_38
@@ -425,7 +425,7 @@ TextureImporter:
         x: 455
         y: 716
         width: 85
-        height: 44
+        height: 42
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_43
@@ -434,7 +434,7 @@ TextureImporter:
         x: 540
         y: 716
         width: 85
-        height: 44
+        height: 42
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_44
@@ -704,7 +704,7 @@ TextureImporter:
         x: 84
         y: 175
         width: 84
-        height: 81
+        height: 82
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_120
@@ -1134,9 +1134,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 494
-        y: 521
+        y: 522
         width: 208
-        height: 23
+        height: 20
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_122

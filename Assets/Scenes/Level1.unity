@@ -256,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 486836714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .377006233, y: -2.2493968, z: 10}
+  m_LocalPosition: {x: .377009094, y: -1.38959599, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 357279445}
@@ -328,159 +328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95e132b7e38e4deba04c960764b7948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catapult_model: {fileID: 100004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-  bird_model: {fileID: 100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-  pig_model: {fileID: 100000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
-  block_model:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 100000, guid: 5178abd686f0d4f32a5e184a595241b3, type: 2}
-  - {fileID: 100000, guid: 14b30a36affb74b31af58f36d467e4fd, type: 2}
-  - {fileID: 100000, guid: 35a98bcbedc744ac4a7602cd79f3131e, type: 2}
-  - {fileID: 100000, guid: 71c1b8f575cdb4af386009eb4336812d, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 100000, guid: 2fc6aa58e5c5a408f8d3a7ceefa5df9b, type: 2}
-  catapult_parent: {fileID: 1615671080}
-  blocks_parent: {fileID: 544221494}
-  characters_parent: {fileID: 1093317213}
   gameTimer: {fileID: 1547450917}
 --- !u!4 &646651075
 Transform:
@@ -824,6 +671,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   endTime: 20
   _blocks: {fileID: 544221495}
+  catapult_model: {fileID: 100004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
+  bird_model: {fileID: 100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+  pig_model: {fileID: 100000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
+  block_model:
+  - {fileID: 100000, guid: a156e6c8e07ad4eb5bf031e6aac710b8, type: 2}
+  - {fileID: 100000, guid: 384673acea07346f7907c80881464d31, type: 2}
+  - {fileID: 100000, guid: 17005583a1bba42cd8f73c4f91757a7f, type: 2}
+  - {fileID: 100000, guid: b288672f110af46e5886b339a4c7a3fa, type: 2}
+  - {fileID: 100000, guid: 6fd642f04a59a4c24a43be685759d1cf, type: 2}
+  - {fileID: 100000, guid: d867cb423592c443fac7b7154fd111fe, type: 2}
+  - {fileID: 100000, guid: d1ddeba297f6b47bd9ba8a3014f7af25, type: 2}
+  - {fileID: 100000, guid: ae9e7c7cf7e4d4b3f8ab361a63ea1853, type: 2}
+  - {fileID: 100000, guid: ed0be934aa252408580d7864e8cf68e9, type: 2}
+  - {fileID: 100000, guid: b98a8ce13744c4c47a8340f0d6c3b4c9, type: 2}
+  - {fileID: 100000, guid: 5fbba8f07f6b844df9cf27def55ee22d, type: 2}
+  - {fileID: 100000, guid: f1870ed6de24d4013bcb8ac654c9d9c2, type: 2}
+  - {fileID: 100000, guid: ce782eb18eaf64514a1300b63c096878, type: 2}
+  - {fileID: 100000, guid: 3cec5883640ac44d1806658ed8c498ac, type: 2}
+  - {fileID: 100000, guid: f2a65dc8cebb846d8a85593453e1fd38, type: 2}
+  - {fileID: 100000, guid: 3df3e2cc6b4c748b28a2953547b7a716, type: 2}
+  - {fileID: 100000, guid: 6d5389942cd98467f86e2e715b2cdcea, type: 2}
+  catapult_parent: {fileID: 1615671080}
+  blocks_parent: {fileID: 544221494}
+  characters_parent: {fileID: 1093317213}
 --- !u!4 &1547450918
 Transform:
   m_ObjectHideFlags: 0

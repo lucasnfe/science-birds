@@ -13,43 +13,35 @@ public struct LevelData
 	public bool isMainBird;
 }
 
-public class LevelParser : MonoBehaviour {
+public struct Level
+{
+	public int endTime;
+	public int timeScale;
 	
-	public GameObject catapult_model;
-	public GameObject bird_model;
-	public GameObject pig_model;
-	public GameObject []block_model;
-	
-	public GameObject catapult_parent;
-	public GameObject blocks_parent;
-	public GameObject characters_parent;
-	
-	public Timer gameTimer;
+	public LevelData catapult;
+	public List <LevelData> birds;
+	public List <LevelData> pigs;
+	public List <LevelData> blocks;
+}
 
-	LevelData catapult;
-	List <LevelData> birds;
-	List <LevelData> pigs;
-	List <LevelData> blocks;
+public class LevelParser : MonoBehaviour {
+		
+	public Timer gameTimer;
 
 	// Use this for initialization
     void Awake()
     {
-		ParseFile("level1");
-		BuildLevel();
+		ParseFile("/Levels/level1.xml");
 	}
 	
 	void ParseFile(string filename)
-	{
-		birds = new List<LevelData>();
-		pigs = new List<LevelData>();
-		blocks = new List<LevelData>();
-		
+	{		
         //Load xml file
 		FileInfo theSourceFile = null;
 		TextReader reader = null;
 
 		// Read from plain text file if it exists
-		theSourceFile = new FileInfo (Application.dataPath + "/Levels/level1.xml");
+		theSourceFile = new FileInfo (Application.dataPath + filename);
 		if (theSourceFile != null && theSourceFile.Exists)
 		{
 			reader = theSourceFile.OpenText();  // returns StreamReader
@@ -61,6 +53,8 @@ public class LevelParser : MonoBehaviour {
 		   return;
 		}
 		
+		gameTimer.levels = new List<Level>();
+		
 		string text = reader.ReadToEnd();
 		
         //TextAsset textXML = (TextAsset)Resources.Load(filename, typeof(TextAsset));
@@ -69,123 +63,73 @@ public class LevelParser : MonoBehaviour {
 
 		// Parsing Simulation Data
         XmlNode root = xml.FirstChild;
-		gameTimer.endTime = int.Parse(root.FirstChild.Attributes.GetNamedItem("time").Value);
 		
-        // Parsing Catapul Data
-		XmlNode catapultData = root.FirstChild.NextSibling;
-		
-		catapult.x = float.Parse(catapultData.Attributes.GetNamedItem("x").Value);
-		catapult.y = float.Parse(catapultData.Attributes.GetNamedItem("y").Value);
-		
-		// Parsing birds Data
-		XmlNode birdsData = catapultData.NextSibling;
-		
-        foreach(XmlNode node in birdsData)
-        {
-			LevelData bird = new LevelData();
+	    foreach (XmlNode child in root.ChildNodes)
+	    {		
+			Level level = new Level();
 			
-			bird.n = int.Parse(node.Attributes.GetNamedItem("n").Value);
-			bird.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
-			bird.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
-			bird.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
-			bird.isMainBird = bool.Parse(node.Attributes.GetNamedItem("isMainBird").Value);
-			
-			birds.Add(bird);
-        }
+			level.endTime = int.Parse(child.FirstChild.Attributes.GetNamedItem("time").Value);
+			level.timeScale = int.Parse(child.FirstChild.Attributes.GetNamedItem("scale").Value);
 		
-		// Parsing pigs Data
-		XmlNode pigsData = birdsData.NextSibling;
+	        // Parsing Catapul Data
+			XmlNode catapultData = child.FirstChild.NextSibling;
 		
-       	foreach(XmlNode node in pigsData)
-       	{
-			LevelData pig = new LevelData();
+			level.catapult.x = float.Parse(catapultData.Attributes.GetNamedItem("x").Value);
+			level.catapult.y = float.Parse(catapultData.Attributes.GetNamedItem("y").Value);
+		
+			// Parsing birds Data
+			XmlNode birdsData = catapultData.NextSibling;
+		
+			level.birds = new List<LevelData>();
+		
+	        foreach(XmlNode node in birdsData)
+	        {
+				LevelData bird = new LevelData();
 			
-			pig.n = int.Parse(node.Attributes.GetNamedItem("n").Value);
-			pig.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
-			pig.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
-			pig.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
+				bird.n = int.Parse(node.Attributes.GetNamedItem("n").Value);
+				bird.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
+				bird.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
+				bird.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
+				bird.isMainBird = bool.Parse(node.Attributes.GetNamedItem("isMainBird").Value);
+			
+				level.birds.Add(bird);
+	        }
+		
+			// Parsing pigs Data
+			XmlNode pigsData = birdsData.NextSibling;
+			
+			level.pigs = new List<LevelData>();
+		
+	       	foreach(XmlNode node in pigsData)
+	       	{
+				LevelData pig = new LevelData();
+			
+				pig.n = int.Parse(node.Attributes.GetNamedItem("n").Value);
+				pig.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
+				pig.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
+				pig.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
 						
-			pigs.Add(pig);
-        }
+				level.pigs.Add(pig);
+	        }
 		
-		// Parsing blocks Data
-		XmlNode blocksData = pigsData.NextSibling;
-		
-       	foreach(XmlNode node in blocksData)
-       	{
-			LevelData block = new LevelData();
+			// Parsing blocks Data
+			XmlNode blocksData = pigsData.NextSibling;
 			
-			block.n = int.Parse(node.Attributes.GetNamedItem("n").Value);
-			block.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
-			block.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
-			block.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
+			level.blocks = new List<LevelData>();
+		
+	       	foreach(XmlNode node in blocksData)
+	       	{
+				LevelData block = new LevelData();
+			
+				block.n = int.Parse(node.Attributes.GetNamedItem("n").Value);
+				block.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
+				block.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
+				block.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
 						
-			blocks.Add(block);
-        }
+				level.blocks.Add(block);
+	        }
+			
+			gameTimer.levels.Add(level);
+		}
 	}
-	
-	void BuildLevel()
-	{
-		// Placing the catapult
-		GameObject catapultClone = (GameObject) Instantiate(catapult_model, new 
-			Vector3(catapult.x, catapult.y, 10), Quaternion.identity);
-		
-		if(catapult_parent)
-		{
-			catapultClone.transform.parent = catapult_parent.transform;
-		}
-		
-		// Placing the birds
-       	foreach(LevelData bird in birds)
-       	{
-			Quaternion defaultRotation = bird_model.transform.rotation;			
-			GameObject clone = (GameObject)Instantiate(bird_model, 
-				new Vector3(bird.x, bird.y, 10), defaultRotation * Quaternion.Euler(0, 0, bird.rotation));
-			
-			if(characters_parent)
-			{
-				clone.transform.parent = characters_parent.transform;
-			}
-			
-			Bird birdClone = clone.GetComponent<Bird>();
-			birdClone.setMainBird(bird.isMainBird);
-			
-			if(bird.isMainBird)
-			{
-				ABCamera abCamera = Camera.main.GetComponent<ABCamera>();
-				if(abCamera)
-				{
-					abCamera.target = birdClone;
-				}
-			}
-		}
-		
-		// Placing the blocks
-       	foreach(LevelData block in blocks)
-       	{
-			Quaternion defaultRotation = block_model[block.n].transform.rotation;			
-			GameObject clone = (GameObject) Instantiate(block_model[block.n], 
-				new Vector3(block.x, block.y, 10), defaultRotation * Quaternion.Euler(0, 0, block.rotation));
-			
-			if(blocks_parent)
-			{
-				clone.transform.parent = blocks_parent.transform;
-			}
-		}
-		
-		// Placing the pigs
-       	foreach(LevelData pig in pigs)
-       	{
-			Quaternion defaultRotation = pig_model.transform.rotation;			
-			GameObject clone = (GameObject) Instantiate(pig_model, 
-				new Vector3(pig.x, pig.y, 10), defaultRotation * Quaternion.Euler(0, 0, pig.rotation));
-			
-			if(characters_parent)
-			{
-				clone.transform.parent = characters_parent.transform;
-			}
-			
-		}
-    }
-
 }

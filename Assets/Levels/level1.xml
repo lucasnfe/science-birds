@@ -1,24 +1,30 @@
-<AngryBirdsLevel>
-	<Simulation time="10"/>
-	<Catapult x="-3.5" y="-1.78"/>
-	<Birds>
-		<bird n="2" x="-3.75" y="-1.5" rotation="0" isMainBird="true"/>
-		<bird n="2" x="-3.12" y="-2.9" rotation="0" isMainBird="false"/>
-		<bird n="2" x="-2.8" y="-2.9" rotation="0" isMainBird="false"/>
-	</Birds>
-	<Pigs>
-		<pig n="0" x="1.8" y="-0.8" rotation="23"/>
-	</Pigs>
-	<Blocks>
-		<block n="122" x="1.42" y="-2" rotation="90"/>
-		<block n="122" x="1.6" y="-1" rotation="90"/>
-		<block n="122" x="2" y="-1" rotation="90"/>
-		<block n="122" x="2.15" y="-2" rotation="90"/>
-		<block n="123" x="1.8" y="-0.5" rotation="0"/>
-		<block n="124" x="0.75" y="-2" rotation="90"/>
-		<block n="124" x="2.7" y="-2" rotation="90"/>
-		<block n="124" x="1.8" y="0" rotation="90"/>
-		<block n="125" x="1.8" y="-1.5" rotation="0"/>
-		<block n="145" x="1.8" y="-0.2" rotation="0"/>
-	</Blocks>
-</AngryBirdsLevel>
+<Levels>
+    <AngryBirdsLevel>
+        <Simulation time="2" scale="2"/>
+        <Catapult x="-3.5" y="-1.78"/>
+        <Birds>
+            <bird isMainBird="true" n="2" x="-3.75" y="-1.5" rotation="0"/>
+            <bird isMainBird="false" n="2" x="-3.12" y="-2.9" rotation="0"/>
+            <bird isMainBird="false" n="2" x="-2.8" y="-2.9" rotation="0"/>
+        </Birds>
+        <Pigs>
+            <pig n="0" x="2.79144" y="-1.72328" rotation="90"/>
+            <pig n="0" x="0.990611" y="-0.317139" rotation="90"/>
+            <pig n="0" x="1.22034" y="-1.87824" rotation="0"/>
+            <pig n="0" x="4.32468" y="-0.0249499" rotation="90"/>
+            <pig n="0" x="3.08882" y="-0.513019" rotation="90"/>
+            <pig n="0" x="2.08661" y="-0.148396" rotation="90"/>
+            <pig n="0" x="4.98042" y="-1.66015" rotation="0"/>
+            <pig n="0" x="0.540652" y="-1.3034" rotation="90"/>
+        </Pigs>
+        <Blocks>
+            <block n="6" x="4.36866" y="-0.360247" rotation="90"/>
+            <block n="10" x="3.77297" y="-1.08785" rotation="90"/>
+            <block n="10" x="0.0949724" y="-1.5194" rotation="0"/>
+            <block n="15" x="0.577265" y="-1.16252" rotation="0"/>
+            <block n="11" x="0.0469302" y="-0.497329" rotation="0"/>
+            <block n="13" x="0.0765011" y="-1.69806" rotation="0"/>
+            <block n="5" x="3.16354" y="-0.153904" rotation="0"/>
+        </Blocks>
+    </AngryBirdsLevel>
+</Levels>

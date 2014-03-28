@@ -39,7 +39,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Mass: .5
-  m_LinearDrag: .400000006
+  m_LinearDrag: 0
   m_AngularDrag: .100000001
   m_GravityScale: 0
   m_FixedAngle: 0
@@ -204,12 +204,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
   - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
   - {fileID: 8300000, guid: 24360b5bc58d04f5c993d06fb7c4ce74, type: 3}
-  mouseSensitivity: 250
+  _trajectoryParticles:
+  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+  - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
+  - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
+  _catapult: {fileID: 100004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
+  mouseSensitivity: 150
   birdFollowSpeed: 10
   movementRadius: .699999988
   stretchedRadius: .200000003
   _isMainBird: 1
   stretchedTime: 3
+  tractoryParticleTime: .100000001
+  dieTime: 3
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,7 +1,61 @@
 <?xml version="1.0" encoding="us-ascii"?>
-<GameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <killedPigs>3</killedPigs>
-  <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
-  <movedObjects>1</movedObjects>
-  <averageYVelociy>-0.00781135168</averageYVelociy>
-</GameData>>
+<ArrayOfGameData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /> <GameData>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>NaN</averageYVelociy>
+  </GameData>
+</ArrayOfGameData>a>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.139205739</averageYVelociy>
+  </GameData>
+  <GameData>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.266775519</averageYVelociy>
+  </GameData>
+  <GameData>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.115138255</averageYVelociy>
+  </GameData>
+  <GameData>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.200913653</averageYVelociy>
+  </GameData>
+  <GameData>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.165427715</averageYVelociy>
+  </GameData>
+  <GameData>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.153502971</averageYVelociy>
+  </GameData>
+  <GameData>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.178992629</averageYVelociy>
+  </GameData>
+  <GameData>
+    <killedPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.107942283</averageYVelociy>
+  </GameData>
+</ArrayOfGameData>dPigs>3</killedPigs>
+    <birdContactsAgainsBlocks>2</birdContactsAgainsBlocks>
+    <movedObjects>1</movedObjects>
+    <averageYVelociy>-0.164166823</averageYVelociy>
+  </GameData>
+</ArrayOfGameData>

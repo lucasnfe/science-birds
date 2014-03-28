@@ -46,7 +46,7 @@ public class Scroll : MonoBehaviour {
 	        
 				foreach(Rigidbody2D layer in backgroundLayers)
 				{
-					currentAppliedForce *= 0.75f;
+					currentAppliedForce *= 0.5f;
 					layer.AddForce(new Vector2(currentAppliedForce, 0));
 				}
 			
@@ -59,8 +59,8 @@ public class Scroll : MonoBehaviour {
 		
 		foreach(Rigidbody2D layer in backgroundLayers)
 		{
-			currentmaxDistanceLeft *= 0.75f;
-			currentmaxDistanceRight *= 0.75f;
+			currentmaxDistanceLeft *= 0.5f;
+			currentmaxDistanceRight *= 0.5f;
 			
 			layer.transform.position = new Vector3(Mathf.Clamp(layer.transform.position.x, initialPosition.x - currentmaxDistanceLeft, 
 																		   initialPosition.x + currentmaxDistanceRight), layer.transform.position.y, layer.transform.position.z); 
