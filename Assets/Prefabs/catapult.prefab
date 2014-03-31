@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 400004}
   m_Layer: 2
   m_Name: catapult
-  m_TagString: Untagged
+  m_TagString: Catapult
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

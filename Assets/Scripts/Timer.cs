@@ -5,23 +5,32 @@ using System.Xml.Serialization;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameData
+public struct PigData
 {
-    public int killedPigs { get; set; }
-    public int birdContactsAgainsBlocks { get; set; }
-	public int movedObjects { get; set; }
-	public float averageYVelociy { get; set; }
-	
-}
+	public int collisionAmount;
+};
+
+public struct BlockData
+{
+	public int collisionAmount;
+	public float rotation;
+};
+
+public struct GameData
+{
+	public float averageYVelocity;
+
+	public List<BlockData> blocks;
+	public List<PigData> pigs;
+};
 
 public class Timer : MonoBehaviour {
 
 	private float _timer;
+	private bool _gameOver;
 	
 	private int _timeCounter, _levelCounter;
 	public int endTime = 10;
-
-	public Transform _blocks;
 	
 	public GameObject catapult_model;
 	public GameObject bird_model;
@@ -30,7 +39,8 @@ public class Timer : MonoBehaviour {
 	
 	public GameObject catapult_parent;
 	public GameObject blocks_parent;
-	public GameObject characters_parent;
+	public GameObject pigs_parent;
+	public GameObject birds_parent;
 	
 	public List<Level> levels;
 	
@@ -40,6 +50,8 @@ public class Timer : MonoBehaviour {
 	
 	void Start ()
 	{
+		_levelCounter = 0;
+		
 		sceneObjects = new ArrayList();
 		_gameData = new List<GameData>();
 			
@@ -52,7 +64,7 @@ public class Timer : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 			
-		if(endTime >= 0 && _levelCounter < levels.Count)
+		if(endTime > 0 && !_gameOver)
 		{
 			_timer += Time.deltaTime;
 		
@@ -62,54 +74,125 @@ public class Timer : MonoBehaviour {
 				_timer = 0.0f;
 			}
 		
-			if(_timeCounter >= endTime)
-			{				
-				_gameData.Add(new GameData { killedPigs = 3, 
-					birdContactsAgainsBlocks = 2, 
-					movedObjects = 1, 
-					averageYVelociy = calcBlocksYVelocityMean()});
+			if(_timeCounter == endTime)
+			{	
+				List<BlockData> blocksInScene = new List<BlockData>();
+				List<PigData> pigsInScene = new List<PigData>();
+				
+		        foreach (Transform child in blocks_parent.transform)
+				{
+					Block b = child.GetComponent<Block>();
+					
+					BlockData blockData = new BlockData();
+					blockData.collisionAmount = b.GetCollisionAmount();
+					blockData.rotation = b.transform.rotation.z;
+					
+					blocksInScene.Add(blockData);
+				}
+				
+		        foreach (Transform child in pigs_parent.transform)
+				{
+					Block b = child.GetComponent<Block>();
+					
+					PigData pigData = new PigData();
+					pigData.collisionAmount = b.GetCollisionAmount();
+					
+					pigsInScene.Add(pigData);
+				}
+								
+				GameData gd = new GameData();
+				
+				gd.averageYVelocity = calcBlocksYVelocityMean();
+				gd.blocks = blocksInScene;
+				gd.pigs = pigsInScene;
+			
+				_gameData.Add(gd);
 				
 				CleanCurrentLevel();
-				BuildLevel(levels[_levelCounter]);
+				
+				if(_levelCounter < levels.Count)
+					BuildLevel(levels[_levelCounter]);
 				
 				_levelCounter++;
 				
 				_timeCounter = 0;
 				_timer = 0.0f;
 			}
-		}
-		
-		if(_levelCounter >= levels.Count)
-		{
-			// Save game gata in a xml
-			WriteGameData();
-			Application.Quit();
+			
+			
+			if(_levelCounter == levels.Count + 1)
+			{				
+				// Save game gata in a xml
+				WriteGameData();
+				Application.Quit();
+				
+				_gameOver = true;
+			}
 		}
 	}
 	
 	void WriteGameData()
-	{
-		XmlSerializer xmls = new XmlSerializer(typeof(List<GameData>));
-										  
-		using (var stream = File.OpenWrite(Application.dataPath + "/game_data.xml"))
+	{		
+		using (XmlWriter writer = XmlWriter.Create(Application.dataPath + "/game_data.xml"))
 		{
-			xmls.Serialize(stream, _gameData);
-			stream.Close();
+			writer.WriteStartDocument();
+		    writer.WriteStartElement("Game");
+			
+		    foreach (GameData data in _gameData)
+		    {
+				writer.WriteStartElement("GameData");
+				writer.WriteElementString("averageYVelocity", data.averageYVelocity.ToString());
+				
+				writer.WriteStartElement("Blocks");
+				
+				foreach(BlockData b in data.blocks)
+				{
+					writer.WriteStartElement("Block");
+					writer.WriteAttributeString("collisions", b.collisionAmount.ToString());
+					writer.WriteAttributeString("rotation", b.rotation.ToString());
+					writer.WriteEndElement();
+				}
+
+				writer.WriteEndElement();
+				
+				writer.WriteStartElement("Pigs");
+
+				foreach(PigData p in data.pigs)
+				{					
+					writer.WriteStartElement("Pig");
+					writer.WriteAttributeString("collisions", p.collisionAmount.ToString());
+					writer.WriteEndElement();
+				}
+
+				writer.WriteEndElement();
+				
+				
+				writer.WriteEndElement();
+		    }
+			
+		    writer.WriteEndElement();
+		    writer.WriteEndDocument();
 		}
 	}
 	
 	float calcBlocksYVelocityMean()
 	{
-		if(_blocks)
+		if(blocks_parent)
 		{	
 			int blocksAmount = 0;
 			float yVelocityMean = 0.0f;
 			
-	        foreach (Transform child in _blocks)
+	        foreach (Transform child in blocks_parent.transform)
 			{
-				Block block = child.GetComponent<Block>();
-				
-				yVelocityMean += block.yVelocitySum / block.experimentsAmount;
+				Block b = child.GetComponent<Block>();
+				yVelocityMean += b.yVelocitySum / b.experimentsAmount;
+				blocksAmount++;
+			}
+			
+	        foreach (Transform child in pigs_parent.transform)
+			{
+				Block b = child.GetComponent<Block>();
+				yVelocityMean += b.yVelocitySum / b.experimentsAmount;
 				blocksAmount++;
 			}
 			
@@ -137,9 +220,9 @@ public class Timer : MonoBehaviour {
 			GameObject clone = (GameObject)Instantiate(bird_model, 
 				new Vector3(bird.x, bird.y, 10), defaultRotation * Quaternion.Euler(0, 0, bird.rotation));
 			
-			if(characters_parent)
+			if(birds_parent)
 			{
-				clone.transform.parent = characters_parent.transform;
+				clone.transform.parent = birds_parent.transform;
 			}
 						
 			Bird birdClone = clone.GetComponent<Bird>();
@@ -160,6 +243,7 @@ public class Timer : MonoBehaviour {
 	{
 		// Simulation data
 		endTime = level.endTime;
+		Time.timeScale = level.timeScale;
 		
 		// Placing the blocks
        	foreach(LevelData block in level.blocks)
@@ -183,9 +267,9 @@ public class Timer : MonoBehaviour {
 			GameObject clone = (GameObject) Instantiate(pig_model, 
 				new Vector3(pig.x, pig.y, 10), defaultRotation * Quaternion.Euler(0, 0, pig.rotation));
 			
-			if(characters_parent)
+			if(pigs_parent)
 			{
-				clone.transform.parent = characters_parent.transform;
+				clone.transform.parent = pigs_parent.transform;
 			}
 			
 			sceneObjects.Add(clone);

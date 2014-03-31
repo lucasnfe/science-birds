@@ -13,6 +13,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
   - 95: {fileID: 9500000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: pig
   m_TagString: Pig
@@ -82,6 +83,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc54fd4222824fea93b236592a2c041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a448f93d7924e9d950c9a68d8e08f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experimentsAmount: 0
+  yVelocitySum: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
