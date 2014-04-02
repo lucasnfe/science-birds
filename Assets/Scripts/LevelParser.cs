@@ -11,12 +11,14 @@ public struct LevelData
 	public float y;
 	public float rotation;
 	public bool isMainBird;
+	public bool enable;
 }
 
 public struct Level
 {
 	public int endTime;
 	public int timeScale;
+	public bool enableInput;
 	
 	public LevelData catapult;
 	public List <LevelData> birds;
@@ -70,6 +72,7 @@ public class LevelParser : MonoBehaviour {
 			
 			level.endTime = int.Parse(child.FirstChild.Attributes.GetNamedItem("time").Value);
 			level.timeScale = int.Parse(child.FirstChild.Attributes.GetNamedItem("scale").Value);
+			level.enableInput = bool.Parse(child.FirstChild.Attributes.GetNamedItem("enableInput").Value);
 		
 	        // Parsing Catapul Data
 			XmlNode catapultData = child.FirstChild.NextSibling;
@@ -90,6 +93,7 @@ public class LevelParser : MonoBehaviour {
 				bird.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
 				bird.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
 				bird.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
+				bird.enable = bool.Parse(node.Attributes.GetNamedItem("enable").Value);
 				bird.isMainBird = bool.Parse(node.Attributes.GetNamedItem("isMainBird").Value);
 			
 				level.birds.Add(bird);
@@ -108,6 +112,7 @@ public class LevelParser : MonoBehaviour {
 				pig.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
 				pig.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
 				pig.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
+				pig.enable = bool.Parse(node.Attributes.GetNamedItem("enable").Value);
 						
 				level.pigs.Add(pig);
 	        }
@@ -125,6 +130,7 @@ public class LevelParser : MonoBehaviour {
 				block.x = float.Parse(node.Attributes.GetNamedItem("x").Value);
 				block.y = float.Parse(node.Attributes.GetNamedItem("y").Value);
 				block.rotation = float.Parse(node.Attributes.GetNamedItem("rotation").Value);
+				block.enable = bool.Parse(node.Attributes.GetNamedItem("enable").Value);
 						
 				level.blocks.Add(block);
 	        }

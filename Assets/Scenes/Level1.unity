@@ -202,7 +202,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 357279444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 20}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 486836716}
@@ -557,7 +557,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 912270921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .391098469, y: -3.76489496, z: 10}
+  m_LocalPosition: {x: .391098469, y: -3.20000005, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 357279445}
@@ -649,7 +649,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1346447403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .394623518, y: -3.18927383, z: 10}
+  m_LocalPosition: {x: .394623518, y: -2.4000001, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 357279445}
@@ -695,7 +695,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f6aed2d42055430b867127981731d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endTime: 20
   catapult_model: {fileID: 100004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
   bird_model: {fileID: 100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
   pig_model: {fileID: 100000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
@@ -871,6 +870,7 @@ MonoBehaviour:
   mouseSensitivity: 400
   maxDistanceLeft: 1.5
   maxDistanceRight: 3
+  timer: {fileID: 1547450917}
   backgroundLayers:
   - {fileID: 912270924}
   - {fileID: 1346447406}

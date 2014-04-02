@@ -3,23 +3,19 @@ using System.Collections;
 
 public class Block : MonoBehaviour {
 	
-	public int experimentsAmount;
-	public float yVelocitySum;
+	public int experimentsAmount { get; set; }
+	
+	public float velocity { get; set; }
+	public int collisionAmount { get; set; }
 	
 	private float _timer;
-	
-	private int collisionAmount;
-	public int GetCollisionAmount()
-	{
-		return collisionAmount;
-	}
 	
 	// Use this for initialization
 	void Start () {
 		
 		_timer = 1.0f;
 		
-		yVelocitySum = 0.0f;
+		velocity = 0.0f;
 		
 		experimentsAmount = 0;
 		collisionAmount = 0;
@@ -33,8 +29,8 @@ public class Block : MonoBehaviour {
 		if(_timer >= 0.01f)
 		{
 			experimentsAmount++;	
-			yVelocitySum += rigidbody2D.velocity.y;	
-			
+			velocity += rigidbody2D.velocity.magnitude;
+				
 			_timer = 0.0f;
 		}
 	}

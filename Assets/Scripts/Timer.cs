@@ -7,19 +7,19 @@ using System.Collections.Generic;
 
 public struct PigData
 {
+	public float averageVelocity;
 	public int collisionAmount;
 };
 
 public struct BlockData
 {
+	public float averageVelocity;
 	public int collisionAmount;
 	public float rotation;
 };
 
 public struct GameData
 {
-	public float averageYVelocity;
-
 	public List<BlockData> blocks;
 	public List<PigData> pigs;
 };
@@ -30,13 +30,17 @@ public class Timer : MonoBehaviour {
 	private bool _gameOver;
 	
 	private int _timeCounter, _levelCounter;
-	public int endTime = 10;
 	
+	public int endTime { get; set; }
+	public bool enableInput { get; set; }
+	
+	// Prefabs to Instantiate the objects in the scene
 	public GameObject catapult_model;
 	public GameObject bird_model;
 	public GameObject pig_model;
 	public GameObject []block_model;
 	
+	// Parent objects to organize the scene
 	public GameObject catapult_parent;
 	public GameObject blocks_parent;
 	public GameObject pigs_parent;
@@ -84,8 +88,9 @@ public class Timer : MonoBehaviour {
 					Block b = child.GetComponent<Block>();
 					
 					BlockData blockData = new BlockData();
-					blockData.collisionAmount = b.GetCollisionAmount();
+					blockData.collisionAmount = b.collisionAmount;
 					blockData.rotation = b.transform.rotation.z;
+					blockData.averageVelocity = b.velocity / b.experimentsAmount;
 					
 					blocksInScene.Add(blockData);
 				}
@@ -95,14 +100,14 @@ public class Timer : MonoBehaviour {
 					Block b = child.GetComponent<Block>();
 					
 					PigData pigData = new PigData();
-					pigData.collisionAmount = b.GetCollisionAmount();
+					pigData.collisionAmount = b.collisionAmount;
+					pigData.averageVelocity = b.velocity / b.experimentsAmount;
 					
 					pigsInScene.Add(pigData);
 				}
 								
 				GameData gd = new GameData();
-				
-				gd.averageYVelocity = calcBlocksYVelocityMean();
+								
 				gd.blocks = blocksInScene;
 				gd.pigs = pigsInScene;
 			
@@ -141,13 +146,13 @@ public class Timer : MonoBehaviour {
 		    foreach (GameData data in _gameData)
 		    {
 				writer.WriteStartElement("GameData");
-				writer.WriteElementString("averageYVelocity", data.averageYVelocity.ToString());
 				
 				writer.WriteStartElement("Blocks");
 				
 				foreach(BlockData b in data.blocks)
 				{
 					writer.WriteStartElement("Block");
+					writer.WriteAttributeString("averageVelocity", b.averageVelocity.ToString());
 					writer.WriteAttributeString("collisions", b.collisionAmount.ToString());
 					writer.WriteAttributeString("rotation", b.rotation.ToString());
 					writer.WriteEndElement();
@@ -160,13 +165,12 @@ public class Timer : MonoBehaviour {
 				foreach(PigData p in data.pigs)
 				{					
 					writer.WriteStartElement("Pig");
+					writer.WriteAttributeString("averageVelocity", p.averageVelocity.ToString());
 					writer.WriteAttributeString("collisions", p.collisionAmount.ToString());
 					writer.WriteEndElement();
 				}
 
 				writer.WriteEndElement();
-				
-				
 				writer.WriteEndElement();
 		    }
 			
@@ -174,39 +178,13 @@ public class Timer : MonoBehaviour {
 		    writer.WriteEndDocument();
 		}
 	}
-	
-	float calcBlocksYVelocityMean()
-	{
-		if(blocks_parent)
-		{	
-			int blocksAmount = 0;
-			float yVelocityMean = 0.0f;
+
 			
-	        foreach (Transform child in blocks_parent.transform)
-			{
-				Block b = child.GetComponent<Block>();
-				yVelocityMean += b.yVelocitySum / b.experimentsAmount;
-				blocksAmount++;
-			}
-			
-	        foreach (Transform child in pigs_parent.transform)
-			{
-				Block b = child.GetComponent<Block>();
-				yVelocityMean += b.yVelocitySum / b.experimentsAmount;
-				blocksAmount++;
-			}
-			
-			return yVelocityMean/blocksAmount;
-		}
-		
-		return -1;
-	}
-	
 	void BuildLevelStaticElements(Level level)
 	{
 		// Placing the catapult
-		GameObject catapultClone = (GameObject) Instantiate(catapult_model, new 
-			Vector3(level.catapult.x, level.catapult.y, 10), Quaternion.identity);
+		Vector3 catapultPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(level.catapult.x, level.catapult.y, 10));		
+		GameObject catapultClone = (GameObject) Instantiate(catapult_model, catapultPos, Quaternion.identity);
 		
 		if(catapult_parent)
 		{
@@ -216,14 +194,21 @@ public class Timer : MonoBehaviour {
 		// Placing the birds
        	foreach(LevelData bird in level.birds)
        	{	
-			Quaternion defaultRotation = bird_model.transform.rotation;			
-			GameObject clone = (GameObject)Instantiate(bird_model, 
-				new Vector3(bird.x, bird.y, 10), defaultRotation * Quaternion.Euler(0, 0, bird.rotation));
+			Quaternion defaultRotation = bird_model.transform.rotation;
+			
+			// Object attributes from file
+			Vector3 birdPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(bird.x, bird.y, 10));
+			Quaternion birdRot = defaultRotation * Quaternion.Euler(0, 0, bird.rotation);
+						
+			GameObject clone = (GameObject)Instantiate(bird_model, birdPos, birdRot);
 			
 			if(birds_parent)
 			{
 				clone.transform.parent = birds_parent.transform;
 			}
+			
+			// Start the bird enabled or not
+			clone.SetActive(bird.enable);
 						
 			Bird birdClone = clone.GetComponent<Bird>();
 			birdClone.setMainBird(bird.isMainBird);
@@ -243,19 +228,28 @@ public class Timer : MonoBehaviour {
 	{
 		// Simulation data
 		endTime = level.endTime;
+		enableInput = level.enableInput;
+		
 		Time.timeScale = level.timeScale;
 		
 		// Placing the blocks
        	foreach(LevelData block in level.blocks)
        	{
-			Quaternion defaultRotation = block_model[block.n].transform.rotation;			
-			GameObject clone = (GameObject) Instantiate(block_model[block.n], 
-				new Vector3(block.x, block.y, 10), defaultRotation * Quaternion.Euler(0, 0, block.rotation));
+			Quaternion defaultRotation = block_model[block.n].transform.rotation;
+			
+			// Block attributes from file
+			Vector3 blockPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(block.x, block.y, 10));
+			Quaternion blockRot = defaultRotation * Quaternion.Euler(0, 0, block.rotation);
+						
+			GameObject clone = (GameObject) Instantiate(block_model[block.n], blockPos, blockRot);
 			
 			if(blocks_parent)
 			{
 				clone.transform.parent = blocks_parent.transform;
 			}
+			
+			// Start the bird enabled or not
+			clone.SetActive(block.enable);
 			
 			sceneObjects.Add(clone);
 		}
@@ -264,13 +258,20 @@ public class Timer : MonoBehaviour {
        	foreach(LevelData pig in level.pigs)
        	{
 			Quaternion defaultRotation = pig_model.transform.rotation;			
-			GameObject clone = (GameObject) Instantiate(pig_model, 
-				new Vector3(pig.x, pig.y, 10), defaultRotation * Quaternion.Euler(0, 0, pig.rotation));
+
+			// Pigs attributes from file
+			Vector3 pigPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(pig.x, pig.y, 10));
+			Quaternion pigRot = defaultRotation * Quaternion.Euler(0, 0, pig.rotation);
+
+			GameObject clone = (GameObject) Instantiate(pig_model, pigPos, pigRot);
 			
 			if(pigs_parent)
 			{
 				clone.transform.parent = pigs_parent.transform;
 			}
+			
+			// Start the bird enabled or not
+			clone.SetActive(pig.enable);
 			
 			sceneObjects.Add(clone);
 		}

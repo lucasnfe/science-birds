@@ -7,6 +7,8 @@ public class Scroll : MonoBehaviour {
 	public float maxDistanceLeft = 1.0f;
 	public float maxDistanceRight = 1.0f;
 	
+	public Timer timer;
+	
 	public Rigidbody2D[] backgroundLayers;
 	
 	private bool didTouchBackground = false;
@@ -21,6 +23,9 @@ public class Scroll : MonoBehaviour {
 
 	public void Update()
 	{
+		if(timer && !timer.enableInput)
+			return;	
+			
 	    if (Input.GetMouseButtonDown(0))
 	    {
 			lastPosition = Input.mousePosition;

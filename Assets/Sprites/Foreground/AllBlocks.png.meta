@@ -198,18 +198,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 414
-        y: 833
-        width: 77
-        height: 84
+        y: 842
+        width: 76
+        height: 76
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_18
       rect:
         serializedVersion: 2
         x: 491
-        y: 833
+        y: 840
         width: 76
-        height: 84
+        height: 76
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_19
@@ -233,10 +233,10 @@ TextureImporter:
     - name: AllBlocks_21
       rect:
         serializedVersion: 2
-        x: 721
-        y: 840
-        width: 77
-        height: 77
+        x: 723
+        y: 841
+        width: 74
+        height: 75
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: AllBlocks_22
