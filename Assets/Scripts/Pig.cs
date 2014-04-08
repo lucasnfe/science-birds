@@ -6,6 +6,8 @@ public class Pig : MonoBehaviour {
 	private float timer;
 	private float nextBlinkTime;
 	
+	private bool isSpawning = true;
+	
 	private Animator animator;
 
 	// Use this for initialization
@@ -29,5 +31,24 @@ public class Pig : MonoBehaviour {
 			nextBlinkTime = Random.Range(0.5f, 4.0f);
 			timer = 0.0f;
 		}
+	}
+	
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.transform.tag == "Bird")
+		{
+			//Destroy(gameObject);
+			return;
+		}
+		
+		if(isSpawning)
+		{
+			isSpawning = false;
+		}
+		else if(rigidbody2D.velocity.magnitude > 0.5f)
+		{
+			//Destroy(gameObject);
+		}
+		
 	}
 }

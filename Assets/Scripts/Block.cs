@@ -29,7 +29,9 @@ public class Block : MonoBehaviour {
 		if(_timer >= 0.01f)
 		{
 			experimentsAmount++;	
-			velocity += rigidbody2D.velocity.magnitude;
+			
+			if(rigidbody2D != null)
+				velocity += rigidbody2D.velocity.magnitude;
 				
 			_timer = 0.0f;
 		}

@@ -41,7 +41,7 @@ Rigidbody2D:
   m_Mass: .5
   m_LinearDrag: .800000012
   m_AngularDrag: .100000001
-  m_GravityScale: .100000001
+  m_GravityScale: .5
   m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -94,8 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a448f93d7924e9d950c9a68d8e08f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experimentsAmount: 0
-  yVelocitySum: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

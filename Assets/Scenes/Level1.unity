@@ -678,7 +678,7 @@ GameObject:
   - 4: {fileID: 1547450918}
   - 114: {fileID: 1547450917}
   m_Layer: 0
-  m_Name: Timer
+  m_Name: GameMainController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -714,8 +714,11 @@ MonoBehaviour:
   - {fileID: 100000, guid: ce782eb18eaf64514a1300b63c096878, type: 2}
   - {fileID: 100000, guid: 3cec5883640ac44d1806658ed8c498ac, type: 2}
   - {fileID: 100000, guid: f2a65dc8cebb846d8a85593453e1fd38, type: 2}
-  - {fileID: 100000, guid: 3df3e2cc6b4c748b28a2953547b7a716, type: 2}
   - {fileID: 100000, guid: 6d5389942cd98467f86e2e715b2cdcea, type: 2}
+  - {fileID: 100008, guid: ca20480245a954665a91308ce900e3bf, type: 2}
+  - {fileID: 100008, guid: 663fc1a882f11482798c84d4f8c4db60, type: 2}
+  - {fileID: 100004, guid: 88be79a1d5ac1498aaf584be30c37b9c, type: 2}
+  - {fileID: 100008, guid: b5b2e786f58024d63a9cdc381c2c30ee, type: 2}
   catapult_parent: {fileID: 1615671080}
   blocks_parent: {fileID: 544221494}
   pigs_parent: {fileID: 1093317213}

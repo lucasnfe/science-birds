@@ -36,7 +36,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mass: .5
+  m_Mass: .150000006
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: .5
@@ -73,8 +73,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21a448f93d7924e9d950c9a68d8e08f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experimentsAmount: 0
-  yVelocitySum: 0
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

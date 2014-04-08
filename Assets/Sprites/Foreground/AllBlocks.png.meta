@@ -629,9 +629,9 @@ TextureImporter:
     - name: AllBlocks_65
       rect:
         serializedVersion: 2
-        x: 407
+        x: 408
         y: 585
-        width: 44
+        width: 43
         height: 43
       alignment: 0
       pivot: {x: .5, y: .5}

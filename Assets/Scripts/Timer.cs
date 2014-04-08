@@ -129,10 +129,61 @@ public class Timer : MonoBehaviour {
 			{				
 				// Save game gata in a xml
 				WriteGameData();
+				//WriteBlockSizeData();
 				Application.Quit();
 				
 				_gameOver = true;
 			}
+		}
+	}
+	
+	void WriteBlockSizeData()
+	{
+		using (XmlWriter writer = XmlWriter.Create(Application.dataPath + "/block_size_data.xml"))
+		{
+			writer.WriteStartDocument();
+		    
+			writer.WriteStartElement("BlockSizeData");
+			
+			writer.WriteStartElement("Pig");
+				
+			Sprite pigSprite = bird_model.GetComponent<SpriteRenderer>().sprite;
+			
+			int pigN = 0;
+			int width = (int)pigSprite.rect.width;
+			int height = (int)pigSprite.rect.height;
+		
+			writer.WriteAttributeString("n", pigN.ToString());
+			writer.WriteAttributeString("width", width.ToString());
+			writer.WriteAttributeString("height", height.ToString());
+			
+			writer.WriteEndElement();
+			
+			int blockIndex = 0;
+			
+	        foreach (GameObject gameObject in block_model)
+			{				
+				writer.WriteStartElement("Block");
+				
+				SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+				if(renderer)
+				{
+					Sprite blockSprite = renderer.sprite;
+							
+					width = (int)blockSprite.rect.width;
+					height = (int)blockSprite.rect.height;
+			
+					writer.WriteAttributeString("n", blockIndex.ToString());
+					writer.WriteAttributeString("width", width.ToString());
+					writer.WriteAttributeString("height", height.ToString());
+			
+					writer.WriteEndElement();
+					blockIndex++;
+				}
+			}
+						
+			writer.WriteEndElement();
+			writer.WriteEndDocument();
 		}
 	}
 	
@@ -167,6 +218,7 @@ public class Timer : MonoBehaviour {
 					writer.WriteStartElement("Pig");
 					writer.WriteAttributeString("averageVelocity", p.averageVelocity.ToString());
 					writer.WriteAttributeString("collisions", p.collisionAmount.ToString());
+
 					writer.WriteEndElement();
 				}
 
