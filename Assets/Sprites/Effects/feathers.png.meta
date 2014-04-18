@@ -1,0 +1,229 @@
+fileFormatVersion: 2
+guid: a2cb05b3ed274477b8e34a63b4928cc1
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: feathers_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 57
+        width: 10
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_1
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 61
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_2
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 57
+        width: 10
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_3
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 49
+        width: 9
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_4
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 50
+        width: 9
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_5
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 58
+        width: 14
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_6
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 50
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_7
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 52
+        width: 12
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_8
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 50
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 23
+        width: 9
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_10
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 26
+        width: 12
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_11
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 35
+        width: 9
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_12
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 31
+        width: 10
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_13
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 15
+        width: 9
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_14
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 19
+        width: 12
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_15
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 28
+        width: 7
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_16
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 22
+        width: 7
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_17
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 21
+        width: 9
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_18
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 13
+        width: 9
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: feathers_19
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 9
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 

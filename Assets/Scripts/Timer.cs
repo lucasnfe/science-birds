@@ -29,9 +29,9 @@ public class Timer : MonoBehaviour {
 	private float _timer;
 	private bool _gameOver;
 	
-	private int _timeCounter, _levelCounter;
+	private int _levelCounter;
 	
-	public int endTime { get; set; }
+	public float endTime { get; set; }
 	public bool enableInput { get; set; }
 	
 	// Prefabs to Instantiate the objects in the scene
@@ -46,14 +46,18 @@ public class Timer : MonoBehaviour {
 	public GameObject pigs_parent;
 	public GameObject birds_parent;
 	
-	public List<Level> levels;
+	private GameObject _slingshot;
+	private GameObject _mainBird;
 	
+	public List<Level> levels;
 	private List<GameData> _gameData;
+	
+	private Vector3 _initialMainBirdPos;
 	
 	public ArrayList sceneObjects;
 	
 	void Start ()
-	{
+	{		
 		_levelCounter = 0;
 		
 		sceneObjects = new ArrayList();
@@ -65,53 +69,102 @@ public class Timer : MonoBehaviour {
 		_levelCounter++;
 	}
 	
+	void CollectGameData()
+	{
+		List<BlockData> blocksInScene = new List<BlockData>();
+		List<PigData> pigsInScene = new List<PigData>();
+		
+        foreach (Transform child in blocks_parent.transform)
+		{
+			if(child.GetComponent<Block>())
+			{	
+				Block b = child.GetComponent<Block>();
+						
+				BlockData blockData = new BlockData();
+				blockData.collisionAmount = b.collisionAmount;
+				blockData.rotation = b.transform.rotation.z;
+				blockData.averageVelocity = b.velocity / b.experimentsAmount;
+			
+				blocksInScene.Add(blockData);
+			}
+		}
+		
+        foreach (Transform child in pigs_parent.transform)
+		{
+			Block b = child.GetComponent<Block>();
+			
+			PigData pigData = new PigData();
+			pigData.collisionAmount = b.collisionAmount;
+			pigData.averageVelocity = b.velocity / b.experimentsAmount;
+			
+			pigsInScene.Add(pigData);
+		}
+						
+		GameData gd = new GameData();
+						
+		gd.blocks = blocksInScene;
+		gd.pigs = pigsInScene;
+	
+		_gameData.Add(gd);
+	}
+	
+	void TryKillingPigs()
+	{	
+		Vector2 slingShotScreenPos = Camera.main.WorldToScreenPoint(_slingshot.transform.position);
+			
+		//Create rect with catapult				
+		Rect slingShotRect = new Rect(	slingShotScreenPos.x - 100, slingShotScreenPos.y + 30, 60, 200);
+
+        foreach (Transform child in pigs_parent.transform)
+		{			
+			Vector2 pigPos = Camera.main.WorldToScreenPoint(child.gameObject.transform.position);	
+			_mainBird.GetComponent<Bird>().TryKillPig(slingShotRect, pigPos);
+		}
+	}
+	
+	void SetMainBird(GameObject bird)
+	{
+		bird.GetComponent<Bird>().isMainBird(true);
+		
+		ABCamera abCamera = Camera.main.GetComponent<ABCamera>();
+		if(abCamera)
+		{
+			abCamera.target = bird.GetComponent<Bird>();
+		}
+		
+		_mainBird = bird;
+		_mainBird.transform.position = _initialMainBirdPos;
+		
+		_mainBird.GetComponent<Animator>().SetBool("hurt", false);
+	}
+	
+	void ManageBirds()
+	{	
+		if(_mainBird == null)
+		{			
+	        foreach (Transform child in birds_parent.transform)
+			{
+				SetMainBird(child.gameObject);
+				break;
+			}
+		}
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () {
+		
+		if(_gameOver) return;
+		
+		ManageBirds();
 			
-		if(endTime > 0 && !_gameOver)
+		if(endTime > 0)
 		{
 			_timer += Time.deltaTime;
-		
-			if(_timer >= 1.0f)
-			{
-				_timeCounter++;			
-				_timer = 0.0f;
-			}
-		
-			if(_timeCounter == endTime)
+			if(_timer >= endTime)
 			{	
-				List<BlockData> blocksInScene = new List<BlockData>();
-				List<PigData> pigsInScene = new List<PigData>();
+				CollectGameData();
 				
-		        foreach (Transform child in blocks_parent.transform)
-				{
-					Block b = child.GetComponent<Block>();
-					
-					BlockData blockData = new BlockData();
-					blockData.collisionAmount = b.collisionAmount;
-					blockData.rotation = b.transform.rotation.z;
-					blockData.averageVelocity = b.velocity / b.experimentsAmount;
-					
-					blocksInScene.Add(blockData);
-				}
-				
-		        foreach (Transform child in pigs_parent.transform)
-				{
-					Block b = child.GetComponent<Block>();
-					
-					PigData pigData = new PigData();
-					pigData.collisionAmount = b.collisionAmount;
-					pigData.averageVelocity = b.velocity / b.experimentsAmount;
-					
-					pigsInScene.Add(pigData);
-				}
-								
-				GameData gd = new GameData();
-								
-				gd.blocks = blocksInScene;
-				gd.pigs = pigsInScene;
-			
-				_gameData.Add(gd);
+				//TryKillingPigs();
 				
 				CleanCurrentLevel();
 				
@@ -120,21 +173,23 @@ public class Timer : MonoBehaviour {
 				
 				_levelCounter++;
 				
-				_timeCounter = 0;
 				_timer = 0.0f;
 			}
-			
-			
+		
 			if(_levelCounter == levels.Count + 1)
-			{				
-				// Save game gata in a xml
-				WriteGameData();
-				//WriteBlockSizeData();
-				Application.Quit();
-				
+			{		
+				GameOver();		
 				_gameOver = true;
 			}
 		}
+	}
+	
+	void GameOver()
+	{
+		// Save game gata in a xml
+		WriteGameData();
+		//WriteBlockSizeData();
+		Application.Quit();	
 	}
 	
 	void WriteBlockSizeData()
@@ -144,7 +199,6 @@ public class Timer : MonoBehaviour {
 			writer.WriteStartDocument();
 		    
 			writer.WriteStartElement("BlockSizeData");
-			
 			writer.WriteStartElement("Pig");
 				
 			Sprite pigSprite = bird_model.GetComponent<SpriteRenderer>().sprite;
@@ -231,16 +285,15 @@ public class Timer : MonoBehaviour {
 		}
 	}
 
-			
 	void BuildLevelStaticElements(Level level)
 	{
 		// Placing the catapult
-		Vector3 catapultPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(level.catapult.x, level.catapult.y, 10));		
-		GameObject catapultClone = (GameObject) Instantiate(catapult_model, catapultPos, Quaternion.identity);
+		Vector3 catapultPos = Camera.main.ScreenToWorldPoint(new Vector3(level.catapult.x, level.catapult.y, 10));		
+		_slingshot = (GameObject) Instantiate(catapult_model, catapultPos, Quaternion.identity);
 		
 		if(catapult_parent)
 		{
-			catapultClone.transform.parent = catapult_parent.transform;
+			_slingshot.transform.parent = catapult_parent.transform;
 		}
 				
 		// Placing the birds
@@ -249,7 +302,7 @@ public class Timer : MonoBehaviour {
 			Quaternion defaultRotation = bird_model.transform.rotation;
 			
 			// Object attributes from file
-			Vector3 birdPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(bird.x, bird.y, 10));
+			Vector3 birdPos = Camera.main.ScreenToWorldPoint(new Vector3(bird.x, bird.y, 10));
 			Quaternion birdRot = defaultRotation * Quaternion.Euler(0, 0, bird.rotation);
 						
 			GameObject clone = (GameObject)Instantiate(bird_model, birdPos, birdRot);
@@ -263,16 +316,24 @@ public class Timer : MonoBehaviour {
 			clone.SetActive(bird.enable);
 						
 			Bird birdClone = clone.GetComponent<Bird>();
-			birdClone.setMainBird(bird.isMainBird);
 			
 			if(bird.isMainBird)
 			{
-				ABCamera abCamera = Camera.main.GetComponent<ABCamera>();
-				if(abCamera)
-				{
-					abCamera.target = birdClone;
-				}
+				_initialMainBirdPos = birdPos;
+				SetMainBird(clone);
 			}
+			else
+			{
+				birdClone.isMainBird(false);
+			}
+			
+			// Ignore collisions between birds
+			int birdsLayer = LayerMask.NameToLayer("Birds");
+			
+	        foreach (Transform child in birds_parent.transform)
+			{
+				Physics2D.IgnoreLayerCollision(birdsLayer, birdsLayer, true);
+			}			
 		}
 	}
 	
@@ -290,7 +351,7 @@ public class Timer : MonoBehaviour {
 			Quaternion defaultRotation = block_model[block.n].transform.rotation;
 			
 			// Block attributes from file
-			Vector3 blockPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(block.x, block.y, 10));
+			Vector3 blockPos = Camera.main.ScreenToWorldPoint(new Vector3(block.x, block.y, 10));
 			Quaternion blockRot = defaultRotation * Quaternion.Euler(0, 0, block.rotation);
 						
 			GameObject clone = (GameObject) Instantiate(block_model[block.n], blockPos, blockRot);
@@ -312,7 +373,7 @@ public class Timer : MonoBehaviour {
 			Quaternion defaultRotation = pig_model.transform.rotation;			
 
 			// Pigs attributes from file
-			Vector3 pigPos = Camera.mainCamera.ScreenToWorldPoint(new Vector3(pig.x, pig.y, 10));
+			Vector3 pigPos = Camera.main.ScreenToWorldPoint(new Vector3(pig.x, pig.y, 10));
 			Quaternion pigRot = defaultRotation * Quaternion.Euler(0, 0, pig.rotation);
 
 			GameObject clone = (GameObject) Instantiate(pig_model, pigPos, pigRot);
@@ -335,7 +396,5 @@ public class Timer : MonoBehaviour {
 		{
 			Destroy(clone);
 		}
-		
 	}
-	
 }

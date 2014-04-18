@@ -15,7 +15,10 @@ public class ABCamera : Scroll {
 	// Update is called once per frame
 	void Update () 
 	{	
-		base.Update();
+		if(target && !target.didHurled())
+		{ 
+			base.Update();
+		}
 		
 	    if(Input.GetAxis("Mouse ScrollWheel") < 0) // back
 		{

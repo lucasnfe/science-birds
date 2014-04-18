@@ -16,8 +16,8 @@ public struct LevelData
 
 public struct Level
 {
-	public int endTime;
 	public int timeScale;
+	public float endTime;
 	public bool enableInput;
 	
 	public LevelData catapult;
@@ -70,7 +70,7 @@ public class LevelParser : MonoBehaviour {
 	    {		
 			Level level = new Level();
 			
-			level.endTime = int.Parse(child.FirstChild.Attributes.GetNamedItem("time").Value);
+			level.endTime = float.Parse(child.FirstChild.Attributes.GetNamedItem("time").Value);
 			level.timeScale = int.Parse(child.FirstChild.Attributes.GetNamedItem("scale").Value);
 			level.enableInput = bool.Parse(child.FirstChild.Attributes.GetNamedItem("enableInput").Value);
 		

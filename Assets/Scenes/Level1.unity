@@ -82,6 +82,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 22468463}
+  - 82: {fileID: 22468464}
   m_Layer: 0
   m_Name: Birds
   m_TagString: Untagged
@@ -100,6 +101,64 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!82 &22468464
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22468462}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 9b12cd98cb169494397f3526db91d0be, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &204132479
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,7 +186,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 15, y: 2}
+  m_Size: {x: 30, y: 2}
   m_Center: {x: 0, y: -.0900000036}
 --- !u!50 &204132481
 Rigidbody2D:
@@ -715,10 +774,11 @@ MonoBehaviour:
   - {fileID: 100000, guid: 3cec5883640ac44d1806658ed8c498ac, type: 2}
   - {fileID: 100000, guid: f2a65dc8cebb846d8a85593453e1fd38, type: 2}
   - {fileID: 100000, guid: 6d5389942cd98467f86e2e715b2cdcea, type: 2}
-  - {fileID: 100008, guid: ca20480245a954665a91308ce900e3bf, type: 2}
+  - {fileID: 100006, guid: c9acec032d936401b9c6a1ba78f566a0, type: 2}
   - {fileID: 100008, guid: 663fc1a882f11482798c84d4f8c4db60, type: 2}
   - {fileID: 100004, guid: 88be79a1d5ac1498aaf584be30c37b9c, type: 2}
   - {fileID: 100008, guid: b5b2e786f58024d63a9cdc381c2c30ee, type: 2}
+  - {fileID: 100006, guid: 98bf017e04e37404d99ec2672ea1a337, type: 2}
   catapult_parent: {fileID: 1615671080}
   blocks_parent: {fileID: 544221494}
   pigs_parent: {fileID: 1093317213}
@@ -880,5 +940,5 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 4
   minSize: 2.5
-  maxSize: 3
+  maxSize: 4
   dampTime: .150000006

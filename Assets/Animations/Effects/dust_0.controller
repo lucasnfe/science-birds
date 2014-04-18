@@ -5,21 +5,9 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pig1
+  m_Name: dust_0
   serializedVersion: 2
-  m_AnimatorParameters:
-  - m_Name: blinking
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 1
-    m_Controller: {fileID: 9100000}
-  - m_Name: hurt
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 1
-    m_Controller: {fileID: 9100000}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -38,33 +26,15 @@ Transition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110237001}
-  m_DstState: {fileID: 110200000}
-  m_TransitionDuration: 0
-  m_TransitionOffset: 0
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: blinking
-    m_EventTreshold: 0
-    m_ExitTime: 1
-  m_Atomic: 1
-  m_Solo: 0
-  m_Mute: 0
---- !u!1101 &110182355
-Transition:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: 
   m_SrcState: {fileID: 110200000}
-  m_DstState: {fileID: 110237001}
+  m_DstState: {fileID: 110283312}
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
   - m_ConditionMode: 5
-    m_ConditionEvent: hurt
+    m_ConditionEvent: 
     m_EventTreshold: 0
-    m_ExitTime: 1
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -73,43 +43,28 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pig_blink
+  m_Name: dust
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 4a1325e5a531f493793a8cf1b53fba44, type: 2}
+  - {fileID: 7400000, guid: 77faa5c1add264ff7835da6447ba5883, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 48, y: 132, z: 0}
+  m_Position: {x: 36, y: 96, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
---- !u!1102 &110237001
+--- !u!1102 &110283312
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pig_idle
+  m_Name: end
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
-  - {fileID: 7400000, guid: 529699c91d7174a9bad03343fcbc4a7b, type: 2}
+  - {fileID: 0}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 48, y: -12, z: 0}
-  m_IKOnFeet: 0
-  m_Mirror: 0
-  m_Tag: 
---- !u!1102 &110267195
-State:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: pig_hurt
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Motions:
-  - {fileID: 7400000, guid: 0fb47c042f3904ab4a8f104e4aa6ef6e, type: 2}
-  m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 372, y: 48, z: 0}
+  m_Position: {x: 36, y: 192, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -120,28 +75,20 @@ StateMachine:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
-  m_DefaultState: {fileID: 110237001}
+  m_DefaultState: {fileID: 110200000}
   m_States:
   - {fileID: 110200000}
-  - {fileID: 110237001}
-  - {fileID: 110267195}
+  - {fileID: 110283312}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110267195}
+      first: {fileID: 110283312}
       second: []
-    data:
-      first: {fileID: 0}
-      second: []
-    data:
-      first: {fileID: 110237001}
-      second:
-      - {fileID: 110100000}
     data:
       first: {fileID: 110200000}
       second:
-      - {fileID: 110182355}
+      - {fileID: 110100000}
   m_MotionSetCount: 1
-  m_AnyStatePosition: {x: 72, y: -96, z: 0}
+  m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

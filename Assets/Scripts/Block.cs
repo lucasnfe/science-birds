@@ -13,8 +13,7 @@ public class Block : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		_timer = 1.0f;
-		
+		_timer = 0.1f;
 		velocity = 0.0f;
 		
 		experimentsAmount = 0;
@@ -24,16 +23,17 @@ public class Block : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 		
-		_timer += Time.deltaTime;
-	
-		if(_timer >= 0.01f)
+		if(rigidbody2D != null)
 		{
-			experimentsAmount++;	
-			
-			if(rigidbody2D != null)
+			_timer += Time.deltaTime;
+	
+			if(_timer >= 0.1f)
+			{
+				experimentsAmount++;	
 				velocity += rigidbody2D.velocity.magnitude;
-				
-			_timer = 0.0f;
+			
+				_timer = 0.0f;
+			}
 		}
 	}
 	
