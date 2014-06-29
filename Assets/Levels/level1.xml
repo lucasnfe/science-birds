@@ -1,58 +1,28 @@
 <Levels>
     <AngryBirdsLevel>
-        <Simulation time="-1" scale="1" enableInput="true"/>
-        <Catapult x="150" y="160"/>
+        <Simulation time="-5" scale="1" enableInput="true"/>
+        <Catapult x="150" y="120"/>
         <Birds>
-            <bird isMainBird="true" n="2" x="140" y="220" rotation="0" enable="true"/>
+            <bird isMainBird="true" n="2" x="145" y="160" rotation="0" enable="true"/>
             <bird isMainBird="false" n="2" x="200" y="100" rotation="0" enable="true"/>
-            <bird isMainBird="false" n="2" x="260" y="100" rotation="0" enable="true"/>
+            <bird isMainBird="false" n="2" x="245" y="100" rotation="0" enable="true"/>
         </Birds>
         <Pigs>
-            <pig n="0" x="500" y="686" rotation="0" enable="true"/>
-            <pig n="0" x="673" y="553" rotation="0" enable="true"/>
-            <pig n="0" x="855" y="466" rotation="0" enable="true"/>
+            <pig n="0" x="500" y="125" rotation="0" enable="true"/>
         </Pigs>
         <Blocks>
-            <block n="16" x="500" y="120" rotation="0" enable="true"/>
-            <block n="2" x="500" y="370" rotation="0" enable="true"/>
-            <block n="0" x="500" y="459" rotation="0" enable="true"/>
-            <block n="0" x="500" y="548" rotation="0" enable="true"/>
-            <block n="8" x="500" y="637" rotation="0" enable="true"/>
-            <block n="8" x="673" y="120" rotation="0" enable="true"/>
-            <block n="2" x="673" y="169" rotation="0" enable="true"/>
-            <block n="0" x="673" y="258" rotation="0" enable="true"/>
-            <block n="0" x="673" y="347" rotation="0" enable="true"/>
-            <block n="0" x="673" y="436" rotation="0" enable="true"/>
-            <block n="13" x="673" y="525" rotation="0" enable="true"/>
-            <block n="2" x="855" y="120" rotation="0" enable="true"/>
-            <block n="8" x="855" y="209" rotation="0" enable="true"/>
-            <block n="0" x="855" y="258" rotation="0" enable="true"/>
-            <block n="12" x="855" y="347" rotation="0" enable="true"/>
-            <block n="2" x="855" y="377" rotation="0" enable="true"/>
-            <block n="13" x="1013" y="120" rotation="0" enable="true"/>
-            <block n="8" x="1013" y="148" rotation="0" enable="true"/>
-            <block n="12" x="1013" y="197" rotation="0" enable="true"/>
-            <block n="0" x="1013" y="227" rotation="0" enable="true"/>
-            <block n="6" x="1013" y="316" rotation="0" enable="true"/>
-            <block n="0" x="1164" y="120" rotation="0" enable="true"/>
-            <block n="0" x="1164" y="209" rotation="0" enable="true"/>
-            <block n="2" x="1164" y="298" rotation="0" enable="true"/>
-            <block n="13" x="1164" y="387" rotation="0" enable="true"/>
-            <block n="8" x="1164" y="415" rotation="0" enable="true"/>
-            <block n="1" x="1164" y="464" rotation="0" enable="true"/>
-            <block n="12" x="1351" y="120" rotation="0" enable="true"/>
-            <block n="0" x="1351" y="150" rotation="0" enable="true"/>
-            <block n="11" x="1351" y="239" rotation="0" enable="true"/>
-            <block n="2" x="1351" y="267" rotation="0" enable="true"/>
-            <block n="12" x="1351" y="356" rotation="0" enable="true"/>
-            <block n="15" x="1351" y="386" rotation="0" enable="true"/>
-            <block n="0" x="1454" y="120" rotation="0" enable="true"/>
-            <block n="11" x="1454" y="209" rotation="0" enable="true"/>
-            <block n="8" x="1454" y="237" rotation="0" enable="true"/>
-            <block n="9" x="1454" y="286" rotation="0" enable="true"/>
-            <block n="11" x="1596" y="120" rotation="0" enable="true"/>
-            <block n="0" x="1596" y="148" rotation="0" enable="true"/>
-            <block n="9" x="1596" y="237" rotation="0" enable="true"/>
+            <block n="10" x="381" y="120" rotation="0" enable="true"/>
+            <block n="17" x="381" y="170" rotation="0" enable="true"/>
+            <block n="17" x="381" y="413" rotation="0" enable="true"/>
+            <block n="2" x="381" y="656" rotation="0" enable="true"/>
+            <block n="16" x="517" y="120" rotation="0" enable="true"/>
+            <block n="14" x="517" y="370" rotation="0" enable="true"/>
+            <block n="10" x="517" y="400" rotation="0" enable="true"/>
+            <block n="10" x="789" y="120" rotation="0" enable="true"/>
+            <block n="13" x="789" y="170" rotation="0" enable="true"/>
+            <block n="20" x="789" y="198" rotation="0" enable="true"/>
+            <block n="16" x="789" y="248" rotation="0" enable="true"/>
+            <block n="1" x="789" y="387" rotation="0" enable="true"/>
         </Blocks>
     </AngryBirdsLevel>
 </Levels>
