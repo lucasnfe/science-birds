@@ -118,26 +118,37 @@ public class Bird : MonoBehaviour {
             RemoveLastTrajectoryParticle(name);
 
             Invoke("Die", _timeToDie);
+            _animator.Play("die", 0, 0f);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.tag == "Slingshot")
+        {
+            if(JumpToSlingshot)
+                _slingshotBase.active = false;
         }
     }
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if(collider.tag == "Slingshot" && JumpToSlingshot)
+        if(collider.tag == "Slingshot")
         {
-            _slingshotBase.active = false;
-        }
-    }
+            if(JumpToSlingshot)
+                _slingshotBase.active = false;
 
-    void OnTriggerExit2D(Collider2D collider)
-    {
-        if(collider.tag == "Slingshot" && IsFlying())
-        {
-            _slingshotBase.transform.position = _selectPosition;
-            _slingshotBase.transform.rotation = Quaternion.Euler(_slingshotBase.transform.rotation.x,
-                                                                 _slingshotBase.transform.rotation.y, 0f);
+            if(IsFlying())
+            {
+                Vector3 slingBasePos = _selectPosition;
+                slingBasePos.z = transform.position.z + 0.5f;
+                _slingshotBase.transform.position = slingBasePos;
 
-            OutOfSlingShot = true;
+                _slingshotBase.transform.rotation = Quaternion.Euler(_slingshotBase.transform.rotation.x,
+                                                                     _slingshotBase.transform.rotation.y, 0f);
+
+                OutOfSlingShot = true;
+            }
         }
     }
 
@@ -165,7 +176,7 @@ public class Bird : MonoBehaviour {
 
     public void SetBirdOnSlingshot(Vector3 endPosition)
     {
-        transform.position = Vector3.Lerp(transform.position, endPosition, _dragSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, endPosition, _dragSpeed * Time.deltaTime);
     }
 
 	public void DragBird(Vector3 dragPosition)
@@ -195,12 +206,9 @@ public class Bird : MonoBehaviour {
 
 		// The bird starts with no gravity, so we must set it
 		rigidbody2D.gravityScale = _launchGravity;
+		rigidbody2D.velocity = new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
+                                           _launchForce.y * -deltaPosFromSlingshot.y) * Time.deltaTime;
 
-        Vector2 force = new Vector2(_launchForce.x * -deltaPosFromSlingshot.normalized.x,
-                                    _launchForce.y * -deltaPosFromSlingshot.normalized.y);
-
-		rigidbody2D.AddForce(force);
-
-        InvokeRepeating("DropTrajectoryParticle", 0.1f, _trajectoryParticleFrequency);
+        InvokeRepeating("DropTrajectoryParticle", 0.1f, _trajectoryParticleFrequency / Mathf.Abs(rigidbody2D.velocity.x));
 	}
 }

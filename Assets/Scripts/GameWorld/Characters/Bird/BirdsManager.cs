@@ -16,6 +16,7 @@ public class BirdsManager : MonoBehaviour {
         for(int i = 1; i < _birds.Length; i++)
 
             _birds[i].rigidbody2D.gravityScale = 1f;
+
 	}
 
 	// Update is called once per frame
@@ -40,11 +41,11 @@ public class BirdsManager : MonoBehaviour {
         {
             _birds[_currentBirdIndex].SetBirdOnSlingshot(transform.position + _initialPosition);
 
-            if(Vector3.Distance(_birds[_currentBirdIndex].transform.position, transform.position + _initialPosition) <= 0.01f)
+            if(_birds[_currentBirdIndex].transform.position == transform.position + _initialPosition)
             {
                 _birds[_currentBirdIndex].JumpToSlingshot = false;
+                _birds[_currentBirdIndex].rigidbody2D.velocity = Vector2.zero;
             }
-
         }
 	}
 
