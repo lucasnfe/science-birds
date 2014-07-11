@@ -7,19 +7,7 @@ AnimatorController:
   m_PrefabInternal: {fileID: 0}
   m_Name: bird
   serializedVersion: 2
-  m_AnimatorParameters:
-  - m_Name: pressed
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: flying
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+  m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -39,20 +27,20 @@ Transition:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
-  m_SrcState: {fileID: 110224247}
-  m_DstState: {fileID: 110200000}
+  m_SrcState: {fileID: 110209367}
+  m_DstState: {fileID: 110224247}
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: pressed
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
     m_EventTreshold: 0
     m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
-  m_CanTransitionToSelf: 1
---- !u!1101 &110128347
+  m_CanTransitionToSelf: 0
+--- !u!1101 &110187538
 Transition:
   serializedVersion: 2
   m_ObjectHideFlags: 3
@@ -60,18 +48,18 @@ Transition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_SrcState: {fileID: 110200000}
-  m_DstState: {fileID: 110299766}
+  m_DstState: {fileID: 110224247}
   m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: flying
+  - m_ConditionMode: 5
+    m_ConditionEvent: 
     m_EventTreshold: 0
     m_ExitTime: 1
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1102 &110200000
 State:
   m_ObjectHideFlags: 3
@@ -87,12 +75,27 @@ State:
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
+--- !u!1102 &110209367
+State:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: blink
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Motions:
+  - {fileID: 7400000, guid: 86e2c8a0687814d49896435f22a9e10e, type: 2}
+  m_ParentStateMachine: {fileID: 110700000}
+  m_Position: {x: -252, y: 84, z: 0}
+  m_IKOnFeet: 0
+  m_Mirror: 0
+  m_Tag: 
 --- !u!1102 &110224247
 State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: bird_idle
+  m_Name: idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
@@ -107,13 +110,13 @@ State:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: bird_hurled
+  m_Name: flying
   m_Speed: 1
   m_CycleOffset: 0
   m_Motions:
   - {fileID: 7400000, guid: 63105a6cb07e949d7afb8a95bb3ab8e3, type: 2}
   m_ParentStateMachine: {fileID: 110700000}
-  m_Position: {x: 24, y: 288, z: 0}
+  m_Position: {x: 288, y: 84, z: 0}
   m_IKOnFeet: 0
   m_Mirror: 0
   m_Tag: 
@@ -129,20 +132,24 @@ StateMachine:
   - {fileID: 110200000}
   - {fileID: 110224247}
   - {fileID: 110299766}
+  - {fileID: 110209367}
   m_ChildStateMachine: []
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
+    data:
+      first: {fileID: 110209367}
+      second:
+      - {fileID: 110100000}
     data:
       first: {fileID: 0}
       second: []
     data:
       first: {fileID: 110224247}
-      second:
-      - {fileID: 110100000}
+      second: []
     data:
       first: {fileID: 110200000}
       second:
-      - {fileID: 110128347}
+      - {fileID: 110187538}
     data:
       first: {fileID: 110299766}
       second: []

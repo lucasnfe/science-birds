@@ -9,7 +9,7 @@ public class Slingshot : MonoBehaviour {
         BIRD
     };
 
-    public Bird _bird;
+    public Transform _slingshotBase;
     public Vector3 _positionOffset;
     public float _width;
 
@@ -23,21 +23,19 @@ public class Slingshot : MonoBehaviour {
         _lineRenderer.SetWidth(_width, _width);
 
         _lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.SLING, transform.position + _positionOffset);
-
         _lineRenderer.enabled = false;
     }
 
-    void Update() {
-
-        if(_lineRenderer && _bird)
+    void Update()
+    {
+        if(_lineRenderer && _slingshotBase.active)
         {
-            if(_bird.OutOfSlingShot)
-            {
-                transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            }
-
             _lineRenderer.enabled = true;
-            _lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, _bird._slingshotBase.transform.position);
+            _lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, _slingshotBase.transform.position);
         }
+        else
+
+            _lineRenderer.enabled = false;
+
     }
 }

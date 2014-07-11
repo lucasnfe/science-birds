@@ -19,19 +19,38 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 21300000, guid: bde238fba78ec4b718a75ff430a8ca8c, type: 3}
+    - time: .3125
+      value: {fileID: 21300000, guid: bde238fba78ec4b718a75ff430a8ca8c, type: 3}
+    - time: .625
+      value: {fileID: 21300000, guid: bde238fba78ec4b718a75ff430a8ca8c, type: 3}
+    - time: .9375
+      value: {fileID: 21300000, guid: bde238fba78ec4b718a75ff430a8ca8c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 30
+  m_SampleRate: 16
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  m_ClipBindingConstant:
+    genericBindings:
+    - path: 0
+      attribute: 0
+      script: {fileID: 0}
+      classID: 212
+      customType: 23
+      isPPtrCurve: 1
+    pptrCurveMapping:
+    - {fileID: 21300000, guid: bde238fba78ec4b718a75ff430a8ca8c, type: 3}
+    - {fileID: 21300000, guid: bde238fba78ec4b718a75ff430a8ca8c, type: 3}
+    - {fileID: 21300000, guid: bde238fba78ec4b718a75ff430a8ca8c, type: 3}
+    - {fileID: 21300000, guid: bde238fba78ec4b718a75ff430a8ca8c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: .0333333351
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -47,4 +66,11 @@ AnimationClip:
     m_Mirror: 0
   m_EditorCurves: []
   m_EulerEditorCurves: []
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: PlayAudio
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

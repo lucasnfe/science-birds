@@ -44,7 +44,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .150000006, y: -.400000006, z: 2}
+  m_LocalPosition: {x: -.735135555, y: -1.73529983, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.150000006, y: -.100000001, z: 0}
+  m_LocalPosition: {x: -.150000006, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -71,7 +71,7 @@ Rigidbody2D:
   m_Mass: .5
   m_LinearDrag: 0
   m_AngularDrag: .100000001
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -231,9 +231,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dragRadius: 1
   _dragSpeed: 15
-  _launchGravity: .200000003
+  _launchGravity: .300000012
   _trajectoryParticleFrequency: .100000001
-  _launchForce: {x: 130, y: 150}
+  _jumpForce: 75
+  _timeToDie: 3
+  _maxTimeToJump: 5
+  _maxTimeToBlink: 3
+  _launchForce: {x: 180, y: 200}
   _slingshot: {fileID: 0}
   _slingshotBase: {fileID: 400002}
   _trajectoryParticles:

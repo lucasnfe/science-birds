@@ -68,7 +68,7 @@ public class Pig : MonoBehaviour {
 		{
 			_isSpawning = false;
 		}
-		else if(collision.relativeVelocity.magnitude > 1f)
+		else if(collision.relativeVelocity.magnitude > 1.5f)
 		{
 			_animator.SetBool("hurt", true);
 		}

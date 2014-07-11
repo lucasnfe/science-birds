@@ -4,11 +4,7 @@ using System.Collections;
 public class HUD : MonoBehaviour {
 
     Bird selecetdBird;
-
-	// Use this for initialization
-	void Start () {
-
-	}
+    public BirdsManager _birdsManager;
 
 	// Update is called once per frame
 	void Update () {
@@ -23,13 +19,16 @@ public class HUD : MonoBehaviour {
                 if(hit.transform.tag == "Bird")
                 {
                     selecetdBird = hit.transform.gameObject.GetComponent<Bird>();
-                    if(selecetdBird) selecetdBird.SelectBird();
+                    if(selecetdBird && !selecetdBird.IsSelected() && selecetdBird == _birdsManager.GetCurrentBird())
+                    {
+                        selecetdBird.SelectBird();
+                    }
                 }
             }
         }
         else if(Input.GetMouseButton(0))
         {
-            if(selecetdBird)
+            if(selecetdBird && !selecetdBird.IsFlying() && selecetdBird == _birdsManager.GetCurrentBird())
             {
                 Vector3 dragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 dragPosition = new Vector3(dragPosition.x, dragPosition.y, selecetdBird.transform.position.z);
@@ -39,7 +38,7 @@ public class HUD : MonoBehaviour {
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            if(selecetdBird)
+            if(selecetdBird && !selecetdBird.IsFlying() && selecetdBird == _birdsManager.GetCurrentBird())
             {
                 selecetdBird.LaunchBird();
                 selecetdBird = null;
