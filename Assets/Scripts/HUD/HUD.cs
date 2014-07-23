@@ -3,14 +3,23 @@ using System.Collections;
 
 public class HUD : MonoBehaviour {
 
-    Bird selecetdBird;
+    Bird _selecetdBird;
     public BirdsManager _birdsManager;
-
+	public GameplayCamera _camera;
+	public Vector3 _dragOrigin;
+	
+	void Start() {
+	
+		InvokeRepeating("CollectDragStartingPoint", 0f, 0.1f);
+	}
+	
 	// Update is called once per frame
 	void Update () {
 
         if(Input.GetMouseButtonDown(0))
         {
+			CollectDragStartingPoint();
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
@@ -18,32 +27,48 @@ public class HUD : MonoBehaviour {
             {
                 if(hit.transform.tag == "Bird")
                 {
-                    selecetdBird = hit.transform.gameObject.GetComponent<Bird>();
-                    if(selecetdBird && !selecetdBird.IsSelected() && selecetdBird == _birdsManager.GetCurrentBird())
+					_selecetdBird = hit.transform.gameObject.GetComponent<Bird>();
+					if(_selecetdBird && !_selecetdBird.IsSelected() && _selecetdBird == _birdsManager.GetCurrentBird())
                     {
-                        selecetdBird.SelectBird();
+						_selecetdBird.SelectBird();
                     }
                 }
             }
         }
         else if(Input.GetMouseButton(0))
         {
-            if(selecetdBird && !selecetdBird.IsFlying() && selecetdBird == _birdsManager.GetCurrentBird())
+            if(_selecetdBird)
             {
-                Vector3 dragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                dragPosition = new Vector3(dragPosition.x, dragPosition.y, selecetdBird.transform.position.z);
+				if(!_selecetdBird.IsFlying() && _selecetdBird == _birdsManager.GetCurrentBird())
+				{
+                	Vector3 dragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+					dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selecetdBird.transform.position.z);
 
-                selecetdBird.DragBird(dragPosition);
+					_selecetdBird.DragBird(dragPosition);
+				}
             }
+			else
+			{
+				Vector3 dragPosition = Input.mousePosition - _dragOrigin;
+				dragPosition = new Vector3(dragPosition.x, _camera.transform.position.y, _camera.transform.position.z);
+
+				_camera.DragCamera(dragPosition);
+			}
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            if(selecetdBird && !selecetdBird.IsFlying() && selecetdBird == _birdsManager.GetCurrentBird())
+            if(_selecetdBird && !_selecetdBird.IsFlying() && _selecetdBird == _birdsManager.GetCurrentBird())
             {
-                selecetdBird.LaunchBird();
-                selecetdBird = null;
+                _selecetdBird.LaunchBird();
+                _selecetdBird = null;
             }
         }
+	}
 
+	void CollectDragStartingPoint()
+	{
+		if(Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
+
+			_dragOrigin = Input.mousePosition;
 	}
 }

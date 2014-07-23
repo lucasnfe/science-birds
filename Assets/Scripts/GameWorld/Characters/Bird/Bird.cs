@@ -187,16 +187,16 @@ public class Bird : MonoBehaviour {
         if(deltaPosFromSlingshot > _dragRadius)
             dragPosition = (dragPosition - _selectPosition).normalized * _dragRadius + _selectPosition;
 
-        // Slingshot base look to slingshot
         transform.position = Vector3.Lerp (transform.position, dragPosition, Time.deltaTime * _dragSpeed);
 
+		// Slingshot base look to slingshot
         Vector3 dist = _slingshotBase.transform.position - _selectPosition;
         float angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;
         _slingshotBase.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // Slingshot base rotate around the selected point
-        CircleCollider2D col = _slingshot.GetComponent<CircleCollider2D>();
-        _slingshotBase.transform.position = transform.position + (transform.position - _selectPosition).normalized * (col.radius+0.05f) * 0.5f;
+        CircleCollider2D col = GetComponent<CircleCollider2D>();
+		_slingshotBase.transform.position = (transform.position - _selectPosition).normalized * col.radius + transform.position;
 	}
 
 	public void LaunchBird()
