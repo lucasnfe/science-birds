@@ -6,14 +6,15 @@ public class GameplayCamera : MonoBehaviour {
 	private bool _isDraging;
 	private float _cameraWidth;
 	private float _cameraHeight;
-	private Vector2 _horizontalLockArea;
-	private Vector3 _velocity;
 
 	public BirdsManager _birdsManager;
-
-	public Vector2 _horizontalLimits;
 	public float _dampTime = 1.0f;
-	
+
+	public  Vector3 _dragSpeed;
+	public  Vector2 _horizontalLimits;
+	private Vector3 _velocity;
+	private Vector2 _horizontalLockArea;
+
 	void Start()
 	{
 		_cameraHeight = 2f * Camera.main.orthographicSize;
@@ -26,21 +27,18 @@ public class GameplayCamera : MonoBehaviour {
 	void FixedUpdate()
 	{
 		Bird target = _birdsManager.GetCurrentBird();
-		
-		if (target && !_isDraging)
 
-			FollowTarget(target.transform.position, _dampTime);
+		if(target && target.OutOfSlingShot)
+
+			DragCamera(-_dragSpeed);
+
+		else if (!_isDraging)
+		
+			DragCamera(_dragSpeed);
 
 		_isDraging = false;
 	}
-
-	void LockCamera()
-	{
-		// Lock camera movement
-		transform.position = new Vector3(Mathf.Clamp(transform.position.x, _horizontalLockArea.x, _horizontalLockArea.y),
-		                                 transform.position.y, transform.position.z);
-	}
-
+	
 	void FollowTarget(Vector3 targetPosition, float dampTime)
 	{
 		Vector3 point = camera.WorldToViewportPoint(targetPosition);
@@ -49,8 +47,8 @@ public class GameplayCamera : MonoBehaviour {
 		
 		Vector3 destination = transform.position + delta;
 		transform.position = Vector3.SmoothDamp(transform.position, destination, ref _velocity, dampTime);
-
-		LockCamera();
+		transform.position = new Vector3(Mathf.Clamp(transform.position.x, _horizontalLockArea.x, _horizontalLockArea.y),
+		                                 transform.position.y, transform.position.z);
 	}
 	
 	public void DragCamera(Vector3 dragPosition)
@@ -58,8 +56,8 @@ public class GameplayCamera : MonoBehaviour {
 		_isDraging = true;
 
 		Vector3 dragDistance = transform.position - dragPosition;
-		dragDistance.x = Mathf.Clamp(dragDistance.x, -5f, 5f);
+		dragDistance.x = Mathf.Clamp(dragDistance.x, -_dragSpeed.x, _dragSpeed.x);
 
-		FollowTarget(dragDistance*0.5f, 0.25f);
+		FollowTarget(dragDistance, _dampTime);
 	}
 }
