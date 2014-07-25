@@ -11,15 +11,17 @@ public class GameplayCamera : MonoBehaviour {
 	private Vector2 _horizontalLockArea;
 
 	public BirdsManager _birdsManager;
+
 	public float _dampTime = 1.0f;
-	public float _dragSpeed = 1.0f;
-	public float _followBirdSpeed = 1.0f;
 	public Vector2 _horizontalLimits;
+	public Vector2 _fieldOfViewBounds;
 
 	void Start()
 	{
 		_cameraHeight = 2f * Camera.main.orthographicSize;
 		_cameraWidth = _cameraHeight * Camera.main.aspect;
+
+		_dragDistance = Vector3.one;
 		
 		_horizontalLockArea.x = transform.position.x + _horizontalLimits.x;
 		_horizontalLockArea.y = transform.position.x + _horizontalLimits.y;
@@ -34,15 +36,22 @@ public class GameplayCamera : MonoBehaviour {
 	
 			if(target)
 
-				if(target.IsFlying())
+				if(target.OutOfSlingShot)
 
-					cameraSpeed.x = -_followBirdSpeed * target.rigidbody2D.velocity.normalized.x;
-				
-				else if(!target.OutOfSlingShot)
-					
-					cameraSpeed.x = _dragSpeed;
+					FollowTarget(target.transform.position, _dampTime);
 
-			DragCamera(cameraSpeed);
+				else
+
+					if(_dragDistance.x < 0f)
+
+						cameraSpeed.x = _horizontalLockArea.y;
+					else
+						cameraSpeed.x = _horizontalLockArea.x;
+			else
+
+				cameraSpeed.x = _horizontalLockArea.x;
+
+			FollowTarget(cameraSpeed, _dampTime);
 		}
 
 		_isDraging = false;
@@ -50,22 +59,30 @@ public class GameplayCamera : MonoBehaviour {
 	
 	void FollowTarget(Vector3 targetPosition, float dampTime)
 	{
-		Vector3 point = camera.WorldToViewportPoint(targetPosition);
-		Vector3 delta = targetPosition - camera.ViewportToWorldPoint(new Vector3(0.5f, point.y, point.z));
-		
-		Vector3 destination = transform.position + delta;
+		Vector3 destination = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
 		transform.position = Vector3.SmoothDamp(transform.position, destination, ref _velocity, dampTime);
-		transform.position = new Vector3(Mathf.Clamp(transform.position.x, _horizontalLockArea.x, _horizontalLockArea.y),
-		                                 transform.position.y, transform.position.z);
+
+		transform.position = new Vector3(Mathf.Clamp(transform.position.x,
+		                                             _horizontalLockArea.x, 
+		                                             _horizontalLockArea.y),
+		                                transform.position.y, transform.position.z);
+	}
+
+	public void ZoomCamera(float zoomFactor)
+	{
+
 	}
 	
 	public void DragCamera(Vector3 dragPosition)
 	{
 		_isDraging = true;
 
-		_dragDistance = transform.position - dragPosition;
-		_dragDistance.x = Mathf.Clamp(_dragDistance.x, -_dragSpeed, _dragSpeed);
+		Vector3 dragPos = transform.position - dragPosition;
 
-		FollowTarget(_dragDistance, _dampTime);
+		if(dragPosition.x != 0f)
+
+			_dragDistance = dragPosition;
+	
+		FollowTarget(dragPos, _dampTime);
 	}
 }

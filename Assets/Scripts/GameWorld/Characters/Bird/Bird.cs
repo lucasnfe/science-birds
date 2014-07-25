@@ -58,8 +58,10 @@ public class Bird : Character {
     {
         _nextParticleTrajectory = (_nextParticleTrajectory + 1) % _trajectoryParticles.Length;
 
-        GameObject particle = (GameObject) Instantiate(_trajectoryParticles[_nextParticleTrajectory], transform.position, Quaternion.identity);
-        particle.transform.parent = GameObject.Find("Foreground/Effects").transform;
+        GameObject particle = (GameObject) Instantiate(_trajectoryParticles[_nextParticleTrajectory], 
+		                                               transform.position, Quaternion.identity);
+
+		particle.transform.parent = GameObject.Find("Level/Effects").transform;
         particle.name = name;
     }
 
@@ -72,7 +74,7 @@ public class Bird : Character {
             string lastBirdName = birdName.Remove(birdName.Length - 1, 1);
             lastBirdName = lastBirdName + lastBirdIndex;
 
-            GameObject effects = GameObject.Find("Foreground/Effects");
+			GameObject effects = GameObject.Find("Level/Effects");
 
             foreach (Transform child in effects.transform)
             {
@@ -164,7 +166,8 @@ public class Bird : Character {
 
         // Slingshot base rotate around the selected point
         CircleCollider2D col = GetComponent<CircleCollider2D>();
-		_slingshotBase.transform.position = (transform.position - _selectPosition).normalized * col.radius + transform.position;
+		_slingshotBase.transform.position = (transform.position - _selectPosition).normalized 
+			* col.radius + transform.position;
 	}
 
 	public void LaunchBird()
@@ -177,6 +180,7 @@ public class Bird : Character {
 		rigidbody2D.velocity = new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
                                            _launchForce.y * -deltaPosFromSlingshot.y) * Time.deltaTime;
 
-        InvokeRepeating("DropTrajectoryParticle", 0.1f, _trajectoryParticleFrequency / Mathf.Abs(rigidbody2D.velocity.x));
+        InvokeRepeating("DropTrajectoryParticle", 0.1f,
+		                _trajectoryParticleFrequency / Mathf.Abs(rigidbody2D.velocity.x));
 	}
 }

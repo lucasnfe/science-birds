@@ -2,12 +2,15 @@
 using System.Collections;
 
 public class HUD : MonoBehaviour {
-
-    Bird _selecetdBird;
+	
+	public float _zoomSpeed;
+	public float _scrollSpeed;
 
     public BirdsManager _birdsManager;
 	public GameplayCamera _camera;
-	public Vector3 _dragOrigin;
+	
+	private Bird _selecetdBird;
+	private Vector3 _dragOrigin;
 	
 	// Update is called once per frame
 	void Update () {
@@ -46,6 +49,8 @@ public class HUD : MonoBehaviour {
 			else
 			{
 				Vector3 dragPosition = Input.mousePosition - _dragOrigin;
+				dragPosition.x = Mathf.Clamp(dragPosition.x, -_scrollSpeed, _scrollSpeed);
+
 				dragPosition = new Vector3(dragPosition.x, _camera.transform.position.y, _camera.transform.position.z);
 
 				_camera.DragCamera(dragPosition);
@@ -59,6 +64,8 @@ public class HUD : MonoBehaviour {
                 _selecetdBird = null;
             }
         }
+
+		_camera.ZoomCamera(Input.GetAxis("Mouse ScrollWheel") * _zoomSpeed * Time.deltaTime);
 	}
 
 	void LateUpdate()
