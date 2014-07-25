@@ -10,15 +10,15 @@ public class HUD : MonoBehaviour {
 	
 	void Start() {
 	
-		InvokeRepeating("CollectDragStartingPoint", 0f, 0.1f);
+		//InvokeRepeating("CollectDragStartingPoint", 0f, 0.1f);
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         if(Input.GetMouseButtonDown(0))
         {
-			CollectDragStartingPoint();
+			_dragOrigin = Input.mousePosition;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
@@ -54,6 +54,8 @@ public class HUD : MonoBehaviour {
 
 				_camera.DragCamera(dragPosition);
 			}
+
+			_dragOrigin = Input.mousePosition;
         }
         else if(Input.GetMouseButtonUp(0))
         {

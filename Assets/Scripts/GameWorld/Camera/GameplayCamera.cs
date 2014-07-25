@@ -4,6 +4,7 @@ using System.Collections;
 public class GameplayCamera : MonoBehaviour {
 
 	private bool _isDraging;
+
 	private float _cameraWidth;
 	private float _cameraHeight;
 
@@ -12,6 +13,7 @@ public class GameplayCamera : MonoBehaviour {
 
 	public  Vector3 _dragSpeed;
 	public  Vector2 _horizontalLimits;
+	private Vector3 _dragDistance;
 	private Vector3 _velocity;
 	private Vector2 _horizontalLockArea;
 
@@ -26,15 +28,16 @@ public class GameplayCamera : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		Bird target = _birdsManager.GetCurrentBird();
+		if (!_isDraging)
+		{
+			Bird target = _birdsManager.GetCurrentBird();
 
-		if(target && target.OutOfSlingShot)
+			if(target && target.OutOfSlingShot)
 
-			DragCamera(-_dragSpeed);
-
-		else if (!_isDraging)
-		
-			DragCamera(_dragSpeed);
+				DragCamera(-_dragSpeed * 0.25f);
+			else
+				DragCamera(_dragSpeed);
+		}
 
 		_isDraging = false;
 	}
@@ -55,9 +58,9 @@ public class GameplayCamera : MonoBehaviour {
 	{
 		_isDraging = true;
 
-		Vector3 dragDistance = transform.position - dragPosition;
-		dragDistance.x = Mathf.Clamp(dragDistance.x, -_dragSpeed.x, _dragSpeed.x);
+		_dragDistance = transform.position - dragPosition;
+		_dragDistance.x = Mathf.Clamp(_dragDistance.x, -_dragSpeed.x, _dragSpeed.x);
 
-		FollowTarget(dragDistance, _dampTime);
+		FollowTarget(_dragDistance, _dampTime);
 	}
 }

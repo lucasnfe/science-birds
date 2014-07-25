@@ -559,7 +559,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!58 &400193815
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -648,11 +648,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1229026548}
-  - {fileID: 1768856229}
   - {fileID: 400193814}
   - {fileID: 1550864364}
   - {fileID: 1960827265}
+  - {fileID: 1229026548}
+  - {fileID: 1768856229}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &489266186
@@ -758,7 +758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _birdsManager: {fileID: 579319416}
   _dampTime: .75
-  _dragSpeed: {x: 0, y: 0, z: 0}
+  _dragSpeed: {x: 10, y: 0, z: 0}
   _horizontalLimits: {x: 0, y: 5}
 --- !u!82 &489266193
 AudioSource:
@@ -1182,6 +1182,14 @@ Prefab:
       propertyPath: _slingshotBase
       value: 
       objectReference: {fileID: 582073443}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _launchForce.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _launchForce.y
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
   m_RootGameObject: {fileID: 1179296058}
@@ -1531,7 +1539,7 @@ MonoBehaviour:
   _timeToDie: 3
   _maxTimeToJump: 5
   _maxTimeToBlink: 3
-  _launchForce: {x: 400, y: 500}
+  _launchForce: {x: 350, y: 400}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
   _clips:
@@ -1792,7 +1800,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 0
+  m_RootOrder: 3
 --- !u!1001 &1282790361
 Prefab:
   m_ObjectHideFlags: 0
@@ -2016,7 +2024,7 @@ MonoBehaviour:
   _timeToDie: 3
   _maxTimeToJump: 5
   _maxTimeToBlink: 3
-  _launchForce: {x: 400, y: 500}
+  _launchForce: {x: 350, y: 400}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
   _clips:
@@ -2198,7 +2206,7 @@ Transform:
   - {fileID: 73368372}
   - {fileID: 219349931}
   m_Father: {fileID: 404902296}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!1 &1562432983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2314,7 +2322,7 @@ MonoBehaviour:
   _timeToDie: 3
   _maxTimeToJump: 5
   _maxTimeToBlink: 3
-  _launchForce: {x: 400, y: 500}
+  _launchForce: {x: 350, y: 400}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
   _clips:
@@ -2618,7 +2626,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 1
+  m_RootOrder: 4
 --- !u!61 &1768856230
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2986,7 +2994,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!1 &1992508807
 GameObject:
   m_ObjectHideFlags: 0
