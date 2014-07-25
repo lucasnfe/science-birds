@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Bird : MonoBehaviour {
+public class Bird : Character {
 
     private int _nextParticleTrajectory;
-    private Animator _animator;
+    
     private Vector3  _selectPosition;
 
     public float _dragRadius = 1.0f;
@@ -13,27 +13,22 @@ public class Bird : MonoBehaviour {
     public float _launchGravity = 1.0f;
     public float _trajectoryParticleFrequency = 0.5f;
     public float _jumpForce;
-    public float _timeToDie;
     public float _maxTimeToJump;
-    public float _maxTimeToBlink;
 
     public Vector2 _launchForce;
     public Transform _slingshot;
     public Transform _slingshotBase;
-    public AudioClip[] _clips;
+    
     public GameObject[] _trajectoryParticles;
 
     public bool JumpToSlingshot{ get; set; }
     public bool OutOfSlingShot{ get; set; }
 
-    void Start ()
+	public override void Start ()
     {
-        _animator = GetComponent<Animator>();
+		base.Start();
 
         _slingshotBase.active = false;
-
-        float nextBlinkDelay = Random.Range(0.0f, _maxTimeToBlink);
-        Invoke("Blink", nextBlinkDelay + 1.0f);
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
@@ -46,39 +41,17 @@ public class Bird : MonoBehaviour {
             DragBird(transform.position);
     }
 
-    void Die()
-    {
-        Destroy(gameObject);
-    }
-
     void IdleJump()
     {
         if(JumpToSlingshot)
             return;
 
         if(IsIdle() && rigidbody2D.gravityScale > 0f)
-        {
-            int rotationDirection = Random.Range(-1, 1);
+
             rigidbody2D.AddForce(Vector2.up * _jumpForce);
-        }
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
-    }
-
-    void Blink()
-    {
-        if(IsIdle())
-            _animator.Play("blink", 0, 0f);
-
-        float nextBlinkDelay = Random.Range(0.0f, _maxTimeToBlink);
-        Invoke("Blink", nextBlinkDelay + 1.0f);
-    }
-
-    void PlayAudio(int audioIndex)
-    {
-        if(_clips.Length > audioIndex)
-            audio.PlayOneShot(_clips[audioIndex], 1.0f);
     }
 
     void DropTrajectoryParticle()
@@ -127,7 +100,7 @@ public class Bird : MonoBehaviour {
         if(collider.tag == "Slingshot")
         {
             if(JumpToSlingshot)
-                _slingshotBase.active = false;
+				_slingshotBase.active = false;
         }
     }
 
@@ -151,12 +124,7 @@ public class Bird : MonoBehaviour {
             }
         }
     }
-
-    public bool IsIdle()
-    {
-        return _animator.GetCurrentAnimatorStateInfo(0).IsName("idle");
-    }
-
+	
     public bool IsFlying()
     {
         return _animator.GetCurrentAnimatorStateInfo(0).IsName("flying");

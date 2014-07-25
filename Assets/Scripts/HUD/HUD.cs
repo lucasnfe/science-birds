@@ -4,15 +4,11 @@ using System.Collections;
 public class HUD : MonoBehaviour {
 
     Bird _selecetdBird;
+
     public BirdsManager _birdsManager;
 	public GameplayCamera _camera;
 	public Vector3 _dragOrigin;
-	
-	void Start() {
-	
-		//InvokeRepeating("CollectDragStartingPoint", 0f, 0.1f);
-	}
-	
+			
 	// Update is called once per frame
 	void FixedUpdate () {
 
@@ -65,12 +61,5 @@ public class HUD : MonoBehaviour {
                 _selecetdBird = null;
             }
         }
-	}
-
-	void CollectDragStartingPoint()
-	{
-		if(Input.GetMouseButtonDown(0) || Input.GetMouseButton(0))
-
-			_dragOrigin = Input.mousePosition;
 	}
 }
