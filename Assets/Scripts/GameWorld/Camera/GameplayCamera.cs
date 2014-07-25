@@ -3,19 +3,18 @@ using System.Collections;
 
 public class GameplayCamera : MonoBehaviour {
 
-	private bool _isDraging;
-
+	private bool  _isDraging;
 	private float _cameraWidth;
 	private float _cameraHeight;
+	private Vector3 _velocity;
+	private Vector3 _dragDistance;
+	private Vector2 _horizontalLockArea;
 
 	public BirdsManager _birdsManager;
 	public float _dampTime = 1.0f;
-
-	public  Vector3 _dragSpeed;
-	public  Vector2 _horizontalLimits;
-	private Vector3 _dragDistance;
-	private Vector3 _velocity;
-	private Vector2 _horizontalLockArea;
+	public float _dragSpeed = 1.0f;
+	public float _followBirdSpeed = 1.0f;
+	public Vector2 _horizontalLimits;
 
 	void Start()
 	{
@@ -26,17 +25,24 @@ public class GameplayCamera : MonoBehaviour {
 		_horizontalLockArea.y = transform.position.x + _horizontalLimits.y;
 	}
 
-	void FixedUpdate()
+	void Update()
 	{
 		if (!_isDraging)
 		{
+			Vector3 cameraSpeed = Vector3.zero;
 			Bird target = _birdsManager.GetCurrentBird();
+	
+			if(target)
 
-			if(target && target.OutOfSlingShot)
+				if(target.IsFlying())
 
-				DragCamera(-_dragSpeed * 0.25f);
-			else
-				DragCamera(_dragSpeed);
+					cameraSpeed.x = -_followBirdSpeed * target.rigidbody2D.velocity.normalized.x;
+				
+				else if(!target.OutOfSlingShot)
+					
+					cameraSpeed.x = _dragSpeed;
+
+			DragCamera(cameraSpeed);
 		}
 
 		_isDraging = false;
@@ -45,8 +51,7 @@ public class GameplayCamera : MonoBehaviour {
 	void FollowTarget(Vector3 targetPosition, float dampTime)
 	{
 		Vector3 point = camera.WorldToViewportPoint(targetPosition);
-		Vector3 delta = new Vector3(targetPosition.x, transform.position.y, targetPosition.z) -
-			camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
+		Vector3 delta = targetPosition - camera.ViewportToWorldPoint(new Vector3(0.5f, point.y, point.z));
 		
 		Vector3 destination = transform.position + delta;
 		transform.position = Vector3.SmoothDamp(transform.position, destination, ref _velocity, dampTime);
@@ -59,7 +64,7 @@ public class GameplayCamera : MonoBehaviour {
 		_isDraging = true;
 
 		_dragDistance = transform.position - dragPosition;
-		_dragDistance.x = Mathf.Clamp(_dragDistance.x, -_dragSpeed.x, _dragSpeed.x);
+		_dragDistance.x = Mathf.Clamp(_dragDistance.x, -_dragSpeed, _dragSpeed);
 
 		FollowTarget(_dragDistance, _dampTime);
 	}

@@ -83,9 +83,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dc54fd4222824fea93b236592a2c041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToDie: 2
+  _timeToDie: 0
   _maxTimeToBlink: 2.5
   _clips: []
+  _forceToDie: 2
   dustEffect: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:

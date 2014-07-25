@@ -8,9 +8,9 @@ public class HUD : MonoBehaviour {
     public BirdsManager _birdsManager;
 	public GameplayCamera _camera;
 	public Vector3 _dragOrigin;
-			
+	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 
         if(Input.GetMouseButtonDown(0))
         {
@@ -50,8 +50,6 @@ public class HUD : MonoBehaviour {
 
 				_camera.DragCamera(dragPosition);
 			}
-
-			_dragOrigin = Input.mousePosition;
         }
         else if(Input.GetMouseButtonUp(0))
         {
@@ -61,5 +59,12 @@ public class HUD : MonoBehaviour {
                 _selecetdBird = null;
             }
         }
+	}
+
+	void LateUpdate()
+	{
+		if(Input.GetMouseButton(0))
+			
+			_dragOrigin = Input.mousePosition;
 	}
 }
