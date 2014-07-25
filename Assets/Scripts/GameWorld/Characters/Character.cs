@@ -19,9 +19,20 @@ public class Character : MonoBehaviour {
 		Invoke("Blink", nextBlinkDelay + 1.0f);
 	}
 
-	public virtual void Die()
+	protected virtual void Die()
 	{
 		Destroy(gameObject);
+	}
+	
+	protected void PlayAudio(int audioIndex)
+	{
+		if(_clips.Length > audioIndex)
+			audio.PlayOneShot(_clips[audioIndex], 1.0f);
+	}
+
+	public bool IsIdle()
+	{
+		return _animator.GetCurrentAnimatorStateInfo(0).IsName("idle");
 	}
 
 	void Blink()
@@ -31,16 +42,5 @@ public class Character : MonoBehaviour {
 		
 		float nextBlinkDelay = Random.Range(0.0f, _maxTimeToBlink);
 		Invoke("Blink", nextBlinkDelay + 1.0f);
-	}
-
-	void PlayAudio(int audioIndex)
-	{
-		if(_clips.Length > audioIndex)
-			audio.PlayOneShot(_clips[audioIndex], 1.0f);
-	}
-
-	public bool IsIdle()
-	{
-		return _animator.GetCurrentAnimatorStateInfo(0).IsName("idle");
 	}
 }

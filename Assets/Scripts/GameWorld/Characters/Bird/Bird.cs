@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class Bird : Character {
 
     private int _nextParticleTrajectory;
-    
     private Vector3  _selectPosition;
 
     public float _dragRadius = 1.0f;
@@ -103,6 +102,10 @@ public class Bird : Character {
         {
             if(JumpToSlingshot)
 				_slingshotBase.active = false;
+
+			if(IsSelected() && IsFlying())
+
+				PlayAudio(3);
         }
     }
 
@@ -126,6 +129,16 @@ public class Bird : Character {
             }
         }
     }
+
+	void OnTriggerExit2D(Collider2D collider)
+	{
+		if(collider.tag == "Slingshot")
+		{
+			if(IsSelected() && !IsFlying())
+				
+				PlayAudio(2);
+		}
+	}
 	
     public bool IsFlying()
     {

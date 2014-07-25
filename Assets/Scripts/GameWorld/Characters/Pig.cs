@@ -6,7 +6,7 @@ public class Pig : Character {
 	public float _forceToDie;
 	public GameObject dustEffect;
 
-	public override void Die()
+	protected override void Die()
 	{
 		// Create dust effect
 		if(dustEffect)
