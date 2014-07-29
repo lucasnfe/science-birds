@@ -19,7 +19,7 @@ public class Character : MonoBehaviour {
 		Invoke("Blink", nextBlinkDelay + 1.0f);
 	}
 
-	protected virtual void Die()
+	public virtual void Die()
 	{
 		Destroy(gameObject);
 	}

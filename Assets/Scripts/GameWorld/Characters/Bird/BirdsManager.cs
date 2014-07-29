@@ -4,7 +4,8 @@ using System.Collections;
 public class BirdsManager : MonoBehaviour {
 
     public Bird []_birds;
-    public Vector3 _initialPosition;
+	public GameplayCamera _camera;
+	public Vector3 _initialPosition;
 
     private int _currentBirdIndex;
 
@@ -37,6 +38,7 @@ public class BirdsManager : MonoBehaviour {
             _birds[_currentBirdIndex].JumpToSlingshot = true;
         }
 
+		// Move next bird to the slingshot
         if(_birds[_currentBirdIndex].JumpToSlingshot)
         {
             _birds[_currentBirdIndex].SetBirdOnSlingshot(transform.position + _initialPosition);
@@ -44,9 +46,19 @@ public class BirdsManager : MonoBehaviour {
             if(_birds[_currentBirdIndex].transform.position == transform.position + _initialPosition)
             {
                 _birds[_currentBirdIndex].JumpToSlingshot = false;
+				_birds[_currentBirdIndex].OutOfSlingShot = false;
                 _birds[_currentBirdIndex].rigidbody2D.velocity = Vector2.zero;
             }
         }
+
+		// Kill current bird if it flies to outside the level
+		if(_birds[_currentBirdIndex].OutOfSlingShot)
+
+			if(_birds[_currentBirdIndex].transform.position.x > _camera.RightBound() + _camera.CalculateCameraRect().width/2f ||
+			   _birds[_currentBirdIndex].transform.position.x < _camera.LeftBound()  - _camera.CalculateCameraRect().width/2f)
+			{
+				_birds[_currentBirdIndex].Die();
+			}
 	}
 
     public Bird GetCurrentBird()

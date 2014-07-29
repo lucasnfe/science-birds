@@ -14,14 +14,14 @@ public class Bird : Character {
     public float _jumpForce;
     public float _maxTimeToJump;
 
-    public Vector2 _launchForce;
+    public Vector2   _launchForce;
     public Transform _slingshot;
     public Transform _slingshotBase;
     
     public GameObject[] _trajectoryParticles;
 
     public bool JumpToSlingshot{ get; set; }
-    public bool OutOfSlingShot{ get; set; }
+    public bool  OutOfSlingShot{ get; set; }
 
 	public override void Start ()
     {
