@@ -3,12 +3,12 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - Background
-  - Bird
-  - Ground
+  - Box
+  - Circle
+  - Rect
+  - 
   - Block
-  - Pig
-  - Slingshot
+  - Podium
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

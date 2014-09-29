@@ -23,45 +23,45 @@ public class GameplayCamera : MonoBehaviour {
 
 	}
 	
-	void Update()
+	void FixedUpdate()
 	{
 		if(!_isDraging)
 		{
-			float dampTime = _dampTime;
-			Vector3 cameraSpeed = Vector3.zero;
+			// Updating camera zoom
+			camera.orthographicSize = CalculateOrthographicSize(_initialCameraRect);
 
+			float cameraDampTime = _dampTime;
+			Vector3 cameraNextPos = Vector3.zero;
 			Bird target = _birdsManager.GetCurrentBird();
 	
 			if(target)
 			{
-				bool isBirdLeftOfSlingshot = target.transform.position.x < target._slingshot.transform.position.x;
+				float birdVelocity = target.rigidbody2D.velocity.x;
 
-				if(target.OutOfSlingShot && isBirdLeftOfSlingshot)
+				if(target.OutOfSlingShot && birdVelocity <= 0f)
 					return;
 
 				if(target.OutOfSlingShot)
 				{
-					dampTime = _dampTime * 4f;
-					cameraSpeed.x = RightBound();
+					cameraNextPos.x = RightBound();
+					cameraDampTime = _dampTime * (20f/birdVelocity);
 				}
-				else
-
-					if(_dragDistance.x < 0f)
-
-						cameraSpeed.x = RightBound();
-					else
-						cameraSpeed.x = LeftBound();
 			}
 			else
+			{
+				cameraNextPos.x = LeftBound();
+			}
 
-				cameraSpeed.x = LeftBound();
+			if(cameraNextPos == Vector3.zero)
+			{
+				if(_dragDistance.x < 0f)
+					
+					cameraNextPos.x = RightBound();
+				else
+					cameraNextPos.x = LeftBound();
+			}
 
-			FollowTarget(cameraSpeed, dampTime);
-
-			float velocity = 0f;
-			float newOrthographicSize = CalculateOrthographicSize(_initialCameraRect);
-			camera.orthographicSize = Mathf.SmoothDamp(camera.orthographicSize, newOrthographicSize, 
-			                                           ref velocity, _dampTime * 0.1f);
+			FollowTarget(cameraNextPos, cameraDampTime);
 		}
 
 		_isDraging = false;
@@ -72,8 +72,8 @@ public class GameplayCamera : MonoBehaviour {
 		Vector3 destination = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
 
 		Vector3 cameraPos = transform.position;
-		cameraPos = Vector3.SmoothDamp(cameraPos, destination, ref _velocity, dampTime);
 		cameraPos.x = Mathf.Clamp(cameraPos.x, LeftBound(), RightBound());
+		cameraPos = Vector3.SmoothDamp(cameraPos, destination, ref _velocity, dampTime * Time.deltaTime);
 
 		transform.position = cameraPos;
 	}
@@ -108,6 +108,7 @@ public class GameplayCamera : MonoBehaviour {
 
 	public void ZoomCamera(float zoomFactor)
 	{
+		zoomFactor = Mathf.Clamp(zoomFactor,  -0.5f, 0.5f);
 		_initialCameraRect.width += zoomFactor;
 		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _levelWidth);
 	}

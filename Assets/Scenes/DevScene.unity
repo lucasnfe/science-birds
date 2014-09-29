@@ -188,7 +188,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 0
+  m_RootOrder: 3
 --- !u!1 &73368371
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +342,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 184433246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15931606, z: 20}
+  m_LocalPosition: {x: 0, y: 2.0999999, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 242425368}
@@ -538,7 +538,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
@@ -575,7 +575,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 3
+  m_RootOrder: 0
 --- !u!58 &400193815
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -664,12 +664,12 @@ Transform:
   m_LocalPosition: {x: .193303108, y: 1.11718798, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 59966208}
-  - {fileID: 1229026548}
-  - {fileID: 1768856229}
   - {fileID: 400193814}
   - {fileID: 1550864364}
   - {fileID: 1960827265}
+  - {fileID: 59966208}
+  - {fileID: 1229026548}
+  - {fileID: 1768856229}
   m_Father: {fileID: 1069289543}
   m_RootOrder: 4
 --- !u!1 &489266186
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _birdsManager: {fileID: 579319416}
-  _dampTime: .400000006
+  _dampTime: 15
   _levelWidth: 24
 --- !u!82 &489266193
 AudioSource:
@@ -1029,7 +1029,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d1ddeba297f6b47bd9ba8a3014f7af25, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d1ddeba297f6b47bd9ba8a3014f7af25, type: 2}
@@ -1435,7 +1435,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 98bf017e04e37404d99ec2672ea1a337, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98bf017e04e37404d99ec2672ea1a337, type: 2}
@@ -1832,7 +1832,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 1
+  m_RootOrder: 4
 --- !u!1001 &1282790361
 Prefab:
   m_ObjectHideFlags: 0
@@ -1922,7 +1922,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3cec5883640ac44d1806658ed8c498ac, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3cec5883640ac44d1806658ed8c498ac, type: 2}
@@ -2220,7 +2220,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1550864364}
   m_Layer: 0
-  m_Name: Podium3
+  m_Name: Box3
   m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2240,7 +2240,7 @@ Transform:
   - {fileID: 73368372}
   - {fileID: 219349931}
   m_Father: {fileID: 404902296}
-  m_RootOrder: 4
+  m_RootOrder: 1
 --- !u!1 &1562432983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2662,7 +2662,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 2
+  m_RootOrder: 5
 --- !u!61 &1768856230
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2767,7 +2767,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a156e6c8e07ad4eb5bf031e6aac710b8, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a156e6c8e07ad4eb5bf031e6aac710b8, type: 2}
@@ -3030,4 +3030,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 404902296}
-  m_RootOrder: 5
+  m_RootOrder: 2
