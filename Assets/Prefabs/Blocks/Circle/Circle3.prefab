@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
-  - 58: {fileID: 5800000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
   - 95: {fileID: 9500000}
+  - 60: {fileID: 6000000}
   m_Layer: 0
   m_Name: Circle3
   m_TagString: Circle
@@ -47,8 +47,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!58 &5800000
-CircleCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -56,8 +56,19 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .300000012
-  m_Center: {x: 0, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: .115000002, y: .310000002}
+      - {x: -.224999994, y: .310000002}
+      - {x: -.305000007, y: .159999996}
+      - {x: -.305000007, y: -.159999996}
+      - {x: -.234999999, y: -.25}
+      - {x: -.135000005, y: -.310000002}
+      - {x: .0949999988, y: -.310000002}
+      - {x: .215000004, y: -.280000001}
+      - {x: .305000007, y: -.180000007}
+      - {x: .305000007, y: .0399999991}
+      - {x: .254999995, y: .129999995}
 --- !u!95 &9500000
 Animator:
   serializedVersion: 3

@@ -18,7 +18,7 @@ public class ABGameObject
 		_levelGenerator = GameObject.Find("LevelGenerator").GetComponent<LevelGenerator>();
 	}
 	
-	public Bounds GetBounds()
+	public virtual Bounds GetBounds()
 	{
 		Bounds composedBounds = new Bounds();
 		GameObject composedObj = _levelGenerator.ABTemplates[Label];

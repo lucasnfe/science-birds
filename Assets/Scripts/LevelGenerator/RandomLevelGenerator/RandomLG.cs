@@ -75,10 +75,6 @@ public class RandomLG : LevelGenerator {
 		// Generate next object in the stack
 		ShiftABGameObject nextObject = new ShiftABGameObject();
 
-		// There is a chance to double the object
-		if(Random.value < 0.5f)
-			nextObject.IsDouble = true;
-
 		if(!DefineObjectLabel(stackIndex, nextObject))
 			return null;
 
@@ -93,20 +89,20 @@ public class RandomLG : LevelGenerator {
 
 		Vector2 holdingPosition = Vector2.zero;
 		Vector2 currentObjectSize = nextObject.GetBounds().size;
-
+		
 		if(nextObject.HoldingObject != null)
 		{
 			float holdingObjHeight = nextObject.HoldingObject.GetBounds().size.y;
 
 			holdingPosition.x = nextObject.HoldingObject.Position.x;
-			holdingPosition.y = nextObject.HoldingObject.Position.y + holdingObjHeight/2f;
+			holdingPosition.y = nextObject.HoldingObject.Position.y + holdingObjHeight/2f + Mathf.Epsilon;
 		}
 		else 
 		{
 			Transform ground = transform.Find("Level/Ground");
 			BoxCollider2D groundCollider = ground.GetComponent<BoxCollider2D>();
 
-			//holdingPosition.x = Random.Range(0f, 2f);
+			//holdingPosition.x = Random.Range(0f, 0.5f);
 
 			if(stack.Count == 0)
 			{
@@ -150,6 +146,10 @@ public class RandomLG : LevelGenerator {
 		if(stack.Count - 1 >= 0)
 			objectBelow = stack[stack.Count - 1];
 
+		// There is a chance to double the object
+		if(Random.value < 0.5f)
+			nextObject.IsDouble = true;
+		
 		// If the object below is the ground
 		if(objectBelow == null)
 		{
@@ -168,6 +168,8 @@ public class RandomLG : LevelGenerator {
 			// Check if there is no stability problems
 			if(nextObject.Type == 0)
 			{
+				nextObject.IsDouble = false;
+
 				// If next object is a box, check if it can enclose the underneath objects
 				int stackCurrtIndex = stack.Count - 1;
 				float underObjectsHeight = 0f;
@@ -245,12 +247,35 @@ public class RandomLG : LevelGenerator {
 			{
 				foreach(ShiftABGameObject shiftGameObject in _shiftGameObjects[i])
 				{
-					ABGameObject baseGameObject = new ABGameObject();
+					if(!shiftGameObject.IsDouble)
+					{
+						ABGameObject baseGameObject = new ABGameObject();
+						
+						baseGameObject.Label = shiftGameObject.Label;
+						baseGameObject.Position = shiftGameObject.Position;
+						gameObjects.Add(baseGameObject);
+					}
+					else
+					{
+						ABGameObject baseGameObjectA = new ABGameObject();
+						
+						baseGameObjectA.Label = shiftGameObject.Label;
 
-					baseGameObject.Label = shiftGameObject.Label;
-					baseGameObject.Position = shiftGameObject.Position;
+						Vector2 leftObjPos = shiftGameObject.Position;
+						leftObjPos.x -= shiftGameObject.GetBounds().size.x/4f;
+						baseGameObjectA.Position = leftObjPos;
 
-					gameObjects.Add(baseGameObject);
+						gameObjects.Add(baseGameObjectA);
+
+						ABGameObject baseGameObjectB = new ABGameObject();
+						
+						baseGameObjectB.Label = shiftGameObject.Label;
+						Vector2 rightObjPos = shiftGameObject.Position;
+						rightObjPos.x +=  shiftGameObject.GetBounds().size.x/4f;
+						baseGameObjectB.Position = rightObjPos;
+
+						gameObjects.Add(baseGameObjectB);
+					}
 				}
 			}
 		}

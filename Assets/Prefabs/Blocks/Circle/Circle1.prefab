@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
-  - 58: {fileID: 5800000}
+  - 60: {fileID: 6000000}
   m_Layer: 0
   m_Name: Circle1
   m_TagString: Circle
@@ -45,8 +45,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!58 &5800000
-CircleCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -54,8 +54,20 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .38500002
-  m_Center: {x: 0, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: .260898739, y: .330263942}
+      - {x: .134570599, y: .393427998}
+      - {x: -.107558303, y: .393427998}
+      - {x: -.212831736, y: .340791285}
+      - {x: -.370741904, y: .193408459}
+      - {x: -.370741904, y: -.132939205}
+      - {x: -.233886436, y: -.364540756}
+      - {x: -.160195023, y: -.375068098}
+      - {x: .134570599, y: -.375068098}
+      - {x: .239844039, y: -.354013413}
+      - {x: .38722685, y: -.164521232}
+      - {x: .38722685, y: .161826432}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
