@@ -3,27 +3,6 @@ using System.Collections.Generic;
 
 public class RandomLG : LevelGenerator {
 
-	class ShiftABGameObject : ABGameObject
-	{
-		public int type;
-		public float posShift;
-		public ShiftABGameObject holdingObject;
-
-		public static int GetTypeByTag(string tag)
-		{
-			if(tag == "Box")
-				return 0;
-
-			if(tag == "Circle")
-				return 1;
-
-			if(tag == "Rect")
-				return 2;
-
-			return -1;
-		}
-	}
-
 	static readonly int[,] _gameObjectsDependencyGraph = {
 		{1, 1, 1},
 		{1, 0, 1},
@@ -34,6 +13,20 @@ public class RandomLG : LevelGenerator {
 	public float _maxStackHeight = 10f;
 
 	List<ShiftABGameObject>[] _shiftGameObjects;
+
+	public int GetTypeByTag(string tag)
+	{					
+		if(tag == "Box")
+			return 0;
+		
+		if(tag == "Circle")
+			return 1;
+		
+		if(tag == "Rect")
+			return 2;
+		
+		return -1;
+	}
 
 	public override List<ABGameObject> GenerateLevel()
 	{
@@ -72,7 +65,7 @@ public class RandomLG : LevelGenerator {
 
 			stack.Add(nextObject);
 
-			Vector2 currentObjectSize = CalcObjBounds(ABTemplates[nextObject.label]).size;
+			Vector2 currentObjectSize = nextObject.GetBounds().size;
 			probToStackNextObj -= currentObjectSize.y / _maxStackHeight;
 		}
 	}
@@ -82,9 +75,11 @@ public class RandomLG : LevelGenerator {
 		// Generate next object in the stack
 		ShiftABGameObject nextObject = new ShiftABGameObject();
 
-		DefineObjectLabel(stackIndex, nextObject);
+		// There is a chance to double the object
+		if(Random.value < 0.5f)
+			nextObject.IsDouble = true;
 
-		if(nextObject.label == -1)
+		if(!DefineObjectLabel(stackIndex, nextObject))
 			return null;
 
 		DefineObjectPosition(stackIndex, nextObject);
@@ -97,21 +92,21 @@ public class RandomLG : LevelGenerator {
 		List<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
 
 		Vector2 holdingPosition = Vector2.zero;
-		Vector2 currentObjectSize = CalcObjBounds(ABTemplates[nextObject.label]).size;
-		
-		if(nextObject.holdingObject != null)
-		{
-			float holdingObjHeight = CalcObjBounds(ABTemplates[nextObject.holdingObject.label]).size.y;
+		Vector2 currentObjectSize = nextObject.GetBounds().size;
 
-			holdingPosition.x = nextObject.holdingObject.position.x;
-			holdingPosition.y = nextObject.holdingObject.position.y + holdingObjHeight/2f;
+		if(nextObject.HoldingObject != null)
+		{
+			float holdingObjHeight = nextObject.HoldingObject.GetBounds().size.y;
+
+			holdingPosition.x = nextObject.HoldingObject.Position.x;
+			holdingPosition.y = nextObject.HoldingObject.Position.y + holdingObjHeight/2f;
 		}
 		else 
 		{
 			Transform ground = transform.Find("Level/Ground");
 			BoxCollider2D groundCollider = ground.GetComponent<BoxCollider2D>();
 
-			holdingPosition.x = Random.Range(0f, 2f);
+			//holdingPosition.x = Random.Range(0f, 2f);
 
 			if(stack.Count == 0)
 			{
@@ -122,7 +117,7 @@ public class RandomLG : LevelGenerator {
 					if(lastStack.Count > 0)
 					{
 						ShiftABGameObject obj = FindWidestObjInStack(stackIndex - 1, holdingPosition.y + currentObjectSize.y);
-						holdingPosition.x += obj.position.x + CalcObjBounds(ABTemplates[obj.label]).size.x/2f;
+						holdingPosition.x += obj.Position.x + obj.GetBounds().size.x/2f;
 					}
 
 					holdingPosition.x += currentObjectSize.x/2f;
@@ -131,37 +126,36 @@ public class RandomLG : LevelGenerator {
 			else if(stackIndex > 0)
 			{
 				ShiftABGameObject obj = FindWidestObjInStack(stackIndex - 1, holdingPosition.y + currentObjectSize.y);
-				holdingPosition.x += obj.position.x + CalcObjBounds(ABTemplates[obj.label]).size.x/2f + currentObjectSize.x/2f;
+				holdingPosition.x += obj.Position.x + obj.GetBounds().size.x/2f + currentObjectSize.x/2f;
 			}
 
 			holdingPosition.y = ground.position.y + groundCollider.size.y/2.25f;
 		}
 
-		nextObject.position.x = holdingPosition.x;
-		nextObject.position.y = holdingPosition.y + currentObjectSize.y/2f + Mathf.Epsilon;
+		Vector2 newPosition = Vector2.zero;
+		newPosition.x = holdingPosition.x;
+		newPosition.y = holdingPosition.y + currentObjectSize.y/2f;
+
+		nextObject.Position = newPosition;
 
 		UpdateStackPosition(stackIndex, holdingPosition.x);
-
-		Debug.Log(nextObject.position);
 	}
 
-	void DefineObjectLabel(int stackIndex, ShiftABGameObject nextObject)
+	bool DefineObjectLabel(int stackIndex, ShiftABGameObject nextObject)
 	{
 		List<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
 
-		int objBelowIndex = stack.Count - 1;
 		ShiftABGameObject objectBelow = null;
 
-		if(objBelowIndex >= 0)
-			objectBelow = stack[objBelowIndex];
+		if(stack.Count - 1 >= 0)
+			objectBelow = stack[stack.Count - 1];
 
 		// If the object below is the ground
 		if(objectBelow == null)
 		{
-			nextObject.label = Random.Range(0, ABTemplates.Length);
-			nextObject.holdingObject = objectBelow;
-			nextObject.type = ShiftABGameObject.GetTypeByTag(ABTemplates[nextObject.label].tag);
-			return;
+			nextObject.Label = Random.Range(0, ABTemplates.Length);
+			nextObject.HoldingObject = objectBelow;
+			return true;
 		}
 
 		// Get list of objects that can be stacked
@@ -169,74 +163,61 @@ public class RandomLG : LevelGenerator {
 
 		while(stackableObjects.Count > 0)
 		{
-			int nextObjectLabel = stackableObjects[Random.Range(0, stackableObjects.Count - 1)];
-			int nextObjType = ShiftABGameObject.GetTypeByTag(ABTemplates[nextObjectLabel].tag);
-			Bounds nextObjBounds = CalcObjBounds(ABTemplates[nextObjectLabel]);
+			nextObject.Label = stackableObjects[Random.Range(0, stackableObjects.Count - 1)];
 
 			// Check if there is no stability problems
-			if(nextObjType == 0)
+			if(nextObject.Type == 0)
 			{
 				// If next object is a box, check if it can enclose the underneath objects
-				int stackCurrtIndex = objBelowIndex;
+				int stackCurrtIndex = stack.Count - 1;
 				float underObjectsHeight = 0f;
 
 				while(stackCurrtIndex >= 0)
 				{
-					Bounds objBelowBounds = CalcObjBounds(ABTemplates[stack[stackCurrtIndex].label]);
+					Bounds objBelowBounds = stack[stackCurrtIndex].GetBounds();
 
-					if(objBelowBounds.size.x <= nextObjBounds.size.x*0.5f)
+					if(objBelowBounds.size.x <= nextObject.GetBounds().size.x*0.5f)
 					{
-						if(underObjectsHeight + objBelowBounds.size.y < nextObjBounds.size.y*0.9f)
+						if(underObjectsHeight + objBelowBounds.size.y < nextObject.GetBounds().size.y*0.9f)
 						{
 							underObjectsHeight += objBelowBounds.size.y;
 							stackCurrtIndex--;
 						}
-						else
-							break;
+						else break;
 					}
-					else
-						break;
+					else break;
 				}
 
 				// Holding object is the ground, so it is safe
 				if(stackCurrtIndex < 0)
 				{
-					nextObject.label = nextObjectLabel;
-					nextObject.holdingObject = null;
-					nextObject.type = nextObjType;
-					return;
+					nextObject.HoldingObject = null;
+					return true;
 				}
 
-				Bounds holdObjBounds = CalcObjBounds(ABTemplates[stack[stackCurrtIndex].label]);
+				Bounds holdObjBounds = stack[stackCurrtIndex].GetBounds();
 
 				// Holding object is bigger, so it is safe
-				if(holdObjBounds.size.x >= nextObjBounds.size.x)
+				if(holdObjBounds.size.x >= nextObject.GetBounds().size.x)
 				{
-					nextObject.label = nextObjectLabel;
-					nextObject.holdingObject = stack[stackCurrtIndex];
-					nextObject.type = nextObjType;
-					return;
+					nextObject.HoldingObject = stack[stackCurrtIndex];
+					return true;
 				}
-
-				nextObject.label = -1;
-				nextObject.holdingObject = null;
 			}
 			else
 			{
-				Bounds holdObjBounds = CalcObjBounds(ABTemplates[objectBelow.label]);
-
 				// Holding object is bigger, so it is safe
-				if(holdObjBounds.size.x >= nextObjBounds.size.x)
+				if(objectBelow.GetBounds().size.x >= nextObject.GetBounds().size.x)
 				{
-					nextObject.label = nextObjectLabel;
-					nextObject.holdingObject = objectBelow;
-					nextObject.type = nextObjType;
-					return;
+					nextObject.HoldingObject = objectBelow;
+					return true;
 				}
 			}
 
-			stackableObjects.Remove(nextObjectLabel);
+			stackableObjects.Remove(nextObject.Label);
 		}
+
+		return false;
 	}
 
 	List<int> GetStackableObjects(ShiftABGameObject objectBelow)
@@ -245,9 +226,9 @@ public class RandomLG : LevelGenerator {
 
 		for(int i = 0; i < ABTemplates.Length; i++)
 		{
-			int currentObjType = ShiftABGameObject.GetTypeByTag(ABTemplates[i].tag);
+			int currentObjType = GetTypeByTag(ABTemplates[i].tag);
 
-			if(_gameObjectsDependencyGraph[currentObjType, objectBelow.type] == 1)
+			if(_gameObjectsDependencyGraph[currentObjType, objectBelow.Type] == 1)
 				stackableObjects.Add(i);
 		}
 
@@ -266,8 +247,8 @@ public class RandomLG : LevelGenerator {
 				{
 					ABGameObject baseGameObject = new ABGameObject();
 
-					baseGameObject.label = shiftGameObject.label;
-					baseGameObject.position = shiftGameObject.position;
+					baseGameObject.Label = shiftGameObject.Label;
+					baseGameObject.Position = shiftGameObject.Position;
 
 					gameObjects.Add(baseGameObject);
 				}
@@ -281,7 +262,10 @@ public class RandomLG : LevelGenerator {
 	{
 		for(int i = 0; i < _shiftGameObjects[stackIndex].Count; i++)
 		{
-			_shiftGameObjects[stackIndex][i].position.x = offset;
+			Vector2 newPos = _shiftGameObjects[stackIndex][i].Position;
+			newPos.x = offset;
+
+			_shiftGameObjects[stackIndex][i].Position = newPos;
 		}
 	}
 
@@ -294,13 +278,13 @@ public class RandomLG : LevelGenerator {
 
 		for(int i = 1; i < stack.Count && currentStackHeight <= maxHeight; i++)
 		{
-			float stackedObjWidth = CalcObjBounds(ABTemplates[stack[i].label]).size.x;
-			float widestObjWidth = CalcObjBounds(ABTemplates[widestObj.label]).size.x;
+			float stackedObjWidth = stack[i].GetBounds().size.x;
+			float widestObjWidth = widestObj.GetBounds().size.x;
 
 			if(stackedObjWidth > widestObjWidth)
 				widestObj = stack[i];
 
-			currentStackHeight += CalcObjBounds(ABTemplates[stack[i].label]).size.y;
+			currentStackHeight += stack[i].GetBounds().size.y;
 		}
 
 		return widestObj;
