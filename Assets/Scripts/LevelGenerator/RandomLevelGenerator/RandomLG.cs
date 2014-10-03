@@ -9,11 +9,17 @@ public class RandomLG : LevelGenerator {
 		{1, 0, 1}
 	};
 
-	public int _maxStacks = 1;
-	public float _maxStackHeight = 10f;
+	public int _maxPigsAmount = 1;
 
-	List<ShiftABGameObject>[] _shiftGameObjects;
+	public float _maxStackWidth = 1f;
+	public float _maxStackHeight = 1f;
 
+	// Each object has its own probability for being spawned
+	float []_gameObjectsProbability;
+
+	// List of stacks in the level
+	List<LinkedList<ShiftABGameObject>> _shiftGameObjects;
+	
 	public int GetTypeByTag(string tag)
 	{					
 		if(tag == "Box")
@@ -30,7 +36,7 @@ public class RandomLG : LevelGenerator {
 
 	public override List<ABGameObject> GenerateLevel()
 	{
-		_shiftGameObjects = new List<ShiftABGameObject>[_maxStacks];
+		_shiftGameObjects = new List<LinkedList<ShiftABGameObject>>();
 
 		int stackIndex = 0;
 		float probToGenerateNextColumn = 1f;
@@ -39,31 +45,33 @@ public class RandomLG : LevelGenerator {
 		while(Random.value <= probToGenerateNextColumn)
 		{
 			// Randomly generate new stack based on the dependency graph
-			_shiftGameObjects[stackIndex] = new List<ShiftABGameObject>();
+			_shiftGameObjects.Add(new LinkedList<ShiftABGameObject>());
 			GenerateNextStack(stackIndex);
 
 			// Reduce probability to create new stack
-			probToGenerateNextColumn -= 1f/(float)_maxStacks;
+			float widerObjectInStack = FindWidestObjInStack(stackIndex).GetBounds().size.x;
+			probToGenerateNextColumn -= widerObjectInStack/_maxStackWidth;
 			stackIndex++;
 		}
+
+		InsertPigs();
 
 		return ConvertShiftGBtoABGB();
 	}
 
 	void GenerateNextStack(int stackIndex)
 	{
-		List<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
+		LinkedList<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
 
 		float probToStackNextObj = 1f;
 
 		while(Random.value <= probToStackNextObj)
 		{
 			ShiftABGameObject nextObject = GenerateNextObject(stackIndex);
-
 			if(nextObject == null)
 				break;
 
-			stack.Add(nextObject);
+			stack.AddLast(nextObject);
 
 			Vector2 currentObjectSize = nextObject.GetBounds().size;
 			probToStackNextObj -= currentObjectSize.y / _maxStackHeight;
@@ -85,7 +93,7 @@ public class RandomLG : LevelGenerator {
 
 	void DefineObjectPosition(int stackIndex, ShiftABGameObject nextObject)
 	{
-		List<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
+		LinkedList<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
 
 		Vector2 holdingPosition = Vector2.zero;
 		Vector2 currentObjectSize = nextObject.GetBounds().size;
@@ -95,7 +103,7 @@ public class RandomLG : LevelGenerator {
 			float holdingObjHeight = nextObject.HoldingObject.GetBounds().size.y;
 
 			holdingPosition.x = nextObject.HoldingObject.Position.x;
-			holdingPosition.y = nextObject.HoldingObject.Position.y + holdingObjHeight/2f + Mathf.Epsilon;
+			holdingPosition.y = nextObject.HoldingObject.Position.y + holdingObjHeight/2f;
 		}
 		else 
 		{
@@ -108,7 +116,7 @@ public class RandomLG : LevelGenerator {
 			{
 				if(stackIndex > 0)
 				{
-					List<ShiftABGameObject> lastStack = _shiftGameObjects[stackIndex - 1];
+					LinkedList<ShiftABGameObject> lastStack = _shiftGameObjects[stackIndex - 1];
 
 					if(lastStack.Count > 0)
 					{
@@ -125,7 +133,7 @@ public class RandomLG : LevelGenerator {
 				holdingPosition.x += obj.Position.x + obj.GetBounds().size.x/2f + currentObjectSize.x/2f;
 			}
 
-			holdingPosition.y = ground.position.y + groundCollider.size.y/2.25f;
+			holdingPosition.y = ground.position.y + groundCollider.size.y/2.4f;
 		}
 
 		Vector2 newPosition = Vector2.zero;
@@ -134,17 +142,18 @@ public class RandomLG : LevelGenerator {
 
 		nextObject.Position = newPosition;
 
-		UpdateStackPosition(stackIndex, holdingPosition.x);
+		if(stack.Count > 0)
+			UpdateStackPosition(stackIndex, holdingPosition.x);
 	}
 
 	bool DefineObjectLabel(int stackIndex, ShiftABGameObject nextObject)
 	{
-		List<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
+		LinkedList<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
 
 		ShiftABGameObject objectBelow = null;
 
 		if(stack.Count - 1 >= 0)
-			objectBelow = stack[stack.Count - 1];
+			objectBelow = stack.Last.Value;
 
 		// There is a chance to double the object
 		if(Random.value < 0.5f)
@@ -171,19 +180,21 @@ public class RandomLG : LevelGenerator {
 				nextObject.IsDouble = false;
 
 				// If next object is a box, check if it can enclose the underneath objects
-				int stackCurrtIndex = stack.Count - 1;
+				LinkedListNode<ShiftABGameObject> currentObj = stack.Last;
 				float underObjectsHeight = 0f;
 
-				while(stackCurrtIndex >= 0)
+				while(currentObj != null)
 				{
-					Bounds objBelowBounds = stack[stackCurrtIndex].GetBounds();
+					Bounds objBelowBounds = currentObj.Value.GetBounds();
 
 					if(objBelowBounds.size.x <= nextObject.GetBounds().size.x*0.5f)
 					{
 						if(underObjectsHeight + objBelowBounds.size.y < nextObject.GetBounds().size.y*0.9f)
 						{
+							nextObject.AddObjectInside(currentObj.Value);
+
 							underObjectsHeight += objBelowBounds.size.y;
-							stackCurrtIndex--;
+							currentObj = currentObj.Previous;
 						}
 						else break;
 					}
@@ -191,18 +202,18 @@ public class RandomLG : LevelGenerator {
 				}
 
 				// Holding object is the ground, so it is safe
-				if(stackCurrtIndex < 0)
+				if(currentObj == null)
 				{
 					nextObject.HoldingObject = null;
 					return true;
 				}
 
-				Bounds holdObjBounds = stack[stackCurrtIndex].GetBounds();
+				Bounds holdObjBounds = currentObj.Value.GetBounds();
 
 				// Holding object is bigger, so it is safe
 				if(holdObjBounds.size.x >= nextObject.GetBounds().size.x)
 				{
-					nextObject.HoldingObject = stack[stackCurrtIndex];
+					nextObject.HoldingObject = currentObj.Value;
 					return true;
 				}
 			}
@@ -220,6 +231,123 @@ public class RandomLG : LevelGenerator {
 		}
 
 		return false;
+	}
+
+	void InsertPigs()
+	{
+		int objectsAmount = 0;
+
+		for(int i = 0; i < _shiftGameObjects.Count; i++)
+		{
+			objectsAmount += _shiftGameObjects[i].Count;
+		}
+
+		int totalPigsAdded = 0;
+		int pigsAmount = objectsAmount/_maxPigsAmount;
+		int pigsPerStack = pigsAmount/_shiftGameObjects.Count + 1;
+
+		for(int i = 0; i < _shiftGameObjects.Count; i++)
+		{
+			int pigsAddedInStack = 0;
+			LinkedList<ShiftABGameObject> stack = _shiftGameObjects[i];
+
+			for (LinkedListNode<ShiftABGameObject> obj = stack.First; obj != stack.Last.Next; obj = obj.Next)
+			{
+				if(obj.Value.Type == 0)
+				{
+					// Check if pig dimensions fit inside the box 
+					if(obj.Value.GetBounds().size.y - obj.Value.UnderObjectsHeight > _pig.renderer.bounds.size.y*1.2f)
+					{
+						ShiftABGameObject pig = new ShiftABGameObject();
+						pig.Label = ABTemplates.Length;
+
+						Vector2 position = Vector2.zero;
+
+						if(obj.Value.LastObjectInside() != null)
+						{
+							position = obj.Value.LastObjectInside().Position;
+							position.y += obj.Value.LastObjectInside().GetBounds().size.y;
+
+							LinkedListNode<ShiftABGameObject> pigNode = new LinkedListNode<ShiftABGameObject>(pig);
+							stack.AddAfter(stack.Find(obj.Value.LastObjectInside()), pigNode);
+							pigsAddedInStack++;
+						}
+						else
+						{
+							if(obj.Value.HoldingObject != null)
+							{
+								position = obj.Value.HoldingObject.Position;
+								position.y += obj.Value.HoldingObject.GetBounds().size.y/2f;
+
+								LinkedListNode<ShiftABGameObject> pigNode = new LinkedListNode<ShiftABGameObject>(pig);
+								stack.AddAfter(stack.Find(obj.Value.HoldingObject), pigNode);
+								pigsAddedInStack++;
+							}
+							else
+							{
+								Transform ground = transform.Find("Level/Ground");
+								BoxCollider2D groundCollider = ground.GetComponent<BoxCollider2D>();
+
+								position.x = obj.Value.Position.x;
+								position.y = ground.position.y + groundCollider.size.y/2.4f;
+
+								if(obj.Value.IsDouble)
+								{
+									float side = 1f;
+									if(Random.value < 0.5f)
+										side = -1f;
+
+									position.x += (obj.Value.GetBounds().size.x/4f) * side;
+								}
+
+								LinkedListNode<ShiftABGameObject> pigNode = new LinkedListNode<ShiftABGameObject>(pig);
+								stack.AddFirst(pigNode);
+								pigsAddedInStack++;
+							}
+						}
+
+						position.y += _pig.renderer.bounds.size.y/2f;
+						pig.Position = position;
+					}
+				}
+				
+				if(pigsAddedInStack == pigsPerStack)
+					break;
+			}
+
+			if(pigsAddedInStack < pigsPerStack)
+			{
+				Vector2 position = stack.Last.Value.Position;
+
+				// If last element in stack is already a circle, replace it with a pig
+				if(stack.Last.Value.Type == 1)
+				{
+					position.y -= stack.Last.Value.GetBounds().size.y/2f;
+
+					stack.Last.Value.Label = ABTemplates.Length;
+					position.y += _pig.renderer.bounds.size.y/2f;
+
+					stack.Last.Value.Position = position;
+					break;
+				}
+
+				ShiftABGameObject pig = new ShiftABGameObject();
+				pig.Label = ABTemplates.Length;
+
+				position.y += stack.Last.Value.GetBounds().size.y/2f;
+				position.y += _pig.renderer.bounds.size.y/2f;
+				pig.Position = position;
+
+				LinkedListNode<ShiftABGameObject> pigNode = new LinkedListNode<ShiftABGameObject>(pig);
+				stack.AddLast(pigNode);
+				pigsAddedInStack++;
+			}
+
+			totalPigsAdded += pigsAddedInStack;
+
+			if(totalPigsAdded >= pigsAmount)
+				break;
+		}
 	}
 
 	List<int> GetStackableObjects(ShiftABGameObject objectBelow)
@@ -241,7 +369,7 @@ public class RandomLG : LevelGenerator {
 	{
 		List<ABGameObject> gameObjects = new List<ABGameObject>();
 
-		for(int i = 0; i < _shiftGameObjects.Length; i++)
+		for(int i = 0; i < _shiftGameObjects.Count; i++)
 		{
 			if(_shiftGameObjects[i] != null)
 			{
@@ -285,31 +413,32 @@ public class RandomLG : LevelGenerator {
 
 	void UpdateStackPosition(int stackIndex, float offset)
 	{
-		for(int i = 0; i < _shiftGameObjects[stackIndex].Count; i++)
-		{
-			Vector2 newPos = _shiftGameObjects[stackIndex][i].Position;
-			newPos.x = offset;
+		LinkedList<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
 
-			_shiftGameObjects[stackIndex][i].Position = newPos;
+		for (LinkedListNode<ShiftABGameObject> obj = stack.First; obj != stack.Last.Next; obj = obj.Next)
+		{
+			Vector2 newPos = obj.Value.Position;
+			newPos.x = offset;
+			obj.Value.Position = newPos;
 		}
 	}
 
 	ShiftABGameObject FindWidestObjInStack(int stackIndex, float maxHeight = Mathf.Infinity)
 	{
-		List<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
+		LinkedList<ShiftABGameObject> stack = _shiftGameObjects[stackIndex];
 
-		ShiftABGameObject widestObj = stack[0];
 		float currentStackHeight = 0f;
+		ShiftABGameObject widestObj = stack.First.Value;
 
-		for(int i = 1; i < stack.Count && currentStackHeight <= maxHeight; i++)
+		for (LinkedListNode<ShiftABGameObject> obj = stack.First.Next; obj != stack.Last.Next && currentStackHeight <= maxHeight; obj = obj.Next)
 		{
-			float stackedObjWidth = stack[i].GetBounds().size.x;
+			float stackedObjWidth = obj.Value.GetBounds().size.x;
 			float widestObjWidth = widestObj.GetBounds().size.x;
 
 			if(stackedObjWidth > widestObjWidth)
-				widestObj = stack[i];
+				widestObj = obj.Value;
 
-			currentStackHeight += stack[i].GetBounds().size.y;
+			currentStackHeight += obj.Value.GetBounds().size.y;
 		}
 
 		return widestObj;

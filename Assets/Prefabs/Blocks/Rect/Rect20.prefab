@@ -10,12 +10,10 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
-  - 114: {fileID: 11400000}
-  - 95: {fileID: 9500000}
-  - 60: {fileID: 6000000}
+  - 61: {fileID: 6100000}
   m_Layer: 0
-  m_Name: Circle3
-  m_TagString: Circle
+  m_Name: Rect20
+  m_TagString: Rect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +24,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106709}
   m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -47,8 +45,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!60 &6000000
-PolygonCollider2D:
+--- !u!61 &6100000
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -56,49 +54,8 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Poly:
-    m_Paths:
-    - - {x: .115000002, y: .310000002}
-      - {x: -.224999994, y: .310000002}
-      - {x: -.305000007, y: .159999996}
-      - {x: -.305000007, y: -.159999996}
-      - {x: -.234999999, y: -.25}
-      - {x: -.135000005, y: -.310000002}
-      - {x: .0949999988, y: -.310000002}
-      - {x: .215000004, y: -.280000001}
-      - {x: .305000007, y: -.180000007}
-      - {x: .305000007, y: .0399999991}
-      - {x: .254999995, y: .129999995}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa606ff510ec74067aa48e723acf573b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_HasTransformHierarchy: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc54fd4222824fea93b236592a2c041, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeToDie: 0
-  _maxTimeToBlink: 2.5
-  _clips: []
-  _forceToDie: 2
-  dustEffect: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
+  m_Size: {x: .850000024, y: .439999998}
+  m_Center: {x: 0, y: 0}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -119,7 +76,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2888d33e510de4292be77f3f729b2658, type: 3}
+  m_Sprite: {fileID: 21300086, guid: 6f10dc69aeb3d4ca492f4de25a93b4b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

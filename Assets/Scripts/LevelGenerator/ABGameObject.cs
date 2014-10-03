@@ -20,6 +20,9 @@ public class ABGameObject
 	
 	public virtual Bounds GetBounds()
 	{
+		if(Label == _levelGenerator.ABTemplates.Length)
+			return _levelGenerator._pig.renderer.bounds;
+
 		Bounds composedBounds = new Bounds();
 		GameObject composedObj = _levelGenerator.ABTemplates[Label];
 		

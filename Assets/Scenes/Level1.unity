@@ -976,6 +976,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &1179296062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1166,6 +1167,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &1495084768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,6 +1438,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &1562432986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,6 +1762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f14937433f14b669c5eda63d19c2c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pig: {fileID: 100000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
   ABTemplates:
   - {fileID: 100000, guid: ed110d348e0e0415c91587fcff684072, type: 2}
   - {fileID: 100000, guid: d740f0869a4414c7a828009d6263ff0e, type: 2}
@@ -1766,7 +1770,7 @@ MonoBehaviour:
   - {fileID: 100008, guid: 508469aa966704f5a92f75388853c28b, type: 2}
   - {fileID: 100000, guid: d867cb423592c443fac7b7154fd111fe, type: 2}
   - {fileID: 100000, guid: d1ddeba297f6b47bd9ba8a3014f7af25, type: 2}
-  - {fileID: 100000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
+  - {fileID: 100000, guid: 67d4a8b6ad00a46629c834c23d8c56d0, type: 2}
   - {fileID: 100000, guid: 17005583a1bba42cd8f73c4f91757a7f, type: 2}
   - {fileID: 100000, guid: ae9e7c7cf7e4d4b3f8ab361a63ea1853, type: 2}
   - {fileID: 100000, guid: ed0be934aa252408580d7864e8cf68e9, type: 2}
@@ -1784,8 +1788,10 @@ MonoBehaviour:
   - {fileID: 100006, guid: 684bc09c2b61945af890433e8ea26436, type: 2}
   - {fileID: 100002, guid: 9f29520032cba404193cd42fbd2d6ff4, type: 2}
   - {fileID: 100004, guid: f1c9ea69862774fa9bb16d4744177454, type: 2}
-  _maxStacks: 4
-  _maxStackHeight: 12
+  - {fileID: 100000, guid: f1bce895734274594872e850313d133c, type: 2}
+  _maxPigsAmount: 1
+  _maxStackWidth: 10
+  _maxStackHeight: 10
 --- !u!4 &1742393086
 Transform:
   m_ObjectHideFlags: 0
