@@ -8,6 +8,8 @@ public class Pig : Character {
 
 	public override void Die()
 	{
+		Camera.main.audio.PlayOneShot(_clips[0], 1f);
+
 		// Create dust effect
 		if(dustEffect)
 			Instantiate(dustEffect, transform.position, Quaternion.identity);

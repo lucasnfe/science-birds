@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
-  - 58: {fileID: 5800000}
   - 114: {fileID: 11400000}
   - 95: {fileID: 9500000}
   - 82: {fileID: 8200002}
+  - 60: {fileID: 6000000}
   m_Layer: 8
   m_Name: bird
   m_TagString: Bird
@@ -48,8 +48,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!58 &5800000
-CircleCollider2D:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -57,8 +57,17 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .180000007
-  m_Center: {x: .0299999993, y: -.0399999991}
+  m_Poly:
+    m_Paths:
+    - - {x: .0599999987, y: .224999994}
+      - {x: -.0900000036, y: .224999994}
+      - {x: -.230000004, y: .075000003}
+      - {x: -.230000004, y: -.0649999976}
+      - {x: -.140000001, y: -.224999994}
+      - {x: .159999996, y: -.224999994}
+      - {x: .230000004, y: -.155000001}
+      - {x: .230000004, y: .0350000001}
+      - {x: .209999993, y: .0850000009}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -189,6 +198,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -200,20 +210,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54227e97307014f17a7ad8032433bfcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeToDie: 3
+  _maxTimeToBlink: 3
+  _clips:
+  - {fileID: 8300000, guid: fd94b77d668aa433c8b2d703cbabfd38, type: 3}
+  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
   _dragRadius: 1
   _dragSpeed: 15
   _launchGravity: .300000012
   _trajectoryParticleFrequency: .5
   _jumpForce: 75
-  _timeToDie: 3
   _maxTimeToJump: 5
-  _maxTimeToBlink: 3
   _launchForce: {x: 400, y: 500}
   _slingshot: {fileID: 0}
   _slingshotBase: {fileID: 0}
-  _clips:
-  - {fileID: 8300000, guid: fd94b77d668aa433c8b2d703cbabfd38, type: 3}
-  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
   _trajectoryParticles:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}

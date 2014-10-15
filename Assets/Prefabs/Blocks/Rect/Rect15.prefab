@@ -26,6 +26,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
   - 61: {fileID: 6100000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: AllBlocks_0
   m_TagString: Block
@@ -44,6 +45,7 @@ GameObject:
   - 212: {fileID: 21200002}
   - 50: {fileID: 5000002}
   - 61: {fileID: 6100002}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: AllBlocks_0
   m_TagString: Block
@@ -95,8 +97,8 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Mass: .100000001
-  m_LinearDrag: 0
+  m_Mass: .400000006
+  m_LinearDrag: 1
   m_AngularDrag: .0500000007
   m_GravityScale: 1
   m_FixedAngle: 0
@@ -110,8 +112,8 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
-  m_Mass: .100000001
-  m_LinearDrag: 0
+  m_Mass: .400000006
+  m_LinearDrag: 1
   m_AngularDrag: .0500000007
   m_GravityScale: 1
   m_FixedAngle: 0
@@ -141,6 +143,44 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .800000012, y: .800000012}
   m_Center: {x: 0, y: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb3968a7123042fc919c6e4c3fb0935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _life: 10
+  _images:
+  - {fileID: 21300000, guid: 6f10dc69aeb3d4ca492f4de25a93b4b5, type: 3}
+  - {fileID: 21300000, guid: 6f10dc69aeb3d4ca492f4de25a93b4b5, type: 3}
+  _damageClip:
+  - {fileID: 8300000, guid: 6bfe46151b4554c7089990a54dc5e895, type: 3}
+  - {fileID: 8300000, guid: 1330a172ee9b84e6f82f6c4ad3474b96, type: 3}
+  DestructionEffect: {fileID: 19800000, guid: 5aba3aaf04fb64c64ad3c8c72572bb6e, type: 2}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb3968a7123042fc919c6e4c3fb0935, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _life: 10
+  _images:
+  - {fileID: 21300000, guid: 6f10dc69aeb3d4ca492f4de25a93b4b5, type: 3}
+  - {fileID: 21300000, guid: 6f10dc69aeb3d4ca492f4de25a93b4b5, type: 3}
+  _damageClip:
+  - {fileID: 8300000, guid: 6bfe46151b4554c7089990a54dc5e895, type: 3}
+  - {fileID: 8300000, guid: 1330a172ee9b84e6f82f6c4ad3474b96, type: 3}
+  DestructionEffect: {fileID: 19800000, guid: 5aba3aaf04fb64c64ad3c8c72572bb6e, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -178,9 +178,9 @@ public class Bird : Character {
         _slingshotBase.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // Slingshot base rotate around the selected point
-        CircleCollider2D col = GetComponent<CircleCollider2D>();
+		Collider2D col = GetComponent<Collider2D>();
 		_slingshotBase.transform.position = (transform.position - _selectPosition).normalized 
-			* col.radius + transform.position;
+			* col.bounds.size.x/2.25f + transform.position;
 	}
 
 	public void LaunchBird()
