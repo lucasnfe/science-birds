@@ -9,7 +9,7 @@ public class GameplayCamera : MonoBehaviour {
 	private Vector3 _dragDistance;
 	private Rect    _initialCameraRect;
 	
-	public BirdsManager _birdsManager;
+	public GameWorld _gameWorld;
 
 	public float _dampTime;
 	public float _levelWidth;
@@ -20,7 +20,6 @@ public class GameplayCamera : MonoBehaviour {
 		_dragDistance = Vector3.one;
 
 		_minWidth = _initialCameraRect.width;
-
 	}
 	
 	void FixedUpdate()
@@ -32,7 +31,7 @@ public class GameplayCamera : MonoBehaviour {
 
 			float cameraDampTime = _dampTime;
 			Vector3 cameraNextPos = Vector3.zero;
-			Bird target = _birdsManager.GetCurrentBird();
+			Bird target = _gameWorld.GetCurrentBird();
 	
 			if(target)
 			{
@@ -90,7 +89,7 @@ public class GameplayCamera : MonoBehaviour {
 	
 	public void DragCamera(Vector3 dragPosition)
 	{
-		Bird target = _birdsManager.GetCurrentBird();
+		Bird target = _gameWorld.GetCurrentBird();
 		
 		if(target && target.IsFlying())
 			return;

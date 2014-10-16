@@ -15,10 +15,10 @@ public class RandomLG : LevelGenerator {
 	public float _maxStackHeight = 1f;
 
 	// Each object has its own probability for being spawned
-	float []_gameObjectsProbability;
+	public float []_gameObjectsDuplicateProbability;
 
 	// List of stacks in the level
-	List<LinkedList<ShiftABGameObject>> _shiftGameObjects;
+	private List<LinkedList<ShiftABGameObject>> _shiftGameObjects;
 	
 	public int GetTypeByTag(string tag)
 	{					
@@ -110,7 +110,7 @@ public class RandomLG : LevelGenerator {
 			Transform ground = transform.Find("Level/Ground");
 			BoxCollider2D groundCollider = ground.GetComponent<BoxCollider2D>();
 
-			//holdingPosition.x = Random.Range(0f, 0.5f);
+			holdingPosition.x = Random.Range(0f, 0.5f);
 
 			if(stack.Count == 0)
 			{
@@ -155,14 +155,15 @@ public class RandomLG : LevelGenerator {
 		if(stack.Count - 1 >= 0)
 			objectBelow = stack.Last.Value;
 
-		// There is a chance to double the object
-		if(Random.value < 0.5f)
-			nextObject.IsDouble = true;
-		
 		// If the object below is the ground
 		if(objectBelow == null)
 		{
 			nextObject.Label = Random.Range(0, ABTemplates.Length);
+
+			// There is a chance to double the object
+			if(Random.value < _gameObjectsDuplicateProbability[nextObject.Label])
+				nextObject.IsDouble = true;
+
 			nextObject.HoldingObject = objectBelow;
 			return true;
 		}
@@ -173,6 +174,11 @@ public class RandomLG : LevelGenerator {
 		while(stackableObjects.Count > 0)
 		{
 			nextObject.Label = stackableObjects[Random.Range(0, stackableObjects.Count - 1)];
+			nextObject.IsDouble = false;
+
+			// There is a chance to double the object
+			if(Random.value < _gameObjectsDuplicateProbability[nextObject.Label])
+				nextObject.IsDouble = true;
 
 			// Check if there is no stability problems
 			if(nextObject.Type == 0)

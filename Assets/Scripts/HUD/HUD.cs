@@ -6,7 +6,7 @@ public class HUD : MonoBehaviour {
 	public float _zoomSpeed;
 	public float _scrollSpeed;
 
-    public BirdsManager _birdsManager;
+    public GameWorld _gameWorld;
 	public GameplayCamera _camera;
 	
 	private Bird _selecetdBird;
@@ -27,7 +27,7 @@ public class HUD : MonoBehaviour {
                 if(hit.transform.tag == "Bird")
                 {
 					_selecetdBird = hit.transform.gameObject.GetComponent<Bird>();
-					if(_selecetdBird && !_selecetdBird.IsSelected() && _selecetdBird == _birdsManager.GetCurrentBird())
+					if(_selecetdBird && !_selecetdBird.IsSelected() && _selecetdBird == _gameWorld.GetCurrentBird())
                     {
 						_selecetdBird.SelectBird();
                     }
@@ -38,7 +38,7 @@ public class HUD : MonoBehaviour {
         {
             if(_selecetdBird)
             {
-				if(!_selecetdBird.IsFlying() && _selecetdBird == _birdsManager.GetCurrentBird())
+				if(!_selecetdBird.IsFlying() && _selecetdBird == _gameWorld.GetCurrentBird())
 				{
                 	Vector3 dragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 					dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selecetdBird.transform.position.z);
@@ -58,7 +58,7 @@ public class HUD : MonoBehaviour {
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            if(_selecetdBird && !_selecetdBird.IsFlying() && _selecetdBird == _birdsManager.GetCurrentBird())
+            if(_selecetdBird && !_selecetdBird.IsFlying() && _selecetdBird == _gameWorld.GetCurrentBird())
             {
                 _selecetdBird.LaunchBird();
                 _selecetdBird = null;

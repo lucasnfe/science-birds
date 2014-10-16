@@ -18,11 +18,11 @@ public class Bird : Character {
     public Transform _slingshot;
     public Transform _slingshotBase;
     
-    public GameObject[] _trajectoryParticles;
+    public GameObject[] _trajectoryParticlesTemplates;
 
     public bool JumpToSlingshot{ get; set; }
     public bool  OutOfSlingShot{ get; set; }
-
+	
 	public override void Start ()
     {
 		base.Start();
@@ -55,33 +55,8 @@ public class Bird : Character {
 
     void DropTrajectoryParticle()
     {
-        _nextParticleTrajectory = (_nextParticleTrajectory + 1) % _trajectoryParticles.Length;
-
-        GameObject particle = (GameObject) Instantiate(_trajectoryParticles[_nextParticleTrajectory], 
-		                                               transform.position, Quaternion.identity);
-
-		particle.transform.parent = GameObject.Find("Level/Effects").transform;
-        particle.name = name;
-    }
-
-    void RemoveLastTrajectoryParticle(string birdName)
-    {
-        int lastBirdIndex = int.Parse(name.Substring(name.Length - 1)) - 1;
-
-        if(lastBirdIndex > 0)
-        {
-            string lastBirdName = birdName.Remove(birdName.Length - 1, 1);
-            lastBirdName = lastBirdName + lastBirdIndex;
-
-			GameObject effects = GameObject.Find("Level/Effects");
-
-            foreach (Transform child in effects.transform)
-            {
-                if(child.gameObject.name == lastBirdName)
-
-                    Destroy(child.gameObject);
-            }
-        }
+		_nextParticleTrajectory = (_nextParticleTrajectory + 1) % _trajectoryParticlesTemplates.Length;
+		_gameWorld.AddTrajectoryParticle(_trajectoryParticlesTemplates[_nextParticleTrajectory], transform.position, name);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -89,7 +64,7 @@ public class Bird : Character {
         if(IsFlying())
         {
             CancelInvoke("DropTrajectoryParticle");
-            RemoveLastTrajectoryParticle(name);
+			_gameWorld.RemoveLastTrajectoryParticle(name);
 
             Invoke("Die", _timeToDie);
             _animator.Play("die", 0, 0f);
@@ -104,7 +79,6 @@ public class Bird : Character {
 				_slingshotBase.active = false;
 
 			if(IsSelected() && IsFlying())
-
 				PlayAudio(3);
         }
     }
@@ -135,7 +109,6 @@ public class Bird : Character {
 		if(collider.tag == "Slingshot")
 		{
 			if(IsSelected() && !IsFlying())
-				
 				PlayAudio(2);
 		}
 	}
@@ -157,9 +130,21 @@ public class Bird : Character {
         _animator.Play("selected", 0, 0f);
     }
 
-    public void SetBirdOnSlingshot(Vector3 endPosition)
+    public void SetBirdOnSlingshot()
     {
-        transform.position = Vector3.MoveTowards(transform.position, endPosition, _dragSpeed * Time.deltaTime);
+		Vector3 birdNewPos = _slingshot.transform.position;
+		birdNewPos.x -= collider2D.bounds.size.x/4f;
+		birdNewPos.y += _slingshot.collider2D.bounds.size.y * 2f;
+		birdNewPos.z = _slingshot.FindChild("slingshot_front").transform.position.z + 1;
+
+		transform.position = Vector3.MoveTowards(transform.position, birdNewPos, _dragSpeed * Time.deltaTime);
+
+		if(transform.position == birdNewPos)
+		{
+			JumpToSlingshot = false;
+			OutOfSlingShot = false;
+			rigidbody2D.velocity = Vector2.zero;
+		}
     }
 
 	public void DragBird(Vector3 dragPosition)

@@ -347,16 +347,18 @@ MonoBehaviour:
   _clips:
   - {fileID: 8300000, guid: fd94b77d668aa433c8b2d703cbabfd38, type: 3}
   - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
+  - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
   _dragRadius: 1
   _dragSpeed: 15
   _launchGravity: .300000012
   _trajectoryParticleFrequency: .5
   _jumpForce: 75
   _maxTimeToJump: 5
-  _launchForce: {x: 400, y: 500}
+  _launchForce: {x: 400, y: 450}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
-  _trajectoryParticles:
+  _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
   - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
@@ -436,6 +438,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 579319415}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _clips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _trajectoryParticlesTemplates.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
       propertyPath: m_LocalPosition.x
       value: -1.25
@@ -480,6 +490,34 @@ Prefab:
       propertyPath: _slingshotBase
       value: 
       objectReference: {fileID: 582073443}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _clips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _clips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _launchForce.y
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _gameWorld
+      value: 
+      objectReference: {fileID: 1069289544}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _trajectoryParticlesTemplates.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _trajectoryParticlesTemplates.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _trajectoryParticlesTemplates.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
   m_RootGameObject: {fileID: 641217830}
@@ -611,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c654c0ce06d4a7db113a862d6ad2b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _birdsManager: {fileID: 579319416}
+  _gameWorld: {fileID: 1069289544}
   _dampTime: 15
   _levelWidth: 24
 --- !u!82 &489266193
@@ -738,7 +776,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 579319415}
-  - 114: {fileID: 579319416}
   m_Layer: 0
   m_Name: Birds
   m_TagString: Untagged
@@ -761,23 +798,6 @@ Transform:
   - {fileID: 641217837}
   m_Father: {fileID: 1069289543}
   m_RootOrder: 4
---- !u!114 &579319416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 579319414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 702b6469ca9e14858857a66a99d63375, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _birds:
-  - {fileID: 1179296062}
-  - {fileID: 641217834}
-  - {fileID: 186035034}
-  _camera: {fileID: 489266192}
-  _initialPosition: {x: .150000095, y: -.400000095, z: 2}
 --- !u!1 &582073442
 GameObject:
   m_ObjectHideFlags: 0
@@ -962,16 +982,18 @@ MonoBehaviour:
   _clips:
   - {fileID: 8300000, guid: fd94b77d668aa433c8b2d703cbabfd38, type: 3}
   - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
+  - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
   _dragRadius: 1
   _dragSpeed: 15
   _launchGravity: .300000012
   _trajectoryParticleFrequency: .5
   _jumpForce: 75
   _maxTimeToJump: 5
-  _launchForce: {x: 400, y: 500}
+  _launchForce: {x: 400, y: 450}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
-  _trajectoryParticles:
+  _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
   - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
@@ -1067,8 +1089,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zoomSpeed: 30
   _scrollSpeed: 8
-  _birdsManager: {fileID: 579319416}
+  _gameWorld: {fileID: 1069289544}
   _camera: {fileID: 489266192}
+--- !u!1001 &946059875
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 579319415}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: .150000095
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -.400000095
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: m_Name
+      value: bird1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _slingshot
+      value: 
+      objectReference: {fileID: 1526455719}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _slingshotBase
+      value: 
+      objectReference: {fileID: 582073443}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _gameWorld
+      value: 
+      objectReference: {fileID: 1069289544}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+  m_RootGameObject: {fileID: 1179296058}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &960721426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,86 +1215,6 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 58d73fbfcf77841a99baebf9af00df8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1001 &961627129
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 579319415}
-    m_Modifications:
-    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: _clips.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: .150000095
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -.400000095
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_RootMapOrder
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: m_Name
-      value: bird1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: _slingshot
-      value: 
-      objectReference: {fileID: 1526455719}
-    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: _slingshotBase
-      value: 
-      objectReference: {fileID: 582073443}
-    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: _launchForce.x
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: _launchForce.y
-      value: 450
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: _clips.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
-    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-      propertyPath: _clips.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-  m_RootGameObject: {fileID: 1179296058}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &985999254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fd553032d244b1fb47afdc455337a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _birds:
+  - {fileID: 1179296062}
+  - {fileID: 641217834}
+  - {fileID: 186035034}
+  _camera: {fileID: 489266192}
 --- !u!1 &1150666195
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,7 +1435,7 @@ MonoBehaviour:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-  m_PrefabInternal: {fileID: 961627129}
+  m_PrefabInternal: {fileID: 946059875}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1179296059}
@@ -1449,7 +1456,7 @@ GameObject:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
-  m_PrefabInternal: {fileID: 961627129}
+  m_PrefabInternal: {fileID: 946059875}
   m_GameObject: {fileID: 1179296058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: .150000095, y: -.400000095, z: 2}
@@ -1462,7 +1469,7 @@ AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 8200002, guid: 46743ff39f47c444aa630c83e3753236,
     type: 2}
-  m_PrefabInternal: {fileID: 961627129}
+  m_PrefabInternal: {fileID: 946059875}
   m_GameObject: {fileID: 1179296058}
   m_Enabled: 1
   serializedVersion: 3
@@ -1522,7 +1529,7 @@ Animator:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 9500000, guid: 46743ff39f47c444aa630c83e3753236,
     type: 2}
-  m_PrefabInternal: {fileID: 961627129}
+  m_PrefabInternal: {fileID: 946059875}
   m_GameObject: {fileID: 1179296058}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
@@ -1537,7 +1544,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236,
     type: 2}
-  m_PrefabInternal: {fileID: 961627129}
+  m_PrefabInternal: {fileID: 946059875}
   m_GameObject: {fileID: 1179296058}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1560,7 +1567,7 @@ MonoBehaviour:
   _launchForce: {x: 400, y: 450}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
-  _trajectoryParticles:
+  _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
   - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
@@ -1569,7 +1576,7 @@ PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 6000000, guid: 46743ff39f47c444aa630c83e3753236,
     type: 2}
-  m_PrefabInternal: {fileID: 961627129}
+  m_PrefabInternal: {fileID: 946059875}
   m_GameObject: {fileID: 1179296058}
   m_Enabled: 1
   m_Material: {fileID: 0}
@@ -1590,7 +1597,7 @@ Rigidbody2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 5000000, guid: 46743ff39f47c444aa630c83e3753236,
     type: 2}
-  m_PrefabInternal: {fileID: 961627129}
+  m_PrefabInternal: {fileID: 946059875}
   m_GameObject: {fileID: 1179296058}
   m_Mass: .5
   m_LinearDrag: 0
@@ -1606,7 +1613,7 @@ SpriteRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 21200000, guid: 46743ff39f47c444aa630c83e3753236,
     type: 2}
-  m_PrefabInternal: {fileID: 961627129}
+  m_PrefabInternal: {fileID: 946059875}
   m_GameObject: {fileID: 1179296058}
   m_Enabled: 1
   m_CastShadows: 0
@@ -1947,6 +1954,32 @@ MonoBehaviour:
   _maxPigsAmount: 1
   _maxStackWidth: 10
   _maxStackHeight: 10
+  _gameObjectsDuplicateProbability:
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - 0
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - .5
+  - 0
+  - .5
+  - .5
 --- !u!4 &1742393086
 Transform:
   m_ObjectHideFlags: 0
@@ -2130,6 +2163,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 579319415}
     m_Modifications:
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _clips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _trajectoryParticlesTemplates.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -2174,6 +2215,34 @@ Prefab:
       propertyPath: _slingshotBase
       value: 
       objectReference: {fileID: 582073443}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _clips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _clips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _launchForce.y
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _gameWorld
+      value: 
+      objectReference: {fileID: 1069289544}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _trajectoryParticlesTemplates.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _trajectoryParticlesTemplates.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _trajectoryParticlesTemplates.Array.data[2]
+      value: 
+      objectReference: {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
   m_RootGameObject: {fileID: 186035029}

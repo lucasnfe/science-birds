@@ -215,16 +215,19 @@ MonoBehaviour:
   _clips:
   - {fileID: 8300000, guid: fd94b77d668aa433c8b2d703cbabfd38, type: 3}
   - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
+  - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
   _dragRadius: 1
   _dragSpeed: 15
   _launchGravity: .300000012
   _trajectoryParticleFrequency: .5
   _jumpForce: 75
   _maxTimeToJump: 5
-  _launchForce: {x: 400, y: 500}
+  _launchForce: {x: 400, y: 450}
   _slingshot: {fileID: 0}
   _slingshotBase: {fileID: 0}
-  _trajectoryParticles:
+  _gameWorld: {fileID: 0}
+  _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
   - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}

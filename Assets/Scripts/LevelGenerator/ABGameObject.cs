@@ -3,9 +3,10 @@ using System.Collections;
 
 public class ABGameObject
 {
-	public Vector2 Position{ get; set; }
 	protected LevelGenerator _levelGenerator;
 
+	public Vector2 Position{ get; set; }
+	
 	private int _label;
 	public virtual int Label
 	{ 

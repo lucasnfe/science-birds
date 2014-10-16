@@ -10,9 +10,7 @@ public class Pig : Character {
 	{
 		Camera.main.audio.PlayOneShot(_clips[0], 1f);
 
-		// Create dust effect
-		if(dustEffect)
-			Instantiate(dustEffect, transform.position, Quaternion.identity);
+		_gameWorld.AddTrajectoryParticle(dustEffect, transform.position, name);
 
 		Destroy(gameObject);
 	}
