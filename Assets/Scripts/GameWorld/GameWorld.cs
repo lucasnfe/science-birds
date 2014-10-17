@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameWorld : MonoBehaviour {
-		
+
+	public float _timeToResetLevel = 1f;
 	public Bird []_birds;
 	public GameplayCamera _camera;
 
@@ -30,6 +31,9 @@ public class GameWorld : MonoBehaviour {
 
 	void ManageBirds()
 	{
+		if(_currentBirdIndex >= _birds.Length)
+			return;
+
 		if(!_birds[_currentBirdIndex] && !_birds[_currentBirdIndex].JumpToSlingshot)
 		{
 			_currentBirdIndex++;
@@ -37,7 +41,7 @@ public class GameWorld : MonoBehaviour {
 			// If there are no more birds, reload the game
 			if(_currentBirdIndex == _birds.Length)
 			{
-				Application.LoadLevel(Application.loadedLevel);
+				Invoke("ResetLevel", _timeToResetLevel);
 				return;
 			}
 			
@@ -83,9 +87,14 @@ public class GameWorld : MonoBehaviour {
 		
 		if(pigsAmount == 0)
 		{
-			Application.LoadLevel(Application.loadedLevel);
+			Invoke("ResetLevel", _timeToResetLevel);
 			return;
 		}
+	}
+
+	void ResetLevel()
+	{
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	public void AddTrajectoryParticle(GameObject particleTemplate, Vector3 position, string parentName)

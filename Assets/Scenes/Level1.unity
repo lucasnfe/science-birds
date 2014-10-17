@@ -1288,6 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fd553032d244b1fb47afdc455337a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeToResetLevel: 3
   _birds:
   - {fileID: 1179296062}
   - {fileID: 641217834}

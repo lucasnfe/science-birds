@@ -27,7 +27,7 @@ public class HUD : MonoBehaviour {
                 if(hit.transform.tag == "Bird")
                 {
 					_selecetdBird = hit.transform.gameObject.GetComponent<Bird>();
-					if(_selecetdBird && !_selecetdBird.IsSelected() && _selecetdBird == _gameWorld.GetCurrentBird())
+					if(_selecetdBird && !_selecetdBird.IsSelected && _selecetdBird == _gameWorld.GetCurrentBird())
                     {
 						_selecetdBird.SelectBird();
                     }

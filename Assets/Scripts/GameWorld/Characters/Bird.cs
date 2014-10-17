@@ -20,8 +20,9 @@ public class Bird : Character {
     
     public GameObject[] _trajectoryParticlesTemplates;
 
+	public bool IsSelected{ get; set;}
     public bool JumpToSlingshot{ get; set; }
-    public bool  OutOfSlingShot{ get; set; }
+    public bool OutOfSlingShot{ get; set; }
 	
 	public override void Start ()
     {
@@ -31,12 +32,16 @@ public class Bird : Character {
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
+
+		_selectPosition = _slingshot.transform.position;
+		_selectPosition.x -= collider2D.bounds.size.x/4f;
+		_selectPosition.y += _slingshot.collider2D.bounds.size.y * 2f;
+		_selectPosition.z = _slingshot.FindChild("slingshot_front").transform.position.z + 1;
     }
 
     void Update()
     {
         if(IsFlying() && !OutOfSlingShot)
-
             DragBird(transform.position);
     }
 
@@ -78,7 +83,7 @@ public class Bird : Character {
             if(JumpToSlingshot)
 				_slingshotBase.active = false;
 
-			if(IsSelected() && IsFlying())
+			if(IsSelected && IsFlying())
 				PlayAudio(3);
         }
     }
@@ -92,14 +97,13 @@ public class Bird : Character {
 
             if(IsFlying())
             {
+				OutOfSlingShot = true;
+
                 Vector3 slingBasePos = _selectPosition;
                 slingBasePos.z = transform.position.z + 0.5f;
                 _slingshotBase.transform.position = slingBasePos;
-
                 _slingshotBase.transform.rotation = Quaternion.Euler(_slingshotBase.transform.rotation.x,
                                                                      _slingshotBase.transform.rotation.y, 0f);
-
-                OutOfSlingShot = true;
             }
         }
     }
@@ -108,7 +112,7 @@ public class Bird : Character {
 	{
 		if(collider.tag == "Slingshot")
 		{
-			if(IsSelected() && !IsFlying())
+			if(IsSelected && !IsFlying())
 				PlayAudio(2);
 		}
 	}
@@ -117,29 +121,20 @@ public class Bird : Character {
     {
         return _animator.GetCurrentAnimatorStateInfo(0).IsName("flying");
     }
-
-    public bool IsSelected()
-    {
-        return _selectPosition != Vector3.zero;
-    }
-
+	
     public void SelectBird()
     {
         _slingshotBase.active = true;
-        _selectPosition = transform.position;
+        //_selectPosition = transform.position;
+		IsSelected = true;
         _animator.Play("selected", 0, 0f);
     }
 
     public void SetBirdOnSlingshot()
     {
-		Vector3 birdNewPos = _slingshot.transform.position;
-		birdNewPos.x -= collider2D.bounds.size.x/4f;
-		birdNewPos.y += _slingshot.collider2D.bounds.size.y * 2f;
-		birdNewPos.z = _slingshot.FindChild("slingshot_front").transform.position.z + 1;
+		transform.position = Vector3.MoveTowards(transform.position, _selectPosition, _dragSpeed * Time.deltaTime);
 
-		transform.position = Vector3.MoveTowards(transform.position, birdNewPos, _dragSpeed * Time.deltaTime);
-
-		if(transform.position == birdNewPos)
+		if(transform.position == _selectPosition)
 		{
 			JumpToSlingshot = false;
 			OutOfSlingShot = false;
@@ -170,13 +165,15 @@ public class Bird : Character {
 
 	public void LaunchBird()
 	{
+		IsSelected = false;
+	
         Vector2 deltaPosFromSlingshot = transform.position - _selectPosition;
 		_animator.Play("flying", 0, 0f);
-
+	
 		// The bird starts with no gravity, so we must set it
 		rigidbody2D.gravityScale = _launchGravity;
 		rigidbody2D.velocity = new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
-                                           _launchForce.y * -deltaPosFromSlingshot.y) * Time.deltaTime;
+                                           _launchForce.y * -deltaPosFromSlingshot.y) * Time.fixedDeltaTime;
 
         InvokeRepeating("DropTrajectoryParticle", 0.1f,
 		                _trajectoryParticleFrequency / Mathf.Abs(rigidbody2D.velocity.x));
