@@ -66,7 +66,14 @@ public class HUD : MonoBehaviour {
         }
 
 		if(Input.GetAxis("Mouse ScrollWheel") != 0f)
-			_camera.ZoomCamera(Input.GetAxis("Mouse ScrollWheel") * _zoomSpeed * Time.deltaTime);
+		{
+			float scrollDirection = 1f;
+
+			if(Input.GetAxis("Mouse ScrollWheel") < 0)
+				scrollDirection = -1f;
+
+			_camera.ZoomCamera(scrollDirection * _zoomSpeed * Time.deltaTime);
+		}
 
 		if(Input.GetKey("a"))
 		{

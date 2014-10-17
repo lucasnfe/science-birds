@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f76fbe92c654e5c91ea3d3e3b50491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zoomSpeed: 200
+  _zoomSpeed: 50
   _scrollSpeed: 5
   _gameWorld: {fileID: 1069289544}
   _camera: {fileID: 489266192}
