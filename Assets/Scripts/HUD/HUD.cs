@@ -66,7 +66,6 @@ public class HUD : MonoBehaviour {
         }
 
 		if(Input.GetAxis("Mouse ScrollWheel") != 0f)
-
 			_camera.ZoomCamera(Input.GetAxis("Mouse ScrollWheel") * _zoomSpeed * Time.deltaTime);
 
 		if(Input.GetKey("a"))

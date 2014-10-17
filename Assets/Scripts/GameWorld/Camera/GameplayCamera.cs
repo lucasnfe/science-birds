@@ -71,8 +71,9 @@ public class GameplayCamera : MonoBehaviour {
 		Vector3 destination = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
 
 		Vector3 cameraPos = transform.position;
-		cameraPos.x = Mathf.Clamp(cameraPos.x, LeftBound(), RightBound());
+
 		cameraPos = Vector3.SmoothDamp(cameraPos, destination, ref _velocity, dampTime * Time.deltaTime);
+		cameraPos.x = Mathf.Clamp(cameraPos.x, LeftBound(), RightBound());
 
 		transform.position = cameraPos;
 	}
@@ -99,7 +100,6 @@ public class GameplayCamera : MonoBehaviour {
 		Vector3 dragPos = transform.position - dragPosition;
 		
 		if(dragPosition.x != 0f)
-			
 			_dragDistance = dragPosition;
 
 		FollowTarget(dragPos, _dampTime);
@@ -107,7 +107,7 @@ public class GameplayCamera : MonoBehaviour {
 
 	public void ZoomCamera(float zoomFactor)
 	{
-		zoomFactor = Mathf.Clamp(zoomFactor,  -0.5f, 0.5f);
+		//zoomFactor = Mathf.Clamp(zoomFactor,  -0.5f, 0.5f);
 		_initialCameraRect.width += zoomFactor;
 		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _levelWidth);
 	}
