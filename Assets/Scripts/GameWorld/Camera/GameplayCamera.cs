@@ -2,13 +2,12 @@
 using System.Collections;
 
 public class GameplayCamera : MonoBehaviour {
-	
-	private float   _minWidth;
-	private bool    _isDraging;
-	private Vector3 _velocity;
-	private Vector3 _dragDistance;
-	private Rect    _initialCameraRect;
-	
+
+	private bool  _isDraging;
+	private Rect  _initialCameraRect;
+	private float _minWidth;
+	private float _dragDistance;
+
 	public GameWorld _gameWorld;
 
 	public float _dampTime;
@@ -16,65 +15,46 @@ public class GameplayCamera : MonoBehaviour {
 
 	void Start()
 	{
+		_dragDistance = 1f;
 		_initialCameraRect = CalculateCameraRect();
-		_dragDistance = Vector3.one;
-
 		_minWidth = _initialCameraRect.width;
 	}
 	
-	void FixedUpdate()
+	void Update()
 	{
+		// Updating camera zoom
+		CalculateOrthographicSize();
+
 		if(!_isDraging)
 		{
-			// Updating camera zoom
-			camera.orthographicSize = CalculateOrthographicSize(_initialCameraRect);
-
-			float cameraDampTime = _dampTime;
-			Vector3 cameraNextPos = Vector3.zero;
 			Bird target = _gameWorld.GetCurrentBird();
-	
-			if(target)
+
+			Vector3 cameraNextPos = Vector3.zero;
+			cameraNextPos.x = LeftBound();
+
+			if(target && target.OutOfSlingShot && target.IsInFrontOfSlingshot())
 			{
-				float birdVelocity = target.rigidbody2D.velocity.x;
-
-				if(target.OutOfSlingShot && birdVelocity <= 0f)
-					return;
-
-				if(target.OutOfSlingShot)
-				{
-					cameraNextPos.x = RightBound();
-					cameraDampTime = _dampTime * (20f/birdVelocity);
-				}
+				cameraNextPos.x = RightBound()/2f;
 			}
 			else
 			{
-				cameraNextPos.x = LeftBound();
-			}
-
-			if(cameraNextPos == Vector3.zero)
-			{
-				if(_dragDistance.x < 0f)
+				if(_dragDistance < 0f)
 					
 					cameraNextPos.x = RightBound();
 				else
 					cameraNextPos.x = LeftBound();
 			}
 
-			FollowTarget(cameraNextPos, cameraDampTime);
+			FollowTarget(cameraNextPos);
 		}
 
 		_isDraging = false;
 	}
 
-	void FollowTarget(Vector3 targetPosition, float dampTime)
+	void FollowTarget(Vector3 targetPosition)
 	{
-		Vector3 destination = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
-
 		Vector3 cameraPos = transform.position;
-
-		cameraPos = Vector3.SmoothDamp(cameraPos, destination, ref _velocity, dampTime * Time.deltaTime);
-		cameraPos.x = Mathf.Clamp(cameraPos.x, LeftBound(), RightBound());
-
+		cameraPos.x = Mathf.Lerp(cameraPos.x, targetPosition.x, _dampTime * Time.deltaTime);
 		transform.position = cameraPos;
 	}
 
@@ -88,26 +68,26 @@ public class GameplayCamera : MonoBehaviour {
 		return _levelWidth/2f - _initialCameraRect.width/2f;
 	}
 	
-	public void DragCamera(Vector3 dragPosition)
+	public void DragCamera(Vector3 dragDistance)
 	{
 		Bird target = _gameWorld.GetCurrentBird();
-		
+
 		if(target && target.IsFlying())
 			return;
-		
-		_isDraging = true;
-		
-		Vector3 dragPos = transform.position - dragPosition;
-		
-		if(dragPosition.x != 0f)
-			_dragDistance = dragPosition;
 
-		FollowTarget(dragPos, _dampTime);
+		_isDraging = true;
+
+		if(dragDistance.magnitude > 0f)
+			_dragDistance = dragDistance.x;
+
+		Vector3 cameraPos = transform.position;
+		cameraPos.x = Mathf.Lerp(cameraPos.x, cameraPos.x - dragDistance.x, _dampTime * Time.deltaTime);
+		cameraPos.x = Mathf.Clamp(cameraPos.x, LeftBound(), RightBound());
+		transform.position = cameraPos;
 	}
 
 	public void ZoomCamera(float zoomFactor)
 	{
-		//zoomFactor = Mathf.Clamp(zoomFactor,  -0.5f, 0.5f);
 		_initialCameraRect.width += zoomFactor;
 		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _levelWidth);
 	}
@@ -116,22 +96,22 @@ public class GameplayCamera : MonoBehaviour {
 	{
 		float height = 2f * camera.orthographicSize;
 		float width = height * camera.aspect;	
-		
+
 		return new Rect(transform.position.x - width/2f, transform.position.y - height/2f, width, height);
 	}
 
-	float CalculateOrthographicSize(Rect boundingBox)
+	public void CalculateOrthographicSize()
 	{
 		float orthographicSize = camera.orthographicSize;
-		Vector3 topRight = new Vector3(boundingBox.x + boundingBox.width, boundingBox.y, 0f);
+		Vector3 topRight = new Vector3(_initialCameraRect.x + _initialCameraRect.width, _initialCameraRect.y, 0f);
 		Vector3 topRightAsViewport = camera.WorldToViewportPoint(topRight);
 		
 		if (topRightAsViewport.x >= topRightAsViewport.y)
 
-			orthographicSize = Mathf.Abs(boundingBox.width) / camera.aspect / 2f;
+			orthographicSize = Mathf.Abs(_initialCameraRect.width) / camera.aspect / 2f;
 		else
-			orthographicSize = Mathf.Abs(boundingBox.height) / 2f;
+			orthographicSize = Mathf.Abs(_initialCameraRect.height) / 2f;
 		
-		return orthographicSize;
+		camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, orthographicSize, _dampTime * Time.deltaTime);
 	}
 }

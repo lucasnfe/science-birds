@@ -4,7 +4,7 @@ using System.Collections;
 public class HUD : MonoBehaviour {
 	
 	public float _zoomSpeed;
-	public float _scrollSpeed;
+	public float _dragSpeed;
 
     public GameWorld _gameWorld;
 	public GameplayCamera _camera;
@@ -49,11 +49,7 @@ public class HUD : MonoBehaviour {
 			else
 			{
 				Vector3 dragPosition = Input.mousePosition - _dragOrigin;
-				dragPosition.x = Mathf.Clamp(dragPosition.x, -_scrollSpeed, _scrollSpeed);
-
-				dragPosition = new Vector3(dragPosition.x, _camera.transform.position.y, _camera.transform.position.z);
-
-				_camera.DragCamera(dragPosition);
+				_camera.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
 			}
         }
         else if(Input.GetMouseButtonUp(0))
@@ -67,12 +63,8 @@ public class HUD : MonoBehaviour {
 
 		if(Input.GetAxis("Mouse ScrollWheel") != 0f)
 		{
-			float scrollDirection = 1f;
-
-			if(Input.GetAxis("Mouse ScrollWheel") < 0)
-				scrollDirection = -1f;
-
-			_camera.ZoomCamera(scrollDirection * _zoomSpeed * Time.deltaTime);
+			float scrollDirection = Input.GetAxis("Mouse ScrollWheel");
+			_camera.ZoomCamera(Mathf.Clamp(scrollDirection, -1, 1f) * _zoomSpeed * Time.deltaTime);
 		}
 
 		if(Input.GetKey("a"))
@@ -84,7 +76,6 @@ public class HUD : MonoBehaviour {
 	void LateUpdate()
 	{
 		if(Input.GetMouseButton(0))
-			
 			_dragOrigin = Input.mousePosition;
 	}
 }

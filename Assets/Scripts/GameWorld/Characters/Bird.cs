@@ -121,6 +121,11 @@ public class Bird : Character {
     {
         return _animator.GetCurrentAnimatorStateInfo(0).IsName("flying");
     }
+
+	public bool IsInFrontOfSlingshot()
+	{
+		return transform.position.x > _slingshot.transform.position.x + _dragRadius;
+	}
 	
     public void SelectBird()
     {

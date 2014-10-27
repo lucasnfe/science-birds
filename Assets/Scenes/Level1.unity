@@ -355,7 +355,7 @@ MonoBehaviour:
   _trajectoryParticleFrequency: .5
   _jumpForce: 75
   _maxTimeToJump: 5
-  _launchForce: {x: 400, y: 450}
+  _launchForce: {x: 400, y: 400}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
   _trajectoryParticlesTemplates:
@@ -500,7 +500,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
     - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
       propertyPath: _launchForce.y
-      value: 450
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
       propertyPath: _gameWorld
@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameWorld: {fileID: 1069289544}
-  _dampTime: 15
+  _dampTime: 5
   _levelWidth: 24
 --- !u!82 &489266193
 AudioSource:
@@ -990,7 +990,7 @@ MonoBehaviour:
   _trajectoryParticleFrequency: .5
   _jumpForce: 75
   _maxTimeToJump: 5
-  _launchForce: {x: 400, y: 450}
+  _launchForce: {x: 400, y: 400}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
   _trajectoryParticlesTemplates:
@@ -1087,8 +1087,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f76fbe92c654e5c91ea3d3e3b50491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zoomSpeed: 50
-  _scrollSpeed: 5
+  _zoomSpeed: 150
+  _dragSpeed: 10
   _gameWorld: {fileID: 1069289544}
   _camera: {fileID: 489266192}
 --- !u!1001 &946059875
@@ -1146,6 +1146,10 @@ Prefab:
       propertyPath: _gameWorld
       value: 
       objectReference: {fileID: 1069289544}
+    - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
+      propertyPath: _launchForce.y
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
   m_RootGameObject: {fileID: 1179296058}
@@ -1565,7 +1569,7 @@ MonoBehaviour:
   _trajectoryParticleFrequency: .5
   _jumpForce: 75
   _maxTimeToJump: 5
-  _launchForce: {x: 400, y: 450}
+  _launchForce: {x: 400, y: 400}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
   _trajectoryParticlesTemplates:
@@ -2226,7 +2230,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
     - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
       propertyPath: _launchForce.y
-      value: 450
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
       propertyPath: _gameWorld

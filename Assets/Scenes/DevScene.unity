@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c654c0ce06d4a7db113a862d6ad2b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _birdsManager: {fileID: 579319416}
+  _gameWorld: {fileID: 1069289544}
   _dampTime: 15
   _levelWidth: 24
 --- !u!82 &489266193
@@ -455,12 +455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 702b6469ca9e14858857a66a99d63375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _birds:
-  - {fileID: 1179296062}
-  - {fileID: 1495084768}
-  - {fileID: 1562432986}
-  _camera: {fileID: 489266192}
-  _initialPosition: {x: .150000095, y: -.400000095, z: 2}
 --- !u!1 &582073442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _zoomSpeed: 30
   _scrollSpeed: 8
-  _birdsManager: {fileID: 579319416}
+  _gameWorld: {fileID: 0}
   _camera: {fileID: 489266192}
 --- !u!1 &960721426
 GameObject:
@@ -1877,6 +1871,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1069289543}
+  - 114: {fileID: 1069289544}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -1903,6 +1898,23 @@ Transform:
   - {fileID: 1015298703}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1069289544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1069289542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fd553032d244b1fb47afdc455337a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToResetLevel: 1
+  _birds:
+  - {fileID: 1179296062}
+  - {fileID: 1495084768}
+  - {fileID: 1562432986}
+  _camera: {fileID: 489266192}
 --- !u!1 &1150666195
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,7 +2189,7 @@ MonoBehaviour:
   _launchForce: {x: 400, y: 450}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
-  _trajectoryParticles:
+  _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
   - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
@@ -3485,10 +3497,7 @@ MonoBehaviour:
   _launchForce: {x: 400, y: 450}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
-  _trajectoryParticles:
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
-  - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
-  - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
+  _trajectoryParticlesTemplates: []
 --- !u!60 &1495084769
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3764,10 +3773,7 @@ MonoBehaviour:
   _launchForce: {x: 400, y: 450}
   _slingshot: {fileID: 1526455719}
   _slingshotBase: {fileID: 582073443}
-  _trajectoryParticles:
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
-  - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
-  - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
+  _trajectoryParticlesTemplates: []
 --- !u!60 &1562432987
 PolygonCollider2D:
   m_ObjectHideFlags: 0
