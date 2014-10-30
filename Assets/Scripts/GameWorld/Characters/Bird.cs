@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class Bird : Character {
 
     private int _nextParticleTrajectory;
-    private Vector3  _selectPosition;
 
     public float _dragRadius = 1.0f;
     public float _dragSpeed = 1.0f;
@@ -15,7 +14,6 @@ public class Bird : Character {
     public float _maxTimeToJump;
 
     public Vector2   _launchForce;
-    public Transform _slingshot;
     public Transform _slingshotBase;
     
     public GameObject[] _trajectoryParticlesTemplates;
@@ -28,15 +26,10 @@ public class Bird : Character {
     {
 		base.Start();
 
-        _slingshotBase.active = false;
+        _slingshotBase.gameObject.SetActive(false);
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
-
-		_selectPosition = _slingshot.transform.position;
-		_selectPosition.x -= collider2D.bounds.size.x/4f;
-		_selectPosition.y += _slingshot.collider2D.bounds.size.y * 2f;
-		_selectPosition.z = _slingshot.FindChild("slingshot_front").transform.position.z + 1;
     }
 
     void Update()
@@ -81,7 +74,7 @@ public class Bird : Character {
         if(collider.tag == "Slingshot")
         {
             if(JumpToSlingshot)
-				_slingshotBase.active = false;
+				_slingshotBase.gameObject.SetActive(false);
 
 			if(IsSelected && IsFlying())
 				PlayAudio(3);
@@ -93,13 +86,13 @@ public class Bird : Character {
         if(collider.tag == "Slingshot")
         {
             if(JumpToSlingshot)
-                _slingshotBase.active = false;
+				_slingshotBase.gameObject.SetActive(false);
 
             if(IsFlying())
             {
 				OutOfSlingShot = true;
 
-                Vector3 slingBasePos = _selectPosition;
+                Vector3 slingBasePos = _gameWorld.SlingSelectPos;
                 slingBasePos.z = transform.position.z + 0.5f;
                 _slingshotBase.transform.position = slingBasePos;
                 _slingshotBase.transform.rotation = Quaternion.Euler(_slingshotBase.transform.rotation.x,
@@ -124,22 +117,22 @@ public class Bird : Character {
 
 	public bool IsInFrontOfSlingshot()
 	{
-		return transform.position.x > _slingshot.transform.position.x + _dragRadius;
+		return transform.position.x > _gameWorld.SlingSelectPos.x + _dragRadius;
 	}
 	
     public void SelectBird()
     {
-        _slingshotBase.active = true;
-        //_selectPosition = transform.position;
 		IsSelected = true;
         _animator.Play("selected", 0, 0f);
+
+		_slingshotBase.gameObject.SetActive(true);
     }
 
     public void SetBirdOnSlingshot()
     {
-		transform.position = Vector3.MoveTowards(transform.position, _selectPosition, _dragSpeed * Time.deltaTime);
+		transform.position = Vector3.MoveTowards(transform.position, _gameWorld.SlingSelectPos, _dragSpeed * Time.deltaTime);
 
-		if(transform.position == _selectPosition)
+		if(transform.position == _gameWorld.SlingSelectPos)
 		{
 			JumpToSlingshot = false;
 			OutOfSlingShot = false;
@@ -149,22 +142,23 @@ public class Bird : Character {
 
 	public void DragBird(Vector3 dragPosition)
 	{
-        float deltaPosFromSlingshot = Vector3.Distance(dragPosition, _selectPosition);
+		dragPosition.z = transform.position.z;
+		float deltaPosFromSlingshot = Vector2.Distance(dragPosition, _gameWorld.SlingSelectPos);
 
         // Lock bird movement inside a circle
         if(deltaPosFromSlingshot > _dragRadius)
-            dragPosition = (dragPosition - _selectPosition).normalized * _dragRadius + _selectPosition;
+			dragPosition = (dragPosition - _gameWorld.SlingSelectPos).normalized * _dragRadius + _gameWorld.SlingSelectPos;
 
         transform.position = Vector3.Lerp (transform.position, dragPosition, Time.deltaTime * _dragSpeed);
 
 		// Slingshot base look to slingshot
-        Vector3 dist = _slingshotBase.transform.position - _selectPosition;
+		Vector3 dist = _slingshotBase.transform.position - _gameWorld.SlingSelectPos;
         float angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;
         _slingshotBase.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // Slingshot base rotate around the selected point
 		Collider2D col = GetComponent<Collider2D>();
-		_slingshotBase.transform.position = (transform.position - _selectPosition).normalized 
+		_slingshotBase.transform.position = (transform.position - _gameWorld.SlingSelectPos).normalized 
 			* col.bounds.size.x/2.25f + transform.position;
 	}
 
@@ -172,7 +166,7 @@ public class Bird : Character {
 	{
 		IsSelected = false;
 	
-        Vector2 deltaPosFromSlingshot = transform.position - _selectPosition;
+		Vector2 deltaPosFromSlingshot = transform.position - _gameWorld.SlingSelectPos;
 		_animator.Play("flying", 0, 0f);
 	
 		// The bird starts with no gravity, so we must set it

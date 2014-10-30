@@ -4,34 +4,77 @@ using System.Collections.Generic;
 
 public class GameWorld : MonoBehaviour {
 
-	public float _timeToResetLevel = 1f;
-	public Bird []_birds;
-	public GameplayCamera _camera;
-
 	private int _currentBirdIndex;
+	private Bird _lastThrownBird;
 
+	// Main game components
+	public Transform  _slingshot;
+	public List<Pig>  _pigs;
+	public List<Bird> _birds;
+	
+	public GameplayCamera _camera;
+	public BirdAgent _birdAgent;
+
+	public float _timeToResetLevel = 1f;
+	public Vector3 SlingSelectPos{ get; set; }
+	
 	// Use this for initialization
 	void Start () 
 	{	
 		_birds[_currentBirdIndex].rigidbody2D.gravityScale = 0f;
 		
-		for(int i = 1; i < _birds.Length; i++)
+		for(int i = 1; i < _birds.Count; i++)
 			_birds[i].rigidbody2D.gravityScale = 1f;
+
+		_pigs  = new List<Pig>();
+
+		Transform pigs = transform.Find("Blocks");
+		foreach(Transform p in pigs)
+		{
+			Pig pig = p.GetComponent<Pig>();
+			if(pig != null)
+				_pigs.Add(pig);
+		}
+
+		// Calculating slingshot select position
+		Vector3 selectPos = _slingshot.transform.position;
+		selectPos.x -= _birds[0].collider2D.bounds.size.x/4f;
+		selectPos.y += _slingshot.collider2D.bounds.size.y * 2f;
+		selectPos.z = _slingshot.FindChild("slingshot_front").transform.position.z + 1;
+
+		SlingSelectPos = selectPos;
 	}
 
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
+		// Activate game AI if it is set
+		if(_birdAgent != null && !_birdAgent.IsThrowingBird)
+		{
+			if(_currentBirdIndex >= _birds.Count)
+				return;
+
+			Bird currentBird = _birds[_currentBirdIndex];
+
+			if(currentBird && !currentBird.JumpToSlingshot && _lastThrownBird != currentBird)
+			{
+				int randomIndex = Random.Range(0, _pigs.Count - 1);
+				if(randomIndex >= 0 &&  randomIndex <= _pigs.Count - 1)
+				{
+					Pig randomPig = _pigs[randomIndex];
+					_birdAgent.ThrowBird(currentBird, randomPig, SlingSelectPos);
+					_lastThrownBird = currentBird;
+				}
+			}
+		}
+
 		// Check if birds was trown, if it died and swap them when needed
 		ManageBirds();
-
-		// Check if all the pigs had died
-		ManagePigs();
 	}
 
 	void ManageBirds()
 	{
-		if(_currentBirdIndex >= _birds.Length)
+		if(_currentBirdIndex >= _birds.Count)
 			return;
 
 		if(!_birds[_currentBirdIndex] && !_birds[_currentBirdIndex].JumpToSlingshot)
@@ -39,7 +82,7 @@ public class GameWorld : MonoBehaviour {
 			_currentBirdIndex++;
 			
 			// If there are no more birds, reload the game
-			if(_currentBirdIndex == _birds.Length)
+			if(_currentBirdIndex == _birds.Count)
 			{
 				Invoke("ResetLevel", _timeToResetLevel);
 				return;
@@ -68,24 +111,17 @@ public class GameWorld : MonoBehaviour {
 
 	public Bird GetCurrentBird()
 	{
-		if(_currentBirdIndex < _birds.Length)
+		if(_currentBirdIndex < _birds.Count)
 			return _birds[_currentBirdIndex];
 		
 		return null;
 	}
 
-	void ManagePigs()
+	public void KillPig(Pig pig)
 	{
-		int pigsAmount = 0;
-		Transform blocks = transform.Find("Blocks");
-		
-		foreach(Transform block in blocks)
-		{
-			if(block.GetComponent<Pig>() != null)
-				pigsAmount++;
-		}
-		
-		if(pigsAmount == 0)
+		_pigs.Remove(pig);
+
+		if(_pigs.Count == 0)
 		{
 			Invoke("ResetLevel", _timeToResetLevel);
 			return;

@@ -28,7 +28,7 @@ public class Slingshot : MonoBehaviour {
 
     void Update()
     {
-        if(_lineRenderer && _slingshotBase.active)
+		if(_lineRenderer && _slingshotBase.gameObject.activeSelf)
         {
             _lineRenderer.enabled = true;
             _lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, _slingshotBase.transform.position);
