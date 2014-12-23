@@ -18,19 +18,17 @@ public class TrajectoryPlanner {
 
 		// calculate relative position of the target (normalised)
 		float x = targetPig.x - slingPos.x;
-		float y = targetPig.y - slingPos.y;
+		float y = -(targetPig.y - slingPos.y) - 0.8f;
 		
 		// first estimate launch angle using the projectile equation (constant velocity)
 		float v = birdVel;
-		float v2 = v * v;
-		float v4 = v2 * v2;
-		float g = Physics2D.gravity.y;
-		float t1 = Mathf.Atan((v2 - Mathf.Sqrt(v4 - g*(x * x + 2f * y * v2))) / (g*x));
-		float t2 = Mathf.Atan((v2 + Mathf.Sqrt(v4 - g*(x * x + 2f * y * v2))) / (g*x));
+		float g = birdGrav;
+		float sqrt = (v*v*v*v) - (g*((g*x*x) + (2f*y*v*v)));
+		float angleInRadians = Mathf.Atan(((v*v) - Mathf.Sqrt(sqrt))/(g*x));
 
-		Debug.Log(findReleasePoint(slingPos, t1) + " " + findReleasePoint(slingPos, t2));
+		Debug.Log(Mathf.Rad2Deg * angleInRadians);
 
-		return findReleasePoint(slingPos, t1);
+		return findReleasePoint(slingPos, angleInRadians, y);
 	}
 
 	/* find the release point given the sling location and launch angle, using maximum velocity
@@ -39,12 +37,13 @@ public class TrajectoryPlanner {
      *          theta - launch angle in radians (anticlockwise from positive direction of the x-axis)
      * @return  the release point on screen
      */
-	public static Vector2 findReleasePoint(Vector2 slingPos, float theta)
+	public static Vector2 findReleasePoint(Vector2 slingPos, float theta, float altitude)
 	{
 		//float mag = slingHeight * -Physics2D.gravity.y;
-		Vector2 release =  new Vector2(slingPos.x - Mathf.Cos(theta), 
-		                               slingPos.y - 0.25f - Mathf.Sin(theta));
+		Vector2 distance = new Vector2(Mathf.Cos(theta), -Mathf.Sin(theta));
+
+		Debug.Log(distance);
 		
-		return release;
+		return slingPos - distance;
 	}
 }

@@ -74,8 +74,8 @@ public class BirdAgent : MonoBehaviour {
 			if(distToLastTarget < 0.1f)
 			{
 				float angle = Random.value * Mathf.PI * 2f;
-				shotPos.x = shotPos.x + Mathf.Cos(angle) * 0.1f;
-				shotPos.y = shotPos.y + Mathf.Cos(angle) * 0.1f;
+				shotPos.x = shotPos.x + Mathf.Cos(angle) * 0.5f;
+				shotPos.y = shotPos.y + Mathf.Cos(angle) * 0.5f;
 			}
 		}
 		
@@ -83,7 +83,7 @@ public class BirdAgent : MonoBehaviour {
 		
 		// 3. Estimate the trajectory
 		float birdVel = currentBird._launchForce.x * Time.fixedDeltaTime;
-		float birdGrav =  currentBird._launchGravity;
+		float birdGrav =  currentBird._launchGravity * Physics2D.gravity.y;
 
 		Vector2 releasePoint = TrajectoryPlanner.estimateLaunchPoint(slingPos, shotPos, birdVel, birdGrav);
 
