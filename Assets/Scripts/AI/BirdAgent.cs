@@ -88,6 +88,6 @@ public class BirdAgent : MonoBehaviour {
 		Vector2 releasePoint = TrajectoryPlanner.estimateLaunchPoint(slingPos, shotPos, birdVel, birdGrav);
 
 		// 5. Calculate the tapping time according the bird type 	
-		return new Shot(slingPos.x, slingPos.y, releasePoint.x, releasePoint.y, 1.5f);
+		return new Shot(slingPos.x, slingPos.y, releasePoint.x, releasePoint.y, 1f);
 	}
 }

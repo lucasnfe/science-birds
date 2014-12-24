@@ -17,14 +17,36 @@ public class GameWorld : MonoBehaviour {
 
 	public float _timeToResetLevel = 1f;
 	public Vector3 SlingSelectPos{ get; set; }
+
+	//Here is a private reference only this class can access
+	private static GameWorld _instance;
+	
+	//This is the public reference that other classes will use
+	public static GameWorld Instance
+	{
+		get
+		{
+			//If _instance hasn't been set yet, we grab it from the scene!
+			//This will only happen the first time this reference is used.
+			if(_instance == null)
+				_instance = GameObject.FindObjectOfType<GameWorld>();
+
+			return _instance;
+		}
+	}
 	
 	// Use this for initialization
 	void Start () 
 	{	
+		Transform birds = transform.Find("Birds");
+		foreach(Transform b in birds)
+		{
+			Bird bird = b.GetComponent<Bird>();
+			if(bird != null)
+				_birds.Add(bird);
+		}	
+
 		_birds[_currentBirdIndex].rigidbody2D.gravityScale = 0f;
-		
-		for(int i = 1; i < _birds.Count; i++)
-			_birds[i].rigidbody2D.gravityScale = 1f;
 
 		_pigs  = new List<Pig>();
 
@@ -54,12 +76,15 @@ public class GameWorld : MonoBehaviour {
 			if(_currentBirdIndex >= _birds.Count)
 				return;
 
+			if(CalcLevelStability() > 0.1f)
+				return;
+
 			Bird currentBird = _birds[_currentBirdIndex];
 
 			if(currentBird && !currentBird.JumpToSlingshot && _lastThrownBird != currentBird)
 			{
 				int randomIndex = Random.Range(0, _pigs.Count - 1);
-				if(randomIndex >= 0 &&  randomIndex <= _pigs.Count - 1)
+				if(randomIndex >= 0 && randomIndex <= _pigs.Count - 1)
 				{
 					Pig randomPig = _pigs[randomIndex];
 					_birdAgent.ThrowBird(currentBird, randomPig, SlingSelectPos);
@@ -163,5 +188,23 @@ public class GameWorld : MonoBehaviour {
 					Destroy(child.gameObject);
 			}
 		}
+	}
+
+	private float CalcLevelStability()
+	{
+		float totalVelocity = 0f;
+
+		Transform blocks = transform.Find("Blocks");
+		foreach(Transform b in blocks)
+		{
+			Rigidbody2D []bodies = b.GetComponentsInChildren<Rigidbody2D>();
+
+			foreach(Rigidbody2D body in bodies)
+			{
+				totalVelocity += body.velocity.magnitude;
+			}
+		}
+
+		return totalVelocity;
 	}
 }

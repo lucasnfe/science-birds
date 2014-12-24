@@ -41,6 +41,9 @@ public class RandomLG : LevelGenerator {
 		int stackIndex = 0;
 		float probToGenerateNextColumn = 1f;
 
+		// Level start with just one bird, randomly add more
+		InsertBirds();
+
 		// Loop to generate the game object stacks
 		while(Random.value <= probToGenerateNextColumn)
 		{
@@ -54,10 +57,16 @@ public class RandomLG : LevelGenerator {
 			stackIndex++;
 		}
 
+		// Add pigs to the level structure
 		InsertPigs();
 
 		return ConvertShiftGBtoABGB();
 	}
+
+	public override int DefineBirdsAmount()
+	{
+		return Random.Range(0, 4);
+	}	
 
 	void GenerateNextStack(int stackIndex)
 	{
@@ -354,6 +363,11 @@ public class RandomLG : LevelGenerator {
 			if(totalPigsAdded >= pigsAmount)
 				break;
 		}
+	}
+
+	void InsertBirds()
+	{
+
 	}
 
 	List<int> GetStackableObjects(ShiftABGameObject objectBelow)
