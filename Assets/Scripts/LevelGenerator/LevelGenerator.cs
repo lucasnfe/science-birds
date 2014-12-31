@@ -46,7 +46,6 @@ public abstract class LevelGenerator : MonoBehaviour {
 			Bird bird = newGameObject.GetComponent<Bird>();
 			bird.name = "bird" + (i + 1);
 			bird.transform.parent = transform.FindChild("Level/Birds");
-			bird._slingshotBase = transform.Find("Level/Slingshot/slingshot_base");
 		}
 
 		//Time.timeScale = 0f;

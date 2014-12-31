@@ -14,7 +14,6 @@ public class Bird : Character {
     public float _maxTimeToJump;
 
     public Vector2   _launchForce;
-    public Transform _slingshotBase;
     
     public GameObject[] _trajectoryParticlesTemplates;
 
@@ -26,7 +25,7 @@ public class Bird : Character {
     {
 		base.Start();
 
-        _slingshotBase.gameObject.SetActive(false);
+        GameWorld.Instance._slingshotBase.gameObject.SetActive(false);
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
@@ -74,7 +73,7 @@ public class Bird : Character {
         if(collider.tag == "Slingshot")
         {
             if(JumpToSlingshot)
-				_slingshotBase.gameObject.SetActive(false);
+				GameWorld.Instance._slingshotBase.gameObject.SetActive(false);
 
 			if(IsSelected && IsFlying())
 				PlayAudio(3);
@@ -86,7 +85,7 @@ public class Bird : Character {
         if(collider.tag == "Slingshot")
         {
             if(JumpToSlingshot)
-				_slingshotBase.gameObject.SetActive(false);
+				GameWorld.Instance._slingshotBase.gameObject.SetActive(false);
 
             if(IsFlying())
             {
@@ -94,9 +93,9 @@ public class Bird : Character {
 
                 Vector3 slingBasePos = _gameWorld.SlingSelectPos;
                 slingBasePos.z = transform.position.z + 0.5f;
-                _slingshotBase.transform.position = slingBasePos;
-                _slingshotBase.transform.rotation = Quaternion.Euler(_slingshotBase.transform.rotation.x,
-                                                                     _slingshotBase.transform.rotation.y, 0f);
+                GameWorld.Instance._slingshotBase.transform.position = slingBasePos;
+                GameWorld.Instance. _slingshotBase.transform.rotation = Quaternion.Euler(GameWorld.Instance._slingshotBase.transform.rotation.x,
+                                                                                         GameWorld.Instance._slingshotBase.transform.rotation.y, 0f);
             }
         }
     }
@@ -125,7 +124,7 @@ public class Bird : Character {
 		IsSelected = true;
         _animator.Play("selected", 0, 0f);
 
-		_slingshotBase.gameObject.SetActive(true);
+		GameWorld.Instance._slingshotBase.gameObject.SetActive(true);
     }
 
     public void SetBirdOnSlingshot()
@@ -152,13 +151,13 @@ public class Bird : Character {
         transform.position = Vector3.Lerp (transform.position, dragPosition, Time.deltaTime * _dragSpeed);
 
 		// Slingshot base look to slingshot
-		Vector3 dist = _slingshotBase.transform.position - _gameWorld.SlingSelectPos;
+		Vector3 dist = GameWorld.Instance._slingshotBase.transform.position - _gameWorld.SlingSelectPos;
         float angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;
-        _slingshotBase.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        GameWorld.Instance._slingshotBase.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // Slingshot base rotate around the selected point
 		Collider2D col = GetComponent<Collider2D>();
-		_slingshotBase.transform.position = (transform.position - _gameWorld.SlingSelectPos).normalized 
+		GameWorld.Instance._slingshotBase.transform.position = (transform.position - _gameWorld.SlingSelectPos).normalized 
 			* col.bounds.size.x/2.25f + transform.position;
 	}
 

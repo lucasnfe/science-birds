@@ -9,6 +9,8 @@ public class GameWorld : MonoBehaviour {
 
 	// Main game components
 	public Transform  _slingshot;
+	public Transform _slingshotBase;
+	
 	public List<Pig>  _pigs;
 	public List<Bird> _birds;
 	
@@ -175,7 +177,7 @@ public class GameWorld : MonoBehaviour {
 	{
 		int lastBirdIndex = int.Parse(currentBirdName.Substring(currentBirdName.Length - 1)) - 1;
 		
-		if(lastBirdIndex > 0)
+		if(lastBirdIndex >= 0)
 		{
 			string lastBirdName = currentBirdName.Remove(currentBirdName.Length - 1, 1);
 			lastBirdName = lastBirdName + lastBirdIndex;

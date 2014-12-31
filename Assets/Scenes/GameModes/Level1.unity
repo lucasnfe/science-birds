@@ -925,6 +925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slingshot: {fileID: 1526455719}
+  _slingshotBase: {fileID: 582073443}
   _pigs: []
   _birds: []
   _camera: {fileID: 489266192}
@@ -1202,7 +1203,6 @@ MonoBehaviour:
   _jumpForce: 75
   _maxTimeToJump: 5
   _launchForce: {x: 400, y: 400}
-  _slingshotBase: {fileID: 582073443}
   _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
