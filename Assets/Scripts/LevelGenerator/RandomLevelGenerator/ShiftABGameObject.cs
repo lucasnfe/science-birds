@@ -41,7 +41,7 @@ public class ShiftABGameObject : ABGameObject
 		}
 	}
 	
-	public virtual Bounds GetBounds()
+	public override Bounds GetBounds()
 	{
 		Bounds baseBounds = base.GetBounds();
 		
