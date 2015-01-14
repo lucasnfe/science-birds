@@ -243,6 +243,7 @@ GameObject:
   - 114: {fileID: 341678742}
   - 114: {fileID: 341678741}
   - 114: {fileID: 341678744}
+  - 114: {fileID: 341678745}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -339,6 +340,17 @@ MonoBehaviour:
   _dragSpeed: 10
   _gameWorld: {fileID: 1069289544}
   _camera: {fileID: 489266192}
+--- !u!114 &341678745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 341678739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e78ea243f92994b13b2442620965e345, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &404902295
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +876,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1069289544}
+      - m_Target: {fileID: 341678745}
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -891,7 +903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300004, guid: 795e611b5daad49b1a2374cb5a01ec33, type: 3}
+  m_Sprite: {fileID: 21300012, guid: 795e611b5daad49b1a2374cb5a01ec33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1948,7 +1960,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1069289544}
+      - m_Target: {fileID: 341678745}
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:

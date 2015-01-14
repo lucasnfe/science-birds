@@ -5,6 +5,10 @@ TextureImporter:
     21300000: hud_0
     21300002: hud_1
     21300004: hud_2
+    21300006: hud_3
+    21300008: hud_4
+    21300010: hud_5
+    21300012: hud_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -49,30 +53,70 @@ TextureImporter:
     - name: hud_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 72
+        x: 0
+        y: 462
         width: 50
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: hud_1
       rect:
         serializedVersion: 2
-        x: 57
-        y: 64
+        x: 50
+        y: 454
         width: 55
-        height: 60
+        height: 58
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: hud_2
       rect:
         serializedVersion: 2
-        x: 111
-        y: 64
+        x: 254
+        y: 332
+        width: 229
+        height: 150
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 327
+        width: 121
+        height: 129
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_4
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 327
+        width: 121
+        height: 129
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_5
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 74
+        width: 800
+        height: 245
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_6
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 454
         width: 55
-        height: 60
+        height: 58
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -160,11 +160,6 @@ public class GameWorld : MonoBehaviour {
 		Application.LoadLevel(Application.loadedLevel);
 	}
 
-	public void LoadLevel(string sceneName)
-	{
-		Application.LoadLevel(sceneName);
-	}
-
 	public void AddTrajectoryParticle(GameObject particleTemplate, Vector3 position, string parentName)
 	{
 		GameObject particle = (GameObject) Instantiate(particleTemplate, position, Quaternion.identity);
