@@ -7,11 +7,11 @@ using System.Collections.Generic;
 public class GeneticAlgorithm<T> {
 
 	// Genetic Algorithm delegates
-	public delegate void GAInitGenome(T values);
+	public delegate void GAInitGenome(out T values);
 	public delegate void GACrossover(ref Genome<T> genome1, ref Genome<T> genome2, out Genome<T> child1, out Genome<T> child2);
 	public delegate void GAMutation (ref Genome<T> genome1);
 
-	public delegate double GAFitnessFunction(T values);
+	public delegate double GAFitnessFunction(T values, int genomeIdx);
 
 	// Genetic Algorithm attributes
 	private int _populationSize;
@@ -164,7 +164,7 @@ public class GeneticAlgorithm<T> {
 
 		Genome<T> g = ((Genome<T>)_thisGeneration[_populationSize - 1]);
 
-		values = g.Genes();
+		values = g.Genes;
 		fitness = (double)g.Fitness;
 	}
 
@@ -180,7 +180,7 @@ public class GeneticAlgorithm<T> {
 
 		Genome<T> g = ((Genome<T>)_thisGeneration[n]);
 
-		values = g.Genes();
+		values = g.Genes;
 		fitness = (double)g.Fitness;
 	}
 
@@ -198,9 +198,6 @@ public class GeneticAlgorithm<T> {
 
 		if (getMutation == null)
 			throw new ArgumentNullException("Need to supply mutation function");
-
-		if (_populationSize % 2 != 0)
-			throw new IndexOutOfRangeException("Population size must be an even integer");
 		
 		//  Create the fitness table.
 		_fitnessTable = new ArrayList();
@@ -212,13 +209,13 @@ public class GeneticAlgorithm<T> {
 		Genome<T>.MutationRate = _mutationRate;
 
 		InitializePopulation();
-		RankPopulation();
+		//RankPopulation();
 		
-		for (int i = 0; i < _generationSize; i++) {
+		//for (int i = 0; i < _generationSize; i++) {
 
-			CreateNextGeneration();
-			RankPopulation();
-		}
+		//	CreateNextGeneration();
+		//	RankPopulation();
+		//}
 	}
 	
 	// After ranking all the genomes by fitness, use a 'roulette wheel' selection
@@ -239,7 +236,7 @@ public class GeneticAlgorithm<T> {
 			if (randomFitness < (double)_fitnessTable[mid])
 				last = mid;
 
-			else if (randomFitness > (double)_fitnessTable[mid])
+			else if (randomFitness >= (double)_fitnessTable[mid])
 				first = mid;
 
 			mid = (first + last)/2;
@@ -248,17 +245,18 @@ public class GeneticAlgorithm<T> {
 			if ((last - first) == 1)
 				idx = last;
 		}
+
 		return idx;
 	}
 	
-	private void CreateNextGeneration()
+	public void CreateNextGeneration()
 	{
 		_nextGeneration.Clear();
 		Genome<T> g = null;
 
 		if (_elitism)
 			g = (Genome<T>)_thisGeneration[_populationSize - 1];
-		
+
 		for (int i = 0; i < _populationSize; i+=2) {
 
 			int pidx1 = RouletteSelection();
@@ -296,13 +294,13 @@ public class GeneticAlgorithm<T> {
 	}
 
 	// Rank population and sort in order of fitness.
-	private void RankPopulation() {
+	public void RankPopulation() {
 		
 		_totalFitness = 0;
 		for (int i = 0; i < _populationSize; i++) {
 			
 			Genome<T> g = ((Genome<T>) _thisGeneration[i]);
-			g.Fitness = FitnessFunction(g.Genes());
+			g.Fitness = FitnessFunction(g.Genes, i);
 			_totalFitness += g.Fitness;
 		}
 		
@@ -325,7 +323,11 @@ public class GeneticAlgorithm<T> {
 		for (int i = 0; i < _populationSize ; i++) {
 			
 			Genome<T> g = new Genome<T>();
-			InitGenome(g.Genes());
+
+			T genes = g.Genes;
+			InitGenome(out genes);
+			g.Genes = genes;
+
 			_thisGeneration.Add(g);
 		}
 	}

@@ -26,8 +26,6 @@ public class TrajectoryPlanner {
 		float sqrt = (v*v*v*v) - (g*((g*x*x) + (2f*y*v*v)));
 		float angleInRadians = Mathf.Atan(((v*v) - Mathf.Sqrt(sqrt))/(g*x));
 
-		Debug.Log(Mathf.Rad2Deg * angleInRadians);
-
 		return findReleasePoint(slingPos, angleInRadians, y);
 	}
 
@@ -41,9 +39,6 @@ public class TrajectoryPlanner {
 	{
 		//float mag = slingHeight * -Physics2D.gravity.y;
 		Vector2 distance = new Vector2(Mathf.Cos(theta), -Mathf.Sin(theta));
-
-		Debug.Log(distance);
-		
 		return slingPos - distance;
 	}
 }

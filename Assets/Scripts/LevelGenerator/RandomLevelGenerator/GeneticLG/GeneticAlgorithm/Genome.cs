@@ -8,7 +8,7 @@ public class Genome<T> {
 	private static double _mutationRate;
 
 	// Genetic Algorithm codification
-	public T _genes;
+	private T _genes;
 
 	public double Fitness {
 
@@ -30,8 +30,13 @@ public class Genome<T> {
 		}
 	}
 
-	public T Genes() {
+	public T Genes {
 
-		return _genes;
+		get {
+			return _genes;
+		}
+		set {
+			_genes = value;
+		}
 	}
 }

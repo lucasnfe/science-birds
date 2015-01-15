@@ -4,21 +4,25 @@ using System.Collections.Generic;
 
 public class GameWorld : MonoBehaviour {
 
-	private int _currentBirdIndex;
 	private Bird _lastThrownBird;
 
-	// Main game components
-	public Transform  _slingshot;
-	public Transform _slingshotBase;
-	
-	public List<Pig>  _pigs;
-	public List<Bird> _birds;
-	
-	public GameplayCamera _camera;
-	public BirdAgent _birdAgent;
+	private List<Pig>  _pigs;
+	private List<Bird> _birds;
 
+	// Main game components
+	public Transform _slingshot;
+	public Transform _slingshotBase;
+
+	public GameObject _pig;
+	public GameObject _bird;
+	public GameObject []Templates;
+	
+	public BirdAgent _birdAgent;
+	public GameplayCamera _camera;
+
+	// Game world properties
 	public float _timeToResetLevel = 1f;
-	public Vector3 SlingSelectPos{ get; set; }
+	public Vector3 _slingSelectPos;
 
 	//Here is a private reference only this class can access
 	private static GameWorld _instance;
@@ -38,35 +42,16 @@ public class GameWorld : MonoBehaviour {
 	}
 	
 	// Use this for initialization
-	void Start () 
+	void Awake () 
 	{	
-		Transform birds = transform.Find("Birds");
-		foreach(Transform b in birds)
-		{
-			Bird bird = b.GetComponent<Bird>();
-			if(bird != null)
-				_birds.Add(bird);
-		}	
-
-		_birds[_currentBirdIndex].rigidbody2D.gravityScale = 0f;
-
-		_pigs  = new List<Pig>();
-
-		Transform pigs = transform.Find("Blocks");
-		foreach(Transform p in pigs)
-		{
-			Pig pig = p.GetComponent<Pig>();
-			if(pig != null)
-				_pigs.Add(pig);
-		}
+		_pigs = new List<Pig>();
+		_birds = new List<Bird>();
 
 		// Calculating slingshot select position
 		Vector3 selectPos = _slingshot.transform.position;
-		selectPos.x -= _birds[0].collider2D.bounds.size.x/4f;
-		selectPos.y += _slingshot.collider2D.bounds.size.y * 2f;
-		selectPos.z = _slingshot.FindChild("slingshot_front").transform.position.z + 1;
-
-		SlingSelectPos = selectPos;
+		_slingSelectPos.x += selectPos.x;
+		_slingSelectPos.y += selectPos.y;
+		_slingSelectPos.z += _slingshot.FindChild("slingshot_front").transform.position.z;
 	}
 
 	// Update is called once per frame
@@ -75,23 +60,18 @@ public class GameWorld : MonoBehaviour {
 		// Activate game AI if it is set
 		if(_birdAgent != null && !_birdAgent.IsThrowingBird)
 		{
-			if(_currentBirdIndex >= _birds.Count)
+			if(_birds.Count == 0)
 				return;
 
+			// Wait the level stay stable before tthrowing next bird
 			if(CalcLevelStability() > 0.1f)
 				return;
 
-			Bird currentBird = _birds[_currentBirdIndex];
+			if(_pigs.Count > 0 && _birds[0] && !_birds[0].JumpToSlingshot && _lastThrownBird != _birds[0]) {
 
-			if(currentBird && !currentBird.JumpToSlingshot && _lastThrownBird != currentBird)
-			{
-				int randomIndex = Random.Range(0, _pigs.Count - 1);
-				if(randomIndex >= 0 && randomIndex <= _pigs.Count - 1)
-				{
-					Pig randomPig = _pigs[randomIndex];
-					_birdAgent.ThrowBird(currentBird, randomPig, SlingSelectPos);
-					_lastThrownBird = currentBird;
-				}
+				Pig randomPig = _pigs[Random.Range(0, _pigs.Count - 1)];
+				_birdAgent.ThrowBird(_birds[0], randomPig, _slingSelectPos);
+				_lastThrownBird = _birds[0];
 			}
 		}
 
@@ -101,58 +81,30 @@ public class GameWorld : MonoBehaviour {
 
 	void ManageBirds()
 	{
-		if(_currentBirdIndex >= _birds.Count)
+		if(_birds.Count == 0)
 			return;
-
-		if(!_birds[_currentBirdIndex] && !_birds[_currentBirdIndex].JumpToSlingshot)
-		{
-			_currentBirdIndex++;
-			
-			// If there are no more birds, reload the game
-			if(_currentBirdIndex == _birds.Count)
-			{
-				Invoke("ResetLevel", _timeToResetLevel);
-				return;
-			}
-			
-			_birds[_currentBirdIndex].rigidbody2D.gravityScale = 0f;
-			_birds[_currentBirdIndex].JumpToSlingshot = true;
-		}
 		
 		// Move next bird to the slingshot
-		if(_birds[_currentBirdIndex].JumpToSlingshot)
-		{
-			_birds[_currentBirdIndex].SetBirdOnSlingshot();
-		}
+		if(_birds[0].JumpToSlingshot)
+			_birds[0].SetBirdOnSlingshot();
 		
 		// Kill current bird if it flies to outside the level
-		if(_birds[_currentBirdIndex].OutOfSlingShot)
+		if(_birds[0].OutOfSlingShot)
 			
-			if(_birds[_currentBirdIndex].transform.position.x > _camera.RightBound() + _camera.CalculateCameraRect().width/2f ||
-			   _birds[_currentBirdIndex].transform.position.x < _camera.LeftBound()  - _camera.CalculateCameraRect().width/2f)
+			if(_birds[0].transform.position.x > _camera.RightBound() + _camera.CalculateCameraRect().width/2f ||
+			   _birds[0].transform.position.x < _camera.LeftBound()  - _camera.CalculateCameraRect().width/2f)
 		{
-			RemoveLastTrajectoryParticle(_birds[_currentBirdIndex].name);
-			_birds[_currentBirdIndex].Die();
+			RemoveLastTrajectoryParticle(_birds[0].name);
+			_birds[0].Die();
 		}
 	}
 
 	public Bird GetCurrentBird()
 	{
-		if(_currentBirdIndex < _birds.Count)
-			return _birds[_currentBirdIndex];
+		if(_birds.Count > 0)
+			return _birds[0];
 		
 		return null;
-	}
-
-	public void KillPig(Pig pig)
-	{
-		_pigs.Remove(pig);
-
-		if(_pigs.Count == 0)
-		{
-			Invoke("ResetLevel", _timeToResetLevel);
-			return;
-		}
 	}
 
 	void ResetLevel()
@@ -163,7 +115,7 @@ public class GameWorld : MonoBehaviour {
 	public void AddTrajectoryParticle(GameObject particleTemplate, Vector3 position, string parentName)
 	{
 		GameObject particle = (GameObject) Instantiate(particleTemplate, position, Quaternion.identity);
-		particle.transform.parent = GameObject.Find("Level/Effects").transform;
+		particle.transform.parent = transform.FindChild("Effects").transform;
 		particle.name = parentName;
 
 		// If it is an animated particle, destroy it after animation
@@ -171,6 +123,63 @@ public class GameWorld : MonoBehaviour {
 
 		if(anim != null)
 			Destroy(particle, 0.5f);
+	}
+	
+	public void AddBird(Object original, Vector3 position, Quaternion rotation, string birdname, bool isFirst = false)
+	{
+		GameObject newGameObject = (GameObject)Instantiate(original, position, rotation);
+		newGameObject.transform.parent = GameWorld.Instance.transform.Find("Birds");
+		newGameObject.name = birdname;
+
+		Bird bird = newGameObject.GetComponent<Bird>();
+
+		if(isFirst)
+			bird.rigidbody2D.gravityScale = 0f;
+
+		if(bird != null)
+			_birds.Add(bird);
+	}
+
+	public void AddPig(Object original, Vector3 position, Quaternion rotation)
+	{
+		GameObject newGameObject = AddBlock(original, position, rotation);
+
+		Pig pig = newGameObject.GetComponent<Pig>();
+		if(pig != null)
+			_pigs.Add(pig);
+	}
+
+	public GameObject AddBlock(Object original, Vector3 position, Quaternion rotation)
+	{
+		GameObject newGameObject = (GameObject)Instantiate(original, position, rotation);
+		newGameObject.transform.parent = GameWorld.Instance.transform.Find("Blocks");
+
+		return newGameObject;
+	}
+
+	public void KillPig(Pig pig)
+	{
+		_pigs.Remove(pig);
+		
+		if(_pigs.Count == 0)
+		{
+			//			Invoke("ResetLevel", _timeToResetLevel);
+			return;
+		}
+	}
+	
+	public void KillBird(Bird bird)
+	{
+		_birds.Remove(bird);
+		
+		if(_birds.Count == 0)
+		{
+			//			Invoke("ResetLevel", _timeToResetLevel);
+			return;
+		}
+		
+		_birds[0].rigidbody2D.gravityScale = 0f;
+		_birds[0].JumpToSlingshot = true;
 	}
 
 	public void RemoveLastTrajectoryParticle(string currentBirdName)
@@ -181,10 +190,10 @@ public class GameWorld : MonoBehaviour {
 		{
 			string lastBirdName = currentBirdName.Remove(currentBirdName.Length - 1, 1);
 			lastBirdName = lastBirdName + lastBirdIndex;
-
-			GameObject effects = GameObject.Find("Level/Effects");
 			
-			foreach (Transform child in effects.transform)
+			Transform effects = transform.FindChild("Effects");
+			
+			foreach (Transform child in effects)
 			{
 				if(child.gameObject.name == lastBirdName)
 					Destroy(child.gameObject);
@@ -192,11 +201,47 @@ public class GameWorld : MonoBehaviour {
 		}
 	}
 
+	public int GetPigsAvailableAmount()
+	{
+		return _pigs.Count;
+	}
+	
+	public int GetBirdsAvailableAmount()
+	{
+		return _birds.Count;
+	}
+	
+
+	public void ClearWorld()
+	{
+		Transform blocks = transform.FindChild("Blocks");
+		foreach(Transform b in blocks)
+		{
+			Destroy(b.gameObject);
+		}
+
+		_pigs.Clear();
+
+		Transform birds = transform.FindChild("Birds");
+		foreach(Transform b in birds)
+		{
+			Destroy(b.gameObject);
+		}
+
+		_birds.Clear();
+
+		Transform effects = transform.FindChild("Effects");
+		foreach(Transform b in effects)
+		{
+			Destroy(b.gameObject);
+		}
+	}
+
 	private float CalcLevelStability()
 	{
 		float totalVelocity = 0f;
 
-		Transform blocks = transform.Find("Blocks");
+		Transform blocks = transform.FindChild("Blocks");
 		foreach(Transform b in blocks)
 		{
 			Rigidbody2D []bodies = b.GetComponentsInChildren<Rigidbody2D>();

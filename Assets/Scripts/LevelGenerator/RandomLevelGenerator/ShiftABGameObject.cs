@@ -36,8 +36,8 @@ public class ShiftABGameObject : ABGameObject
 		set
 		{ 
 			base.Label = value;
-			if(value < _levelGenerator.ABTemplates.Length)
-				_type = _randomLG.GetTypeByTag(_levelGenerator.ABTemplates[value].tag); 
+			if(value < GameWorld.Instance.Templates.Length)
+				_type = _randomLG.GetTypeByTag(GameWorld.Instance.Templates[value].tag); 
 		}
 	}
 	

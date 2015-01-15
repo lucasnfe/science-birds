@@ -4,7 +4,6 @@ using System.Collections;
 public class Character : MonoBehaviour {
 
 	protected Animator _animator;
-	protected GameWorld _gameWorld;
 
 	public float _timeToDie;
 	public float _maxTimeToBlink;
@@ -12,14 +11,12 @@ public class Character : MonoBehaviour {
 	public AudioClip[] _clips;
 	
 	// Use this for initialization
-	public virtual void Start () {
+	public virtual void Awake () {
 
 		_animator = GetComponent<Animator>();
 	
 		float nextBlinkDelay = Random.Range(0.0f, _maxTimeToBlink);
 		Invoke("Blink", nextBlinkDelay + 1.0f);
-
-		_gameWorld = GameObject.Find("Level").GetComponent<GameWorld>();
 	}
 
 	public virtual void Die()

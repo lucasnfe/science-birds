@@ -8,8 +8,7 @@ public class Slingshot : MonoBehaviour {
         SLING,
         BIRD
     };
-
-    public Transform _slingshotBase;
+	
     public Vector3 _positionOffset;
     public float _width;
 
@@ -28,14 +27,13 @@ public class Slingshot : MonoBehaviour {
 
     void Update()
     {
-		if(_lineRenderer && _slingshotBase.gameObject.activeSelf)
+		if(_lineRenderer && GameWorld.Instance._slingshotBase.gameObject.activeSelf)
         {
             _lineRenderer.enabled = true;
-            _lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, _slingshotBase.transform.position);
+			_lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, GameWorld.Instance._slingshotBase.transform.position);
         }
         else
 
             _lineRenderer.enabled = false;
-
     }
 }

@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ABGameObject
 {
-	protected LevelGenerator _levelGenerator;
-
 	public Vector2 Position{ get; set; }
 	
 	private int _label;
@@ -13,19 +11,14 @@ public class ABGameObject
 		get{ return _label; }
 		set{ _label = value; }
 	}
-		
-	public ABGameObject()
-	{
-		_levelGenerator = GameObject.Find("LevelGenerator").GetComponent<LevelGenerator>();
-	}
 	
 	public virtual Bounds GetBounds()
 	{
-		if(Label == _levelGenerator.ABTemplates.Length)
-			return _levelGenerator._pig.renderer.bounds;
+		if(Label == GameWorld.Instance.Templates.Length)
+			return GameWorld.Instance._pig.renderer.bounds;
 
 		Bounds composedBounds = new Bounds();
-		GameObject composedObj = _levelGenerator.ABTemplates[Label];
+		GameObject composedObj = GameWorld.Instance.Templates[Label];
 		
 		if(composedObj.transform.childCount > 0)
 		{

@@ -6,11 +6,8 @@ public class HUD : MonoBehaviour {
 	public float _zoomSpeed;
 	public float _dragSpeed;
 
-    public GameWorld _gameWorld;
-	public GameplayCamera _camera;
-	
-	private Bird _selecetdBird;
 	private Vector3 _dragOrigin;
+	private Bird _selecetdBird;
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,7 +24,7 @@ public class HUD : MonoBehaviour {
                 if(hit.transform.tag == "Bird")
                 {
 					_selecetdBird = hit.transform.gameObject.GetComponent<Bird>();
-					if(_selecetdBird && !_selecetdBird.IsSelected && _selecetdBird == _gameWorld.GetCurrentBird())
+					if(_selecetdBird && !_selecetdBird.IsSelected && _selecetdBird == GameWorld.Instance.GetCurrentBird())
                     {
 						_selecetdBird.SelectBird();
                     }
@@ -38,7 +35,7 @@ public class HUD : MonoBehaviour {
         {
             if(_selecetdBird)
             {
-				if(!_selecetdBird.IsFlying() && _selecetdBird == _gameWorld.GetCurrentBird())
+				if(!_selecetdBird.IsFlying() && _selecetdBird == GameWorld.Instance.GetCurrentBird())
 				{
                 	Vector3 dragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 					dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selecetdBird.transform.position.z);
@@ -49,12 +46,12 @@ public class HUD : MonoBehaviour {
 			else
 			{
 				Vector3 dragPosition = Input.mousePosition - _dragOrigin;
-				_camera.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
+				GameWorld.Instance._camera.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
 			}
         }
         else if(Input.GetMouseButtonUp(0))
         {
-            if(_selecetdBird && !_selecetdBird.IsFlying() && _selecetdBird == _gameWorld.GetCurrentBird())
+			if(_selecetdBird && !_selecetdBird.IsFlying() && _selecetdBird == GameWorld.Instance.GetCurrentBird())
             {
                 _selecetdBird.LaunchBird();
                 _selecetdBird = null;
@@ -64,7 +61,7 @@ public class HUD : MonoBehaviour {
 		if(Input.GetAxis("Mouse ScrollWheel") != 0f)
 		{
 			float scrollDirection = Input.GetAxis("Mouse ScrollWheel");
-			_camera.ZoomCamera(Mathf.Clamp(scrollDirection, -1, 1f) * _zoomSpeed * Time.deltaTime);
+			GameWorld.Instance._camera.ZoomCamera(Mathf.Clamp(scrollDirection, -1, 1f) * _zoomSpeed * Time.deltaTime);
 		}
 
 		if(Input.GetKey("a"))
