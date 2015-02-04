@@ -12,6 +12,7 @@ public class GameWorld : MonoBehaviour {
 	// Main game components
 	public Transform _slingshot;
 	public Transform _slingshotBase;
+	public Transform _ground;
 
 	public GameObject _pig;
 	public GameObject _bird;
@@ -57,6 +58,12 @@ public class GameWorld : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		// Check if birds was trown, if it died and swap them when needed
+		ManageBirds();
+		
+		// If an object goes out of screen, destroy it
+		DestroyIfOutScreen();
+
 		// Activate game AI if it is set
 		if(_birdAgent != null && !_birdAgent.IsThrowingBird)
 		{
@@ -64,19 +71,47 @@ public class GameWorld : MonoBehaviour {
 				return;
 
 			// Wait the level stay stable before tthrowing next bird
-			if(CalcLevelStability() > 0.1f)
+			if(!IsLevelStable())
 				return;
 
 			if(_pigs.Count > 0 && _birds[0] && !_birds[0].JumpToSlingshot && _lastThrownBird != _birds[0]) {
 
-				Pig randomPig = _pigs[Random.Range(0, _pigs.Count - 1)];
+				Pig randomPig = _pigs[Random.Range(0, _pigs.Count)];
 				_birdAgent.ThrowBird(_birds[0], randomPig, _slingSelectPos);
 				_lastThrownBird = _birds[0];
 			}
 		}
+	}
 
-		// Check if birds was trown, if it died and swap them when needed
-		ManageBirds();
+	void DestroyIfOutScreen()
+	{
+		Transform blocks = transform.FindChild("Blocks");
+		foreach(Transform b in blocks)
+		{
+			if(b.position.x > _camera.RightBound() + _camera.CalculateCameraRect().width/2f ||
+			   b.position.x < _camera.LeftBound()  - _camera.CalculateCameraRect().width/2f)
+			{
+				if(b.GetComponent<Pig>() != null)
+				
+					b.GetComponent<Pig>().Die();
+				else		
+					Destroy(b.gameObject);
+			}
+		}
+
+		Transform birds = transform.FindChild("Birds");
+		foreach(Transform b in birds)
+		{
+			if(b.position.x > _camera.RightBound() + _camera.CalculateCameraRect().width/2f ||
+			   b.position.x < _camera.LeftBound()  - _camera.CalculateCameraRect().width/2f)
+			{
+				if(b.GetComponent<Bird>() != null && b.GetComponent<Bird>().OutOfSlingShot)
+				{
+					RemoveLastTrajectoryParticle(b.GetComponent<Bird>().name);
+					b.GetComponent<Bird>().Die();
+				}
+			}
+		}
 	}
 
 	void ManageBirds()
@@ -87,16 +122,6 @@ public class GameWorld : MonoBehaviour {
 		// Move next bird to the slingshot
 		if(_birds[0].JumpToSlingshot)
 			_birds[0].SetBirdOnSlingshot();
-		
-		// Kill current bird if it flies to outside the level
-		if(_birds[0].OutOfSlingShot)
-			
-			if(_birds[0].transform.position.x > _camera.RightBound() + _camera.CalculateCameraRect().width/2f ||
-			   _birds[0].transform.position.x < _camera.LeftBound()  - _camera.CalculateCameraRect().width/2f)
-		{
-			RemoveLastTrajectoryParticle(_birds[0].name);
-			_birds[0].Die();
-		}
 	}
 
 	public Bird GetCurrentBird()
@@ -163,7 +188,7 @@ public class GameWorld : MonoBehaviour {
 		
 		if(_pigs.Count == 0)
 		{
-			//			Invoke("ResetLevel", _timeToResetLevel);
+			Invoke("ResetLevel", _timeToResetLevel);
 			return;
 		}
 	}
@@ -174,7 +199,7 @@ public class GameWorld : MonoBehaviour {
 		
 		if(_birds.Count == 0)
 		{
-			//			Invoke("ResetLevel", _timeToResetLevel);
+			Invoke("ResetLevel", _timeToResetLevel);
 			return;
 		}
 		
@@ -210,6 +235,22 @@ public class GameWorld : MonoBehaviour {
 	{
 		return _birds.Count;
 	}
+
+	public int GetBlocksAvailableAmount()
+	{
+		int blocksAmount = 0;
+
+		Transform blocks = transform.FindChild("Blocks");
+		foreach(Transform b in blocks)
+		{
+			if(b.GetComponent<Pig>() == null)
+			
+				for(int i = 0; i < b.GetComponentsInChildren<Rigidbody2D>().Length; i++)
+					blocksAmount++;
+		}
+
+		return blocksAmount;
+	}
 	
 
 	public void ClearWorld()
@@ -237,7 +278,7 @@ public class GameWorld : MonoBehaviour {
 		}
 	}
 
-	private float CalcLevelStability()
+	public bool IsLevelStable()
 	{
 		float totalVelocity = 0f;
 
@@ -252,6 +293,6 @@ public class GameWorld : MonoBehaviour {
 			}
 		}
 
-		return totalVelocity;
+		return (totalVelocity < 0.1f);
 	}
 }

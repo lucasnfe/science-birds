@@ -19,11 +19,9 @@ public class GeneticAlgorithm<T> {
 
 	private double _mutationRate;
 	private double _crossoverRate;
+	private double _totalFitness;
 
 	private bool _elitism;
-
-	private double _totalFitness;
-	private string _strFitness;
 
 	// Genetic Algorithm data structures
 	private ArrayList _thisGeneration;
@@ -44,8 +42,6 @@ public class GeneticAlgorithm<T> {
 		_crossoverRate = 0.80;
 		_populationSize = 100;
 		_generationSize = 2000;
-
-		_strFitness = "";
 	}
 	
 	public GeneticAlgorithm(double crossoverRate, double mutationRate, int populationSize, int generationSize, bool elitism = false) {
@@ -55,8 +51,6 @@ public class GeneticAlgorithm<T> {
 		_populationSize = populationSize;
 		_generationSize = generationSize;
 		_elitism = elitism;
-
-		_strFitness = "";
 	}
 
 	public GAFitnessFunction FitnessFunction {
@@ -139,16 +133,6 @@ public class GeneticAlgorithm<T> {
 		}
 	}
 	
-	public string FitnessFile {
-
-		get {
-			return _strFitness;
-		}
-		set {
-			_strFitness = value;
-		}
-	}
-	
 	/// Keep previous generation's fittest individual in place of worst in current
 	public bool Elitism {
 
@@ -162,10 +146,7 @@ public class GeneticAlgorithm<T> {
 	
 	public void GetBest(out T values, out double fitness) {
 
-		Genome<T> g = ((Genome<T>)_thisGeneration[_populationSize - 1]);
-
-		values = g.Genes;
-		fitness = (double)g.Fitness;
+		GetNthGenome(_populationSize - 1, out values, out fitness);
 	}
 
 	public void GetWorst(out T values, out double fitness) {
@@ -217,36 +198,17 @@ public class GeneticAlgorithm<T> {
 		//	RankPopulation();
 		//}
 	}
+
+	private Genome<T> TournamentSelection(int size = 2) {
+
+		Genome<T> []tournamentPopulation = new Genome<T>[size];
+
+		for(int i = 0; i < size; i++)
+			tournamentPopulation[i] = (Genome<T>)_thisGeneration[UnityEngine.Random.Range(0, _thisGeneration.Count)];
+
+		Array.Sort(tournamentPopulation, new GenomeComparer<T>());
 	
-	// After ranking all the genomes by fitness, use a 'roulette wheel' selection
-	// method.  This allocates a large probability of selection to those with the 
-	// highest fitness.
-	private int RouletteSelection() {
-
-		double randomFitness = m_random.NextDouble() * _totalFitness;
-		int idx = -1;
-		int first = 0;
-		int last = _populationSize -1;
-		int mid = (last - first)/2;
-		
-		//  ArrayList's BinarySearch is for exact values only
-		//  so do this by hand.	
-		while (idx == -1 && first <= last) {
-
-			if (randomFitness < (double)_fitnessTable[mid])
-				last = mid;
-
-			else if (randomFitness >= (double)_fitnessTable[mid])
-				first = mid;
-
-			mid = (first + last)/2;
-
-			//  lies between i and i+1
-			if ((last - first) == 1)
-				idx = last;
-		}
-
-		return idx;
+		return tournamentPopulation[size - 1];
 	}
 	
 	public void CreateNextGeneration()
@@ -258,14 +220,11 @@ public class GeneticAlgorithm<T> {
 			g = (Genome<T>)_thisGeneration[_populationSize - 1];
 
 		for (int i = 0; i < _populationSize; i+=2) {
-
-			int pidx1 = RouletteSelection();
-			int pidx2 = RouletteSelection();
 			
 			Genome<T> parent1, parent2, child1, child2;
 			
-			parent1 = ((Genome<T>) _thisGeneration[pidx1]);
-			parent2 = ((Genome<T>) _thisGeneration[pidx2]);
+			parent1 = ((Genome<T>) TournamentSelection());
+			parent2 = ((Genome<T>) TournamentSelection());
 			
 			if (m_random.NextDouble() < _crossoverRate) {
 				
@@ -295,8 +254,9 @@ public class GeneticAlgorithm<T> {
 
 	// Rank population and sort in order of fitness.
 	public void RankPopulation() {
-		
-		_totalFitness = 0;
+
+		_totalFitness = 0f;
+
 		for (int i = 0; i < _populationSize; i++) {
 			
 			Genome<T> g = ((Genome<T>) _thisGeneration[i]);
@@ -305,16 +265,6 @@ public class GeneticAlgorithm<T> {
 		}
 		
 		_thisGeneration.Sort(new GenomeComparer<T>());
-		
-		//  now sorted in order of fitness.
-		double fitness = 0.0;
-		_fitnessTable.Clear();
-		
-		for (int i = 0; i < _populationSize; i++) {
-			
-			fitness += ((Genome<T>)_thisGeneration[i]).Fitness;
-			_fitnessTable.Add((double)fitness);
-		}
 	}
 	
 	// Create the initial genomes by repeated calling the supplied fitness function

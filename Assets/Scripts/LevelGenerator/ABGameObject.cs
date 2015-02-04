@@ -3,7 +3,12 @@ using System.Collections;
 
 public class ABGameObject
 {
-	public Vector2 Position{ get; set; }
+	private Vector2 _position;
+	public virtual Vector2 Position
+	{ 
+		get{ return _position; }
+		set{ _position = value; }
+	}
 	
 	private int _label;
 	public virtual int Label
@@ -11,30 +16,42 @@ public class ABGameObject
 		get{ return _label; }
 		set{ _label = value; }
 	}
-	
+
+	public bool IsPig() 
+	{ 
+		return (Label == GameWorld.Instance.Templates.Length); 
+	}
+
 	public virtual Bounds GetBounds()
 	{
-		if(Label == GameWorld.Instance.Templates.Length)
-			return GameWorld.Instance._pig.renderer.bounds;
-
 		Bounds composedBounds = new Bounds();
-		GameObject composedObj = GameWorld.Instance.Templates[Label];
-		
-		if(composedObj.transform.childCount > 0)
+
+		if(IsPig())
 		{
-			SpriteRenderer[] allRenderers = composedObj.GetComponentsInChildren<SpriteRenderer>(true);
-			
-			foreach (SpriteRenderer rend in allRenderers) {
-				
-				composedBounds.Encapsulate(rend.bounds);
-			}
+			composedBounds = GameWorld.Instance._pig.renderer.bounds;
 		}
 		else
 		{
-			SpriteRenderer objCollider = composedObj.GetComponent<SpriteRenderer>();
-			composedBounds = objCollider.bounds;
+			GameObject composedObj = GameWorld.Instance.Templates[Label];
+			
+			if(composedObj.transform.childCount > 0)
+			{
+				SpriteRenderer[] allRenderers = composedObj.GetComponentsInChildren<SpriteRenderer>(true);
+				
+				foreach (SpriteRenderer rend in allRenderers) {
+					
+					composedBounds.Encapsulate(rend.bounds);
+				}
+			}
+			else
+			{
+				SpriteRenderer objCollider = composedObj.GetComponent<SpriteRenderer>();
+				composedBounds = objCollider.bounds;
+			}
 		}
-		
+
+		composedBounds.center = Position;
+
 		return composedBounds;
 	}
 }

@@ -1172,9 +1172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f14937433f14b669c5eda63d19c2c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxPigsAmount: 3
-  _maxStackWidth: 7.5
-  _maxStackHeight: 7.5
+  _maxStackWidth: 10
+  _maxStackHeight: 10
+  _levelBeginning: -2
+  _duplicateProbability: .333000004
+  _widthOfEmptyStack: 2
+  _probabilityOfEmptyStack: .200000003
 --- !u!4 &1197041874
 Transform:
   m_ObjectHideFlags: 0
@@ -1693,6 +1696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slingshot: {fileID: 1004057758}
   _slingshotBase: {fileID: 849929170}
+  _ground: {fileID: 2087623764}
   _pig: {fileID: 100000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
   _bird: {fileID: 100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
   Templates:
