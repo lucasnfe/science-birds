@@ -21,6 +21,11 @@ public class ABGameObject
 	{ 
 		return (Label == GameWorld.Instance.Templates.Length); 
 	}
+	
+	public float GetArea()
+	{
+		return GetBounds().size.x * GetBounds().size.y;
+	}
 
 	public virtual Bounds GetBounds()
 	{

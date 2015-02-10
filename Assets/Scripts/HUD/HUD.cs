@@ -9,8 +9,22 @@ public class HUD : MonoBehaviour {
 	private Vector3 _dragOrigin;
 	private Bird _selecetdBird;
 	
+	private bool _isZoomingIn, _isZoomingOut;
+	
 	// Update is called once per frame
 	void Update () {
+		
+		if(_isZoomingIn)
+		{
+			CameraZoom(-0.5f);
+			return;
+		}
+		
+		if(_isZoomingOut)
+		{
+			CameraZoom(0.5f);
+			return;
+		}
 
         if(Input.GetMouseButtonDown(0))
         {
@@ -35,7 +49,7 @@ public class HUD : MonoBehaviour {
         {
             if(_selecetdBird)
             {
-				if(!_selecetdBird.IsFlying() && _selecetdBird == GameWorld.Instance.GetCurrentBird())
+				if(!_selecetdBird.IsFlying && _selecetdBird == GameWorld.Instance.GetCurrentBird())
 				{
                 	Vector3 dragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 					dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selecetdBird.transform.position.z);
@@ -51,23 +65,38 @@ public class HUD : MonoBehaviour {
         }
         else if(Input.GetMouseButtonUp(0))
         {
-			if(_selecetdBird && !_selecetdBird.IsFlying() && _selecetdBird == GameWorld.Instance.GetCurrentBird())
+			if(_selecetdBird && !_selecetdBird.IsFlying && _selecetdBird == GameWorld.Instance.GetCurrentBird())
             {
                 _selecetdBird.LaunchBird();
                 _selecetdBird = null;
             }
         }
-
+		
 		if(Input.GetAxis("Mouse ScrollWheel") != 0f)
 		{
 			float scrollDirection = Input.GetAxis("Mouse ScrollWheel");
-			GameWorld.Instance._camera.ZoomCamera(Mathf.Clamp(scrollDirection, -1, 1f) * _zoomSpeed * Time.deltaTime);
+			CameraZoom(scrollDirection);
 		}
 
 		if(Input.GetKey("a"))
 		{
 			Application.LoadLevel(Application.loadedLevel);
 		}
+	}
+	
+	public void SetZoomIn(bool zoomIn)
+	{
+		_isZoomingIn = zoomIn;
+	}
+	
+	public void SetZoomOut(bool zoomOut)
+	{
+		_isZoomingOut = zoomOut;
+	}
+	
+	public void CameraZoom(float scrollDirection)
+	{
+		GameWorld.Instance._camera.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
 	}
 
 	void LateUpdate()

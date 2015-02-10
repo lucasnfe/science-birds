@@ -13,14 +13,17 @@ public class Block : MonoBehaviour {
 	
 	void Explode()
 	{
-		//Instantiate our one-off particle system
-		ParticleSystem explosionEffect = Instantiate(DestructionEffect) as ParticleSystem;
-		explosionEffect.transform.position = transform.position;
-		explosionEffect.transform.parent = GameWorld.Instance.transform.FindChild("Effects");
-		
-		//play it
-		explosionEffect.loop = false;
-		explosionEffect.Play();
+		if(!GameWorld.Instance._isSimulation)
+		{
+			//Instantiate our one-off particle system
+			ParticleSystem explosionEffect = Instantiate(DestructionEffect) as ParticleSystem;
+			explosionEffect.transform.position = transform.position;
+			explosionEffect.transform.parent = GameWorld.Instance.transform.FindChild("Effects");
+			
+			//play it
+			explosionEffect.loop = false;
+			explosionEffect.Play();
+		}
 
 		Destroy(gameObject);
 	}

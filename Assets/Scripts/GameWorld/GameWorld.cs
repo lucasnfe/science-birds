@@ -22,9 +22,10 @@ public class GameWorld : MonoBehaviour {
 	public GameplayCamera _camera;
 
 	// Game world properties
+	public bool _isSimulation;
 	public float _timeToResetLevel = 1f;
 	public Vector3 _slingSelectPos;
-
+	
 	//Here is a private reference only this class can access
 	private static GameWorld _instance;
 	
@@ -86,26 +87,35 @@ public class GameWorld : MonoBehaviour {
 	void DestroyIfOutScreen()
 	{
 		Transform blocks = transform.FindChild("Blocks");
-		foreach(Transform b in blocks)
+
+		Rigidbody2D []bodies = blocks.GetComponentsInChildren<Rigidbody2D>();
+		
+		foreach(Rigidbody2D body in bodies)
 		{
-			if(b.position.x > _camera.RightBound() + _camera.CalculateCameraRect().width/2f ||
-			   b.position.x < _camera.LeftBound()  - _camera.CalculateCameraRect().width/2f)
+			Transform b = body.transform;
+			float halfSize = b.GetComponent<Collider2D>().bounds.size.x/2f;
+
+			if(b.position.x + halfSize > _ground.collider2D.bounds.center.x + _ground.collider2D.bounds.size.x/2f ||
+			   b.position.x - halfSize < _ground.collider2D.bounds.center.x - _ground.collider2D.bounds.size.x/2f)
 			{
 				if(b.GetComponent<Pig>() != null)
-				
+					
 					b.GetComponent<Pig>().Die();
 				else		
 					Destroy(b.gameObject);
 			}
 		}
+	
 
 		Transform birds = transform.FindChild("Birds");
 		foreach(Transform b in birds)
 		{
-			if(b.position.x > _camera.RightBound() + _camera.CalculateCameraRect().width/2f ||
-			   b.position.x < _camera.LeftBound()  - _camera.CalculateCameraRect().width/2f)
+			float halfSize = b.GetComponent<Collider2D>().bounds.size.x/2f;
+			
+			if(b.position.x + halfSize > _ground.collider2D.bounds.center.x + _ground.collider2D.bounds.size.x/2f ||
+			   b.position.x - halfSize < _ground.collider2D.bounds.center.x - _ground.collider2D.bounds.size.x/2f)
 			{
-				if(b.GetComponent<Bird>() != null && b.GetComponent<Bird>().OutOfSlingShot)
+				if(b.GetComponent<Bird>() != null)
 				{
 					RemoveLastTrajectoryParticle(b.GetComponent<Bird>().name);
 					b.GetComponent<Bird>().Die();
@@ -138,7 +148,7 @@ public class GameWorld : MonoBehaviour {
 	}
 
 	public void AddTrajectoryParticle(GameObject particleTemplate, Vector3 position, string parentName)
-	{
+	{	
 		GameObject particle = (GameObject) Instantiate(particleTemplate, position, Quaternion.identity);
 		particle.transform.parent = transform.FindChild("Effects").transform;
 		particle.name = parentName;
@@ -188,7 +198,9 @@ public class GameWorld : MonoBehaviour {
 		
 		if(_pigs.Count == 0)
 		{
-			Invoke("ResetLevel", _timeToResetLevel);
+			if(!_isSimulation)
+				Invoke("ResetLevel", _timeToResetLevel);
+			
 			return;
 		}
 	}
@@ -199,7 +211,9 @@ public class GameWorld : MonoBehaviour {
 		
 		if(_birds.Count == 0)
 		{
-			Invoke("ResetLevel", _timeToResetLevel);
+			if(!_isSimulation)
+				Invoke("ResetLevel", _timeToResetLevel);
+
 			return;
 		}
 		
@@ -251,7 +265,6 @@ public class GameWorld : MonoBehaviour {
 
 		return blocksAmount;
 	}
-	
 
 	public void ClearWorld()
 	{

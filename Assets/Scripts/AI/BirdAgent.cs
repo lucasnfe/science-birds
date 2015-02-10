@@ -67,16 +67,14 @@ public class BirdAgent : MonoBehaviour {
 		Vector2 shotPos = targetPig.transform.position;
 		
 		// 2. If the target is very close to before, randomly choose a point near it
-		if(_lastTargetPig != null)
+		if(_lastTargetPig != null && _lastTargetPig == targetPig)
 		{
-			float distToLastTarget = Vector2.Distance(_lastTargetPig.transform.position, shotPos);
-			
-			if(distToLastTarget < 0.1f)
-			{
-				float angle = Random.value * Mathf.PI * 2f;
-				shotPos.x = shotPos.x + Mathf.Cos(angle) * 0.5f;
-				shotPos.y = shotPos.y + Mathf.Cos(angle) * 0.5f;
-			}
+			float angle = Random.value * Mathf.PI * 2f;
+			if(Random.value < 0.5)
+				angle *= -1f;
+
+			shotPos.x = shotPos.x + Mathf.Cos(angle) * 0.5f;
+			shotPos.y = shotPos.y + Mathf.Cos(angle) * 0.5f;
 		}
 		
 		_lastTargetPig = targetPig;
@@ -88,6 +86,6 @@ public class BirdAgent : MonoBehaviour {
 		Vector2 releasePoint = TrajectoryPlanner.estimateLaunchPoint(slingPos, shotPos, birdVel, birdGrav);
 
 		// 5. Calculate the tapping time according the bird type 	
-		return new Shot(slingPos.x, slingPos.y, releasePoint.x, releasePoint.y, 1f);
+		return new Shot(slingPos.x, slingPos.y, releasePoint.x, releasePoint.y, 0.5f);
 	}
 }

@@ -1592,10 +1592,10 @@ TextureImporter:
     - name: AllBlocks_121
       rect:
         serializedVersion: 2
-        x: 494
-        y: 522
-        width: 206
-        height: 20
+        x: 495
+        y: 521
+        width: 204
+        height: 22
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

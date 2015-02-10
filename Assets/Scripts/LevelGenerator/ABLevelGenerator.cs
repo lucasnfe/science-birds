@@ -2,21 +2,41 @@
 using System;
 using System.Collections.Generic;
 
-public abstract class LevelGenerator : MonoBehaviour {
+public class ABLevel 
+{
+	public int birdsAmount;
+	
+	public float width;
+	public float height;
+	
+	public List<ABGameObject> gameObjects;
+}
+
+public abstract class ABLevelGenerator : MonoBehaviour {
 		
-	public abstract int DefineBirdsAmount();
-	public abstract List<ABGameObject> GenerateLevel();
+	public abstract ABLevel GenerateLevel();
 
 	public virtual void Start()
 	{
-		List<ABGameObject> gameObjects = GenerateLevel();
-		int birdsAmount = DefineBirdsAmount();
-
-		DecodeLevel(gameObjects, birdsAmount);
+		ABLevel level = GenerateLevel();
+		
+		if(level.gameObjects != null)
+		{
+			DecodeLevel(level.gameObjects, level.birdsAmount);
+						
+			ABGameObject gameObj = level.gameObjects[0];
+		
+			float levelLeftBound = GameWorld.Instance._ground.transform.position.x - 
+				GameWorld.Instance._ground.collider2D.bounds.size.x/2f;
+		
+			float cameraWidth = Mathf.Abs(gameObj.Position.x - levelLeftBound) + Mathf.Max(level.width, level.height);
+			GameWorld.Instance._camera.SetCameraWidth(cameraWidth);	
+		}	
 	}
 
 	protected void DecodeLevel(List<ABGameObject> gameObjects, int birdsAmount) 
 	{
+		
 		foreach(ABGameObject gameObj in gameObjects)
 		{
 			if(gameObj.Label < GameWorld.Instance.Templates.Length)
@@ -28,9 +48,6 @@ public abstract class LevelGenerator : MonoBehaviour {
 				                          GameWorld.Instance._pig.transform.rotation);
 		}
 
-		Transform ground = GameWorld.Instance.transform.Find("Ground");
-		BoxCollider2D groundCollider = ground.GetComponent<BoxCollider2D>();
-
 		//First bird must be in the slingshot
 		GameWorld.Instance.AddBird(GameWorld.Instance._bird, GameWorld.Instance._slingSelectPos, 
 		                           GameWorld.Instance._bird.transform.rotation, "bird0", true);
@@ -39,7 +56,8 @@ public abstract class LevelGenerator : MonoBehaviour {
 			return;
 
 		Vector3 birdsPos = GameWorld.Instance._slingshot.transform.position;
-		birdsPos.y = ground.position.y + groundCollider.size.y/2.4f;
+		birdsPos.y = GameWorld.Instance._ground.collider2D.bounds.center.y + 
+							GameWorld.Instance._ground.collider2D.bounds.size.y/2f;
 		
 		for(int i = 1; i < birdsAmount; i++)
 		{

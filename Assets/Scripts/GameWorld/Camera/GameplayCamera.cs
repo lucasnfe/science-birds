@@ -3,15 +3,15 @@ using System.Collections;
 
 public class GameplayCamera : MonoBehaviour {
 
-	private bool  _isDraging;
 	private Rect  _initialCameraRect;
+	
+	private bool  _isDraging;
 	private float _minWidth;
 	private float _dragDistance;
 
 	public float _dampTime;
-	public float _levelWidth;
 
-	void Start()
+	void Awake()
 	{
 		_dragDistance = 1f;
 		_initialCameraRect = CalculateCameraRect();
@@ -58,19 +58,21 @@ public class GameplayCamera : MonoBehaviour {
 
 	public float LeftBound()
 	{
-		return _initialCameraRect.width/2f - _levelWidth/2f;
+		float levelWidth = GameWorld.Instance._ground.collider2D.bounds.size.x;
+		return _initialCameraRect.width/2f - levelWidth/2f;
 	}
 
 	public float RightBound()
 	{
-		return _levelWidth/2f - _initialCameraRect.width/2f;
+		float levelWidth = GameWorld.Instance._ground.collider2D.bounds.size.x;
+		return levelWidth/2f - _initialCameraRect.width/2f;
 	}
 	
 	public void DragCamera(Vector3 dragDistance)
 	{
 		Bird target = GameWorld.Instance.GetCurrentBird();
 
-		if(target && target.IsFlying())
+		if(target && target.IsFlying)
 			return;
 
 		_isDraging = true;
@@ -83,11 +85,20 @@ public class GameplayCamera : MonoBehaviour {
 		cameraPos.x = Mathf.Clamp(cameraPos.x, LeftBound(), RightBound());
 		transform.position = cameraPos;
 	}
-
+	
+	public void SetCameraWidth(float width)
+	{
+		_initialCameraRect.width = width;
+		
+		float levelWidth = GameWorld.Instance._ground.collider2D.bounds.size.x;
+		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, levelWidth);
+	}
+	
 	public void ZoomCamera(float zoomFactor)
 	{
 		_initialCameraRect.width += zoomFactor;
-		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _levelWidth);
+		float levelWidth = GameWorld.Instance._ground.collider2D.bounds.size.x;
+		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, levelWidth);
 	}
 
 	public Rect CalculateCameraRect()
@@ -98,9 +109,10 @@ public class GameplayCamera : MonoBehaviour {
 		return new Rect(transform.position.x - width/2f, transform.position.y - height/2f, width, height);
 	}
 
-	public void CalculateOrthographicSize()
+	public float CalculateOrthographicSize()
 	{
 		float orthographicSize = camera.orthographicSize;
+		
 		Vector3 topRight = new Vector3(_initialCameraRect.x + _initialCameraRect.width, _initialCameraRect.y, 0f);
 		Vector3 topRightAsViewport = camera.WorldToViewportPoint(topRight);
 		
@@ -111,5 +123,7 @@ public class GameplayCamera : MonoBehaviour {
 			orthographicSize = Mathf.Abs(_initialCameraRect.height) / 2f;
 		
 		camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, orthographicSize, _dampTime * Time.deltaTime);
+		
+		return orthographicSize;
 	}
 }

@@ -10,7 +10,9 @@ public class Pig : Character {
 	{
 		Camera.main.audio.PlayOneShot(_clips[0], 1f);
 
-		GameWorld.Instance.AddTrajectoryParticle(dustEffect, transform.position, name);
+		if(!GameWorld.Instance._isSimulation)
+			GameWorld.Instance.AddTrajectoryParticle(dustEffect, transform.position, name);
+
 		GameWorld.Instance.KillPig(this);
 
 		base.Die();
