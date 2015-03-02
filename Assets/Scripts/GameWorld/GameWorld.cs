@@ -4,10 +4,24 @@ using System.Collections.Generic;
 
 public class GameWorld : MonoBehaviour {
 
-	private Bird _lastThrownBird;
-
+	private int _birdsThrown;
+	
 	private List<Pig>  _pigs;
 	private List<Bird> _birds;
+	
+	private Bird _lastThrownBird;
+	
+	private int _pigsAtStart;
+	public int PigsAtStart() { return _pigsAtStart; }
+	
+	private int _birdsAtStart;
+	public int BirdsAtStart() { return _birdsAtStart; }
+
+	private int _blocksAtStart;
+	public int BlocksAtStart() { return _blocksAtStart; }
+	
+	private int _stabilityUntilFirstBird;
+	public int StabilityUntilFirstBird() { return _stabilityUntilFirstBird; } 
 
 	// Main game components
 	public Transform _slingshot;
@@ -67,9 +81,13 @@ public class GameWorld : MonoBehaviour {
 
 		// Activate game AI if it is set
 		if(_birdAgent != null && !_birdAgent.IsThrowingBird)
-		{
+		{				
 			if(_birds.Count == 0)
 				return;
+			
+			// Calculate stability until first birds is trown
+			if(_birdsThrown == 0)
+				_stabilityUntilFirstBird += (BlocksAtStart() - GetBlocksAvailableAmount());
 
 			// Wait the level stay stable before tthrowing next bird
 			if(!IsLevelStable())
@@ -80,6 +98,7 @@ public class GameWorld : MonoBehaviour {
 				Pig randomPig = _pigs[Random.Range(0, _pigs.Count)];
 				_birdAgent.ThrowBird(_birds[0], randomPig, _slingSelectPos);
 				_lastThrownBird = _birds[0];
+				_birdsThrown++;
 			}
 		}
 	}
@@ -93,10 +112,8 @@ public class GameWorld : MonoBehaviour {
 		foreach(Rigidbody2D body in bodies)
 		{
 			Transform b = body.transform;
-			float halfSize = b.GetComponent<Collider2D>().bounds.size.x/2f;
 
-			if(b.position.x + halfSize > _ground.collider2D.bounds.center.x + _ground.collider2D.bounds.size.x/2f ||
-			   b.position.x - halfSize < _ground.collider2D.bounds.center.x - _ground.collider2D.bounds.size.x/2f)
+			if(IsObjectOutOfWorld(b))
 			{
 				if(b.GetComponent<Pig>() != null)
 					
@@ -106,14 +123,10 @@ public class GameWorld : MonoBehaviour {
 			}
 		}
 	
-
 		Transform birds = transform.FindChild("Birds");
 		foreach(Transform b in birds)
-		{
-			float halfSize = b.GetComponent<Collider2D>().bounds.size.x/2f;
-			
-			if(b.position.x + halfSize > _ground.collider2D.bounds.center.x + _ground.collider2D.bounds.size.x/2f ||
-			   b.position.x - halfSize < _ground.collider2D.bounds.center.x - _ground.collider2D.bounds.size.x/2f)
+		{			
+			if(IsObjectOutOfWorld(b))
 			{
 				if(b.GetComponent<Bird>() != null)
 				{
@@ -122,6 +135,19 @@ public class GameWorld : MonoBehaviour {
 				}
 			}
 		}
+	}
+	
+	public bool IsObjectOutOfWorld(Transform abGameObject)
+	{
+		Vector2 halfSize = abGameObject.GetComponent<Collider2D>().bounds.size/2f;
+		
+		if(abGameObject.position.x - halfSize.x > _ground.collider2D.bounds.center.x + _ground.collider2D.bounds.size.x/2f ||
+		   abGameObject.position.x + halfSize.x < _ground.collider2D.bounds.center.x - _ground.collider2D.bounds.size.x/2f || 
+		   abGameObject.position.y + halfSize.y < _ground.collider2D.bounds.center.y - _ground.collider2D.bounds.size.y/2f)
+
+			   return true;
+		
+		return false;
 	}
 
 	void ManageBirds()
@@ -265,6 +291,36 @@ public class GameWorld : MonoBehaviour {
 
 		return blocksAmount;
 	}
+	
+	public float GetLevelStability()
+	{
+		float totalVelocity = 0f;
+
+		Transform blocks = transform.FindChild("Blocks");
+		foreach(Transform b in blocks)
+		{
+			Rigidbody2D []bodies = b.GetComponentsInChildren<Rigidbody2D>();
+
+			foreach(Rigidbody2D body in bodies)
+			{
+				totalVelocity += body.velocity.magnitude;
+			}
+		}
+
+		return totalVelocity;
+	}
+	
+	public bool IsLevelStable()
+	{
+		return GetLevelStability() == 0f;
+	}
+	
+	public void StartWorld()
+	{
+		_pigsAtStart = GetPigsAvailableAmount();
+		_birdsAtStart = GetBirdsAvailableAmount();
+		_blocksAtStart = GetBlocksAvailableAmount();
+	}
 
 	public void ClearWorld()
 	{
@@ -289,23 +345,8 @@ public class GameWorld : MonoBehaviour {
 		{
 			Destroy(b.gameObject);
 		}
-	}
-
-	public bool IsLevelStable()
-	{
-		float totalVelocity = 0f;
-
-		Transform blocks = transform.FindChild("Blocks");
-		foreach(Transform b in blocks)
-		{
-			Rigidbody2D []bodies = b.GetComponentsInChildren<Rigidbody2D>();
-
-			foreach(Rigidbody2D body in bodies)
-			{
-				totalVelocity += body.velocity.magnitude;
-			}
-		}
-
-		return (totalVelocity < 0.1f);
+		
+		_birdsThrown = 0;
+		_stabilityUntilFirstBird = 0;
 	}
 }

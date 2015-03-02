@@ -12,7 +12,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 60: {fileID: 6000000}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Circle2
   m_TagString: Circle
   m_Icon: {fileID: 0}

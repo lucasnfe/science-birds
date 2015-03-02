@@ -10,15 +10,11 @@ public class RandomLG : ABLevelGenerator {
 		{1, 0, 1, 1}
 	};
 
-	private float _offsetX, _offsetY;
-	
-	public int _birdsMaxAmount = 0;
-	public float _maxStackWidth = 1f;
-	public float _maxStackHeight = 1f;
-	public float _levelBeginning = 0f;
 	public float _duplicateProbability = 0f;
-	public float _widthOfEmptyStack = 1;
-	public float _probabilityOfEmptyStack = 0f;
+
+	private float _levelPlayableWidth;
+	private const float _levelPlayableHeight = 12f;
+	private const float _widthOfEmptyStack = 2f;
 
 	public int GetTypeByTag(string tag)
 	{					
@@ -36,6 +32,18 @@ public class RandomLG : ABLevelGenerator {
 		
 		return -1;
 	}
+	
+	public override void Start()
+	{
+		GameObject ground = GameWorld.Instance._ground.gameObject;	
+		
+		float levelLeftBound = ground.transform.position.x - ground.collider2D.bounds.size.x/2f;
+		float slingDistFromLeftBound = GameWorld.Instance._slingshot.position.x - levelLeftBound;
+		
+		_levelPlayableWidth = (ground.collider2D.bounds.size.x - slingDistFromLeftBound) - 2f;
+		
+		base.Start();
+	}
 
 	public override ABLevel GenerateLevel()
 	{
@@ -49,7 +57,12 @@ public class RandomLG : ABLevelGenerator {
 		abLevel.height = GetLevelBounds(gameObjects).size.y;
 		
 		abLevel.gameObjects = ConvertShiftGBtoABGB(gameObjects);
-					
+		
+		UnityEngine.Debug.Log("Linearity" + GetLevelLinearity(gameObjects));
+		UnityEngine.Debug.Log("Density " + GetLevelDensity(gameObjects));
+		UnityEngine.Debug.Log("Frequency pig " + GetABGameObjectFrequency(abLevel, GameWorld.Instance.Templates.Length));	
+		UnityEngine.Debug.Log("Frequency bird " + GetBirdsFrequency(abLevel));	
+		
 		return abLevel;
 	}
 
@@ -57,18 +70,25 @@ public class RandomLG : ABLevelGenerator {
 	{
 		LinkedList<ShiftABGameObject> stack = shiftGameObjects[stackIndex];
 
-		float probToStackNextObj = 1f;
-
-		while(Random.value <= probToStackNextObj)
+		float currentObjectHeight = 0f;
+			
+		// Next stack height
+		float randomHeight = Mathf.Abs(ABMath.RandomGaussian(_levelPlayableHeight/2f, _levelPlayableHeight/2f));
+		float nextHeight = (_widthOfEmptyStack + randomHeight) % _levelPlayableHeight;
+		
+		// The stack will be empty if its height is lower than 1f
+		if(nextHeight < 1f)
+			return;
+						
+		for(float height = 0f; height + currentObjectHeight <= nextHeight; height += currentObjectHeight)
 		{
 			ShiftABGameObject nextObject = GenerateNextObject(stackIndex, ref shiftGameObjects);
 			if(nextObject == null)
-				continue;
+				break;
 		
 			stack.AddLast(nextObject);
 
-			Vector2 currentObjectSize = nextObject.GetBounds().size;
-			probToStackNextObj -= currentObjectSize.y / _maxStackHeight;
+			currentObjectHeight = nextObject.GetBounds().size.y;
 		}
 	}
 
@@ -77,33 +97,39 @@ public class RandomLG : ABLevelGenerator {
 		List<LinkedList<ShiftABGameObject>> shiftGameObjects = new List<LinkedList<ShiftABGameObject>>();
 		
 		int stackIndex = 0;
-		float probToGenerateNextColumn = 1f;
+		int totalObjsAdded = 0;
+		float widerObjectInStack = 0;
+			
+		float randomWidth = Mathf.Abs(ABMath.RandomGaussian(_levelPlayableWidth/2f, _levelPlayableWidth/2f));
+		float nextWidth = (_widthOfEmptyStack + randomWidth) % _levelPlayableWidth;
 		
-		_offsetX = _levelBeginning;
-		
-		// Loop to generate the game object stacks
-		while(Random.value <= probToGenerateNextColumn)
+		// Loop to generate the game object stacks		
+		for(float width = 0f; width + widerObjectInStack <= nextWidth; width += widerObjectInStack)
 		{
 			// Randomly generate new stack based on the dependency graph
 			shiftGameObjects.Add(new LinkedList<ShiftABGameObject>());
 			
-			// The stack may be empty with a certain probability
-			if(Random.value >= _probabilityOfEmptyStack)
-				GenerateNextStack(stackIndex, ref shiftGameObjects);
+			// Build a new stack
+			GenerateNextStack(stackIndex, ref shiftGameObjects);
 			
 			// Add pigs to the level structure
-			InsertPigs(stackIndex, ref shiftGameObjects);
-			
-			// Reduce probability to create new stack
-			float widerObjectInStack = 0;
+			InsertPigs(stackIndex, ref shiftGameObjects);	
 			
 			if(shiftGameObjects[stackIndex].Count > 0)
-			{
-				widerObjectInStack = FindWidestObjInStack(shiftGameObjects[stackIndex]).GetBounds().size.x;
-				probToGenerateNextColumn -= widerObjectInStack/_maxStackWidth;
-			}
-		
+
+				widerObjectInStack = GetWidestObjInStack(shiftGameObjects[stackIndex]).GetBounds().size.x;	
+			else
+				widerObjectInStack = _widthOfEmptyStack;
+			
+			totalObjsAdded += shiftGameObjects[stackIndex].Count;
 			stackIndex++;
+		}
+		
+		if(totalObjsAdded == 0)
+		{
+			int randomStack = Random.Range(0, shiftGameObjects.Count);
+			GenerateNextStack(randomStack, ref shiftGameObjects);
+			InsertPigs(randomStack, ref shiftGameObjects);
 		}
 		
 		return shiftGameObjects;
@@ -111,35 +137,20 @@ public class RandomLG : ABLevelGenerator {
 
 	protected void InsertPigs(int i, ref List<LinkedList<ShiftABGameObject>> shiftGameObjects)
 	{
+		int pigsAdded = 0;
+		
 		if(shiftGameObjects[i].Count == 0)
 			return;
 
 		for (LinkedListNode<ShiftABGameObject> obj = shiftGameObjects[i].First; obj != shiftGameObjects[i].Last.Next; obj = obj.Next)
-		{
-			if(obj == shiftGameObjects[i].Last)
+		{			
+			if(obj.Value.Type == 0 && !obj.Value.IsDouble)
 			{
-				// If last element in stack is already a circle, replace it with a pig
-				if(shiftGameObjects[i].Last.Value.Type == 1)
-				{
-					shiftGameObjects[i].Last.Value.IsDouble = false;
-					shiftGameObjects[i].Last.Value.Label = GameWorld.Instance.Templates.Length;
-				}
-				else
-				{				
-					ShiftABGameObject pig = new ShiftABGameObject();
-					pig.Label = GameWorld.Instance.Templates.Length;
-					
-					LinkedListNode<ShiftABGameObject> pigNode = new LinkedListNode<ShiftABGameObject>(pig);
-					shiftGameObjects[i].AddLast(pigNode);
-
-					break;
-				}
-			}
-
-			if(obj.Value.Type == 0)
-			{
+				if(pigsAdded > 0 && Random.value < 0.5f)
+					continue;
+				
 				// Check if pig dimensions fit inside the box 
-				if(Mathf.Abs (obj.Value.GetBounds().size.y - obj.Value.UnderObjectsHeight) > GameWorld.Instance._pig.renderer.bounds.size.y * 1.35f)
+				if(Mathf.Abs (obj.Value.GetEmptyScapeInside().y - obj.Value.UnderObjectsHeight) > GameWorld.Instance._pig.renderer.bounds.size.y)
 				{
 					ShiftABGameObject pig = new ShiftABGameObject();
 					pig.Label = GameWorld.Instance.Templates.Length;
@@ -147,7 +158,7 @@ public class RandomLG : ABLevelGenerator {
 					LinkedListNode<ShiftABGameObject> pigNode = new LinkedListNode<ShiftABGameObject>(pig);
 					
 					if(obj.Value.UnderObjectsHeight > 0f)
-					{
+					{			
 						shiftGameObjects[i].AddBefore(obj, pigNode);
 					}
 					else
@@ -155,49 +166,83 @@ public class RandomLG : ABLevelGenerator {
 						if(obj.Value != shiftGameObjects[i].First.Value)
 						
 							shiftGameObjects[i].AddAfter(obj.Previous, pigNode);
-						
-						else if(!obj.Value.IsDouble)
-						
+						else
 							shiftGameObjects[i].AddFirst(pigNode);
 					}
 					
+					pigsAdded++;
 					obj.Value.AddObjectInside(pig);
+				}
+			}
+			
+			if(obj == shiftGameObjects[i].Last)
+			{	
+				if(pigsAdded > 0 && Random.value < 0.5f)
+					continue;
+				
+				// If last element in stack is already a circle, replace it with a pig
+				if(shiftGameObjects[i].Last.Value.Type == 1)
+				{
+					shiftGameObjects[i].Last.Value.IsDouble = false;
+					shiftGameObjects[i].Last.Value.Label = GameWorld.Instance.Templates.Length;
+					pigsAdded++;
+				}
+				else
+				{	
+					if(pigsAdded > 0)
+						break;
+					
+					ShiftABGameObject pig = new ShiftABGameObject();
+					pig.Label = GameWorld.Instance.Templates.Length;
+					LinkedListNode<ShiftABGameObject> pigNode = new LinkedListNode<ShiftABGameObject>(pig);	
+						
+					shiftGameObjects[i].AddLast(pigNode);
+					pigsAdded++;
+					
+					break;
 				}
 			}
 		}
 	}
 
 	protected List<ABGameObject> ConvertShiftGBtoABGB(List<LinkedList<ShiftABGameObject>> shiftGameObjects)
-	{
-		_offsetX = _levelBeginning;
-
+	{			
+		float offsetX, offsetY;
+		float slingPos = GameWorld.Instance._slingshot.position.x;
+		offsetX = slingPos + _levelPlayableWidth/2f - GetLevelBounds(shiftGameObjects).size.x/2.5f;
+		
 		List<ABGameObject> gameObjects = new List<ABGameObject>();
 
 		for(int i = 0; i < shiftGameObjects.Count; i++)
 		{
-			if(i > 0 && shiftGameObjects[i - 1].Count > 0)
+			if(i > 0)
 			{
-				ShiftABGameObject wid = FindWidestObjInStack(shiftGameObjects[i - 1]);
-				_offsetX = wid.Position.x + wid.GetBounds().size.x/2f;
+				if(shiftGameObjects[i - 1].Count > 0)
+				{
+					ShiftABGameObject wid = GetWidestObjInStack(shiftGameObjects[i - 1]);
+					offsetX = wid.Position.x + wid.GetBounds().size.x/2f;
+				}
+				else
+					offsetX += _widthOfEmptyStack/2f;
 			}
 				
 			if(shiftGameObjects[i].Count > 0)
 			{	
-				_offsetX += FindWidestObjInStack(shiftGameObjects[i]).GetBounds().size.x/2f;
-		
+				offsetX += GetWidestObjInStack(shiftGameObjects[i]).GetBounds().size.x/2f;
+				
 				for (LinkedListNode<ShiftABGameObject> obj = shiftGameObjects[i].First; obj != shiftGameObjects[i].Last.Next; obj = obj.Next)
 				{
 					// Define object position 
 					if(obj.Previous != null)
 
-						_offsetY = obj.Previous.Value.Position.y + 
+						offsetY = obj.Previous.Value.Position.y + 
 							obj.Previous.Value.GetBounds().size.y/2f - obj.Value.UnderObjectsHeight;
 					else
-						_offsetY = GameWorld.Instance._ground.collider2D.bounds.center.y + 
+						offsetY = GameWorld.Instance._ground.collider2D.bounds.center.y + 
 							GameWorld.Instance._ground.collider2D.bounds.size.y/2f;
 					
-					_offsetY += obj.Value.GetBounds().size.y/2f;
-					obj.Value.Position = new Vector2(_offsetX, _offsetY);
+					offsetY += obj.Value.GetBounds().size.y/2f;
+					obj.Value.Position = new Vector2(offsetX, offsetY);
 
 					if(!obj.Value.IsDouble)
 					{
@@ -232,7 +277,7 @@ public class RandomLG : ABLevelGenerator {
 				}
 			}
 			else
-				_offsetX += _widthOfEmptyStack;
+				offsetX += _widthOfEmptyStack/2f;
 		}
 
 		return gameObjects;
@@ -266,23 +311,14 @@ public class RandomLG : ABLevelGenerator {
 		
 		for(int i = 0; i < shiftGameObjects.Count; i++)
 		{		
-			ShiftABGameObject widestObj = FindWidestObjInStack(shiftGameObjects[i]);
+			ShiftABGameObject widestObj = GetWidestObjInStack(shiftGameObjects[i]);
 						
 			if(widestObj != null)
-				
 				width += widestObj.GetBounds().size.x;
 			else
 				width += _widthOfEmptyStack;
 			
-			float columnHeight = 0f;
-			
-			if(shiftGameObjects.Count > 0)
-			{
-				columnHeight = 0f;
-
-				for (LinkedListNode<ShiftABGameObject> obj = shiftGameObjects[i].First; obj != shiftGameObjects[i].Last; obj = obj.Next)
-					columnHeight += obj.Value.GetBounds().size.y;
-			}
+			float columnHeight = GetStackHeight(shiftGameObjects[i]);
 			
 			if(columnHeight > height)
 				height = columnHeight;
@@ -290,8 +326,58 @@ public class RandomLG : ABLevelGenerator {
 		
 		return new Bounds(Vector2.zero, new Vector2(width, height));
 	}
+		
+	protected float GetLevelDensity(List<LinkedList<ShiftABGameObject>> shiftGameObjects)
+	{
+		float width = 0f;
+				
+		for(int i = 0; i < shiftGameObjects.Count; i++)
+		{		
+			ShiftABGameObject widestObj = GetWidestObjInStack(shiftGameObjects[i]);
+						
+			if(widestObj != null)
+				width += widestObj.GetBounds().size.x;
+		}
+		
+		return width/_levelPlayableWidth;
+	}
 	
-	protected ShiftABGameObject FindWidestObjInStack(LinkedList<ShiftABGameObject> shiftGameObjects)
+	protected float GetLevelLinearity(List<LinkedList<ShiftABGameObject>> shiftGameObjects)
+	{
+		float max_variance = 0f;
+		float variance = 0f;
+
+		float []stacksHeight = new float[shiftGameObjects.Count];
+				
+		// creating array 
+		for(int i = 0; i < shiftGameObjects.Count; i++)
+			stacksHeight[i] = GetStackHeight(shiftGameObjects[i]);
+		
+		float y_i_avg = ABMath.Average(stacksHeight);
+		
+		for(int i = 0; i < shiftGameObjects.Count; i++)
+		{	
+			variance  += (stacksHeight[i] - y_i_avg) * (stacksHeight[i] - y_i_avg);
+			max_variance += (stacksHeight[i] - _levelPlayableHeight) * (stacksHeight[i] - _levelPlayableHeight);
+		}
+							
+		return 1f - Mathf.Sqrt(variance)/Mathf.Sqrt(max_variance);
+	}
+	
+	protected float GetStackHeight(LinkedList<ShiftABGameObject> shiftGameObjects)
+	{
+		float columnHeight = 0f;
+		
+		if(shiftGameObjects.Count > 0)
+		{
+			for (LinkedListNode<ShiftABGameObject> obj = shiftGameObjects.First; obj != shiftGameObjects.Last.Next; obj = obj.Next)
+				columnHeight += obj.Value.GetBounds().size.y;
+		}
+		
+		return columnHeight;
+	}
+	
+	protected ShiftABGameObject GetWidestObjInStack(LinkedList<ShiftABGameObject> shiftGameObjects)
 	{
 		if(shiftGameObjects.Count == 0)
 			return null;
@@ -342,12 +428,13 @@ public class RandomLG : ABLevelGenerator {
 		
 		ShiftABGameObject objectBelow = null;
 		
-		if(stack.Count - 1 >= 0)
-			objectBelow = stack.Last.Value;
-		
-		// If the object below is the ground
-		if(objectBelow == null)
+		if(stack.Count > 0)
 		{
+			objectBelow = stack.Last.Value;
+		}
+		else
+		{
+			// If the object below is the ground
 			nextObject.Label = Random.Range(0, GameWorld.Instance.Templates.Length);
 			
 			// There is a chance to double the object
@@ -362,7 +449,8 @@ public class RandomLG : ABLevelGenerator {
 		
 		while(stackableObjects.Count > 0)
 		{
-			nextObject = new ShiftABGameObject();
+			nextObject.UnderObjectsHeight = 0f;
+			nextObject.IsDouble = false;
 			nextObject.Label = stackableObjects[Random.Range(0, stackableObjects.Count - 1)];
 
 			// Check if there is no stability problems
@@ -376,9 +464,9 @@ public class RandomLG : ABLevelGenerator {
 				{
 					Bounds objBelowBounds = currentObj.Value.GetBounds();
 					
-					if(objBelowBounds.size.x < nextObject.GetBounds().size.x*0.5f)
+					if(objBelowBounds.size.x < nextObject.GetEmptyScapeInside().x)
 					{
-						if(underObjectsHeight + objBelowBounds.size.y < nextObject.GetBounds().size.y*0.5f)
+						if(underObjectsHeight + objBelowBounds.size.y < nextObject.GetEmptyScapeInside().y)
 						{
 							nextObject.AddObjectInside(currentObj.Value);
 							underObjectsHeight += objBelowBounds.size.y;

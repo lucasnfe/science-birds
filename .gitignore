@@ -4,5 +4,5 @@ Temp/*
 *.sln
 *.csproj
 *.userprefs
-
 *.userprefs
+Assets/Experiments/* 

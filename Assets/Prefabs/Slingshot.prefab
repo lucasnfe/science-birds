@@ -12,7 +12,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 60: {fileID: 6000000}
   - 120: {fileID: 12000002}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: slingshot_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 212: {fileID: 21200000}
   - 120: {fileID: 12000000}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: slingshot_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}

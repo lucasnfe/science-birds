@@ -3,14 +3,14 @@ using System.Collections;
 
 public class Genome<T> {
 	
-	private double _fitness;
+	private float _fitness;
 
-	private static double _mutationRate;
+	private static float _mutationRate;
 
 	// Genetic Algorithm codification
 	private T _genes;
 
-	public double Fitness {
+	public float Fitness {
 
 		get {
 			return _fitness;
@@ -20,7 +20,7 @@ public class Genome<T> {
 		}
 	}
 	
-	public static double MutationRate {
+	public static float MutationRate {
 
 		get {
 			return _mutationRate;

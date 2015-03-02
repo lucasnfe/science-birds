@@ -12,7 +12,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AllBlocks_122
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 50: {fileID: 5000002}
   - 61: {fileID: 6100002}
   - 114: {fileID: 11400008}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AllBlocks_65
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - 50: {fileID: 5000004}
   - 61: {fileID: 6100004}
   - 114: {fileID: 11400006}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AllBlocks_65
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - 50: {fileID: 5000006}
   - 61: {fileID: 6100006}
   - 114: {fileID: 11400004}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AllBlocks_65
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -84,7 +84,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400008}
-  m_Layer: 0
+  - 61: {fileID: 6160072}
+  m_Layer: 10
   m_Name: Box4
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -103,7 +104,7 @@ GameObject:
   - 50: {fileID: 5000008}
   - 61: {fileID: 6100008}
   - 114: {fileID: 11400002}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AllBlocks_65
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -317,6 +318,17 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .439999998, y: .430000007}
   m_Center: {x: 0, y: 0}
+--- !u!61 &6160072
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: .535000026, y: .77340889}
+  m_Center: {x: 0, y: -.117919922}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1

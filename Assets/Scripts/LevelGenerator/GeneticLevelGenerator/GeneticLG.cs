@@ -1,63 +1,41 @@
 ﻿using UnityEngine;
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
-public class AngryBirdsGen 
-{
-	public int birdsAmount;
-	public List<LinkedList<ShiftABGameObject>> gameObjects;
-
-	public AngryBirdsGen()
-	{
-		gameObjects = new List<LinkedList<ShiftABGameObject>>();
-	}
-
-	public override int GetHashCode()
-	{
-		unchecked
-		{
-			int hash = 17;
-
-			// get hash code for the birds amount
-			hash = hash * 23 + birdsAmount.GetHashCode();
-
-			// get hash code for all items in array
-			foreach (var stack in gameObjects)
-			{
-				foreach(var block in stack)
-				{
-					hash = hash * 23 + ((block != null) ? block.Label.GetHashCode() : 0);
-					hash = hash * 23 + ((block != null) ? block.IsDouble.GetHashCode() : 0);
-				}
-			}
-			
-			return hash;
-		}
-	}
-}
-
 public class GeneticLG : RandomLG 
 {	
-	private int _generationIdx;
-	private int _genomeIdx;
-
+	private int _genomeIdx, _generationIdx;
+	private int _sameBestFitnessCount;
 	private bool _isRankingGenome;
-
-	// Fitness function variables
-	private float _pk, _pi, _lk, _li, _bi, _bk;
-
+	private float _lastGenerationBestFitness;
+	
+	private const int _blocksMaxAmount = 100;
+	
+	// Experiments variables
+	private int _fitnessEvaluation;
+	private int _fitnessRecovered;
+	
+	private GeneticAlgorithm<AngryBirdsGen> _geneticAlgorithm;
+	
+	// Hash table used to cache fitness calculation
+	private Dictionary<AngryBirdsGen, float> _fitnessCache;
+	private AngryBirdsGen _lastgenome;
+	
+	// Fitness function parameters
+	public float _bn, _ln, _d;
+	
+	// Genetic Algorithm parameters
 	public int _populationSize, _generationSize;
 	public float _mutationRate, _crossoverRate;
 	public bool _elitism;
-
-	private List<float> _fitnessTable;
-	private Hashtable _fitnessCache;
-
-	private AngryBirdsGen _lastgenome;
-
-	GeneticAlgorithm<AngryBirdsGen> _geneticAlgorithm;
-
+	
+	public int _experimentsAmount = 1;
+	private static float _lastExperimentTime;
+	private static int _experimentsIdx;
+	private static string _logContent;
+	
 	public override ABLevel GenerateLevel()
 	{
 		return new ABLevel();
@@ -67,37 +45,42 @@ public class GeneticLG : RandomLG
 	{
 		base.Start();
 
-		_fitnessTable = new List<float>();
-		_fitnessCache = new Hashtable();
-
-		GameWorld.Instance.ClearWorld();
+		_fitnessCache = new Dictionary<AngryBirdsGen, float>();
 
 		// Generate a population of feaseble levels evaluated by an inteligent agent
 		_geneticAlgorithm = new GeneticAlgorithm<AngryBirdsGen>(_crossoverRate, _mutationRate, _populationSize, _generationSize, _elitism);
-
 		_geneticAlgorithm.InitGenome = new GeneticAlgorithm<AngryBirdsGen>.GAInitGenome(InitAngryBirdsGenome);
 		_geneticAlgorithm.Mutation = new GeneticAlgorithm<AngryBirdsGen>.GAMutation(Mutate);
 		_geneticAlgorithm.Crossover = new GeneticAlgorithm<AngryBirdsGen>.GACrossover(Crossover);
-		_geneticAlgorithm.FitnessFunction = new GeneticAlgorithm<AngryBirdsGen>.GAFitnessFunction(EvaluateUsingAI);
-		
+		_geneticAlgorithm.FitnessFunction = new GeneticAlgorithm<AngryBirdsGen>.GAFitnessFunction(EvaluateUsingAI);	
 		_geneticAlgorithm.StartEvolution();
 
+		_isRankingGenome = false;
 		_generationIdx = 0;
 		_genomeIdx = 0;
 
-		_isRankingGenome = false;
-
 		// Set time scale to acelerate evolution
 		Time.timeScale = 100f;
+		
+		// Disable audio
+		 AudioListener.volume = 0f;
+		 
+		 // Totally zoom out
+		 GameWorld.Instance._camera.SetCameraWidth(Mathf.Infinity);
+		
+		 // Remove all objects from level before start
+		 GameWorld.Instance.ClearWorld();
 	}
 
 	void Update()
 	{
 		if(!_isRankingGenome)
 		{
-			double fitness = 0f;
+			float fitness = 0f;
 			_lastgenome = new AngryBirdsGen();
 			_geneticAlgorithm.GetNthGenome(_genomeIdx, out _lastgenome, out fitness);
+
+			_fitnessEvaluation++;
 
 			if(!_fitnessCache.ContainsKey(_lastgenome))
 			{
@@ -105,26 +88,18 @@ public class GeneticLG : RandomLG
 			}
 			else
 			{
-				_fitnessTable.Add((float)_fitnessCache[_lastgenome]);
-
 				_genomeIdx++;
 				_isRankingGenome = false;
+				
+				_fitnessRecovered++;
 			}
 		}
-	
-		if(_isRankingGenome && GameWorld.Instance.IsLevelStable() && 
-		   (GameWorld.Instance.GetBirdsAvailableAmount() == 0 || 
-		    GameWorld.Instance.GetPigsAvailableAmount() == 0))
+		else if(GameWorld.Instance.IsLevelStable() && 
+		       (GameWorld.Instance.GetBirdsAvailableAmount() == 0 || 
+		        GameWorld.Instance.GetPigsAvailableAmount()  == 0))
 		{
-			_bk = GameWorld.Instance.GetBirdsAvailableAmount();
-			_pk = GameWorld.Instance.GetPigsAvailableAmount();
-			_lk = GameWorld.Instance.GetBlocksAvailableAmount();
-
-			float fitness = Fitness((int)_pk, (int)_pi, (int)_li, (int)_lk,(int)_bi, (int)_bk);
-
-			_fitnessTable.Add(fitness);
-			_fitnessCache.Add(_lastgenome, fitness);
-
+			EndEvaluatingGenome();
+			
 			GameWorld.Instance.ClearWorld();
 
 			_genomeIdx++;
@@ -136,66 +111,124 @@ public class GeneticLG : RandomLG
 			Debug.Log("====== GENERATION " + _generationIdx +  " ======");
 			
 			_geneticAlgorithm.RankPopulation();
-			_fitnessTable.Clear();
+			float bestFitness = CheckStopCriteria();
 			
-			AngryBirdsGen genome = GetCurrentBest();
+			if(_generationIdx < _geneticAlgorithm.Generations && _sameBestFitnessCount < 20 && bestFitness != 1f)
 			
-			if(_generationIdx < _geneticAlgorithm.Generations)
-			{
 				_geneticAlgorithm.CreateNextGeneration();
-			}
 			else
-			{
-				Debug.Log("====== END EVOLUTION ======");
-				Time.timeScale = 1f;
-				
-				// Clear the level and decode the best genome of the last generation
-				GameWorld.Instance.ClearWorld();			
-				DecodeLevel(ConvertShiftGBtoABGB(genome.gameObjects), genome.birdsAmount);				
-				
-				// Disable AI and allow player to test the level
-				GameWorld.Instance._birdAgent.gameObject.SetActive(false);
-
-				// Disable simulation
-				GameWorld.Instance._isSimulation = false;
-
-				Destroy(this.gameObject);
-			}
+				EndEvolution();
 			
 			_genomeIdx = 0;
 			_generationIdx++;
 		}
 	}
-
-	private float Fitness(int pk, int pi, int li, int lk, int bi, int bk)
-	{
-		float fitness;
-		
-		if(pk != 0)
-			
-			fitness = 1f/pk;
-		else
-			fitness = (bi - bk) + (li - lk);
-		
-		return fitness;
-	}
-
+	
 	private void StartEvaluatingGenome()
 	{
 		DecodeLevel(ConvertShiftGBtoABGB(_lastgenome.gameObjects), _lastgenome.birdsAmount);
-
-		_bi = GameWorld.Instance.GetBirdsAvailableAmount();
-		_pi = GameWorld.Instance.GetPigsAvailableAmount();
-		_li = GameWorld.Instance.GetBlocksAvailableAmount();
-
 		_isRankingGenome = true;
 	}
-
-	public double EvaluateUsingAI(AngryBirdsGen genome, int genomeIdx)
+	
+	private void EndEvaluatingGenome()
 	{
-		return _fitnessTable[genomeIdx];
+		float bi = GameWorld.Instance.BirdsAtStart();
+		float pi = GameWorld.Instance.PigsAtStart();
+		float li = GameWorld.Instance.BlocksAtStart();
+ 
+		float bk = GameWorld.Instance.GetBirdsAvailableAmount();
+		float pk = GameWorld.Instance.GetPigsAvailableAmount();
+		float lk = GameWorld.Instance.GetBlocksAvailableAmount();
+		float sk = GameWorld.Instance.StabilityUntilFirstBird();
+				
+		float fitness = Fitness(pk, pi, li, lk, bi, bk, _d, sk);
+		_fitnessCache.Add(_lastgenome, fitness);
+	}
+	
+	private float Fitness(float pk, float pi, float li, float lk, float bi, float bk, float d, float sk)
+	{						
+		float distBirds = Mathf.Abs(Mathf.Ceil(_bn * bi) - (bi - bk));
+		
+		// float prop = (d * _blocksMaxAmount)*(_bn * bi);
+		// float propNorm = prop/(_blocksMaxAmount * _birdsMaxAmount);
+		// float blocksToBrock = Mathf.Ceil(propNorm * li * _ln);
+		// float distBrokenBlocks = Mathf.Abs(blocksToBrock - (li - lk));
+		
+		float distAmountBlocks = Mathf.Abs((Mathf.Ceil(d*_blocksMaxAmount) - li));
+		
+		return 1f/(1f + (distBirds + distAmountBlocks + sk + pk));
 	}
 
+	public float EvaluateUsingAI(AngryBirdsGen genome, int genomeIdx)
+	{
+		return _fitnessCache[genome];
+	}
+	
+	private void EndEvolution()
+	{
+		Debug.Log("Experiment n: " + _experimentsIdx);
+		
+		if(_experimentsIdx < _experimentsAmount)
+		{
+			// Save the results
+			SaveLog();
+			
+			Application.LoadLevel(Application.loadedLevel);
+		}
+		else
+		{		
+			float fitness = 0f;
+			AngryBirdsGen genome = new AngryBirdsGen();
+			_geneticAlgorithm.GetBest(out genome, out fitness);
+			
+			// Save results
+			// StreamWriter writer = new StreamWriter("Assets/Experiments/mut5.txt"); // Does this work?
+			// writer.WriteLine(_logContent);
+			// writer.Close();
+		
+			// Default time scale
+			Time.timeScale = 1f;
+		
+			// Enable audio
+		 	AudioListener.volume = 1f;
+		
+			// Clear the level and decode the best genome of the last generation
+			GameWorld.Instance.ClearWorld();			
+			DecodeLevel(ConvertShiftGBtoABGB(genome.gameObjects), genome.birdsAmount);				
+							
+			// Disable AI and allow player to test the level
+			GameWorld.Instance._birdAgent.gameObject.SetActive(false);
+		
+			// Disable simulation
+			GameWorld.Instance._isSimulation = false;
+		
+			// Destroy the generator
+			Destroy(this.gameObject);
+		}
+		
+		_experimentsIdx++;
+	}
+	
+	private float CheckStopCriteria() 
+	{
+		float fitness = 0f;
+		AngryBirdsGen genome = new AngryBirdsGen();
+		_geneticAlgorithm.GetBest(out genome, out fitness);
+
+		if(_lastGenerationBestFitness == fitness)
+			
+			_sameBestFitnessCount++;
+		else
+			_sameBestFitnessCount = 0;
+		
+		_lastGenerationBestFitness = (float)fitness;
+
+		UnityEngine.Debug.Log("Best fitness " + fitness);
+		UnityEngine.Debug.Log("Same Best fitness Count " + _sameBestFitnessCount);
+		
+		return fitness;
+	}
+	
 	public void Crossover(ref Genome<AngryBirdsGen> genome1, ref Genome<AngryBirdsGen> genome2, 
 	                      out Genome<AngryBirdsGen> child1,  out Genome<AngryBirdsGen> child2) {
 
@@ -310,6 +343,11 @@ public class GeneticLG : RandomLG
 				genome.Genes.gameObjects[i] = gameObjects[i];
 			}
 		}
+		
+		if(UnityEngine.Random.value <= _geneticAlgorithm.MutationRate)
+		{
+			genome.Genes.birdsAmount = UnityEngine.Random.Range(0, _birdsMaxAmount);
+		}
 	}
 
 	public void InitAngryBirdsGenome(out AngryBirdsGen genome) {
@@ -319,15 +357,23 @@ public class GeneticLG : RandomLG
 		genome.birdsAmount = UnityEngine.Random.Range(0, _birdsMaxAmount);
 		genome.gameObjects = GenerateRandomLevel();
 	}
-
-	private AngryBirdsGen GetCurrentBest() {
-
-		double fitness = 0f;
+	
+	private void SaveLog()
+	{
+		float fitness = 0f;
 		AngryBirdsGen genome = new AngryBirdsGen();
 		_geneticAlgorithm.GetBest(out genome, out fitness);
-
-		UnityEngine.Debug.Log ("Best fitness " + fitness);
-
-		return genome;
+		
+		float experimentTime = Time.realtimeSinceStartup - _lastExperimentTime;
+		
+		_logContent += "====== RESULTS ======\n";
+		_logContent += "Execution time: "       + experimentTime + "\n";
+		_logContent += "Convergence: "          + _generationIdx + "\n";
+		_logContent += "Cache size:"            + _fitnessCache.Count + "\n";
+		_logContent += "Fitness calculations: " + _fitnessEvaluation + "\n";
+		_logContent += "Fitness recovered: "    + _fitnessRecovered + "\n";
+		_logContent += "Best Fitness: "         + fitness + "\n";
+		
+		_lastExperimentTime = Time.realtimeSinceStartup;		
 	}
 }

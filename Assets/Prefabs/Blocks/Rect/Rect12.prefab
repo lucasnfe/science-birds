@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rect12
   m_TagString: Rect
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AllBlocks_43
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - 50: {fileID: 5000002}
   - 61: {fileID: 6100002}
   - 114: {fileID: 11400002}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AllBlocks_43
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - 50: {fileID: 5000004}
   - 61: {fileID: 6100004}
   - 114: {fileID: 11400004}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AllBlocks_43
   m_TagString: Block
   m_Icon: {fileID: 0}

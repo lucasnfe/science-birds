@@ -30,6 +30,12 @@ public class Bird : Character {
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
+		
+		// Disable collision agains blocks to avoid early collisions
+		int birdsLayer = LayerMask.NameToLayer("Birds");
+		int blocksLayer = LayerMask.NameToLayer("Blocks");
+		
+		Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, true);
     }
 
     void Update()
@@ -44,7 +50,6 @@ public class Bird : Character {
             return;
 
         if(IsIdle() && rigidbody2D.gravityScale > 0f)
-
             rigidbody2D.AddForce(Vector2.up * _jumpForce);
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
@@ -173,6 +178,12 @@ public class Bird : Character {
 		_animator.Play("flying", 0, 0f);
 
 		IsFlying = true;
+		
+		// Enabling collision agains blocks
+		int birdsLayer = LayerMask.NameToLayer("Birds");
+		int blocksLayer = LayerMask.NameToLayer("Blocks");
+		
+		Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
 	
 		// The bird starts with no gravity, so we must set it
 		rigidbody2D.gravityScale = _launchGravity;

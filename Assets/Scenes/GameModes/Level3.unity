@@ -1274,7 +1274,7 @@ GameObject:
   - 60: {fileID: 1150666197}
   - 120: {fileID: 1150666200}
   - 114: {fileID: 1150666201}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: slingshot_back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1826,18 +1826,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5446ec8900014c3e9e4a9aa3a495224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _birdsMaxAmount: 4
-  _maxStackWidth: 10
-  _maxStackHeight: 10
-  _levelBeginning: -2
-  _duplicateProbability: .333000004
-  _widthOfEmptyStack: 2
-  _probabilityOfEmptyStack: .200000003
+  _birdsMaxAmount: 5
+  _duplicateProbability: .5
+  _bn: .5
+  _ln: .5
+  _d: 1
   _populationSize: 100
-  _generationSize: 5
+  _generationSize: 100
   _mutationRate: .100000001
   _crossoverRate: .949999988
   _elitism: 1
+  _experimentsAmount: 0
 --- !u!4 &1742393086
 Transform:
   m_ObjectHideFlags: 0
@@ -1861,7 +1860,7 @@ GameObject:
   - 212: {fileID: 1803540557}
   - 120: {fileID: 1803540559}
   - 114: {fileID: 1803540560}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: slingshot_front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2035,7 +2034,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1869350894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.5999999, z: -9}
+  m_LocalPosition: {x: 0, y: -4.5999999, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1069289543}

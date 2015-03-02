@@ -35,6 +35,19 @@ public class ShiftABGameObject : ABGameObject
 				_type = _randomLG.GetTypeByTag(GameWorld.Instance.Templates[value].tag); 
 		}
 	}
+	
+	public Vector2 GetEmptyScapeInside()
+	{		
+		if(Label < GameWorld.Instance.Templates.Length)
+		{
+			BoxCollider2D emptyScape = GameWorld.Instance.Templates[Label].GetComponent<BoxCollider2D>();
+			
+			if(emptyScape != null && emptyScape.isTrigger)
+				return emptyScape.size;
+		}
+		
+		return Vector2.zero;
+	}
 
 	public override Bounds GetBounds()
 	{

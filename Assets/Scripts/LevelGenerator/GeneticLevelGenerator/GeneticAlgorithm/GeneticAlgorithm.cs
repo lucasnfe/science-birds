@@ -11,15 +11,15 @@ public class GeneticAlgorithm<T> {
 	public delegate void GACrossover(ref Genome<T> genome1, ref Genome<T> genome2, out Genome<T> child1, out Genome<T> child2);
 	public delegate void GAMutation (ref Genome<T> genome1);
 
-	public delegate double GAFitnessFunction(T values, int genomeIdx);
+	public delegate float GAFitnessFunction(T values, int genomeIdx);
 
 	// Genetic Algorithm attributes
 	private int _populationSize;
 	private int _generationSize;
 
-	private double _mutationRate;
-	private double _crossoverRate;
-	private double _totalFitness;
+	private float _mutationRate;
+	private float _crossoverRate;
+	private float _totalFitness;
 
 	private bool _elitism;
 
@@ -38,13 +38,13 @@ public class GeneticAlgorithm<T> {
 
 	public GeneticAlgorithm() {
 
-		_mutationRate = 0.05;
-		_crossoverRate = 0.80;
+		_mutationRate = 0.05f;
+		_crossoverRate = 0.80f;
 		_populationSize = 100;
 		_generationSize = 2000;
 	}
 	
-	public GeneticAlgorithm(double crossoverRate, double mutationRate, int populationSize, int generationSize, bool elitism = false) {
+	public GeneticAlgorithm(float crossoverRate, float mutationRate, int populationSize, int generationSize, bool elitism = false) {
 
 		_mutationRate = mutationRate;
 		_crossoverRate = crossoverRate;
@@ -114,7 +114,7 @@ public class GeneticAlgorithm<T> {
 		}
 	}
 	
-	public double CrossoverRate {
+	public float CrossoverRate {
 
 		get {
 			return _crossoverRate;
@@ -123,7 +123,7 @@ public class GeneticAlgorithm<T> {
 			_crossoverRate = value;
 		}
 	}
-	public double MutationRate {
+	public float MutationRate {
 
 		get {
 			return _mutationRate;
@@ -144,17 +144,19 @@ public class GeneticAlgorithm<T> {
 		}
 	}
 	
-	public void GetBest(out T values, out double fitness) {
+	public void GetBest(out T values, out float fitness) {
 
+		_thisGeneration.Sort(new GenomeComparer<T>());
 		GetNthGenome(_populationSize - 1, out values, out fitness);
 	}
 
-	public void GetWorst(out T values, out double fitness) {
+	public void GetWorst(out T values, out float fitness) {
 
+		_thisGeneration.Sort(new GenomeComparer<T>());
 		GetNthGenome(0, out values, out fitness);
 	}
 	
-	public void GetNthGenome(int n, out T values, out double fitness) {
+	public void GetNthGenome(int n, out T values, out float fitness) {
 
 		if (n < 0 || n > _populationSize - 1)
 			throw new ArgumentOutOfRangeException("n too large, or too small");
@@ -162,7 +164,7 @@ public class GeneticAlgorithm<T> {
 		Genome<T> g = ((Genome<T>)_thisGeneration[n]);
 
 		values = g.Genes;
-		fitness = (double)g.Fitness;
+		fitness = (float)g.Fitness;
 	}
 
 	// Method which starts the GA executing.
@@ -198,10 +200,23 @@ public class GeneticAlgorithm<T> {
 		//	RankPopulation();
 		//}
 	}
+	
+	private void ShuffleGeneration()
+	{
+		  for (int i = 0; i < _thisGeneration.Count; i++) 
+		  {
+			  int r = UnityEngine.Random.Range(i, _thisGeneration.Count);
+			  Genome<T> tmp = (Genome<T>)_thisGeneration[r];
+		      _thisGeneration[r] = _thisGeneration[i];
+			  _thisGeneration[i] = tmp;
+		  }
+	}
 
 	private Genome<T> TournamentSelection(int size = 2) {
 
 		Genome<T> []tournamentPopulation = new Genome<T>[size];
+
+		// ShuffleGeneration();
 
 		for(int i = 0; i < size; i++)
 			tournamentPopulation[i] = (Genome<T>)_thisGeneration[UnityEngine.Random.Range(0, _thisGeneration.Count)];
@@ -214,12 +229,14 @@ public class GeneticAlgorithm<T> {
 	public void CreateNextGeneration()
 	{
 		_nextGeneration.Clear();
-		Genome<T> g = null;
 
 		if (_elitism)
-			g = (Genome<T>)_thisGeneration[_populationSize - 1];
+		{
+			Genome<T> g = (Genome<T>)_thisGeneration[_populationSize - 1];
+			_nextGeneration.Add(g);
+		}
 
-		for (int i = 0; i < _populationSize; i+=2) {
+		for (int i = _nextGeneration.Count; i < _populationSize; i += 2) {
 			
 			Genome<T> parent1, parent2, child1, child2;
 			
@@ -242,9 +259,6 @@ public class GeneticAlgorithm<T> {
 			_nextGeneration.Add(child1);
 			_nextGeneration.Add(child2);
 		}
-
-		if (_elitism && g != null)
-			_nextGeneration[0] = g;
 		
 		_thisGeneration.Clear();
 		

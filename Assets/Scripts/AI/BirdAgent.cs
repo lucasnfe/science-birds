@@ -55,7 +55,8 @@ public class BirdAgent : MonoBehaviour {
 		_currentBird = currentBird;
 
 		// Highlight the target
-		targetPig.GetComponent<SpriteRenderer>().material.color = Color.red;
+		if(!GameWorld.Instance._isSimulation)
+			targetPig.GetComponent<SpriteRenderer>().material.color = Color.red;
 
 		_nextShot = Solve(currentBird, targetPig, slingPos);
 		currentBird.SelectBird();
