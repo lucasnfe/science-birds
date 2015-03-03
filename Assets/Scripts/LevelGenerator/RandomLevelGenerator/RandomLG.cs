@@ -12,9 +12,9 @@ public class RandomLG : ABLevelGenerator {
 
 	public float _duplicateProbability = 0f;
 
-	private float _levelPlayableWidth;
-	private const float _levelPlayableHeight = 12f;
-	private const float _widthOfEmptyStack = 2f;
+	protected float _levelPlayableWidth;
+	protected const float _levelPlayableHeight = 12f;
+	protected const float _widthOfEmptyStack = 2f;
 
 	public int GetTypeByTag(string tag)
 	{					
@@ -67,13 +67,13 @@ public class RandomLG : ABLevelGenerator {
 	}
 
 	public void GenerateNextStack(int stackIndex, ref List<LinkedList<ShiftABGameObject>> shiftGameObjects)
-	{
+	{		
 		LinkedList<ShiftABGameObject> stack = shiftGameObjects[stackIndex];
 
 		float currentObjectHeight = 0f;
 			
 		// Next stack height
-		float randomHeight = Mathf.Abs(ABMath.RandomGaussian(_levelPlayableHeight/2f, _levelPlayableHeight/2f));
+		float randomHeight = Mathf.Abs(ABMath.RandomGaussian(_levelPlayableHeight/2f, _levelPlayableHeight));
 		float nextHeight = (_widthOfEmptyStack + randomHeight) % _levelPlayableHeight;
 		
 		// The stack will be empty if its height is lower than 1f
@@ -104,7 +104,7 @@ public class RandomLG : ABLevelGenerator {
 		float nextWidth = (_widthOfEmptyStack + randomWidth) % _levelPlayableWidth;
 		
 		// Loop to generate the game object stacks		
-		for(float width = 0f; width + widerObjectInStack <= nextWidth; width += widerObjectInStack)
+		for(float width = 0f; width + widerObjectInStack < nextWidth; width += widerObjectInStack)
 		{
 			// Randomly generate new stack based on the dependency graph
 			shiftGameObjects.Add(new LinkedList<ShiftABGameObject>());
@@ -115,12 +115,7 @@ public class RandomLG : ABLevelGenerator {
 			// Add pigs to the level structure
 			InsertPigs(stackIndex, ref shiftGameObjects);	
 			
-			if(shiftGameObjects[stackIndex].Count > 0)
-
-				widerObjectInStack = GetWidestObjInStack(shiftGameObjects[stackIndex]).GetBounds().size.x;	
-			else
-				widerObjectInStack = _widthOfEmptyStack;
-			
+			widerObjectInStack = GetStackWidth(shiftGameObjects[stackIndex]);
 			totalObjsAdded += shiftGameObjects[stackIndex].Count;
 			stackIndex++;
 		}
@@ -209,7 +204,7 @@ public class RandomLG : ABLevelGenerator {
 	{			
 		float offsetX, offsetY;
 		float slingPos = GameWorld.Instance._slingshot.position.x;
-		offsetX = slingPos + _levelPlayableWidth/2f - GetLevelBounds(shiftGameObjects).size.x/2.5f;
+		offsetX = slingPos + _levelPlayableWidth/2f - GetLevelBounds(shiftGameObjects).size.x/2.25f;
 		
 		List<ABGameObject> gameObjects = new List<ABGameObject>();
 
@@ -311,13 +306,7 @@ public class RandomLG : ABLevelGenerator {
 		
 		for(int i = 0; i < shiftGameObjects.Count; i++)
 		{		
-			ShiftABGameObject widestObj = GetWidestObjInStack(shiftGameObjects[i]);
-						
-			if(widestObj != null)
-				width += widestObj.GetBounds().size.x;
-			else
-				width += _widthOfEmptyStack;
-			
+			width += GetStackWidth(shiftGameObjects[i]);
 			float columnHeight = GetStackHeight(shiftGameObjects[i]);
 			
 			if(columnHeight > height)
@@ -375,6 +364,15 @@ public class RandomLG : ABLevelGenerator {
 		}
 		
 		return columnHeight;
+	}
+	
+	protected float GetStackWidth(LinkedList<ShiftABGameObject> shiftGameObjects)
+	{		
+		ShiftABGameObject wid = GetWidestObjInStack(shiftGameObjects);
+		if(wid != null)
+			return wid.GetBounds().size.x;
+			
+		return _widthOfEmptyStack;
 	}
 	
 	protected ShiftABGameObject GetWidestObjInStack(LinkedList<ShiftABGameObject> shiftGameObjects)

@@ -43,8 +43,8 @@ public class GeneticLG : RandomLG
 	
 	public override void Start()
 	{
-		base.Start();
-
+		 base.Start();
+		 
 		_fitnessCache = new Dictionary<AngryBirdsGen, float>();
 
 		// Generate a population of feaseble levels evaluated by an inteligent agent
@@ -231,7 +231,10 @@ public class GeneticLG : RandomLG
 	
 	public void Crossover(ref Genome<AngryBirdsGen> genome1, ref Genome<AngryBirdsGen> genome2, 
 	                      out Genome<AngryBirdsGen> child1,  out Genome<AngryBirdsGen> child2) {
-
+							 				 
+		float stackWidth1 = 0f;
+        float stackWidth2 = 0f;
+		
 		int maxGenomeSize = Mathf.Max (genome1.Genes.gameObjects.Count, 
 		                               genome2.Genes.gameObjects.Count);
 
@@ -242,81 +245,64 @@ public class GeneticLG : RandomLG
 		AngryBirdsGen genes2 = new AngryBirdsGen();
 	
 		for(int i = 0; i < maxGenomeSize; i++)
-		{
+		{	
 			if(genome1.Genes.gameObjects.Count == genome2.Genes.gameObjects.Count)
-			{
+			{				
 				if(UnityEngine.Random.value < 0.5f)
-
-					genes1.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
+						genes1.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
 				else
-					genes1.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
+						genes1.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
 
 				if(UnityEngine.Random.value < 0.5f)
-
-					genes2.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
+						genes2.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
 				else
-					genes2.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
+						genes2.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
 			}
 			else if(genome1.Genes.gameObjects.Count < genome2.Genes.gameObjects.Count)
 			{
 				if(i < genome1.Genes.gameObjects.Count)
-				{
+				{					
 					if(UnityEngine.Random.value < 0.5f)
-
-						genes1.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
+							genes1.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
 					else
-						genes1.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
+							genes1.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
 
+				
 					if(UnityEngine.Random.value < 0.5f)
-
-						genes2.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
+							genes2.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
 					else
-						genes2.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
+							genes2.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
 				}
 				else
-				{
+				{					
 					if(UnityEngine.Random.value < 0.5f)
-
-						genes1.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
-					else
-						genes1.gameObjects.Add(new LinkedList<ShiftABGameObject>());
+							genes1.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
 					
 					if(UnityEngine.Random.value < 0.5f)
-
-						genes2.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
-					else
-						genes2.gameObjects.Add(new LinkedList<ShiftABGameObject>());
+							genes2.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
 				}
 			}
 			else
 			{
 				if(i < genome2.Genes.gameObjects.Count)
-				{
+				{	
 					if(UnityEngine.Random.value < 0.5f)
-
-						genes1.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
+							genes1.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
 					else
-						genes1.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
+							genes1.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
 
 					if(UnityEngine.Random.value < 0.5f)
-
-						genes2.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
+							genes2.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
 					else
-						genes2.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
+							genes2.gameObjects.Add(CopyStack(genome2.Genes.gameObjects[i]));
 				}
 				else
-				{
+				{				
 					if(UnityEngine.Random.value < 0.5f)
-
-						genes1.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
-					else
-						genes1.gameObjects.Add(new LinkedList<ShiftABGameObject>());
-					
+							genes1.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
+				
 					if(UnityEngine.Random.value < 0.5f)
-
-						genes2.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
-					else
-						genes2.gameObjects.Add(new LinkedList<ShiftABGameObject>());
+							genes2.gameObjects.Add(CopyStack(genome1.Genes.gameObjects[i]));
 				}
 			}
 		}
@@ -324,9 +310,26 @@ public class GeneticLG : RandomLG
 		// Integer crossover for birds
 		genes1.birdsAmount = (int)(0.5f * genome1.Genes.birdsAmount + 0.5f * genome2.Genes.birdsAmount);
 		genes2.birdsAmount = (int)(1.5f * genome1.Genes.birdsAmount - 0.5f * genome2.Genes.birdsAmount);
+		
+		FixGenome(ref genes1);
+		FixGenome(ref genes2);
 
 		child1.Genes = genes1;
 		child2.Genes = genes2;
+	}
+	
+	private void FixGenome(ref AngryBirdsGen genome) {
+		
+		int n = genome.gameObjects.Count;
+		
+		for(int i = n - 1; i >= 0; i--)
+		{
+			if(GetLevelBounds(genome.gameObjects).size.x > _levelPlayableWidth)
+			{	
+				genome.gameObjects[i].Clear();
+				genome.gameObjects.Remove(genome.gameObjects[i]);
+			}
+		}
 	}
 	
 	public void Mutate(ref Genome<AngryBirdsGen> genome) {

@@ -42,6 +42,16 @@ public class Bird : Character {
     {
         if(IsFlying && !OutOfSlingShot)
             DragBird(transform.position);
+		
+		if(IsInFrontOfSlingshot())
+		{
+			// Enabling collision agains blocks
+			int birdsLayer = LayerMask.NameToLayer("Birds");
+			int blocksLayer = LayerMask.NameToLayer("Blocks");
+			
+			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
+		}
+			
     }
 
     void IdleJump()
@@ -125,7 +135,7 @@ public class Bird : Character {
 
 	public bool IsInFrontOfSlingshot()
 	{
-		return transform.position.x > GameWorld.Instance._slingSelectPos.x + _dragRadius;
+		return transform.position.x + collider2D.bounds.size.x > GameWorld.Instance._slingSelectPos.x + _dragRadius;
 	}
 	
     public void SelectBird()
@@ -178,13 +188,7 @@ public class Bird : Character {
 		_animator.Play("flying", 0, 0f);
 
 		IsFlying = true;
-		
-		// Enabling collision agains blocks
-		int birdsLayer = LayerMask.NameToLayer("Birds");
-		int blocksLayer = LayerMask.NameToLayer("Blocks");
-		
-		Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
-	
+				
 		// The bird starts with no gravity, so we must set it
 		rigidbody2D.gravityScale = _launchGravity;
 		rigidbody2D.velocity = new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,

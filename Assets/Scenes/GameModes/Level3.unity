@@ -579,7 +579,7 @@ Camera:
   m_GameObject: {fileID: 489266186}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 2
   m_BackGroundColor: {r: .752941191, g: .752941191, b: .752941191, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -2034,7 +2034,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1869350894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.5999999, z: -6}
+  m_LocalPosition: {x: 0, y: -4.6500001, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1069289543}
@@ -2048,7 +2048,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 25, y: 4.5}
+  m_Size: {x: 24.5, y: 4.5}
   m_Center: {x: 0, y: -.349999994}
 --- !u!1 &2037108691
 GameObject:

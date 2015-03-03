@@ -216,8 +216,6 @@ public class GeneticAlgorithm<T> {
 
 		Genome<T> []tournamentPopulation = new Genome<T>[size];
 
-		// ShuffleGeneration();
-
 		for(int i = 0; i < size; i++)
 			tournamentPopulation[i] = (Genome<T>)_thisGeneration[UnityEngine.Random.Range(0, _thisGeneration.Count)];
 
@@ -230,13 +228,7 @@ public class GeneticAlgorithm<T> {
 	{
 		_nextGeneration.Clear();
 
-		if (_elitism)
-		{
-			Genome<T> g = (Genome<T>)_thisGeneration[_populationSize - 1];
-			_nextGeneration.Add(g);
-		}
-
-		for (int i = _nextGeneration.Count; i < _populationSize; i += 2) {
+		for (int i = 0; i < _populationSize; i += 2) {
 			
 			Genome<T> parent1, parent2, child1, child2;
 			
@@ -259,6 +251,9 @@ public class GeneticAlgorithm<T> {
 			_nextGeneration.Add(child1);
 			_nextGeneration.Add(child2);
 		}
+		
+		if (_elitism)
+			_nextGeneration[0] = (Genome<T>)_thisGeneration[_populationSize - 1];
 		
 		_thisGeneration.Clear();
 		
