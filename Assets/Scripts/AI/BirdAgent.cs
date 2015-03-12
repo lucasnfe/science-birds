@@ -51,6 +51,7 @@ public class BirdAgent : MonoBehaviour {
 			_lastTargetPig.GetComponent<SpriteRenderer>().material.color = Color.white;
 
 		IsThrowingBird = true;
+		
 		_throwTimer = 0f;
 		_currentBird = currentBird;
 

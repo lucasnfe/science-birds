@@ -1828,10 +1828,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _birdsMaxAmount: 5
   _duplicateProbability: .5
-  _bn: .5
-  _ln: .5
+  _bn: .25
   _d: 1
-  _populationSize: 100
+  _populationSize: 2
   _generationSize: 100
   _mutationRate: .100000001
   _crossoverRate: .949999988

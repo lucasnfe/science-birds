@@ -234,16 +234,8 @@ public class GeneticAlgorithm<T> {
 			
 			parent1 = ((Genome<T>) TournamentSelection());
 			parent2 = ((Genome<T>) TournamentSelection());
-			
-			if (m_random.NextDouble() < _crossoverRate) {
 				
-				Crossover(ref parent1, ref parent2, out child1, out child2);
-			}
-			else {
-				
-				child1 = parent1;
-				child2 = parent2;
-			}
+			Crossover(ref parent1, ref parent2, out child1, out child2);
 			
 			Mutation(ref child1);
 			Mutation(ref child2);

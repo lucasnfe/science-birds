@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class ABGameObject
@@ -58,5 +59,26 @@ public class ABGameObject
 		composedBounds.center = Position;
 
 		return composedBounds;
+	}
+	
+	public override int GetHashCode()
+	{
+	    const int prime = 13;
+		return Label * prime + (int)Position.x * prime + (int)Position.y * prime;
+	}
+	
+    public bool Equals(ABGameObject otherGen)
+   	{
+        if (ReferenceEquals(null, otherGen)) return false;
+        if (ReferenceEquals(this, otherGen)) return true;
+
+		return (Label == otherGen.Label && Position == otherGen.Position);
+   }
+ 
+	public override bool Equals(object obj)
+	{
+	    // Since our other Equals() method already compares guys, we'll just call it.
+	    if (!(obj is ABGameObject)) return false;
+	    return Equals((ABGameObject) obj);
 	}
 }

@@ -150,7 +150,7 @@ public class Bird : Character {
     {
 		transform.position = Vector3.MoveTowards(transform.position, GameWorld.Instance._slingSelectPos, _dragSpeed * Time.deltaTime);
 
-		if(Vector3.Distance(transform.position, GameWorld.Instance._slingSelectPos) < 0.1f)
+		if(Vector3.Distance(transform.position, GameWorld.Instance._slingSelectPos) <= 0f)
 		{
 			JumpToSlingshot = false;
 			OutOfSlingShot = false;
@@ -159,16 +159,20 @@ public class Bird : Character {
     }
 
 	public void DragBird(Vector3 dragPosition)
-	{
+	{		
+		if (float.IsNaN(dragPosition.x) || float.IsNaN(dragPosition.y))
+			return;
+			
 		dragPosition.z = transform.position.z;
 		float deltaPosFromSlingshot = Vector2.Distance(dragPosition, GameWorld.Instance._slingSelectPos);
 
         // Lock bird movement inside a circle
         if(deltaPosFromSlingshot > _dragRadius)
 			dragPosition = (dragPosition - GameWorld.Instance._slingSelectPos).normalized * _dragRadius + GameWorld.Instance._slingSelectPos;
-
-        transform.position = Vector3.Lerp (transform.position, dragPosition, Time.deltaTime * _dragSpeed);
-
+		
+		Vector3 velocity = Vector3.zero;
+		transform.position = Vector3.SmoothDamp(transform.position, dragPosition, ref velocity, 0.05f);
+		
 		// Slingshot base look to slingshot
 		Vector3 dist = GameWorld.Instance._slingshotBase.transform.position - GameWorld.Instance._slingSelectPos;
         float angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;

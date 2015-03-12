@@ -78,21 +78,21 @@ public abstract class ABLevelGenerator : MonoBehaviour {
 		GameWorld.Instance.StartWorld();
 	}
 	
-	protected float GetBirdsFrequency(ABLevel level)
+	protected float GetBirdsFrequency(int birdsAmount)
 	{
-		return (float)(level.birdsAmount + 1)/_birdsMaxAmount;
+		return (float)(birdsAmount + 1)/_birdsMaxAmount;
 	}
 	
-	protected float GetABGameObjectFrequency(ABLevel level, int gameObjectIndex)
+	protected float GetABGameObjectFrequency(List<ABGameObject> gameObjects, int gameObjectIndex)
 	{
 		int gameObjectAmount = 0;
 		
-		foreach(ABGameObject gameObj in level.gameObjects)
+		foreach(ABGameObject gameObj in gameObjects)
 		{
 			if(gameObj.Label == gameObjectIndex)
 				gameObjectAmount++;
 		}
 		
-		return (float)gameObjectAmount/level.gameObjects.Count;
+		return (float)gameObjectAmount/gameObjects.Count;
 	}
 }

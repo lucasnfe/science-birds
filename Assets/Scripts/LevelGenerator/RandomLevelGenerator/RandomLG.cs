@@ -40,7 +40,7 @@ public class RandomLG : ABLevelGenerator {
 		float levelLeftBound = ground.transform.position.x - ground.collider2D.bounds.size.x/2f;
 		float slingDistFromLeftBound = GameWorld.Instance._slingshot.position.x - levelLeftBound;
 		
-		_levelPlayableWidth = (ground.collider2D.bounds.size.x - slingDistFromLeftBound) - 2f;
+		_levelPlayableWidth = (ground.collider2D.bounds.size.x - slingDistFromLeftBound) - 3f;
 		
 		base.Start();
 	}
@@ -57,11 +57,6 @@ public class RandomLG : ABLevelGenerator {
 		abLevel.height = GetLevelBounds(gameObjects).size.y;
 		
 		abLevel.gameObjects = ConvertShiftGBtoABGB(gameObjects);
-		
-		UnityEngine.Debug.Log("Linearity" + GetLevelLinearity(gameObjects));
-		UnityEngine.Debug.Log("Density " + GetLevelDensity(gameObjects));
-		UnityEngine.Debug.Log("Frequency pig " + GetABGameObjectFrequency(abLevel, GameWorld.Instance.Templates.Length));	
-		UnityEngine.Debug.Log("Frequency bird " + GetBirdsFrequency(abLevel));	
 		
 		return abLevel;
 	}
@@ -89,6 +84,20 @@ public class RandomLG : ABLevelGenerator {
 			stack.AddLast(nextObject);
 
 			currentObjectHeight = nextObject.GetBounds().size.y;
+		}
+	}
+	
+	protected void FixLevelSize(ref List<LinkedList<ShiftABGameObject>> shiftGameObjects) {
+		
+		int n = shiftGameObjects.Count;
+		
+		for(int i = n - 1; i >= 0; i--)
+		{
+			if(GetLevelBounds(shiftGameObjects).size.x > _levelPlayableWidth)
+			{	
+				// shiftGameObjects[i].Clear();
+				shiftGameObjects.Remove(shiftGameObjects[i]);
+			}
 		}
 	}
 
@@ -126,6 +135,8 @@ public class RandomLG : ABLevelGenerator {
 			GenerateNextStack(randomStack, ref shiftGameObjects);
 			InsertPigs(randomStack, ref shiftGameObjects);
 		}
+		
+		FixLevelSize(ref shiftGameObjects);
 		
 		return shiftGameObjects;
 	}
@@ -178,8 +189,10 @@ public class RandomLG : ABLevelGenerator {
 				// If last element in stack is already a circle, replace it with a pig
 				if(shiftGameObjects[i].Last.Value.Type == 1)
 				{
-					shiftGameObjects[i].Last.Value.IsDouble = false;
-					shiftGameObjects[i].Last.Value.Label = GameWorld.Instance.Templates.Length;
+					ShiftABGameObject pig = new ShiftABGameObject();
+					pig.Label = GameWorld.Instance.Templates.Length;
+					shiftGameObjects[i].Last.Value = pig;
+					
 					pigsAdded++;
 				}
 				else

@@ -10,33 +10,28 @@ public class AngryBirdsGen
 
 	public AngryBirdsGen()
 	{
+		birdsAmount = 0;
 		gameObjects = new List<LinkedList<ShiftABGameObject>>();
 	}
 
 	public override int GetHashCode()
 	{
-		unchecked
-		{
-			int hash = 17;
+		unchecked {
+		    const int prime = 17;
 
-			// get hash code for the birds amount
-			hash = hash * 23 + birdsAmount.GetHashCode();
+			int hash = prime + birdsAmount;
 
 			// get hash code for all items in array
 		   	for(int i = 0; i < gameObjects.Count; i++)
 			{
+				int subHash = 0;
+			
 				if(gameObjects[i].Count > 0)
-				{
-					for (LinkedListNode<ShiftABGameObject> obj = gameObjects[i].First; obj != gameObjects[i].Last.Next; obj = obj.Next)
-					{
-						hash = (hash * 23) + obj.Value.Label.GetHashCode();
-						hash = (hash * 23) + obj.Value.IsDouble.GetHashCode();
-					}
-				}
-				else
-				{
-					hash = (hash * 23) + i.GetHashCode();
-				}
+				
+					for(LinkedListNode<ShiftABGameObject> obj1 = gameObjects[i].First; obj1 != gameObjects[i].Last.Next; obj1 = obj1.Next)
+						subHash = subHash * 3 + obj1.Value.GetHashCode();
+					
+				hash = hash * prime + subHash;
 			}
 
 			return hash;
@@ -44,30 +39,32 @@ public class AngryBirdsGen
 	}
 
     public bool Equals(AngryBirdsGen otherGen)
-   	{		
+   	{
+        // if (ReferenceEquals(null, otherGen)) return false;
+        // if (ReferenceEquals(this, otherGen)) return true;
+		
+		// the amount of birds must be the same
 		if(birdsAmount != otherGen.birdsAmount)
 			return false;
 
+		// the amount of stacks must be the same
 		if(gameObjects.Count != otherGen.gameObjects.Count)
 			return false;
 
-	   	for(int i = 0; i < gameObjects.Count; i++)
+	   	for(int i = 0; i < gameObjects.Count && i < otherGen.gameObjects.Count; i++)
 		{
+			// the height of each stack must be the same
 			if(gameObjects[i].Count != otherGen.gameObjects[i].Count)
 				return false;
 			
-			if(gameObjects[i].Count > 0 && otherGen.gameObjects[i].Count > 0)
-			{				
-				LinkedListNode<ShiftABGameObject> obj1, obj2;
-		
-				for (obj1 = gameObjects[i].First, obj2 = otherGen.gameObjects[i].First; 
-				     obj1 != gameObjects[i].Last.Next && obj2 != otherGen.gameObjects[i].Last.Next; 
-					 obj1 = obj1.Next, obj2 = obj2.Next)
-				{
-					if(obj1.Value.Label != obj2.Value.Label)
-						return false;
+			if(gameObjects[i].Count > 0)
+			{
+				LinkedListNode<ShiftABGameObject> obj1 = gameObjects[i].First;
+				LinkedListNode<ShiftABGameObject> obj2 = otherGen.gameObjects[i].First;
 
-					if(obj1.Value.IsDouble != obj2.Value.IsDouble)
+				for(; obj1 != gameObjects[i].Last.Next && obj2 != otherGen.gameObjects[i].Last.Next; obj1 = obj1.Next, obj2 = obj2.Next)
+				{
+					if(!obj1.Value.Equals(obj2.Value))
 						return false;
 				}
 			}
@@ -75,26 +72,11 @@ public class AngryBirdsGen
 
 		return true;
    }
-
-    public override bool Equals(object obj)
-    {
-        if (obj == null)
-            return base.Equals(obj);
-
-        if (!(obj is AngryBirdsGen))
-
-            throw new InvalidCastException("The Object isn't of Type AngryBirdsGen.");
-        else
-            return Equals(obj as AngryBirdsGen);
-    }
-
-    public static bool operator ==(AngryBirdsGen person1, AngryBirdsGen person2)
-    {
-        return person1.Equals(person2);
-    }
-
-    public static bool operator !=(AngryBirdsGen person1, AngryBirdsGen person2)
-    {
-        return (!person1.Equals(person2));
-    }
+ 
+	public override bool Equals(object obj)
+	{
+	    // Since our other Equals() method already compares guys, we'll just call it.
+	    // if (!(obj is AngryBirdsGen)) return false;
+	    return Equals((AngryBirdsGen)obj);
+	}
 }

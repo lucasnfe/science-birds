@@ -108,7 +108,7 @@ public class GameWorld : MonoBehaviour {
 		Transform blocks = transform.FindChild("Blocks");
 
 		Rigidbody2D []bodies = blocks.GetComponentsInChildren<Rigidbody2D>();
-		
+
 		foreach(Rigidbody2D body in bodies)
 		{
 			Transform b = body.transform;
@@ -116,9 +116,9 @@ public class GameWorld : MonoBehaviour {
 			if(IsObjectOutOfWorld(b))
 			{
 				if(b.GetComponent<Pig>() != null)
-					
+
 					b.GetComponent<Pig>().Die();
-				else		
+				else
 					Destroy(b.gameObject);
 			}
 		}
@@ -303,7 +303,8 @@ public class GameWorld : MonoBehaviour {
 
 			foreach(Rigidbody2D body in bodies)
 			{
-				totalVelocity += body.velocity.magnitude;
+				if(IsObjectOutOfWorld(body.transform))
+					totalVelocity += body.velocity.magnitude;
 			}
 		}
 
