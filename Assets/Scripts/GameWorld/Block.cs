@@ -34,7 +34,9 @@ public class Block : MonoBehaviour {
 		if(_receivedDamage >= _life/_images.Length)
 		{
 			GetComponent<SpriteRenderer>().sprite = _images[_imgChangedTimes];
-			Camera.main.audio.PlayOneShot(_damageClip[0], 1.0f);
+			
+			if(!GameWorld.Instance._isSimulation)
+				GameWorld.Instance.audio.PlayOneShot(_damageClip[0], 1.0f);
 
 			_imgChangedTimes++;
 			_receivedDamage = 0;
@@ -42,7 +44,9 @@ public class Block : MonoBehaviour {
 
 		if(_imgChangedTimes == _images.Length)
 		{
-			Camera.main.audio.PlayOneShot(_damageClip[1], 1.0f);
+			if(!GameWorld.Instance._isSimulation)
+				GameWorld.Instance.audio.PlayOneShot(_damageClip[1], 1.0f);
+
 			Explode();
 		}
 	}

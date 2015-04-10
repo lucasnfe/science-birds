@@ -146,14 +146,14 @@ public class GeneticAlgorithm<T> {
 	
 	public void GetBest(out T values, out float fitness) {
 
-		_thisGeneration.Sort(new GenomeComparer<T>());
-		GetNthGenome(_populationSize - 1, out values, out fitness);
+		// _thisGeneration.Sort(new GenomeComparer<T>());
+		GetNthGenome(0, out values, out fitness);
 	}
 
 	public void GetWorst(out T values, out float fitness) {
 
-		_thisGeneration.Sort(new GenomeComparer<T>());
-		GetNthGenome(0, out values, out fitness);
+		// _thisGeneration.Sort(new GenomeComparer<T>());
+		GetNthGenome(_populationSize - 1, out values, out fitness);
 	}
 	
 	public void GetNthGenome(int n, out T values, out float fitness) {
@@ -221,7 +221,7 @@ public class GeneticAlgorithm<T> {
 
 		Array.Sort(tournamentPopulation, new GenomeComparer<T>());
 	
-		return tournamentPopulation[size - 1];
+		return tournamentPopulation[0];
 	}
 	
 	public void CreateNextGeneration()
@@ -245,7 +245,7 @@ public class GeneticAlgorithm<T> {
 		}
 		
 		if (_elitism)
-			_nextGeneration[0] = (Genome<T>)_thisGeneration[_populationSize - 1];
+			_nextGeneration[UnityEngine.Random.Range(0, _nextGeneration.Count)] = (Genome<T>)_thisGeneration[0];
 		
 		_thisGeneration.Clear();
 		

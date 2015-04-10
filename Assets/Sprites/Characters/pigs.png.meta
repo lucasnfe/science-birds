@@ -1,6 +1,15 @@
 fileFormatVersion: 2
 guid: 2888d33e510de4292be77f3f729b2658
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: pigs_0
+    21300002: pigs_1
+    21300004: pigs_2
+    21300006: pigs_3
+    21300008: pigs_4
+    21300010: pigs_5
+    21300012: pigs_6
+    21300014: pigs_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -20,8 +29,8 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 1024
+  textureFormat: -1
+  maxTextureSize: 256
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -46,69 +55,69 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 60
-        width: 61
+        y: 66
+        width: 62
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pigs_1
       rect:
         serializedVersion: 2
         x: 63
-        y: 60
+        y: 66
         width: 62
-        height: 60
+        height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pigs_2
       rect:
         serializedVersion: 2
-        x: 126
-        y: 61
-        width: 62
+        x: 125
+        y: 67
+        width: 63
         height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pigs_3
       rect:
         serializedVersion: 2
-        x: 189
-        y: 61
-        width: 61
-        height: 60
+        x: 188
+        y: 68
+        width: 62
+        height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pigs_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 6
         width: 62
         height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pigs_5
       rect:
         serializedVersion: 2
         x: 188
-        y: 0
-        width: 62
+        y: 6
+        width: 64
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: pigs_6
       rect:
         serializedVersion: 2
-        x: 63
-        y: 0
-        width: 62
-        height: 58
+        x: 62
+        y: 4
+        width: 63
+        height: 60
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -116,9 +125,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 125
-        y: 0
+        y: 6
         width: 62
-        height: 59
+        height: 61
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

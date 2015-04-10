@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &309083409
 GameObject:
@@ -133,7 +134,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 518940332}
   - 82: {fileID: 518940331}
-  - 114: {fileID: 518940333}
   m_Layer: 0
   m_Name: SharedContent
   m_TagString: Untagged
@@ -152,7 +152,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 6eb8fb27fbefa44a39c2cfca41ec28b3, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .899999976
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -214,18 +214,6 @@ Transform:
   - {fileID: 309083410}
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &518940333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 92b3d6fa1156542cd8e15e56b209b70d,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 518940330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e861b63a632d41739c07f80526f5857, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &757994989
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +454,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: GameModesMenu
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -528,8 +516,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ignoreReversedGraphics: 1
-  blockingObjects: 0
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295

@@ -8,8 +8,8 @@ public class Pig : Character {
 
 	public override void Die()
 	{
-		Camera.main.audio.PlayOneShot(_clips[0], 1f);
-
+		PlayAudio(0);
+		
 		if(!GameWorld.Instance._isSimulation)
 			GameWorld.Instance.AddTrajectoryParticle(dustEffect, transform.position, name);
 

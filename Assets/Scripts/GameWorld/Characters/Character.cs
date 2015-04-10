@@ -26,8 +26,8 @@ public class Character : MonoBehaviour {
 	
 	protected void PlayAudio(int audioIndex)
 	{
-		if(_clips.Length > audioIndex)
-			audio.PlayOneShot(_clips[audioIndex], 1.0f);
+		if(_clips.Length > audioIndex && !GameWorld.Instance._isSimulation)
+			GameWorld.Instance.audio.PlayOneShot(_clips[audioIndex], 1.0f);
 	}
 
 	public bool IsIdle()

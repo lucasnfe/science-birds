@@ -2,16 +2,6 @@
 using System;
 using System.Collections.Generic;
 
-public class ABLevel 
-{
-	public int birdsAmount;
-	
-	public float width;
-	public float height;
-	
-	public List<ABGameObject> gameObjects;
-}
-
 public abstract class ABLevelGenerator : MonoBehaviour {
 
 	public int _birdsMaxAmount = 0;

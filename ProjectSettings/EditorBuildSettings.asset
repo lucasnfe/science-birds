@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scenes/GameModes/Level1.unity
   - enabled: 1
     path: Assets/Scenes/GameModes/Level2.unity
+  - enabled: 1
+    path: Assets/Scenes/GameModes/Level3.unity

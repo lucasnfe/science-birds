@@ -40,7 +40,7 @@ public class RandomLG : ABLevelGenerator {
 		float levelLeftBound = ground.transform.position.x - ground.collider2D.bounds.size.x/2f;
 		float slingDistFromLeftBound = GameWorld.Instance._slingshot.position.x - levelLeftBound;
 		
-		_levelPlayableWidth = (ground.collider2D.bounds.size.x - slingDistFromLeftBound) - 3f;
+		_levelPlayableWidth = (ground.collider2D.bounds.size.x - slingDistFromLeftBound) - 1f;
 		
 		base.Start();
 	}

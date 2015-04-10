@@ -1,6 +1,15 @@
 fileFormatVersion: 2
 guid: f6ad69fe059654954a5752783b7861dd
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: dust_0
+    21300002: dust_1
+    21300004: dust_2
+    21300006: dust_3
+    21300008: dust_4
+    21300010: dust_5
+    21300012: dust_7
+    21300014: dust_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -20,8 +29,8 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 1024
+  textureFormat: -1
+  maxTextureSize: 512
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -35,13 +44,14 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings:
   - buildTarget: iPhone
-    maxTextureSize: 1024
-    textureFormat: -2
+    maxTextureSize: 512
+    textureFormat: -1
     compressionQuality: 50
   spriteSheet:
     sprites:
@@ -49,64 +59,71 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 42
+        y: 103
         width: 19
         height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: dust_1
       rect:
         serializedVersion: 2
         x: 27
-        y: 39
+        y: 100
         width: 26
         height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: dust_2
       rect:
         serializedVersion: 2
-        x: 59
-        y: 22
-        width: 49
-        height: 43
+        x: 56
+        y: 83
+        width: 52
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: dust_3
       rect:
         serializedVersion: 2
-        x: 113
-        y: 5
-        width: 62
-        height: 60
+        x: 112
+        y: 64
+        width: 63
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: dust_4
       rect:
         serializedVersion: 2
         x: 181
-        y: 2
+        y: 63
         width: 68
         height: 65
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: dust_5
       rect:
         serializedVersion: 2
         x: 254
-        y: 1
+        y: 62
         width: 69
         height: 66
       alignment: 0
       pivot: {x: .5, y: .5}
-    - name: dust_7
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: dust_6
       rect:
         serializedVersion: 2
         x: 331
-        y: 0
+        y: 60
         width: 69
-        height: 65
+        height: 68
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

@@ -10,6 +10,7 @@ public class GameplayCamera : MonoBehaviour {
 	private float _dragDistance;
 
 	public float _dampTime;
+	public float _cameraMaxWidth;
 
 	void Awake()
 	{
@@ -58,14 +59,12 @@ public class GameplayCamera : MonoBehaviour {
 
 	public float LeftBound()
 	{
-		float levelWidth = GameWorld.Instance._ground.collider2D.bounds.size.x;
-		return _initialCameraRect.width/2f - levelWidth/2f;
+		return _initialCameraRect.width/2f - _cameraMaxWidth/2f;
 	}
 
 	public float RightBound()
 	{
-		float levelWidth = GameWorld.Instance._ground.collider2D.bounds.size.x;
-		return levelWidth/2f - _initialCameraRect.width/2f;
+		return _cameraMaxWidth/2f - _initialCameraRect.width/2f;
 	}
 	
 	public void DragCamera(Vector3 dragDistance)
@@ -89,16 +88,16 @@ public class GameplayCamera : MonoBehaviour {
 	public void SetCameraWidth(float width)
 	{
 		_initialCameraRect.width = width;
-		
-		float levelWidth = GameWorld.Instance._ground.collider2D.bounds.size.x;
-		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, levelWidth);
+		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _cameraMaxWidth);
 	}
 	
 	public void ZoomCamera(float zoomFactor)
 	{
-		_initialCameraRect.width += zoomFactor;
-		float levelWidth = GameWorld.Instance._ground.collider2D.bounds.size.x;
-		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, levelWidth);
+		if(!GameWorld.Instance._isSimulation)
+		{
+			_initialCameraRect.width += zoomFactor;
+			_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _cameraMaxWidth);
+		}
 	}
 
 	public Rect CalculateCameraRect()

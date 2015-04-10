@@ -34,6 +34,8 @@ public class GameWorld : MonoBehaviour {
 	
 	public BirdAgent _birdAgent;
 	public GameplayCamera _camera;
+	
+	public AudioClip[] _clips;
 
 	// Game world properties
 	public bool _isSimulation;

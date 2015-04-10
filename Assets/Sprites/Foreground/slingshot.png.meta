@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 guid: 4908e30de8d124063b6beb978cd2c612
 TextureImporter:
+  fileIDToRecycleName:
+    21300000: slingshot_0
+    21300002: slingshot_1
+    21300004: slingshot_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -20,8 +24,8 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 1024
+  textureFormat: -1
+  maxTextureSize: 256
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -45,18 +49,18 @@ TextureImporter:
     - name: slingshot_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 158
+        x: 34
+        y: 174
         width: 16
-        height: 26
+        height: 28
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: slingshot_1
       rect:
         serializedVersion: 2
-        x: 48
-        y: 21
+        x: 69
+        y: 39
         width: 38
         height: 199
       alignment: 0
@@ -65,8 +69,8 @@ TextureImporter:
     - name: slingshot_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 21
+        y: 18
         width: 43
         height: 124
       alignment: 0
