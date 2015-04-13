@@ -505,6 +505,7 @@ MonoBehaviour:
   - {fileID: 144284, guid: f2933cc5c145d48f6a07a11c80b7b653, type: 2}
   - {fileID: 100000, guid: f1bce895734274594872e850313d133c, type: 2}
   - {fileID: 100000, guid: 67d4a8b6ad00a46629c834c23d8c56d0, type: 2}
+  _levelSource: {fileID: 917960615}
   _birdAgent: {fileID: 0}
   _camera: {fileID: 499741096}
   _clips: []
@@ -1007,7 +1008,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f14937433f14b669c5eda63d19c2c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _birdsMaxAmount: 5
   _duplicateProbability: .5
 --- !u!4 &917960616
 Transform:
@@ -1141,9 +1141,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1080728305}
-        m_MethodName: LoadLevel
-        m_Mode: 5
+      - m_Target: {fileID: 377003482}
+        m_MethodName: ResetLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,

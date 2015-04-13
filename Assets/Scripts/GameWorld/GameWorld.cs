@@ -2,26 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameWorld : MonoBehaviour {
+public class GameWorld : ABSingleton<GameWorld> {
 
-	private int _birdsThrown;
-	
 	private List<Pig>  _pigs;
 	private List<Bird> _birds;
-	
 	private Bird _lastThrownBird;
-	
+	private static ABLevel _currentLevel;
+
+	private int _birdsThrown;
+
 	private int _pigsAtStart;
-	public int PigsAtStart() { return _pigsAtStart; }
+	public int PigsAtStart { 
+		get { return _pigsAtStart; }
+	}
 	
 	private int _birdsAtStart;
-	public int BirdsAtStart() { return _birdsAtStart; }
+	public int BirdsAtStart { 
+		get { return _birdsAtStart; }
+	}
 
 	private int _blocksAtStart;
-	public int BlocksAtStart() { return _blocksAtStart; }
+	public int BlocksAtStart { 
+		get { return _blocksAtStart; }
+	}
 	
 	private int _stabilityUntilFirstBird;
-	public int StabilityUntilFirstBird() { return _stabilityUntilFirstBird; } 
+	public int StabilityUntilFirstBird { 
+		get { return _stabilityUntilFirstBird; }
+	}
 
 	// Main game components
 	public Transform _slingshot;
@@ -31,6 +39,8 @@ public class GameWorld : MonoBehaviour {
 	public GameObject _pig;
 	public GameObject _bird;
 	public GameObject []Templates;
+
+	public LevelSource _levelSource;
 	
 	public BirdAgent _birdAgent;
 	public GameplayCamera _camera;
@@ -41,26 +51,9 @@ public class GameWorld : MonoBehaviour {
 	public bool _isSimulation;
 	public float _timeToResetLevel = 1f;
 	public Vector3 _slingSelectPos;
-	
-	//Here is a private reference only this class can access
-	private static GameWorld _instance;
-	
-	//This is the public reference that other classes will use
-	public static GameWorld Instance
-	{
-		get
-		{
-			//If _instance hasn't been set yet, we grab it from the scene!
-			//This will only happen the first time this reference is used.
-			if(_instance == null)
-				_instance = GameObject.FindObjectOfType<GameWorld>();
 
-			return _instance;
-		}
-	}
-	
 	// Use this for initialization
-	void Awake () 
+	void Start () 
 	{	
 		_pigs = new List<Pig>();
 		_birds = new List<Bird>();
@@ -70,6 +63,48 @@ public class GameWorld : MonoBehaviour {
 		_slingSelectPos.x += selectPos.x;
 		_slingSelectPos.y += selectPos.y;
 		_slingSelectPos.z += _slingshot.FindChild("slingshot_front").transform.position.z;
+
+		if(_currentLevel == null && _levelSource != null)
+			_currentLevel = _levelSource.NextLevel();
+
+		if(_currentLevel != null)
+		{
+			DecodeLevel(_currentLevel.gameObjects, _currentLevel.birdsAmount);
+			AdaptCameraWidthToLevel();
+		}
+	}
+
+	public void DecodeLevel(List<ABGameObject> gameObjects, int birdsAmount) 
+	{
+		ClearWorld();
+
+		foreach(ABGameObject gameObj in gameObjects)
+		{
+			if(gameObj.Label < GameWorld.Instance.Templates.Length)
+				
+				AddBlock(GameWorld.Instance.Templates[gameObj.Label], gameObj.Position, 
+				                            GameWorld.Instance.Templates[gameObj.Label].transform.rotation);
+			else
+				AddPig(GameWorld.Instance._pig, gameObj.Position, 
+				                          GameWorld.Instance._pig.transform.rotation);
+		}
+		
+		//First bird must be in the slingshot
+		AddBird(_bird, _slingSelectPos, _bird.transform.rotation, "bird0", true);
+		
+		if(birdsAmount > 0)
+		{
+			Vector3 birdsPos = _slingshot.transform.position;
+			birdsPos.y = _ground.collider2D.bounds.center.y + _ground.collider2D.bounds.size.y/2f;
+			
+			for(int i = 0; i < birdsAmount; i++)
+			{
+				birdsPos.x -= _bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
+				GameWorld.Instance.AddBird(_bird, birdsPos, _bird.transform.rotation, "bird" + (i+1));
+			}
+		}
+		
+		StartWorld();
 	}
 
 	// Update is called once per frame
@@ -89,7 +124,7 @@ public class GameWorld : MonoBehaviour {
 			
 			// Calculate stability until first birds is trown
 			if(_birdsThrown == 0)
-				_stabilityUntilFirstBird += (BlocksAtStart() - GetBlocksAvailableAmount());
+				_stabilityUntilFirstBird += (BlocksAtStart - GetBlocksAvailableAmount());
 
 			// Wait the level stay stable before tthrowing next bird
 			if(!IsLevelStable())
@@ -170,9 +205,9 @@ public class GameWorld : MonoBehaviour {
 		return null;
 	}
 
-	void ResetLevel()
+	public void ResetLevel()
 	{
-		Application.LoadLevel(Application.loadedLevel);
+		SceneManager.Instance.LoadScene(Application.loadedLevel);
 	}
 
 	public void AddTrajectoryParticle(GameObject particleTemplate, Vector3 position, string parentName)
@@ -226,8 +261,12 @@ public class GameWorld : MonoBehaviour {
 		
 		if(_pigs.Count == 0)
 		{
-			if(!_isSimulation)
+			// Check if player won the game
+			if(!_isSimulation) 
+			{
+				_currentLevel = _levelSource.NextLevel();
 				Invoke("ResetLevel", _timeToResetLevel);
+			}
 			
 			return;
 		}
@@ -239,6 +278,7 @@ public class GameWorld : MonoBehaviour {
 		
 		if(_birds.Count == 0)
 		{
+			// Check if player lost the game
 			if(!_isSimulation)
 				Invoke("ResetLevel", _timeToResetLevel);
 
@@ -305,7 +345,7 @@ public class GameWorld : MonoBehaviour {
 
 			foreach(Rigidbody2D body in bodies)
 			{
-				if(IsObjectOutOfWorld(body.transform))
+				if(!IsObjectOutOfWorld(body.transform))
 					totalVelocity += body.velocity.magnitude;
 			}
 		}
@@ -351,5 +391,33 @@ public class GameWorld : MonoBehaviour {
 		
 		_birdsThrown = 0;
 		_stabilityUntilFirstBird = 0;
+	}
+
+	private void AdaptCameraWidthToLevel() {
+		
+		// Adapt the camera to show all the blocks		
+		float levelLeftBound = _ground.transform.position.x - _ground.collider2D.bounds.size.x/2f;
+				
+		float minPosX = Mathf.Infinity;
+		float maxPosX = 0f;
+		float maxPosY = 0f;
+
+		// Get position of first non-empty stack
+		for(int i = 0; i < _currentLevel.gameObjects.Count; i++)
+		{
+			if(_currentLevel.gameObjects[i].Position.x < minPosX)
+				minPosX = _currentLevel.gameObjects[i].Position.x;
+			
+			if(_currentLevel.gameObjects[i].Position.x > maxPosX)
+				maxPosX = _currentLevel.gameObjects[i].Position.x;
+
+			if(_currentLevel.gameObjects[i].Position.y > maxPosY)
+				maxPosY = _currentLevel.gameObjects[i].Position.y;
+		}
+
+		float cameraWidth = Mathf.Abs(minPosX - levelLeftBound) + Mathf.Max(maxPosX, maxPosY) + 4f;
+		Debug.Log (cameraWidth);
+
+		_camera.SetCameraWidth(cameraWidth);		
 	}
 }

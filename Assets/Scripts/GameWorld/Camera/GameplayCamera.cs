@@ -38,7 +38,7 @@ public class GameplayCamera : MonoBehaviour {
 			else
 			{
 				if(_dragDistance < 0f)
-					
+
 					cameraNextPos.x = RightBound();
 				else
 					cameraNextPos.x = LeftBound();

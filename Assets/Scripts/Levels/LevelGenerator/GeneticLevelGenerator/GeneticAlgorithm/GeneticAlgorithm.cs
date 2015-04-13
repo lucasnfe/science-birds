@@ -26,9 +26,6 @@ public class GeneticAlgorithm<T> {
 	// Genetic Algorithm data structures
 	private ArrayList _thisGeneration;
 	private ArrayList _nextGeneration;
-	private ArrayList _fitnessTable;
-	
-	static System.Random m_random = new System.Random();
 	
 	static private GAFitnessFunction getFitness;
 
@@ -181,9 +178,6 @@ public class GeneticAlgorithm<T> {
 
 		if (getMutation == null)
 			throw new ArgumentNullException("Need to supply mutation function");
-		
-		//  Create the fitness table.
-		_fitnessTable = new ArrayList();
 
 		// Create current and next generations
 		_thisGeneration = new ArrayList(_generationSize);

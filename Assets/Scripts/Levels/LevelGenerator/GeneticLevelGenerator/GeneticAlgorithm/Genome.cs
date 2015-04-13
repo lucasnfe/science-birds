@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Genome<T> {
 	
-	private float _fitness;
+	private float _fitness = UnityEngine.Mathf.Infinity;
 
 	private static float _mutationRate;
 

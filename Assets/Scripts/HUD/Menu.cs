@@ -5,6 +5,6 @@ public class Menu : MonoBehaviour {
 
 	public void LoadLevel(string sceneName)
 	{
-		Application.LoadLevel(sceneName);
+		SceneManager.Instance.LoadScene(sceneName);
 	}
 }

@@ -67,7 +67,7 @@ public class ShiftABGameObject : ABGameObject
 		
 		return baseBounds;
 	}
-
+	
 	public void AddObjectInside(ShiftABGameObject obj)
 	{
 		_underObjectsHeight += obj.GetBounds().size.y;
@@ -90,7 +90,6 @@ public class ShiftABGameObject : ABGameObject
    	{		
         // if (ReferenceEquals(null, otherGen)) return false;
         // if (ReferenceEquals(this, otherGen)) return true;
-
 		return (Label == otherGen.Label && IsDouble == otherGen.IsDouble && Type == otherGen.Type);
    }
  

@@ -14,6 +14,7 @@ TextureImporter:
     21300018: hud_9
     21300020: hud_10
     21300022: hud_11
+    21300024: hud_12
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -172,6 +173,16 @@ TextureImporter:
         y: 420
         width: 78
         height: 83
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: hud_12
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 335
+        width: 291
+        height: 80
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

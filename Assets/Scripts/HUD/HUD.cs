@@ -77,11 +77,6 @@ public class HUD : MonoBehaviour {
 			float scrollDirection = Input.GetAxis("Mouse ScrollWheel");
 			CameraZoom(scrollDirection);
 		}
-
-		if(Input.GetKey("a"))
-		{
-			Application.LoadLevel(Application.loadedLevel);
-		}
 	}
 	
 	public void SetZoomIn(bool zoomIn)
