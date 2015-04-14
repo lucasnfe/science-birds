@@ -397,26 +397,30 @@ public class GameWorld : ABSingleton<GameWorld> {
 		
 		// Adapt the camera to show all the blocks		
 		float levelLeftBound = _ground.transform.position.x - _ground.collider2D.bounds.size.x/2f;
+		float groundSurfacePos = _ground.transform.position.x + _ground.collider2D.bounds.size.y/2f;
 				
-		float minPosX = Mathf.Infinity;
-		float maxPosX = 0f;
-		float maxPosY = 0f;
+		float minPosX = _currentLevel.gameObjects[0].Position.x - _currentLevel.gameObjects[0].GetBounds().size.x/2f;
+		float maxPosX = _currentLevel.gameObjects[0].Position.x + _currentLevel.gameObjects[0].GetBounds().size.x/2f; 
+		float maxPosY = _currentLevel.gameObjects[0].Position.y + _currentLevel.gameObjects[0].GetBounds().size.y/2f;
 
 		// Get position of first non-empty stack
 		for(int i = 0; i < _currentLevel.gameObjects.Count; i++)
 		{
-			if(_currentLevel.gameObjects[i].Position.x < minPosX)
-				minPosX = _currentLevel.gameObjects[i].Position.x;
-			
-			if(_currentLevel.gameObjects[i].Position.x > maxPosX)
-				maxPosX = _currentLevel.gameObjects[i].Position.x;
+			float minPosXCandidate = _currentLevel.gameObjects[i].Position.x - _currentLevel.gameObjects[i].GetBounds().size.x/2f;
+			if(minPosXCandidate < minPosX)
+				minPosX = minPosXCandidate;
 
-			if(_currentLevel.gameObjects[i].Position.y > maxPosY)
-				maxPosY = _currentLevel.gameObjects[i].Position.y;
+			float maxPosXCandidate = _currentLevel.gameObjects[i].Position.x + _currentLevel.gameObjects[i].GetBounds().size.x/2f;
+			if(maxPosXCandidate > maxPosX)
+				maxPosX = maxPosXCandidate;
+
+			float maxPosYCandidate = _currentLevel.gameObjects[i].Position.y + _currentLevel.gameObjects[i].GetBounds().size.y/2f;
+			if(maxPosYCandidate > maxPosY)
+				maxPosY = maxPosYCandidate;
 		}
 
-		float cameraWidth = Mathf.Abs(minPosX - levelLeftBound) + Mathf.Max(maxPosX, maxPosY) + 4f;
-		Debug.Log (cameraWidth);
+		float cameraWidth = Mathf.Abs(minPosX - levelLeftBound) + 
+			Mathf.Max(Mathf.Abs(maxPosX - minPosX), Mathf.Abs(maxPosY - groundSurfacePos)) + 0.5f;
 
 		_camera.SetCameraWidth(cameraWidth);		
 	}
