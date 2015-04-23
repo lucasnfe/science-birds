@@ -13,13 +13,11 @@ public class GeneticLG : RandomLG
 	private static int _experimentsIdx;
 	
 	// Control variables
-	private int _genomeIdx, _generationIdx, _averagingIdx;
+	private int _genomeIdx, _generationIdx;
 	private int _sameBestFitnessCount;
 	private bool _isRankingGenome;
 	private float _lastGenerationBestFitness;
-	
-	private float []_averagingFitness;
-	
+
 	private const string _logFile = "Assets/Experiments/generations.txt";
 	private const int _blocksMaxAmount = 100;
 	private const int _averagingAmount = 1;
@@ -48,7 +46,6 @@ public class GeneticLG : RandomLG
 	{
 		Debug.Log("Experiment n: " + _experimentsIdx);
 		
-		_averagingFitness = new float[_averagingAmount]; 
 		_fitnessCache = new Dictionary<AngryBirdsGen, float>();
 
 		// Generate a population of feaseble levels evaluated by an inteligent agent
@@ -61,7 +58,6 @@ public class GeneticLG : RandomLG
 
 		_isRankingGenome = false;
 		_generationIdx = 0;
-		_averagingIdx = 0;
 		_genomeIdx = 0;
 
 		// Set time scale to acelerate evolution
@@ -83,16 +79,16 @@ public class GeneticLG : RandomLG
 	{
 		if(!_isRankingGenome)
 		{
-			if(_averagingIdx == 0)
-			{
-				float fitness = 0f;
-				_geneticAlgorithm.GetNthGenome(_genomeIdx, out _lastgenome, out fitness);
-			}
+			float fitness = Mathf.Infinity;
+			_geneticAlgorithm.GetNthGenome(_genomeIdx, out _lastgenome, out fitness);
 
 			_fitnessEvaluation++;
 
 			if(!_fitnessCache.ContainsKey(_lastgenome))
+			{
+				GameWorld.Instance.ClearWorld();
 				StartEvaluatingGenome();
+			}
 			else
 			{
 			 	_genomeIdx++;
@@ -116,11 +112,10 @@ public class GeneticLG : RandomLG
 			
 			float bestFitness = CheckStopCriteria();
 			SaveGenerationLog();
-			
-			_fitnessCache.Clear();
-			
-			if(_generationIdx < _geneticAlgorithm.Generations && _sameBestFitnessCount < 10 && bestFitness > 0)
-			
+
+			Debug.Log ("best = " + bestFitness);
+
+			if(_generationIdx < _geneticAlgorithm.Generations && _sameBestFitnessCount < 10 && bestFitness > 0f)
 				_geneticAlgorithm.CreateNextGeneration();
 			else
 				EndEvolution();
@@ -148,20 +143,8 @@ public class GeneticLG : RandomLG
 		float lk = GameWorld.Instance.GetBlocksAvailableAmount();
 		float sk = GameWorld.Instance.StabilityUntilFirstBird;
 				
-		float fitness = Fitness(pk, pi, li, lk, bi, bk, _d, sk);
-		
-		if(_averagingIdx < _averagingAmount)
-		{
-			_averagingFitness[_averagingIdx] = fitness;
-			_averagingIdx++;
-		}
-		
-		if(_averagingIdx == _averagingAmount)
-		{
-			_fitnessCache[_lastgenome] = ABMath.Average(_averagingFitness);
-			_averagingIdx = 0;	
-			_genomeIdx++;
-		}
+		_fitnessCache[_lastgenome] = Fitness(pk, pi, li, lk, bi, bk, _d, sk);		
+		_genomeIdx++;
 	}
 	
 	private float Fitness(float pk, float pi, float li, float lk, float bi, float bk, float d, float sk)
@@ -169,11 +152,13 @@ public class GeneticLG : RandomLG
 		float distBirds = Mathf.Abs(Mathf.Ceil(_bn * bi) - (bi - bk));
 		float distAmountBlocks = Mathf.Abs((Mathf.Ceil(d*_blocksMaxAmount) - li));
 		
-		return /*distBirds + distAmountBlocks +*/ (sk + pk);
+		return distBirds + distAmountBlocks + (sk + pk);
 	}
 
 	public float EvaluateUsingAI(AngryBirdsGen genome, int genomeIdx)
 	{
+		Debug.Log ("fitness = " + _fitnessCache[genome]);
+
 		return _fitnessCache[genome];
 	}
 	
@@ -191,7 +176,7 @@ public class GeneticLG : RandomLG
 		}
 		else
 		{		
-			float fitness = 0f;
+			float fitness = Mathf.Infinity;
 			AngryBirdsGen genome = new AngryBirdsGen();
 			_geneticAlgorithm.GetBest(out genome, out fitness);
 
@@ -210,12 +195,12 @@ public class GeneticLG : RandomLG
 
 			// Save file in xml for future use
 			LevelLoader.SaveXmlLevel(genome.level);
-							
-			// Disable AI and allow player to test the level
-			GameWorld.Instance._birdAgent.gameObject.SetActive(false);
-		
+
 			// Disable simulation
 			GameWorld.Instance._isSimulation = false;
+							
+			// Disable AI and allow player to test the level
+			Destroy(GameWorld.Instance._birdAgent.gameObject);
 		
 			// Destroy the generator
 			Destroy(this.gameObject);
@@ -224,7 +209,7 @@ public class GeneticLG : RandomLG
 	
 	private float CheckStopCriteria() 
 	{
-		float fitness = 0f;
+		float fitness = Mathf.Infinity;
 		AngryBirdsGen genome = new AngryBirdsGen();
 		_geneticAlgorithm.GetBest(out genome, out fitness);
 
@@ -376,7 +361,7 @@ public class GeneticLG : RandomLG
 	
 	private void SaveGenerationLog()
 	{
-		float fitness = 0f;
+		float fitness = Mathf.Infinity;
 		AngryBirdsGen genome = new AngryBirdsGen();
 		_geneticAlgorithm.GetBest(out genome, out fitness);
 		
@@ -391,7 +376,7 @@ public class GeneticLG : RandomLG
 	
 	private void SaveLog()
 	{
-		float fitness = 0f;
+		float fitness = Mathf.Infinity;
 		AngryBirdsGen genome = new AngryBirdsGen();
 		_geneticAlgorithm.GetBest(out genome, out fitness);
 		

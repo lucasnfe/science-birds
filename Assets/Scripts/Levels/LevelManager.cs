@@ -3,14 +3,11 @@ using System.Collections;
 
 public class LevelManager : LevelSource {
 
-	static int _currentLevel;
 	static ABLevel []_levels;
 
 	// Use this for initialization
 	public override ABLevel NextLevel() {
 	
-		Debug.Log (_currentLevel);
-
 		if(_currentLevel == 0)
 			_levels = LevelLoader.LoadAllLevels();
 
@@ -18,7 +15,7 @@ public class LevelManager : LevelSource {
 			return null;
 
 		ABLevel nextLevel = _levels[_currentLevel];
-		_currentLevel++;
+		base.NextLevel();
 
 		return nextLevel;
 	}

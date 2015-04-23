@@ -10,21 +10,22 @@ public struct QuestionaryItem {
 }
 
 public class Questionary : MonoBehaviour {
+	
+	private string _title;
+	private QuestionaryItem []_items;
 
 	public GameObject _questionPrefab;
 	public GameObject _scaleTogglePrefab;
 	public TextAsset _questionaryData;
 
-	private string _title;
-	private QuestionaryItem []_items;
-
 	public int _questionSize = 50;
 	public int _questionOffsetFromTitle = 15;
 	public int _toggleOffsetFromQuestion = 15;
+	public string _url;
 
 	// Use this for initialization
 	void Start () {
-	
+
 		if(_questionaryData != null) {
 
 			ParseQuestionaryData(_questionaryData.text);
@@ -43,8 +44,6 @@ public class Questionary : MonoBehaviour {
 
 			float posX = title.rectTransform.position.x;
 			float posY = scrollViewRect.position.y - _questionSize/2f;
-
-			Debug.Log (panelRect.sizeDelta.y);
 
 			for(int i = 0; i < _items.Length; i++) {
 
@@ -103,22 +102,98 @@ public class Questionary : MonoBehaviour {
 
 		string []lines = questionaryData.Split('\n');
 
-		if (lines.Length % 2 == 0) 
-			throw new UnityException("Questionary file must have an odd number of lines.");
+		if (lines.Length % 2 != 0) 
+			throw new UnityException("Questionary file must have an even number of lines.");
 
 		// First line is the questionary title
-		_title = lines[0];
-		_items = new QuestionaryItem[(lines.Length - 1)/2];
+		_title = "Level " + LevelSource.CurrentLevel.ToString();
+		_items = new QuestionaryItem[lines.Length/2];
 
 		// From now on, each pair of lines represents a question an its scale
-		for(int i = 1; i < lines.Length; i += 2) {
+		for(int i = 0; i < lines.Length; i += 2) {
 
 			QuestionaryItem item = new QuestionaryItem();
 
 			item.question = lines[i];
 			item.scale = lines[i + 1].Split(' ');
 
-			_items[(i - 1)/2] = item;
+			_items[i/2] = item;
 		}
+	}
+
+	string []GetAnswers() {
+
+		Transform panel = transform.FindChild("ScrollView/Panel");
+		ToggleGroup []toggleGroups = panel.GetComponentsInChildren<ToggleGroup>();
+		
+		string []answers = new string[toggleGroups.Length];
+		
+		for(int i = 0; i < toggleGroups.Length; i++) {
+			
+			int selectedGroup = 0;
+			Toggle []toggles = toggleGroups[i].transform.GetComponentsInChildren<Toggle>();
+			
+			for(int j = 0; j < toggles.Length; j++) {
+				
+				if(toggles[j].isOn) {
+					answers[i] = toggles[j].GetComponentInChildren<Text>().text;
+					break;
+				}
+			}
+		}
+
+		return answers;
+	}
+
+	private WWW CreateRequest(string url) {
+
+		string []answers = GetAnswers();
+
+		string envelopeAnswers = "";
+		foreach(string ans in answers)
+			envelopeAnswers += "<intf:answers>" + ans + "</intf:answers>";
+
+		string envelope = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>" +
+			"<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" " +
+			"xmlns:apachesoap=\"http://xml.apache.org/xml-soap\" " +
+			"xmlns:impl=\"http://questionaryserver.angrybirdsendless.org\" " +
+			"xmlns:intf=\"http://questionaryserver.angrybirdsendless.org\" " +
+			"xmlns:wsdl=\"http://schemas.xmlsoap.org/wsdl/\" " +
+			"xmlns:wsdlsoap=\"http://schemas.xmlsoap.org/wsdl/soap/\" " +
+			"xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" " +
+			"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">" +
+			"<SOAP-ENV:Body><intf:saveQuestionary xmlns:intf=\"http://questionaryserver.angrybirdsendless.org\">" +
+			"<intf:levelName>" + _title + "</intf:levelName>" +
+			envelopeAnswers +
+			"</intf:saveQuestionary>" +
+			"</SOAP-ENV:Body>" +
+			"</SOAP-ENV:Envelope>";
+
+		Hashtable headers = new Hashtable();
+
+		//headers["Host"] = "52.0.243.131";
+		headers["Content-Type"] = "text/xml; charset=utf-8";
+		//headers["Content-Length"] = envelope.Length.ToString();
+		headers["SOAPAction"] = "\"http://52.0.243.131:8080/ABQuestionaryServer/services/QuestionaryServer/saveQuestionary\"";
+
+		return new WWW (url, System.Text.Encoding.UTF8.GetBytes(envelope), headers);
+	}
+
+	public void SubmitQuestionary() {
+
+		StartCoroutine("SendQuestionary");
+	}
+
+	public IEnumerator SendQuestionary() {
+		
+		WWW www = CreateRequest(_url);
+		yield return www;
+
+		if (www.error == null) {
+
+			SceneManager.Instance.LoadScene("Level4");
+		}
+		else 
+			Debug.Log("Error submiting the Questionary: could not reach the server.");
 	}
 }

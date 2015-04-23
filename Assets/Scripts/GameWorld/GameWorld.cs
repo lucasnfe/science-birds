@@ -4,12 +4,13 @@ using System.Collections.Generic;
 
 public class GameWorld : ABSingleton<GameWorld> {
 
+	private int _birdsThrown;
+	
 	private List<Pig>  _pigs;
 	private List<Bird> _birds;
 	private Bird _lastThrownBird;
+	
 	private static ABLevel _currentLevel;
-
-	private int _birdsThrown;
 
 	private int _pigsAtStart;
 	public int PigsAtStart { 
@@ -58,6 +59,11 @@ public class GameWorld : ABSingleton<GameWorld> {
 		_pigs = new List<Pig>();
 		_birds = new List<Bird>();
 
+		if(!_isSimulation) {
+			audio.PlayOneShot(GameWorld.Instance._clips[0], 1.0f);
+			audio.PlayOneShot(GameWorld.Instance._clips[1], 1.0f);
+		}
+
 		// Calculating slingshot select position
 		Vector3 selectPos = _slingshot.transform.position;
 		_slingSelectPos.x += selectPos.x;
@@ -67,11 +73,13 @@ public class GameWorld : ABSingleton<GameWorld> {
 		if(_currentLevel == null && _levelSource != null)
 			_currentLevel = _levelSource.NextLevel();
 
-		if(_currentLevel != null)
+		if(_currentLevel != null) 
 		{
 			DecodeLevel(_currentLevel.gameObjects, _currentLevel.birdsAmount);
 			AdaptCameraWidthToLevel();
 		}
+		else
+			Application.LoadLevel("GameOver");
 	}
 
 	public void DecodeLevel(List<ABGameObject> gameObjects, int birdsAmount) 
@@ -205,6 +213,12 @@ public class GameWorld : ABSingleton<GameWorld> {
 		return null;
 	}
 
+	public void NextLevel()
+	{
+		_currentLevel = null;
+		SceneManager.Instance.LoadScene("Questionary");
+	}
+
 	public void ResetLevel()
 	{
 		SceneManager.Instance.LoadScene(Application.loadedLevel);
@@ -263,10 +277,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		{
 			// Check if player won the game
 			if(!_isSimulation) 
-			{
-				_currentLevel = _levelSource.NextLevel();
-				Invoke("ResetLevel", _timeToResetLevel);
-			}
+				Invoke("NextLevel", _timeToResetLevel);
 			
 			return;
 		}

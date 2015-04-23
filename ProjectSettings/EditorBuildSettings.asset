@@ -8,12 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
   - enabled: 0
-    path: Assets/Scenes/GameModesMenu.unity
-  - enabled: 1
-    path: Assets/Scenes/GameModes/Level2.unity
-  - enabled: 1
     path: Assets/Scenes/GameModes/Level1.unity
-  - enabled: 1
+  - enabled: 0
+    path: Assets/Scenes/GameModes/Level2.unity
+  - enabled: 0
     path: Assets/Scenes/GameModes/Level3.unity
   - enabled: 1
+    path: Assets/Scenes/GameModes/Level4.unity
+  - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
+  - enabled: 1
+    path: Assets/Scenes/Questionary.unity
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+  - enabled: 0
+    path: Assets/Scenes/GameModesMenu.unity

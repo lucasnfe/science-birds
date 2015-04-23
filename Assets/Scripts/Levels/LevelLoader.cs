@@ -9,7 +9,7 @@ public class LevelLoader : MonoBehaviour {
 	
 	public static ABLevel[] LoadAllLevels() {
 	
-		TextAsset []levelsXmlData = Resources.LoadAll<TextAsset>("");
+		TextAsset []levelsXmlData = Resources.LoadAll<TextAsset>("SavedLevels/");
 
 		ABLevel []levels = new ABLevel[levelsXmlData.Length];
 
@@ -83,7 +83,7 @@ public class LevelLoader : MonoBehaviour {
 
 		int levelsAmountInResources = LoadAllLevels().Length;
 
-		StreamWriter streamWriter = new StreamWriter("Assets/Resources/genetic-level-" + (levelsAmountInResources + 1) + ".xml");
+		StreamWriter streamWriter = new StreamWriter("Assets/Resources/SavedLevels/genetic-level-" + (levelsAmountInResources + 1) + ".xml");
 		streamWriter.WriteLine(output.ToString());
 		streamWriter.Close();
 	}

@@ -392,10 +392,12 @@ MonoBehaviour:
   - {fileID: 100000, guid: f1bce895734274594872e850313d133c, type: 2}
   - {fileID: 100000, guid: 67d4a8b6ad00a46629c834c23d8c56d0, type: 2}
   _levelSource: {fileID: 0}
-  _birdAgent: {fileID: 0}
+  _birdAgent: {fileID: 1826603323}
   _camera: {fileID: 1027947235}
-  _clips: []
-  _isSimulation: 0
+  _clips:
+  - {fileID: 8300000, guid: d6aabc3c34a094a859e527de492307b0, type: 3}
+  - {fileID: 8300000, guid: 8e23d7e7119f4462a8e04cce1916a33f, type: 3}
+  _isSimulation: 1
   _timeToResetLevel: 3
   _slingSelectPos: {x: -.150000006, y: .800000012, z: 1}
 --- !u!1 &312793114
@@ -919,8 +921,6 @@ GameObject:
   - 124: {fileID: 1027947241}
   - 92: {fileID: 1027947240}
   - 81: {fileID: 1027947239}
-  - 82: {fileID: 1027947238}
-  - 82: {fileID: 1027947237}
   - 114: {fileID: 1027947235}
   m_Layer: 0
   m_Name: Camera
@@ -987,122 +987,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
---- !u!82 &1027947237
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1027947233}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 8e23d7e7119f4462a8e04cce1916a33f, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: .899999976
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
---- !u!82 &1027947238
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1027947233}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: d6aabc3c34a094a859e527de492307b0, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: .899999976
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!81 &1027947239
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1605,8 +1489,8 @@ MonoBehaviour:
   _duplicateProbability: .5
   _bn: .5
   _d: .25
-  _populationSize: 30
-  _generationSize: 1
+  _populationSize: 100
+  _generationSize: 5
   _mutationRate: .100000001
   _crossoverRate: .949999988
   _elitism: 1

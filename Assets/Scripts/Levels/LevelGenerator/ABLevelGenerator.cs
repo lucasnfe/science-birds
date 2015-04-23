@@ -8,6 +8,8 @@ public abstract class ABLevelGenerator : LevelSource {
 
 	public override ABLevel NextLevel()
 	{
+		base.NextLevel();
+
 		return GenerateLevel();
 	}
 }
