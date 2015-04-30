@@ -6,20 +6,36 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Questionary/Introduction.unity
+  - enabled: 1
+    path: Assets/Scenes/Questionary/Profile.unity
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+  - enabled: 1
+    path: Assets/Scenes/Questionary/GroupA.unity
+  - enabled: 1
+    path: Assets/Scenes/GameModes/GeneratedLevels.unity
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
   - enabled: 0
     path: Assets/Scenes/GameModes/Level1.unity
   - enabled: 0
-    path: Assets/Scenes/GameModes/Level2.unity
-  - enabled: 0
-    path: Assets/Scenes/GameModes/Level3.unity
+    path: Assets/Scenes/LevelGeneration.unity
   - enabled: 1
-    path: Assets/Scenes/GameModes/Level4.unity
+    path: Assets/Scenes/GameModes/RovioLevels.unity
   - enabled: 1
-    path: Assets/Scenes/LoadingScene.unity
+    path: Assets/Scenes/Questionary/QuestionaryA.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary.unity
+    path: Assets/Scenes/Questionary/GroupB.unity
   - enabled: 1
-    path: Assets/Scenes/GameOver.unity
+    path: Assets/Scenes/Questionary/QuestionaryB.unity
+  - enabled: 1
+    path: Assets/Scenes/Questionary/TurinTest.unity
+  - enabled: 1
+    path: Assets/Scenes/Questionary/Revelation.unity
+  - enabled: 1
+    path: Assets/Scenes/Questionary/Similarity.unity
+  - enabled: 1
+    path: Assets/Scenes/Questionary/GameOver.unity
   - enabled: 0
     path: Assets/Scenes/GameModesMenu.unity

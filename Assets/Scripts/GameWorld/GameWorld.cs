@@ -9,7 +9,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 	private List<Pig>  _pigs;
 	private List<Bird> _birds;
 	private Bird _lastThrownBird;
-	
+
 	private static ABLevel _currentLevel;
 
 	private int _pigsAtStart;
@@ -52,7 +52,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public bool _isSimulation;
 	public float _timeToResetLevel = 1f;
 	public Vector3 _slingSelectPos;
-
+	
 	// Use this for initialization
 	void Start () 
 	{	
@@ -78,8 +78,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 			DecodeLevel(_currentLevel.gameObjects, _currentLevel.birdsAmount);
 			AdaptCameraWidthToLevel();
 		}
-		else
-			Application.LoadLevel("GameOver");
 	}
 
 	public void DecodeLevel(List<ABGameObject> gameObjects, int birdsAmount) 
@@ -216,7 +214,12 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public void NextLevel()
 	{
 		_currentLevel = null;
-		SceneManager.Instance.LoadScene("Questionary");
+
+		if(LevelSource.CurrentLevel % _levelSource.LevelLimit() == 0)
+
+			SceneManager.Instance.LoadScene(GameData.Instance.CurrentQuestionary);
+		else
+			SceneManager.Instance.LoadScene(Application.loadedLevel);
 	}
 
 	public void ResetLevel()

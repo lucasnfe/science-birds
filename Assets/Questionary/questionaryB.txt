@@ -1,0 +1,29 @@
+Immersion Questionary - Group B
+To what extent did the levels hold your attention?
+Not at All
+1 2 3 4 5
+A lot
+Did you feel that you were trying you best?
+Not at All
+1 2 3 4 5
+A lot
+To what extent did you lose track of time?
+Not at All
+1 2 3 4 5
+A lot
+To what extent did you find this levels challenging?
+Not at All
+1 2 3 4 5
+A lot
+Were there any times during this levels in which you just wanted to give up?
+Not at All
+1 2 3 4 5
+A lot
+To what extent did you find this levels easy?
+Not at All
+1 2 3 4 5
+A lot
+How much would you say you enjoyed playing this levels?
+Not at All
+1 2 3 4 5
+A lot

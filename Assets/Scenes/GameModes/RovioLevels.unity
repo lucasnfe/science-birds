@@ -254,45 +254,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 165724600}
---- !u!1 &214587416
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 214587418}
-  - 114: {fileID: 214587417}
-  m_Layer: 0
-  m_Name: AI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &214587417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 214587416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f174934b50024381b4d6ad354917d7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &214587418
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 214587416}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.52805519, y: -2.28139353, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
 --- !u!1 &389336839
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,9 +414,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 503529293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45f443bc893ac4a11bd384fe89fe093a, type: 3}
+  m_Script: {fileID: 11500000, guid: 188c5158bd7034cc991e4b8b27d0e072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelsSource:
+  - {fileID: 4900000, guid: 0633a48d1b7f9443aa8c809337ec4728, type: 3}
+  - {fileID: 4900000, guid: 0d1844cc02f7447869398ce7f76cb1ff, type: 3}
+  - {fileID: 4900000, guid: 43046ee632d0340dba062b59d85b5a1e, type: 3}
 --- !u!4 &503529295
 Transform:
   m_ObjectHideFlags: 0
@@ -2069,7 +2034,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 992641515}
-        m_MethodName: LoadLevel
+        m_MethodName: LoadLevelWithLoadingScreen
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

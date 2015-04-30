@@ -3,14 +3,16 @@ using System.Collections;
 
 public abstract class LevelSource : MonoBehaviour {
 
-	protected static int _currentLevel;
-	public static int CurrentLevel {
-		get{ return _currentLevel; }
+	public static int CurrentLevel { get; set; }
+
+	public virtual int LevelLimit() {
+
+		return 0;
 	}
 
 	public virtual ABLevel NextLevel() {
 
-		_currentLevel++;
+		CurrentLevel = CurrentLevel + 1;
 		return null;
 	}
 }

@@ -930,45 +930,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 621665878}
---- !u!1 &750809956
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 750809958}
-  - 114: {fileID: 750809957}
-  m_Layer: 0
-  m_Name: AI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &750809957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 750809956}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f174934b50024381b4d6ad354917d7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &750809958
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 750809956}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.52805519, y: -2.28139353, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
 --- !u!1 &766252851
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,7 +940,7 @@ GameObject:
   - 4: {fileID: 766252853}
   - 114: {fileID: 766252852}
   m_Layer: 0
-  m_Name: LevelGenerator
+  m_Name: LevelManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -993,10 +954,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 766252851}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39f14937433f14b669c5eda63d19c2c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 188c5158bd7034cc991e4b8b27d0e072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duplicateProbability: .5
+  _levelsSource:
+  - {fileID: 4900000, guid: 52a1bdfa830b041d3a274821655f04fa, type: 3}
+  - {fileID: 4900000, guid: 3d81a767c32b243999a91263625c992b, type: 3}
+  - {fileID: 4900000, guid: 0583f4139545b4c19a723f4f0842cc6c, type: 3}
 --- !u!4 &766252853
 Transform:
   m_ObjectHideFlags: 0
@@ -2043,7 +2007,7 @@ MonoBehaviour:
   - {fileID: 144284, guid: f2933cc5c145d48f6a07a11c80b7b653, type: 2}
   - {fileID: 100000, guid: f1bce895734274594872e850313d133c, type: 2}
   - {fileID: 100000, guid: 67d4a8b6ad00a46629c834c23d8c56d0, type: 2}
-  _levelSource: {fileID: 0}
+  _levelSource: {fileID: 766252852}
   _birdAgent: {fileID: 0}
   _camera: {fileID: 944210272}
   _clips:
@@ -2052,6 +2016,7 @@ MonoBehaviour:
   _isSimulation: 0
   _timeToResetLevel: 3
   _slingSelectPos: {x: -.150000006, y: .800000012, z: 1}
+  _questionaryToCall: QuestionaryA
 --- !u!82 &2085660553
 AudioSource:
   m_ObjectHideFlags: 0
