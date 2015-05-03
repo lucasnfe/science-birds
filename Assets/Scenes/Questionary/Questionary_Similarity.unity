@@ -323,7 +323,7 @@ GameObject:
   - 222: {fileID: 971834114}
   - 114: {fileID: 971834113}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Questions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,9 +609,9 @@ RectTransform:
   - {fileID: 875235237}
   m_Father: {fileID: 2013020101}
   m_RootOrder: 4
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: -284.719971}
+  m_AnchorMin: {x: .5, y: 0}
+  m_AnchorMax: {x: .5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 37}
   m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1489918918
@@ -662,7 +662,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: GameOver
+          m_StringArgument: Questionary_GameOver
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -918,9 +918,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2013020101}
   m_RootOrder: 2
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 285}
+  m_AnchorMin: {x: .5, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -37}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1933890726
@@ -1014,7 +1014,7 @@ MonoBehaviour:
   _scaleTogglePrefab: {fileID: 102082, guid: f2569a4d5f2ff44f9ad672eca98ffe4b, type: 2}
   _questionaryData: {fileID: 4900000, guid: a44d61f28162047408a6ee61cdb739b2, type: 3}
   _questionSize: 50
-  _questionOffsetFromTitle: 170
+  _questionOffsetFromTitle: 130
   _toggleOffsetFromQuestion: 20
 --- !u!114 &2013020103
 MonoBehaviour:
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 960, y: 640}
+  m_ReferenceResolution: {x: 850, y: 550}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1112,9 +1112,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Please answer the following questions by circling the relevant number. In
-    particular, remember that these questions are asking you about how you felt at
-    the end of the game.
+  m_Text: Please answer the following questions by selecting the relevant number.
+    In particular, remember that these questions are asking you about how you felt
+    at the end of the game.
 --- !u!222 &2111547912
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1133,9 +1133,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2013020101}
   m_RootOrder: 5
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 3.05175781e-05, y: 232.999969}
+  m_AnchorMin: {x: .5, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
+  m_AnchoredPosition: {x: 3.05175781e-05, y: -80}
   m_SizeDelta: {x: 800, y: 60}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &2118713227

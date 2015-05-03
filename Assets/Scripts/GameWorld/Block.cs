@@ -15,6 +15,10 @@ public class Block : MonoBehaviour {
 	{
 		if(!GameWorld.Instance._isSimulation)
 		{
+			GameWorld.Instance.SpawnPoint(5, transform.position);
+
+			ABAudioController.Instance.PlayMusic(_damageClip[1]);
+
 			//Instantiate our one-off particle system
 			ParticleSystem explosionEffect = Instantiate(DestructionEffect) as ParticleSystem;
 			explosionEffect.transform.position = transform.position;
@@ -36,18 +40,13 @@ public class Block : MonoBehaviour {
 			GetComponent<SpriteRenderer>().sprite = _images[_imgChangedTimes];
 			
 			if(!GameWorld.Instance._isSimulation)
-				GameWorld.Instance.audio.PlayOneShot(_damageClip[0], 1.0f);
+				audio.PlayOneShot(_damageClip[0]);
 
 			_imgChangedTimes++;
 			_receivedDamage = 0;
 		}
 
 		if(_imgChangedTimes == _images.Length)
-		{
-			if(!GameWorld.Instance._isSimulation)
-				GameWorld.Instance.audio.PlayOneShot(_damageClip[1], 1.0f);
-
 			Explode();
-		}
 	}
 }

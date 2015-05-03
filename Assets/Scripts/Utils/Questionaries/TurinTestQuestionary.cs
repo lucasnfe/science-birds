@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class TurinTestQuestionary : Questionary {
@@ -17,6 +17,6 @@ public class TurinTestQuestionary : Questionary {
 		
 		SaveToGameData();
 		yield return new WaitForSeconds(0.1f);
-		SceneManager.Instance.LoadScene(sceneToLoadAfterSubmit, false);		
+		ABSceneManager.Instance.LoadScene(sceneToLoadAfterSubmit, false);		
 	}
 }

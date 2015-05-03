@@ -12,13 +12,13 @@ PlayerSettings:
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: LucasFerreira
-  productName: AngryBirdsCover
+  productName: AngryBirdsEndless
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  defaultScreenWidth: 960
-  defaultScreenHeight: 640
-  defaultScreenWidthWeb: 960
-  defaultScreenHeightWeb: 640
+  defaultScreenWidth: 850
+  defaultScreenHeight: 550
+  defaultScreenWidthWeb: 850
+  defaultScreenHeightWeb: 550
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
@@ -142,7 +142,7 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_StaticBatching: 1
     m_DynamicBatching: 1
-  webPlayerTemplate: APPLICATION:Black Background
+  webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
   locationUsageDescription: 
   XboxTitleId: 
@@ -186,7 +186,7 @@ PlayerSettings:
   flashStrippingLevel: 2
   spritePackerPolicy: 
   scriptingDefineSymbols:
-    1: 2
+    1: 
     2: 2
   metroPackageName: AngryBirds
   metroPackageLogo: 

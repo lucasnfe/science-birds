@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class HUD : MonoBehaviour {
@@ -6,11 +7,21 @@ public class HUD : MonoBehaviour {
 	public float _zoomSpeed;
 	public float _dragSpeed;
 
+	public RectTransform  _scoreDisplay;
+
+	private bool _isZoomingIn; 
+	private bool _isZoomingOut;
+
+	private uint _totalScore;
+
 	private Vector3 _dragOrigin;
 	private Bird _selecetdBird;
-	
-	private bool _isZoomingIn, _isZoomingOut;
-	
+
+	void Start() {
+
+		SetScoreDisplay(_totalScore);
+	}
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -92,6 +103,18 @@ public class HUD : MonoBehaviour {
 	public void CameraZoom(float scrollDirection)
 	{
 		GameWorld.Instance._camera.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
+	}
+
+	public void SetScoreDisplay(uint score)
+	{
+		_totalScore = score;
+		_scoreDisplay.GetComponent<Text>().text = _totalScore.ToString();
+	}
+
+	public void AddScore(uint score)
+	{
+		_totalScore += score;
+		_scoreDisplay.GetComponent<Text>().text = _totalScore.ToString();
 	}
 
 	void LateUpdate()

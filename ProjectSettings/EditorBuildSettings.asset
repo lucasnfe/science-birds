@@ -6,13 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Questionary/Introduction.unity
+    path: Assets/Scenes/SplashScreen.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/Profile.unity
+    path: Assets/Scenes/Questionary/Questionary_Introduction.unity
+  - enabled: 1
+    path: Assets/Scenes/Questionary/Questionary_Profile.unity
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/GroupA.unity
+    path: Assets/Scenes/Questionary/Questionary_GroupAIntro.unity
   - enabled: 1
     path: Assets/Scenes/GameModes/GeneratedLevels.unity
   - enabled: 0
@@ -24,18 +26,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameModes/RovioLevels.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/QuestionaryA.unity
+    path: Assets/Scenes/Questionary/Questionary_GroupA.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/GroupB.unity
+    path: Assets/Scenes/Questionary/Questionary_GroupBIntro.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/QuestionaryB.unity
+    path: Assets/Scenes/Questionary/Questionary_GroupB.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/TurinTest.unity
+    path: Assets/Scenes/Questionary/Questionary_TurinTest.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/Revelation.unity
+    path: Assets/Scenes/Questionary/Questionary_Revelation.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/Similarity.unity
+    path: Assets/Scenes/Questionary/Questionary_Similarity.unity
   - enabled: 1
-    path: Assets/Scenes/Questionary/GameOver.unity
+    path: Assets/Scenes/Questionary/Questionary_GameOver.unity
   - enabled: 0
     path: Assets/Scenes/GameModesMenu.unity

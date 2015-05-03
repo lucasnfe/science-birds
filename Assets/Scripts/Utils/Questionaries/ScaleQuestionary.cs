@@ -61,11 +61,11 @@ public class ScaleQuestionary : Questionary {
 			scrollView.GetComponent<ScrollRect>().content = panelRect;
 		}
 	}
-	
+
 	void AddQuestion(string question, Vector2 position) {
 		
 		GameObject questionObj = Instantiate(_questionPrefab) as GameObject;
-		questionObj.transform.parent = _questions.transform;
+		questionObj.transform.SetParent(_questions.transform);
 		questionObj.name = "Question";
 		
 		Text questionText = questionObj.GetComponent<Text>();
@@ -78,13 +78,13 @@ public class ScaleQuestionary : Questionary {
 	void AddScale(string []scale, string scaleLowValueMeaning, string scaleHighValueMeaning, Vector2 position, float toggleWidth) {
 		
 		GameObject toggleGroup = new GameObject();
-		toggleGroup.transform.parent = _questions.transform;
+		toggleGroup.transform.SetParent(_questions.transform);
 		toggleGroup.name = "Scale Toggle Group";
 		toggleGroup.AddComponent<ToggleGroup>();
 		
 		// Add scale low value meaning label
 		GameObject scaleLowMeaning = Instantiate(_scaleMeaningPrefab) as GameObject;
-		scaleLowMeaning.transform.parent = toggleGroup.transform.parent;
+		scaleLowMeaning.transform.SetParent(toggleGroup.transform.parent);
 		Text scaleLowValueMeaningText = scaleLowMeaning.GetComponent<Text>();
 		scaleLowValueMeaningText.text = scaleLowValueMeaning;
 		
@@ -95,7 +95,7 @@ public class ScaleQuestionary : Questionary {
 		for(int i = 0; i < scale.Length; i++) {
 			
 			GameObject toggleObj = Instantiate(_scaleTogglePrefab) as GameObject;
-			toggleObj.transform.parent = toggleGroup.transform;
+			toggleObj.transform.SetParent (toggleGroup.transform);
 			toggleObj.name = "Scale Toggle";
 			
 			Transform toggleLabel = toggleObj.transform.FindChild("Label");
@@ -111,7 +111,7 @@ public class ScaleQuestionary : Questionary {
 		
 		// Add scale high value meaning label
 		GameObject scaleHighMeaning = Instantiate(_scaleMeaningPrefab) as GameObject;
-		scaleHighMeaning.transform.parent = toggleGroup.transform.parent;
+		scaleHighMeaning.transform.SetParent(toggleGroup.transform.parent);
 		Text scaleHighValueMeaningText = scaleHighMeaning.GetComponent<Text>();
 		scaleHighValueMeaningText.text = scaleHighValueMeaning;		
 		

@@ -51,7 +51,6 @@ public class Bird : Character {
 			
 			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
 		}
-			
     }
 
     void IdleJump()
@@ -59,8 +58,11 @@ public class Bird : Character {
         if(JumpToSlingshot)
             return;
 
-        if(IsIdle() && rigidbody2D.gravityScale > 0f)
-            rigidbody2D.AddForce(Vector2.up * _jumpForce);
+        if(IsIdle() && rigidbody2D.gravityScale > 0f) {
+			rigidbody2D.AddForce(Vector2.up * _jumpForce);
+				if(Random.value < 0.5f)
+					audio.PlayOneShot(_clips[Random.Range(4, 6)]);
+		}
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
@@ -100,7 +102,7 @@ public class Bird : Character {
 				GameWorld.Instance._slingshotBase.gameObject.SetActive(false);
 
 			if(IsSelected && IsFlying)
-				PlayAudio(3);
+				audio.PlayOneShot(_clips[3]);
         }
     }
 
@@ -129,7 +131,7 @@ public class Bird : Character {
 		if(collider.tag == "Slingshot")
 		{
 			if(IsSelected && !IsFlying)
-				PlayAudio(2);
+				audio.PlayOneShot(_clips[2]);
 		}
 	}
 

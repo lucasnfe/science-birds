@@ -7,6 +7,13 @@ public class Questionary : MonoBehaviour {
 	
 	public GameObject _questions;
 
+	protected virtual void Update() {
+		
+		Button button = transform.GetComponentInChildren<Button>();
+		if(_questions != null && button != null)
+			button.interactable = (GetAnswers().Length == GetNonEmptyAnswersAmount());
+	}
+
 	protected void SetQuestions(string []questions) {
 		
 		GameObject []questionObjs = GameObject.FindGameObjectsWithTag("Question");
@@ -24,6 +31,25 @@ public class Questionary : MonoBehaviour {
 			questions[i] = questionObjs[i].GetComponent<Text>().text;
 
 		return questions;
+	}
+
+	protected int GetNonEmptyAnswersAmount() {
+
+		int nonEmptyAnswers = 0;
+		ToggleGroup []toggleGroups = _questions.GetComponentsInChildren<ToggleGroup>();
+		
+		for(int i = 0; i < toggleGroups.Length; i++) {
+			
+			Toggle []toggles = toggleGroups[i].transform.GetComponentsInChildren<Toggle>();
+			
+			for(int j = 0; j < toggles.Length; j++) {
+				
+				if(toggles[j].isOn)
+					nonEmptyAnswers++;
+			}
+		}
+		
+		return nonEmptyAnswers;
 	}
 	
 	protected string []GetAnswers() {

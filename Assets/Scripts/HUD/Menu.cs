@@ -1,29 +1,29 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Menu : MonoBehaviour {
 	
 	public void LoadCurrentLevelGroupA() 
 	{
-		GameData.Instance.CurrentQuestionary = "QuestionaryA";
+		GameData.Instance.CurrentQuestionary = "Questionary_GroupA";
 		LevelSource.CurrentLevel = 0;
-		SceneManager.Instance.LoadScene(GameData.Instance.LevelGroupA, true);
+		ABSceneManager.Instance.LoadScene(GameData.Instance.LevelGroupA, true);
 	}
 
 	public void LoadCurrentLevelGroupB() 
 	{
-		GameData.Instance.CurrentQuestionary = "QuestionaryB";
+		GameData.Instance.CurrentQuestionary = "Questionary_GroupB";
 		LevelSource.CurrentLevel = 0;
-		SceneManager.Instance.LoadScene(GameData.Instance.LevelGroupB, true);
+		ABSceneManager.Instance.LoadScene(GameData.Instance.LevelGroupB, true);
 	}
 
 	public void LoadLevelWithLoadingScreen(string sceneName)
 	{
-		SceneManager.Instance.LoadScene(sceneName, true);
+		ABSceneManager.Instance.LoadScene(sceneName, true);
 	}
 
 	public void LoadLevel(string sceneName)
 	{
-		SceneManager.Instance.LoadScene(sceneName, false);
+		ABSceneManager.Instance.LoadScene(sceneName, false);
 	}
 }

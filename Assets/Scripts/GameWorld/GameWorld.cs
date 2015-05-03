@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -39,11 +40,14 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	public GameObject _pig;
 	public GameObject _bird;
+	public GameObject _point;
 	public GameObject []Templates;
-
-	public LevelSource _levelSource;
 	
-	public BirdAgent _birdAgent;
+	public RectTransform  _pointHUD;
+
+	public HUD 			  _hud;
+	public LevelSource    _levelSource;
+	public BirdAgent      _birdAgent;
 	public GameplayCamera _camera;
 	
 	public AudioClip[] _clips;
@@ -60,8 +64,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 		_birds = new List<Bird>();
 
 		if(!_isSimulation) {
-			audio.PlayOneShot(GameWorld.Instance._clips[0], 1.0f);
-			audio.PlayOneShot(GameWorld.Instance._clips[1], 1.0f);
+
+			audio.PlayOneShot(_clips[0]);
+			audio.PlayOneShot(_clips[1]);
 		}
 
 		// Calculating slingshot select position
@@ -217,14 +222,14 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		if(LevelSource.CurrentLevel % _levelSource.LevelLimit() == 0)
 
-			SceneManager.Instance.LoadScene(GameData.Instance.CurrentQuestionary);
+			ABSceneManager.Instance.LoadScene(GameData.Instance.CurrentQuestionary);
 		else
-			SceneManager.Instance.LoadScene(Application.loadedLevel);
+			ABSceneManager.Instance.LoadScene(Application.loadedLevelName);
 	}
 
 	public void ResetLevel()
 	{
-		SceneManager.Instance.LoadScene(Application.loadedLevel);
+		ABSceneManager.Instance.LoadScene(Application.loadedLevelName);
 	}
 
 	public void AddTrajectoryParticle(GameObject particleTemplate, Vector3 position, string parentName)
@@ -270,6 +275,17 @@ public class GameWorld : ABSingleton<GameWorld> {
 		newGameObject.transform.parent = GameWorld.Instance.transform.Find("Blocks");
 
 		return newGameObject;
+	}
+
+	public void SpawnPoint(uint point, Vector3 position)
+	{
+		GameObject pointObj = Instantiate(_point, new Vector3(position.x, position.y, _point.transform.position.z), Quaternion.identity) as GameObject; 
+		pointObj.transform.SetParent(_pointHUD.transform);
+
+		Text pointText = pointObj.GetComponent<Text>();
+		pointText.text = point.ToString();
+
+		_hud.AddScore(point);
 	}
 
 	public void KillPig(Pig pig)

@@ -8,7 +8,9 @@ public class Pig : Character {
 
 	public override void Die()
 	{
-		PlayAudio(0);
+		GameWorld.Instance.SpawnPoint(10, transform.position);
+
+		ABAudioController.Instance.PlayMusic(_clips[0]);
 		
 		if(!GameWorld.Instance._isSimulation)
 			GameWorld.Instance.AddTrajectoryParticle(dustEffect, transform.position, name);

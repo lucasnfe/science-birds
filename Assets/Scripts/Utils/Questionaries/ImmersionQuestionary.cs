@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections;
@@ -25,6 +25,6 @@ public class ImmersionQuestionary : ScaleQuestionary {
 		SaveToGameData(questionaryIndex);
 
 		yield return new WaitForSeconds(0.1f);
-		SceneManager.Instance.LoadScene(sceneToLoadAfterSubmit, false);
+		ABSceneManager.Instance.LoadScene(sceneToLoadAfterSubmit, false);
 	}
 }
