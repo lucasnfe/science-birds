@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class GameWorld : ABSingleton<GameWorld> {
 
 	private int _birdsThrown;
+	private bool _levelCleared;
 	
 	private List<Pig>  _pigs;
 	private List<Bird> _birds;
@@ -41,16 +42,17 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public GameObject _pig;
 	public GameObject _bird;
 	public GameObject _point;
+	public GameObject _levelFailedBanner;
+	public GameObject _levelClearedBanner;
 	public GameObject []Templates;
-	
-	public RectTransform  _pointHUD;
+
+	public AudioClip []_clips;
 
 	public HUD 			  _hud;
 	public LevelSource    _levelSource;
 	public BirdAgent      _birdAgent;
 	public GameplayCamera _camera;
-	
-	public AudioClip[] _clips;
+	public RectTransform  _pointHUD;
 
 	// Game world properties
 	public bool _isSimulation;
@@ -288,6 +290,18 @@ public class GameWorld : ABSingleton<GameWorld> {
 		_hud.AddScore(point);
 	}
 
+	private void ShowLevelFailedBanner() 
+	{
+		_hud.gameObject.SetActive(false);
+		_levelFailedBanner.SetActive(true);
+	}
+
+	private void ShowLevelClearedBanner() 
+	{
+		_hud.gameObject.SetActive(false);
+		_levelClearedBanner.SetActive(true);
+	}
+
 	public void KillPig(Pig pig)
 	{
 		_pigs.Remove(pig);
@@ -295,8 +309,10 @@ public class GameWorld : ABSingleton<GameWorld> {
 		if(_pigs.Count == 0)
 		{
 			// Check if player won the game
-			if(!_isSimulation) 
-				Invoke("NextLevel", _timeToResetLevel);
+			if(!_isSimulation) {
+				_levelCleared = true;
+				Invoke("ShowLevelClearedBanner", _timeToResetLevel);
+			}
 			
 			return;
 		}
@@ -309,8 +325,8 @@ public class GameWorld : ABSingleton<GameWorld> {
 		if(_birds.Count == 0)
 		{
 			// Check if player lost the game
-			if(!_isSimulation)
-				Invoke("ResetLevel", _timeToResetLevel);
+			if(!_isSimulation && !_levelCleared)
+				Invoke("ShowLevelFailedBanner", _timeToResetLevel);
 
 			return;
 		}
