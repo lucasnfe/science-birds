@@ -333,7 +333,7 @@ GameObject:
   - 120: {fileID: 176972420}
   - 114: {fileID: 176972419}
   m_Layer: 9
-  m_Name: slingshot_front
+  m_Name: SlingshotFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -798,6 +798,14 @@ Prefab:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
+      propertyPath: m_Name
+      value: SlingshotBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
+      propertyPath: m_Name
+      value: SlingshotFront
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
   m_RootGameObject: {fileID: 92852258}
@@ -862,7 +870,7 @@ RectTransform:
   - {fileID: 588183124}
   - {fileID: 658378586}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1253,10 +1261,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188c5158bd7034cc991e4b8b27d0e072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _listLimit: 3
+  _shuffle: 1
   _levelsSource:
+  - {fileID: 4900000, guid: 0633a48d1b7f9443aa8c809337ec4728, type: 3}
+  - {fileID: 4900000, guid: 0d1844cc02f7447869398ce7f76cb1ff, type: 3}
+  - {fileID: 4900000, guid: 43046ee632d0340dba062b59d85b5a1e, type: 3}
   - {fileID: 4900000, guid: 52a1bdfa830b041d3a274821655f04fa, type: 3}
   - {fileID: 4900000, guid: 3d81a767c32b243999a91263625c992b, type: 3}
-  - {fileID: 4900000, guid: 0583f4139545b4c19a723f4f0842cc6c, type: 3}
 --- !u!4 &766252853
 Transform:
   m_ObjectHideFlags: 0
@@ -1344,7 +1356,7 @@ GameObject:
   - 120: {fileID: 850920771}
   - 114: {fileID: 850920770}
   m_Layer: 9
-  m_Name: slingshot_back
+  m_Name: SlingshotBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2493,7 +2505,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1560348239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.11718798, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2085660551}
@@ -2569,7 +2581,7 @@ GameObject:
   - 4: {fileID: 1729693425}
   - 212: {fileID: 1729693426}
   m_Layer: 9
-  m_Name: slingshot_base
+  m_Name: SlingshotBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2703,7 +2715,7 @@ RectTransform:
   - {fileID: 1771801954}
   - {fileID: 5574244}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2923,9 +2935,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2fd553032d244b1fb47afdc455337a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slingshot: {fileID: 92852259}
-  _slingshotBase: {fileID: 1729693425}
-  _ground: {fileID: 402149769}
+  _slingshotTransform: {fileID: 92852259}
+  _slingshotBaseTransform: {fileID: 1729693425}
+  _slingshotFrontTransform: {fileID: 176972418}
+  _groundTransform: {fileID: 402149769}
+  _blocksTransform: {fileID: 1560348240}
+  _birdsTransform: {fileID: 1078585419}
   _pig: {fileID: 100000, guid: 956792ee95c544765ac02cfcc5e32137, type: 2}
   _bird: {fileID: 100000, guid: 46743ff39f47c444aa630c83e3753236, type: 2}
   _point: {fileID: 170382, guid: 99fe27f5728c3498182ab46ea9d9aa24, type: 2}
@@ -2958,6 +2973,11 @@ MonoBehaviour:
   - {fileID: 144284, guid: f2933cc5c145d48f6a07a11c80b7b653, type: 2}
   - {fileID: 100000, guid: f1bce895734274594872e850313d133c, type: 2}
   - {fileID: 100000, guid: 67d4a8b6ad00a46629c834c23d8c56d0, type: 2}
+  - {fileID: 159174, guid: d6a128bbd35e34858bfdbf963d92b36f, type: 2}
+  - {fileID: 116510, guid: 768af22e0f868419db0015bdb209d0aa, type: 2}
+  - {fileID: 159212, guid: c602463697f6c4c19ab3fe85bfa1eac2, type: 2}
+  - {fileID: 107708, guid: 296f5bba905ca4cba9c0b4c7629acc9b, type: 2}
+  - {fileID: 122114, guid: 9bff48da7519f4f5ebcf59c309015ca3, type: 2}
   _clips:
   - {fileID: 8300000, guid: d6aabc3c34a094a859e527de492307b0, type: 3}
   - {fileID: 8300000, guid: 8e23d7e7119f4462a8e04cce1916a33f, type: 3}

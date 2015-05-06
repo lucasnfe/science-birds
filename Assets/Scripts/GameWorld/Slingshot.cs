@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Slingshot : MonoBehaviour {
@@ -27,10 +27,10 @@ public class Slingshot : MonoBehaviour {
 
     void Update()
     {
-		if(_lineRenderer && GameWorld.Instance._slingshotBase.gameObject.activeSelf)
+		if(_lineRenderer && GameWorld.Instance._slingshotBaseTransform.gameObject.activeSelf)
         {
             _lineRenderer.enabled = true;
-			_lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, GameWorld.Instance._slingshotBase.transform.position);
+			_lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, GameWorld.Instance._slingshotBaseTransform.transform.position);
         }
         else
 

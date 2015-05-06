@@ -194,17 +194,6 @@ public class GeneticAlgorithm<T> {
 		//	RankPopulation();
 		//}
 	}
-	
-	private void ShuffleGeneration()
-	{
-		  for (int i = 0; i < _thisGeneration.Count; i++) 
-		  {
-			  int r = UnityEngine.Random.Range(i, _thisGeneration.Count);
-			  Genome<T> tmp = (Genome<T>)_thisGeneration[r];
-		      _thisGeneration[r] = _thisGeneration[i];
-			  _thisGeneration[i] = tmp;
-		  }
-	}
 
 	private Genome<T> TournamentSelection(int size = 2) {
 

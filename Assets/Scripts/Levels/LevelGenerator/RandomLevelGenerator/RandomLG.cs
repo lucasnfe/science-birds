@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class RandomLG : ABLevelGenerator {
@@ -276,7 +276,7 @@ public class RandomLG : ABLevelGenerator {
 	protected void ConvertShiftGBtoABGB(ref ShiftABLevel randomLevel)
 	{			
 		float offsetX, offsetY;
-		float slingPos = GameWorld.Instance._slingshot.position.x;
+		float slingPos = GameWorld.Instance._slingshotTransform.position.x;
 		offsetX = slingPos + randomLevel.LevelPlayableWidth/2f - randomLevel.GetLevelBounds().size.x/2.25f;
 
 		for(int i = 0; i < randomLevel.GetStacksAmount(); i++)
@@ -304,8 +304,8 @@ public class RandomLG : ABLevelGenerator {
 						offsetY = obj.Previous.Value.Position.y + 
 							obj.Previous.Value.GetBounds().size.y/2f - obj.Value.UnderObjectsHeight;
 					else
-						offsetY = GameWorld.Instance._ground.collider2D.bounds.center.y + 
-							GameWorld.Instance._ground.collider2D.bounds.size.y/2f;
+						offsetY = GameWorld.Instance._groundTransform.collider2D.bounds.center.y + 
+							GameWorld.Instance._groundTransform.collider2D.bounds.size.y/2f;
 					
 					offsetY += obj.Value.GetBounds().size.y/2f;
 					obj.Value.Position = new Vector2(offsetX, offsetY);

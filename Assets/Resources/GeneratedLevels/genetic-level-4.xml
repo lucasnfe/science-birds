@@ -8,15 +8,15 @@
     <GameObject label="6" x="0.6472218" y="-0.1850003" />
     <GameObject label="12" x="0.6472218" y="0.3349997" />
     <GameObject label="13" x="0.6472218" y="0.5449997" />
-    <GameObject label="26" x="0.6472218" y="0.9649997" />
+    <GameObject label="31" x="0.6472218" y="0.9649997" />
     <GameObject label="8" x="3.562222" y="-2.7" />
     <GameObject label="14" x="3.562222" y="-2.28" />
     <GameObject label="13" x="3.562222" y="-1.96" />
-    <GameObject label="26" x="3.562222" y="-1.54" />
+    <GameObject label="31" x="3.562222" y="-1.54" />
     <GameObject label="2" x="3.562222" y="-1.9375" />
     <GameObject label="22" x="5.477222" y="-2.3825" />
     <GameObject label="16" x="5.477222" y="-0.8975" />
     <GameObject label="13" x="5.477222" y="0.1700001" />
-    <GameObject label="26" x="5.477222" y="0.59" />
+    <GameObject label="31" x="5.477222" y="0.59" />
   </GameObjects>
 </Level>

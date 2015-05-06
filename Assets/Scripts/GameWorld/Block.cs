@@ -15,7 +15,7 @@ public class Block : MonoBehaviour {
 	{
 		if(!GameWorld.Instance._isSimulation)
 		{
-			GameWorld.Instance.SpawnPoint(5, transform.position);
+			GameWorld.Instance.SpawnPoint(25, transform.position);
 
 			ABAudioController.Instance.PlayMusic(_damageClip[1]);
 

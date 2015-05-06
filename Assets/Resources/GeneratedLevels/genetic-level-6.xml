@@ -11,11 +11,11 @@
     <GameObject label="13" x="0.9411111" y="-1.515" />
     <GameObject label="9" x="0.7261111" y="-1.185" />
     <GameObject label="13" x="0.7261111" y="-0.8550004" />
-    <GameObject label="26" x="0.7261111" y="-0.4350004" />
+    <GameObject label="31" x="0.7261111" y="-0.4350004" />
     <GameObject label="17" x="2.586111" y="-1.85" />
     <GameObject label="17" x="4.286111" y="-1.85" />
     <GameObject label="5" x="3.436111" y="-0.4150004" />
-    <GameObject label="26" x="3.436111" y="0.2699996" />
+    <GameObject label="31" x="3.436111" y="0.2699996" />
     <GameObject label="2" x="3.436111" y="0.1824996" />
   </GameObjects>
 </Level>

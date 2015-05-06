@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -23,10 +23,10 @@ public class ShiftABLevel : ABLevel{
 
 	public ShiftABLevel() 
 	{
-		GameObject ground = GameWorld.Instance._ground.gameObject;	
+		GameObject ground = GameWorld.Instance._groundTransform.gameObject;	
 		
 		float levelLeftBound = ground.transform.position.x - ground.collider2D.bounds.size.x/2f;
-		float slingDistFromLeftBound = GameWorld.Instance._slingshot.position.x - levelLeftBound;
+		float slingDistFromLeftBound = GameWorld.Instance._slingshotTransform.position.x - levelLeftBound;
 		
 		_levelPlayableWidth = (ground.collider2D.bounds.size.x - slingDistFromLeftBound) - 1f;
 

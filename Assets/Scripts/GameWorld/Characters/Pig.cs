@@ -8,12 +8,12 @@ public class Pig : Character {
 
 	public override void Die()
 	{
-		GameWorld.Instance.SpawnPoint(10, transform.position);
+		if(!GameWorld.Instance._isSimulation) {
 
-		ABAudioController.Instance.PlayMusic(_clips[0]);
-		
-		if(!GameWorld.Instance._isSimulation)
+			GameWorld.Instance.SpawnPoint(50, transform.position);
+			ABAudioController.Instance.PlayMusic(_clips[0]);
 			GameWorld.Instance.AddTrajectoryParticle(dustEffect, transform.position, name);
+		}
 
 		GameWorld.Instance.KillPig(this);
 

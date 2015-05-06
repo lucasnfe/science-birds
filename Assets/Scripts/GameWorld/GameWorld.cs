@@ -7,7 +7,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	private int _birdsThrown;
 	private bool _levelCleared;
-	
+
 	private List<Pig>  _pigs;
 	private List<Bird> _birds;
 	private Bird _lastThrownBird;
@@ -35,9 +35,12 @@ public class GameWorld : ABSingleton<GameWorld> {
 	}
 
 	// Main game components
-	public Transform _slingshot;
-	public Transform _slingshotBase;
-	public Transform _ground;
+	public Transform _slingshotTransform;
+	public Transform _slingshotBaseTransform;
+	public Transform _slingshotFrontTransform;
+	public Transform _groundTransform;
+	public Transform _blocksTransform;
+	public Transform _birdsTransform;
 
 	public GameObject _pig;
 	public GameObject _bird;
@@ -72,10 +75,10 @@ public class GameWorld : ABSingleton<GameWorld> {
 		}
 
 		// Calculating slingshot select position
-		Vector3 selectPos = _slingshot.transform.position;
+		Vector3 selectPos = _slingshotTransform.position;
 		_slingSelectPos.x += selectPos.x;
 		_slingSelectPos.y += selectPos.y;
-		_slingSelectPos.z += _slingshot.FindChild("slingshot_front").transform.position.z;
+		_slingSelectPos.z += _slingshotFrontTransform.position.z;
 
 		if(_currentLevel == null && _levelSource != null)
 			_currentLevel = _levelSource.NextLevel();
@@ -107,8 +110,8 @@ public class GameWorld : ABSingleton<GameWorld> {
 		
 		if(birdsAmount > 0)
 		{
-			Vector3 birdsPos = _slingshot.transform.position;
-			birdsPos.y = _ground.collider2D.bounds.center.y + _ground.collider2D.bounds.size.y/2f;
+			Vector3 birdsPos = _slingshotTransform.transform.position;
+			birdsPos.y = _groundTransform.collider2D.bounds.center.y + _groundTransform.collider2D.bounds.size.y/2f;
 			
 			for(int i = 0; i < birdsAmount; i++)
 			{
@@ -155,9 +158,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	void DestroyIfOutScreen()
 	{
-		Transform blocks = transform.FindChild("Blocks");
-
-		Rigidbody2D []bodies = blocks.GetComponentsInChildren<Rigidbody2D>();
+		Rigidbody2D []bodies = _blocksTransform.GetComponentsInChildren<Rigidbody2D>();
 
 		foreach(Rigidbody2D body in bodies)
 		{
@@ -173,8 +174,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 			}
 		}
 	
-		Transform birds = transform.FindChild("Birds");
-		foreach(Transform b in birds)
+		foreach(Transform b in _birdsTransform)
 		{			
 			if(IsObjectOutOfWorld(b))
 			{
@@ -191,9 +191,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 	{
 		Vector2 halfSize = abGameObject.GetComponent<Collider2D>().bounds.size/2f;
 		
-		if(abGameObject.position.x - halfSize.x > _ground.collider2D.bounds.center.x + _ground.collider2D.bounds.size.x/2f ||
-		   abGameObject.position.x + halfSize.x < _ground.collider2D.bounds.center.x - _ground.collider2D.bounds.size.x/2f || 
-		   abGameObject.position.y + halfSize.y < _ground.collider2D.bounds.center.y - _ground.collider2D.bounds.size.y/2f)
+		if(abGameObject.position.x - halfSize.x > _groundTransform.collider2D.bounds.center.x + _groundTransform.collider2D.bounds.size.x/2f ||
+		   abGameObject.position.x + halfSize.x < _groundTransform.collider2D.bounds.center.x - _groundTransform.collider2D.bounds.size.x/2f || 
+		   abGameObject.position.y + halfSize.y < _groundTransform.collider2D.bounds.center.y - _groundTransform.collider2D.bounds.size.y/2f)
 
 			   return true;
 		
@@ -250,7 +250,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public void AddBird(Object original, Vector3 position, Quaternion rotation, string birdname, bool isFirst = false)
 	{
 		GameObject newGameObject = (GameObject)Instantiate(original, position, rotation);
-		newGameObject.transform.parent = GameWorld.Instance.transform.Find("Birds");
+		newGameObject.transform.parent = _birdsTransform;
 		newGameObject.name = birdname;
 
 		Bird bird = newGameObject.GetComponent<Bird>();
@@ -274,7 +274,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public GameObject AddBlock(Object original, Vector3 position, Quaternion rotation)
 	{
 		GameObject newGameObject = (GameObject)Instantiate(original, position, rotation);
-		newGameObject.transform.parent = GameWorld.Instance.transform.Find("Blocks");
+		newGameObject.transform.parent = _blocksTransform;
 
 		return newGameObject;
 	}
@@ -292,14 +292,31 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	private void ShowLevelFailedBanner() 
 	{
-		_hud.gameObject.SetActive(false);
-		_levelFailedBanner.SetActive(true);
+		if(_levelCleared)
+			return;
+
+		if(!IsLevelStable())
+		{
+			Invoke("ShowLevelFailedBanner", 1f);
+		}
+		else
+		{
+			_hud.gameObject.SetActive(false);
+			_levelFailedBanner.SetActive(true);
+		}
 	}
 
 	private void ShowLevelClearedBanner() 
 	{
-		_hud.gameObject.SetActive(false);
-		_levelClearedBanner.SetActive(true);
+		if(!IsLevelStable())
+		{
+			Invoke("ShowLevelClearedBanner", 1f);
+		}
+		else
+		{
+			_hud.gameObject.SetActive(false);
+			_levelClearedBanner.SetActive(true);
+		}
 	}
 
 	public void KillPig(Pig pig)
@@ -325,7 +342,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		if(_birds.Count == 0)
 		{
 			// Check if player lost the game
-			if(!_isSimulation && !_levelCleared)
+			if(!_isSimulation)
 				Invoke("ShowLevelFailedBanner", _timeToResetLevel);
 
 			return;
@@ -368,8 +385,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 	{
 		int blocksAmount = 0;
 
-		Transform blocks = transform.FindChild("Blocks");
-		foreach(Transform b in blocks)
+		foreach(Transform b in _blocksTransform)
 		{
 			if(b.GetComponent<Pig>() == null)
 			
@@ -379,13 +395,26 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		return blocksAmount;
 	}
-	
+
+	public int GetTemplateIndex(GameObject templateObj)
+	{
+		for(int i = 0; i < Templates.Length; i++)
+		{
+			if(templateObj.name == "pig")
+				return Templates.Length;
+
+			if(templateObj.name == Templates[i].name)
+				return i;
+		}
+
+		return -1;
+	}
+
 	public float GetLevelStability()
 	{
 		float totalVelocity = 0f;
 
-		Transform blocks = transform.FindChild("Blocks");
-		foreach(Transform b in blocks)
+		foreach(Transform b in _blocksTransform)
 		{
 			Rigidbody2D []bodies = b.GetComponentsInChildren<Rigidbody2D>();
 
@@ -413,16 +442,14 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	public void ClearWorld()
 	{
-		Transform blocks = transform.FindChild("Blocks");
-		foreach(Transform b in blocks)
+		foreach(Transform b in _blocksTransform)
 		{
 			Destroy(b.gameObject);
 		}
 
 		_pigs.Clear();
 
-		Transform birds = transform.FindChild("Birds");
-		foreach(Transform b in birds)
+		foreach(Transform b in _birdsTransform)
 		{
 			Destroy(b.gameObject);
 		}
@@ -442,8 +469,8 @@ public class GameWorld : ABSingleton<GameWorld> {
 	private void AdaptCameraWidthToLevel() {
 		
 		// Adapt the camera to show all the blocks		
-		float levelLeftBound = _ground.transform.position.x - _ground.collider2D.bounds.size.x/2f;
-		float groundSurfacePos = _ground.transform.position.x + _ground.collider2D.bounds.size.y/2f;
+		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.collider2D.bounds.size.x/2f;
+		float groundSurfacePos = _groundTransform.transform.position.x + _groundTransform.collider2D.bounds.size.y/2f;
 				
 		float minPosX = _currentLevel.gameObjects[0].Position.x - _currentLevel.gameObjects[0].GetBounds().size.x/2f;
 		float maxPosX = _currentLevel.gameObjects[0].Position.x + _currentLevel.gameObjects[0].GetBounds().size.x/2f; 

@@ -9,7 +9,7 @@ public class LevelLoader : MonoBehaviour {
 	
 	public static ABLevel[] LoadAllLevels() {
 	
-		TextAsset []levelsXmlData = Resources.LoadAll<TextAsset>("SavedLevels/");
+		TextAsset []levelsXmlData = Resources.LoadAll<TextAsset>("GeneratedLevels/");
 
 		ABLevel []levels = new ABLevel[levelsXmlData.Length];
 
@@ -83,8 +83,23 @@ public class LevelLoader : MonoBehaviour {
 
 		int levelsAmountInResources = LoadAllLevels().Length;
 
-		StreamWriter streamWriter = new StreamWriter("Assets/Resources/SavedLevels/genetic-level-" + (levelsAmountInResources + 1) + ".xml");
+		StreamWriter streamWriter = new StreamWriter("Assets/Resources/GeneratedLevels/genetic-level-" + (levelsAmountInResources + 1) + ".xml");
 		streamWriter.WriteLine(output.ToString());
 		streamWriter.Close();
+	}
+
+	public void SaveLevelOnScene() {
+
+		Transform blocksInScene = GameWorld.Instance._blocksTransform;
+
+		List<GameObject> objsInScene = new List<GameObject>();
+
+		foreach(Transform b in blocksInScene)
+		{
+			objsInScene.Add(b.gameObject);
+		}
+
+		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
+		SaveXmlLevel(level);
 	}
 }

@@ -221,11 +221,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5c0baa5d42c134d9cac0c6d850f2ff6d, type: 3}
   _dragRadius: 1
   _dragSpeed: 15
-  _launchGravity: .314999998
-  _trajectoryParticleFrequency: .5
+  _launchGravity: .400000006
+  _trajectoryParticleFrequency: .400000006
   _jumpForce: 75
   _maxTimeToJump: 5
-  _launchForce: {x: 400, y: 400}
+  _launchForce: {x: 450, y: 450}
   _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}

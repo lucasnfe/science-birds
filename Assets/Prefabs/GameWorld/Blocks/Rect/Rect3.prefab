@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb3968a7123042fc919c6e4c3fb0935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _life: 10
+  _life: 8
   _images:
   - {fileID: 21300092, guid: 6f10dc69aeb3d4ca492f4de25a93b4b5, type: 3}
   - {fileID: 21300104, guid: 6f10dc69aeb3d4ca492f4de25a93b4b5, type: 3}

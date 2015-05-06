@@ -19,4 +19,26 @@ public abstract class ABLevelGenerator : LevelSource {
 
 		return GenerateLevel();
 	}
+
+	public static ABLevel GameObjectsToABLevel(GameObject []gameObjs)
+	{
+		ABLevel level = new ABLevel();
+
+		for(int i = 0; i < gameObjs.Length; i++)
+		{
+			if(gameObjs[i].tag == "Bird")
+			{
+				level.birdsAmount++;
+			}
+			else
+			{
+				ABGameObject abGameObj = new ABGameObject();
+				abGameObj.Position = gameObjs[i].transform.position;
+				abGameObj.Label = GameWorld.Instance.GetTemplateIndex(gameObjs[i]);
+				level.gameObjects.Add(abGameObj);
+			}
+		}
+
+		return level;
+	}
 }

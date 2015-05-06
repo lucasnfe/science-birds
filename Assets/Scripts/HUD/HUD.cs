@@ -107,8 +107,11 @@ public class HUD : MonoBehaviour {
 
 	public void SetScoreDisplay(uint score)
 	{
-		_totalScore = score;
-		_scoreDisplay.GetComponent<Text>().text = _totalScore.ToString();
+		if(_scoreDisplay)
+		{
+			_totalScore = score;
+			_scoreDisplay.GetComponent<Text>().text = _totalScore.ToString();
+		}
 	}
 
 	public void AddScore(uint score)

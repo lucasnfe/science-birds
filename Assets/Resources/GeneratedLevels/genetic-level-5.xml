@@ -14,9 +14,9 @@
     <GameObject label="12" x="1.313889" y="1.655" />
     <GameObject label="13" x="1.313889" y="1.865" />
     <GameObject label="2" x="1.313889" y="1.2575" />
-    <GameObject label="26" x="1.313889" y="2.54" />
+    <GameObject label="31" x="1.313889" y="2.54" />
     <GameObject label="5" x="3.373889" y="-2.535" />
     <GameObject label="0" x="3.373889" y="-2.37" />
-    <GameObject label="26" x="3.373889" y="-1.52" />
+    <GameObject label="31" x="3.373889" y="-1.52" />
   </GameObjects>
 </Level>
