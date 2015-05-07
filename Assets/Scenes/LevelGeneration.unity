@@ -220,6 +220,14 @@ MonoBehaviour:
   _point: {fileID: 170382, guid: 99fe27f5728c3498182ab46ea9d9aa24, type: 2}
   _levelFailedBanner: {fileID: 0}
   _levelClearedBanner: {fileID: 0}
+  _levelSource: {fileID: 1742393085}
+  _hud: {fileID: 783202720}
+  _birdAgent: {fileID: 1826603323}
+  _camera: {fileID: 1027947235}
+  _pointHUD: {fileID: 1717653023}
+  _isSimulation: 1
+  _timeToResetLevel: 3
+  _slingSelectPos: {x: -.150000006, y: .800000012, z: 1}
   Templates:
   - {fileID: 100000, guid: ed110d348e0e0415c91587fcff684072, type: 2}
   - {fileID: 100000, guid: d740f0869a4414c7a828009d6263ff0e, type: 2}
@@ -255,14 +263,6 @@ MonoBehaviour:
   _clips:
   - {fileID: 8300000, guid: d6aabc3c34a094a859e527de492307b0, type: 3}
   - {fileID: 8300000, guid: 8e23d7e7119f4462a8e04cce1916a33f, type: 3}
-  _hud: {fileID: 783202720}
-  _levelSource: {fileID: 1742393085}
-  _birdAgent: {fileID: 1826603323}
-  _camera: {fileID: 1027947235}
-  _pointHUD: {fileID: 1717653023}
-  _isSimulation: 1
-  _timeToResetLevel: 3
-  _slingSelectPos: {x: -.150000006, y: .800000012, z: 1}
 --- !u!1 &312793114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,9 +1277,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duplicateProbability: .5
   _bn: .5
-  _d: .25
+  _d: 1
   _populationSize: 100
-  _generationSize: 5
+  _generationSize: 25
   _mutationRate: .100000001
   _crossoverRate: .949999988
   _elitism: 1

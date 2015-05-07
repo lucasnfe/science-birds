@@ -87,9 +87,10 @@ public class ScaleQuestionary : Questionary {
 		scaleLowMeaning.transform.SetParent(toggleGroup.transform.parent);
 		Text scaleLowValueMeaningText = scaleLowMeaning.GetComponent<Text>();
 		scaleLowValueMeaningText.text = scaleLowValueMeaning;
+		scaleLowValueMeaningText.alignment = TextAnchor.MiddleRight;
 		
 		RectTransform rectTransform = scaleLowMeaning.GetComponent<RectTransform>();
-		rectTransform.position = new Vector2(position.x - toggleWidth, position.y);
+		rectTransform.position = new Vector2(position.x - rectTransform.sizeDelta.x/1.5f, position.y);
 		
 		// Add scale toggles
 		for(int i = 0; i < scale.Length; i++) {
@@ -113,10 +114,11 @@ public class ScaleQuestionary : Questionary {
 		GameObject scaleHighMeaning = Instantiate(_scaleMeaningPrefab) as GameObject;
 		scaleHighMeaning.transform.SetParent(toggleGroup.transform.parent);
 		Text scaleHighValueMeaningText = scaleHighMeaning.GetComponent<Text>();
-		scaleHighValueMeaningText.text = scaleHighValueMeaning;		
+		scaleHighValueMeaningText.text = scaleHighValueMeaning;
+		scaleHighValueMeaningText.alignment = TextAnchor.MiddleLeft;
 		
 		rectTransform = scaleHighMeaning.GetComponent<RectTransform>();
-		rectTransform.position = new Vector2(position.x + toggleWidth * (scale.Length + 0.5f), position.y);
+		rectTransform.position = new Vector2(position.x + toggleWidth * (scale.Length + 0.5f) + rectTransform.sizeDelta.x/2.5f, position.y);
 	}
 	
 	void ParseQuestionaryData(string questionaryData) {

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Level>
+  <BirdsAmount>2</BirdsAmount>
+  <GameObjects>
+    <GameObject label="2" x="-1.002223" y="-1.9375" />
+    <GameObject label="2" x="0.7877777" y="-1.9375" />
+    <GameObject label="19" x="-0.7322224" y="-0.5450001" />
+    <GameObject label="19" x="0.5177776" y="-0.5450001" />
+    <GameObject label="6" x="-0.5272224" y="0.2949999" />
+    <GameObject label="6" x="0.3127775" y="0.2949999" />
+    <GameObject label="18" x="-0.1072224" y="1.3325" />
+    <GameObject label="11" x="-0.1072224" y="2.06" />
+    <GameObject label="12" x="-0.5272224" y="2.27" />
+    <GameObject label="12" x="0.3127775" y="2.27" />
+    <GameObject label="28" x="-0.2172225" y="2.585" />
+    <GameObject label="28" x="0.002777599" y="2.585" />
+    <GameObject label="12" x="-0.1072224" y="2.9" />
+    <GameObject label="28" x="-0.1072224" y="3.215" />
+    <GameObject label="13" x="-0.1072224" y="3.54" />
+    <GameObject label="31" x="-0.1072224" y="3.96" />
+    <GameObject label="28" x="2.722778" y="-2.695" />
+    <GameObject label="0" x="2.722778" y="-2.37" />
+    <GameObject label="22" x="2.722778" y="-1.3025" />
+    <GameObject label="8" x="2.297778" y="-0.5650004" />
+    <GameObject label="8" x="3.147778" y="-0.5650004" />
+    <GameObject label="31" x="2.722778" y="-0.04500037" />
+    <GameObject label="21" x="4.612778" y="-2.3" />
+    <GameObject label="7" x="4.612778" y="-1.48" />
+    <GameObject label="13" x="4.612778" y="-1.16" />
+    <GameObject label="31" x="4.612778" y="-0.7400001" />
+    <GameObject label="16" x="5.882778" y="-1.9525" />
+    <GameObject label="31" x="5.882778" y="-0.6850001" />
+    <GameObject label="24" x="6.517778" y="-2.485" />
+    <GameObject label="24" x="6.937778" y="-2.485" />
+    <GameObject label="8" x="6.727778" y="-1.85" />
+    <GameObject label="28" x="6.727778" y="-1.425" />
+    <GameObject label="13" x="6.727778" y="-1.1" />
+    <GameObject label="31" x="6.727778" y="-0.6800002" />
+  </GameObjects>
+</Level>

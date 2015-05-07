@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Level>
+  <BirdsAmount>3</BirdsAmount>
+  <GameObjects>
+    <GameObject label="0" x="-2.212778" y="-2.37" />
+    <GameObject label="0" x="-0.1327778" y="-2.37" />
+    <GameObject label="21" x="-1.172778" y="-1.22" />
+    <GameObject label="31" x="-1.172778" y="-0.3000004" />
+    <GameObject label="19" x="1.532222" y="-2.49" />
+    <GameObject label="19" x="2.782222" y="-2.49" />
+    <GameObject label="13" x="1.942222" y="-1.96" />
+    <GameObject label="13" x="2.372222" y="-1.96" />
+    <GameObject label="12" x="2.157222" y="-1.75" />
+    <GameObject label="28" x="2.157222" y="-1.435" />
+    <GameObject label="13" x="2.157222" y="-1.11" />
+    <GameObject label="31" x="2.157222" y="-0.69" />
+    <GameObject label="21" x="4.257222" y="-2.3" />
+    <GameObject label="7" x="3.832222" y="-1.48" />
+    <GameObject label="7" x="4.682222" y="-1.48" />
+    <GameObject label="8" x="4.257222" y="-1.06" />
+    <GameObject label="12" x="4.257222" y="-0.7500001" />
+    <GameObject label="28" x="4.257222" y="-0.435" />
+    <GameObject label="13" x="4.257222" y="-0.11" />
+    <GameObject label="31" x="4.257222" y="0.3100001" />
+    <GameObject label="8" x="5.532222" y="-2.7" />
+    <GameObject label="8" x="6.382222" y="-2.7" />
+    <GameObject label="9" x="5.747222" y="-2.27" />
+    <GameObject label="9" x="6.167222" y="-2.27" />
+    <GameObject label="29" x="5.857222" y="-1.63" />
+    <GameObject label="29" x="6.057222" y="-1.63" />
+    <GameObject label="12" x="5.957222" y="-1.11" />
+    <GameObject label="13" x="5.957222" y="-0.9000002" />
+    <GameObject label="31" x="5.957222" y="-0.4800002" />
+    <GameObject label="24" x="7.617222" y="-2.485" />
+    <GameObject label="24" x="8.037222" y="-2.485" />
+    <GameObject label="10" x="7.827222" y="-1.95" />
+    <GameObject label="14" x="7.612222" y="-1.63" />
+    <GameObject label="14" x="8.042222" y="-1.63" />
+    <GameObject label="31" x="7.827222" y="-1.11" />
+  </GameObjects>
+</Level>

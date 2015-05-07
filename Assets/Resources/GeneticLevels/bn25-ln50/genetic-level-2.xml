@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Level>
+  <BirdsAmount>1</BirdsAmount>
+  <GameObjects>
+    <GameObject label="17" x="-1.695556" y="-1.85" />
+    <GameObject label="9" x="-1.905556" y="-0.5700004" />
+    <GameObject label="9" x="-1.485556" y="-0.5700004" />
+    <GameObject label="28" x="-1.805556" y="-0.1350004" />
+    <GameObject label="28" x="-1.585556" y="-0.1350004" />
+    <GameObject label="14" x="-1.695556" y="0.2899997" />
+    <GameObject label="2" x="-1.695556" y="0.1824996" />
+    <GameObject label="31" x="-1.695556" y="1.465" />
+    <GameObject label="3" x="0.0494445" y="-2.395" />
+    <GameObject label="3" x="1.749444" y="-2.395" />
+    <GameObject label="19" x="0.8994445" y="-1.460001" />
+    <GameObject label="11" x="0.8994445" y="-0.9300004" />
+    <GameObject label="24" x="0.8994445" y="-0.3950004" />
+    <GameObject label="14" x="0.8994445" y="0.2399996" />
+    <GameObject label="12" x="0.8994445" y="0.5499996" />
+    <GameObject label="13" x="0.8994445" y="0.7599996" />
+    <GameObject label="31" x="0.8994445" y="1.18" />
+    <GameObject label="17" x="3.449445" y="-1.85" />
+    <GameObject label="11" x="3.449445" y="-0.6800004" />
+    <GameObject label="28" x="3.339445" y="-0.3550004" />
+    <GameObject label="28" x="3.559445" y="-0.3550004" />
+    <GameObject label="12" x="3.449445" y="-0.04000033" />
+    <GameObject label="13" x="3.449445" y="0.1699997" />
+    <GameObject label="31" x="3.449445" y="0.5899997" />
+    <GameObject label="10" x="5.319445" y="-2.8" />
+    <GameObject label="28" x="5.319445" y="-2.475" />
+    <GameObject label="13" x="5.319445" y="-2.15" />
+    <GameObject label="31" x="5.319445" y="-1.73" />
+    <GameObject label="15" x="6.759445" y="-2.49" />
+    <GameObject label="15" x="7.599445" y="-2.49" />
+    <GameObject label="9" x="6.969445" y="-1.85" />
+    <GameObject label="9" x="7.389445" y="-1.85" />
+    <GameObject label="25" x="7.179445" y="-1.205" />
+    <GameObject label="31" x="7.179445" y="-0.4700001" />
+  </GameObjects>
+</Level>

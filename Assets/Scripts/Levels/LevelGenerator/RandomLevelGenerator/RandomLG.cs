@@ -3,6 +3,13 @@ using System.Collections.Generic;
 
 public class RandomLG : ABLevelGenerator {
 
+	enum BlockTypes{
+		Box,
+		Circle,
+		Rect,
+		Podium
+	}
+
 	static readonly int[,] _gameObjectsDependencyGraph = {
 		{1, 1, 1, 1},
 		{1, 0, 1, 1},
@@ -15,20 +22,21 @@ public class RandomLG : ABLevelGenerator {
 	public int GetTypeByTag(string tag)
 	{					
 		if(tag == "Box")
-			return 0;
+			return (int)BlockTypes.Box;
 		
 		if(tag == "Circle")
-			return 1;
+			return (int)BlockTypes.Circle;
 		
 		if(tag == "Rect")
-			return 2;
+			return (int)BlockTypes.Rect;
 		
 		if(tag == "Podium")
-			return 3;
+			return (int)BlockTypes.Podium;
 		
 		return -1;
 	}
-	
+
+
 	public override ABLevel GenerateLevel()
 	{
 		ShiftABLevel randomLevel = GenerateRandomLevel();
@@ -132,7 +140,9 @@ public class RandomLG : ABLevelGenerator {
 			nextObject.Label = Random.Range(0, GameWorld.Instance.Templates.Length);
 			
 			// There is a chance to double the object
-			if(nextObject.Type != 3 && Random.value < _duplicateProbability)
+			if(nextObject.Type != (int)BlockTypes.Podium && 
+			   nextObject.Type != (int)BlockTypes.Circle && 
+			   Random.value < _duplicateProbability)
 				nextObject.IsDouble = true;
 			
 			return true;
@@ -148,7 +158,7 @@ public class RandomLG : ABLevelGenerator {
 			nextObject.Label = stackableObjects[Random.Range(0, stackableObjects.Count - 1)];
 			
 			// Check if there is no stability problems
-			if(nextObject.Type == 0)
+			if(nextObject.Type == (int)BlockTypes.Box)
 			{
 				// If next object is a box, check if it can enclose the underneath objects
 				LinkedListNode<ShiftABGameObject> currentObj = stack.Last;
@@ -176,22 +186,22 @@ public class RandomLG : ABLevelGenerator {
 				// Holding object is the ground, so it is safe
 				if(currentObj == null)
 					return true;
-				
-				Bounds holdObjBounds = currentObj.Value.GetBounds();
-				
+
 				// Holding object is bigger, so it is safe
-				if(holdObjBounds.size.x >= nextObject.GetBounds().size.x)
+				if(currentObj.Value.GetArea() >= nextObject.GetArea())
 					return true;
 			}
 			else
 			{
 				// There is a chance to double the object
-				if(objectBelow.GetBounds().size.x >= 2f * nextObject.GetBounds().size.x && Random.value < _duplicateProbability)
+				if(objectBelow.GetBounds().size.x >= 2f * nextObject.GetBounds().size.x)
 					
-					if(nextObject.Type != 3)
+					if(nextObject.Type != (int)BlockTypes.Podium && 
+					   nextObject.Type != (int)BlockTypes.Circle &&
+					   Random.value < _duplicateProbability)
 						nextObject.IsDouble = true;
 				
-				if(objectBelow.GetArea() > nextObject.GetArea())	
+				if(objectBelow.GetArea() > nextObject.GetArea())
 					return true;
 			}
 			
@@ -210,7 +220,7 @@ public class RandomLG : ABLevelGenerator {
 
 		for (LinkedListNode<ShiftABGameObject> obj = stack.First; obj != stack.Last.Next; obj = obj.Next)
 		{			
-			if(obj.Value.Type == 0 && !obj.Value.IsDouble)
+			if(obj.Value.Type == (int)BlockTypes.Box && !obj.Value.IsDouble)
 			{
 				if(pigsAdded > 0 && Random.value < 0.5f)
 					continue;
@@ -230,7 +240,6 @@ public class RandomLG : ABLevelGenerator {
 					else
 					{
 						if(obj.Value != stack.First.Value)
-						
 							stack.AddAfter(obj.Previous, pigNode);
 						else
 							stack.AddFirst(pigNode);
@@ -247,7 +256,7 @@ public class RandomLG : ABLevelGenerator {
 					continue;
 				
 				// If last element in stack is already a circle, replace it with a pig
-				if(stack.Last.Value.Type == 1)
+				if(stack.Last.Value.Type == (int)BlockTypes.Circle)
 				{
 					ShiftABGameObject pig = new ShiftABGameObject();
 					pig.Label = GameWorld.Instance.Templates.Length;

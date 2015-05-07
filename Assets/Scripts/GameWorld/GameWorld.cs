@@ -47,12 +47,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public GameObject _point;
 	public GameObject _levelFailedBanner;
 	public GameObject _levelClearedBanner;
-	public GameObject []Templates;
 
-	public AudioClip []_clips;
-
-	public HUD 			  _hud;
 	public LevelSource    _levelSource;
+	public HUD 			  _hud;
 	public BirdAgent      _birdAgent;
 	public GameplayCamera _camera;
 	public RectTransform  _pointHUD;
@@ -61,6 +58,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public bool _isSimulation;
 	public float _timeToResetLevel = 1f;
 	public Vector3 _slingSelectPos;
+
+	public GameObject []Templates;
+	public AudioClip  []_clips;
 	
 	// Use this for initialization
 	void Start () 

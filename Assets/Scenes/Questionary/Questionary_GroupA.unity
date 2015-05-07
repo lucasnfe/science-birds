@@ -859,7 +859,7 @@ MonoBehaviour:
   _scaleTogglePrefab: {fileID: 102082, guid: f2569a4d5f2ff44f9ad672eca98ffe4b, type: 2}
   _questionaryData: {fileID: 4900000, guid: 5ceed63469ebf4d5e8cdc6bdc1c1a033, type: 3}
   _questionSize: 50
-  _questionOffsetFromTitle: 80
+  _questionOffsetFromTitle: 90
   _toggleOffsetFromQuestion: 20
 --- !u!1 &1325096560
 GameObject:

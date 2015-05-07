@@ -556,11 +556,11 @@ MonoBehaviour:
   _listLimit: 3
   _shuffle: 1
   _levelsSource:
-  - {fileID: 4900000, guid: ae4a034d1994646ab97a82814a3ba340, type: 3}
-  - {fileID: 4900000, guid: 6ba95515f4e514c06a81f83d6466d3f7, type: 3}
-  - {fileID: 4900000, guid: 92cb527b8760843c0a3c91f2d90d08be, type: 3}
-  - {fileID: 4900000, guid: 69ce025e29fdd4a0aa0666de57aea1fa, type: 3}
-  - {fileID: 4900000, guid: 37ad41b77eef747999a717e46219356e, type: 3}
+  - {fileID: 4900000, guid: 8eb2924b8004b438a83acb1e27bf5bc7, type: 3}
+  - {fileID: 4900000, guid: d98c8c28825c74e139a6cc31cb4d6bad, type: 3}
+  - {fileID: 4900000, guid: d67502b0aeeae4db1b5bbb117656c340, type: 3}
+  - {fileID: 4900000, guid: 7da6e143925ec42cda680f94b317e59a, type: 3}
+  - {fileID: 4900000, guid: 12f33e0dae07443eeb4cf0945c95bcb7, type: 3}
 --- !u!4 &503529295
 Transform:
   m_ObjectHideFlags: 0
@@ -1607,6 +1607,14 @@ MonoBehaviour:
   _point: {fileID: 170382, guid: 99fe27f5728c3498182ab46ea9d9aa24, type: 2}
   _levelFailedBanner: {fileID: 1815621623}
   _levelClearedBanner: {fileID: 956538472}
+  _levelSource: {fileID: 503529294}
+  _hud: {fileID: 992641514}
+  _birdAgent: {fileID: 0}
+  _camera: {fileID: 1197512716}
+  _pointHUD: {fileID: 1366986506}
+  _isSimulation: 0
+  _timeToResetLevel: 3
+  _slingSelectPos: {x: -.150000006, y: .800000012, z: 1}
   Templates:
   - {fileID: 100000, guid: ed110d348e0e0415c91587fcff684072, type: 2}
   - {fileID: 100000, guid: d740f0869a4414c7a828009d6263ff0e, type: 2}
@@ -1642,14 +1650,6 @@ MonoBehaviour:
   _clips:
   - {fileID: 8300000, guid: d6aabc3c34a094a859e527de492307b0, type: 3}
   - {fileID: 8300000, guid: 8e23d7e7119f4462a8e04cce1916a33f, type: 3}
-  _hud: {fileID: 992641514}
-  _levelSource: {fileID: 503529294}
-  _birdAgent: {fileID: 0}
-  _camera: {fileID: 1197512716}
-  _pointHUD: {fileID: 1366986506}
-  _isSimulation: 0
-  _timeToResetLevel: 3
-  _slingSelectPos: {x: -.150000006, y: .800000012, z: 1}
 --- !u!4 &1274661061
 Transform:
   m_ObjectHideFlags: 0

@@ -684,9 +684,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 357552873}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: .5, y: 1}
+  m_AnchorMax: {x: .5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -264}
   m_SizeDelta: {x: 700, y: 400}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1106900773
@@ -714,14 +714,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "My name is Lucas N. Ferreira and I am  a  Ms.C student in Computer Science
-    at the University of S\xE3o Paulo. This research aims to evaluate imersion and
-    fun in the Angry Birds game. Throughout this research, you will play two sets
-    of levels and answer questions about your experince. Each questionary will be
-    presented just after playing each set. At the end, you will anwser a final questionary
-    in order to compare the sets. Note that this research does not have any relation
-    or participation of the Rovio Enterteinment (Developer of the oficial Angry Birds
-    game titles).\n\nThan you for your atention and time. Have fun!"
+  m_Text: "My name is Lucas N. Ferreira and I am a M.Sc. student in Computer Science
+    at the University of S\xE3o Paulo, Brazil. This research is intended to evaluate
+    immersion aspects in the Angry Birds game. Throughout this research, you will
+    play two sets of levels and answer questions about your experience. A questionnaire
+    will be presented after playing each set. At the end, you will answer a final
+    questionnaire in order to compare the sets. Note that this research has no relation
+    or participation of the Rovio Entertainment (developer of the official Angry Birds
+    game titles).\n\nThank you for your attention and time. \nHave fun!"
 --- !u!222 &1106900774
 CanvasRenderer:
   m_ObjectHideFlags: 0
