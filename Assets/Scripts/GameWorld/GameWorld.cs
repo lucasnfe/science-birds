@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class GameWorld : ABSingleton<GameWorld> {
 
+	static int _levelTimesTried;
+
 	private int _birdsThrown;
 	private bool _levelCleared;
 
@@ -50,13 +52,14 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	public LevelSource    _levelSource;
 	public HUD 			  _hud;
-	public BirdAgent      _birdAgent;
 	public GameplayCamera _camera;
+	public BirdAgent      _birdAgent;
 	public RectTransform  _pointHUD;
 
 	// Game world properties
-	public bool _isSimulation;
-	public float _timeToResetLevel = 1f;
+	public bool    _isSimulation;
+	public int     _timesToGiveUp;
+	public float   _timeToResetLevel = 1f;
 	public Vector3 _slingSelectPos;
 
 	public GameObject []Templates;
@@ -67,6 +70,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 	{	
 		_pigs = new List<Pig>();
 		_birds = new List<Bird>();
+		_levelCleared = false;
 
 		if(!_isSimulation) {
 
@@ -80,8 +84,11 @@ public class GameWorld : ABSingleton<GameWorld> {
 		_slingSelectPos.y += selectPos.y;
 		_slingSelectPos.z += _slingshotFrontTransform.position.z;
 
-		if(_currentLevel == null && _levelSource != null)
+		if(_currentLevel == null && _levelSource != null) 
+		{
 			_currentLevel = _levelSource.NextLevel();
+			_levelTimesTried = 0;
+		}
 
 		if(_currentLevel != null) 
 		{
@@ -231,6 +238,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	public void ResetLevel()
 	{
+		if(_levelFailedBanner.activeSelf)
+			_levelTimesTried++;
+
 		ABSceneManager.Instance.LoadScene(Application.loadedLevelName);
 	}
 
@@ -301,8 +311,17 @@ public class GameWorld : ABSingleton<GameWorld> {
 		}
 		else
 		{
+			// Player lost the game
 			_hud.gameObject.SetActive(false);
-			_levelFailedBanner.SetActive(true);
+
+			if(_levelTimesTried < _timesToGiveUp - 1)
+
+				_levelFailedBanner.SetActive(true);
+			else
+			{
+				_levelClearedBanner.SetActive(true);
+				_levelClearedBanner.GetComponentInChildren<Text>().text = "Level Failed!";
+			}
 		}
 	}
 
@@ -314,8 +333,10 @@ public class GameWorld : ABSingleton<GameWorld> {
 		}
 		else
 		{
+			// Player won the game
 			_hud.gameObject.SetActive(false);
 			_levelClearedBanner.SetActive(true);
+			_levelClearedBanner.GetComponentInChildren<Text>().text = "Level Cleared!";
 		}
 	}
 

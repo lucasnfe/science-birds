@@ -222,10 +222,10 @@ MonoBehaviour:
   _dragRadius: 1
   _dragSpeed: 15
   _launchGravity: .400000006
-  _trajectoryParticleFrequency: .400000006
+  _trajectoryParticleFrequency: .5
   _jumpForce: 75
   _maxTimeToJump: 5
-  _launchForce: {x: 450, y: 450}
+  _launchForce: {x: 4.5, y: 4.5}
   _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}

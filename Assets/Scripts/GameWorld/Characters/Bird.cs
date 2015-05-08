@@ -190,15 +190,15 @@ public class Bird : Character {
 	{
 		IsSelected = false;
 	
-		Vector2 deltaPosFromSlingshot = transform.position - GameWorld.Instance._slingSelectPos;
+		Vector2 deltaPosFromSlingshot = (transform.position - GameWorld.Instance._slingSelectPos);
 		_animator.Play("flying", 0, 0f);
 
 		IsFlying = true;
 				
 		// The bird starts with no gravity, so we must set it
 		rigidbody2D.gravityScale = _launchGravity;
-		rigidbody2D.velocity = new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
-		                                   _launchForce.y * -deltaPosFromSlingshot.y) * Time.fixedDeltaTime;
+		rigidbody2D.AddForce(new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
+		                                 _launchForce.y * -deltaPosFromSlingshot.y), ForceMode2D.Impulse);
 
 		if(!GameWorld.Instance._isSimulation)
         	InvokeRepeating("DropTrajectoryParticle", 0.1f,

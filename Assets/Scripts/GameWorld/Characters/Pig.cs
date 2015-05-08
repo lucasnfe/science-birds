@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Pig : Character {
 
-	public float _forceToDie;
+	public float _life;
 	public GameObject dustEffect;
 
 	public override void Die()
@@ -22,7 +22,7 @@ public class Pig : Character {
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if(collision.relativeVelocity.magnitude > _forceToDie)
+		if(collision.relativeVelocity.magnitude > _life)
 		{
 			Invoke("Die", _timeToDie);
 			_animator.Play("hurt", 0, 0f);
