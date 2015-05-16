@@ -102,26 +102,26 @@ public class GameplayCamera : MonoBehaviour {
 
 	public Rect CalculateCameraRect()
 	{
-		float height = 2f * camera.orthographicSize;
-		float width = height * camera.aspect;	
+		float height = 2f * GetComponent<Camera>().orthographicSize;
+		float width = height * GetComponent<Camera>().aspect;	
 
 		return new Rect(transform.position.x - width/2f, transform.position.y - height/2f, width, height);
 	}
 
 	public float CalculateOrthographicSize()
 	{
-		float orthographicSize = camera.orthographicSize;
+		float orthographicSize = GetComponent<Camera>().orthographicSize;
 		
 		Vector3 topRight = new Vector3(_initialCameraRect.x + _initialCameraRect.width, _initialCameraRect.y, 0f);
-		Vector3 topRightAsViewport = camera.WorldToViewportPoint(topRight);
+		Vector3 topRightAsViewport = GetComponent<Camera>().WorldToViewportPoint(topRight);
 		
 		if (topRightAsViewport.x >= topRightAsViewport.y)
 
-			orthographicSize = Mathf.Abs(_initialCameraRect.width) / camera.aspect / 2f;
+			orthographicSize = Mathf.Abs(_initialCameraRect.width) / GetComponent<Camera>().aspect / 2f;
 		else
 			orthographicSize = Mathf.Abs(_initialCameraRect.height) / 2f;
 		
-		camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, orthographicSize, _dampTime * Time.deltaTime);
+		GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, orthographicSize, _dampTime * Time.deltaTime);
 		
 		return orthographicSize;
 	}

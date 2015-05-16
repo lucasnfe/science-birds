@@ -74,8 +74,8 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		if(!_isSimulation) {
 
-			audio.PlayOneShot(_clips[0]);
-			audio.PlayOneShot(_clips[1]);
+			GetComponent<AudioSource>().PlayOneShot(_clips[0]);
+			GetComponent<AudioSource>().PlayOneShot(_clips[1]);
 		}
 
 		// Calculating slingshot select position
@@ -118,7 +118,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		if(birdsAmount > 0)
 		{
 			Vector3 birdsPos = _slingshotTransform.transform.position;
-			birdsPos.y = _groundTransform.collider2D.bounds.center.y + _groundTransform.collider2D.bounds.size.y/2f;
+			birdsPos.y = _groundTransform.GetComponent<Collider2D>().bounds.center.y + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
 			
 			for(int i = 0; i < birdsAmount; i++)
 			{
@@ -198,9 +198,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 	{
 		Vector2 halfSize = abGameObject.GetComponent<Collider2D>().bounds.size/2f;
 		
-		if(abGameObject.position.x - halfSize.x > _groundTransform.collider2D.bounds.center.x + _groundTransform.collider2D.bounds.size.x/2f ||
-		   abGameObject.position.x + halfSize.x < _groundTransform.collider2D.bounds.center.x - _groundTransform.collider2D.bounds.size.x/2f || 
-		   abGameObject.position.y + halfSize.y < _groundTransform.collider2D.bounds.center.y - _groundTransform.collider2D.bounds.size.y/2f)
+		if(abGameObject.position.x - halfSize.x > _groundTransform.GetComponent<Collider2D>().bounds.center.x + _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f ||
+		   abGameObject.position.x + halfSize.x < _groundTransform.GetComponent<Collider2D>().bounds.center.x - _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f || 
+		   abGameObject.position.y + halfSize.y < _groundTransform.GetComponent<Collider2D>().bounds.center.y - _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f)
 
 			   return true;
 		
@@ -266,7 +266,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		Bird bird = newGameObject.GetComponent<Bird>();
 
 		if(isFirst)
-			bird.rigidbody2D.gravityScale = 0f;
+			bird.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
 		if(bird != null)
 			_birds.Add(bird);
@@ -369,7 +369,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 			return;
 		}
 		
-		_birds[0].rigidbody2D.gravityScale = 0f;
+		_birds[0].GetComponent<Rigidbody2D>().gravityScale = 0f;
 		_birds[0].JumpToSlingshot = true;
 	}
 
@@ -490,8 +490,8 @@ public class GameWorld : ABSingleton<GameWorld> {
 	private void AdaptCameraWidthToLevel() {
 		
 		// Adapt the camera to show all the blocks		
-		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.collider2D.bounds.size.x/2f;
-		float groundSurfacePos = _groundTransform.transform.position.x + _groundTransform.collider2D.bounds.size.y/2f;
+		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f;
+		float groundSurfacePos = _groundTransform.transform.position.x + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
 				
 		float minPosX = _currentLevel.gameObjects[0].Position.x - _currentLevel.gameObjects[0].GetBounds().size.x/2f;
 		float maxPosX = _currentLevel.gameObjects[0].Position.x + _currentLevel.gameObjects[0].GetBounds().size.x/2f; 

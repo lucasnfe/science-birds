@@ -25,10 +25,10 @@ public class ShiftABLevel : ABLevel{
 	{
 		GameObject ground = GameWorld.Instance._groundTransform.gameObject;	
 		
-		float levelLeftBound = ground.transform.position.x - ground.collider2D.bounds.size.x/2f;
+		float levelLeftBound = ground.transform.position.x - ground.GetComponent<Collider2D>().bounds.size.x/2f;
 		float slingDistFromLeftBound = GameWorld.Instance._slingshotTransform.position.x - levelLeftBound;
 		
-		_levelPlayableWidth = (ground.collider2D.bounds.size.x - slingDistFromLeftBound) - 1f;
+		_levelPlayableWidth = (ground.GetComponent<Collider2D>().bounds.size.x - slingDistFromLeftBound) - 1f;
 
 		_shiftGameObjects = new List<LinkedList<ShiftABGameObject>>();
 	}

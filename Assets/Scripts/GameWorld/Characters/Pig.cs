@@ -10,8 +10,8 @@ public class Pig : Character {
 	{
 		if(!GameWorld.Instance._isSimulation) {
 
+			ABAudioController.Instance.PlayIndependentSFX(_clips[0]);
 			GameWorld.Instance.SpawnPoint(50, transform.position);
-			ABAudioController.Instance.PlayMusic(_clips[0]);
 			GameWorld.Instance.AddTrajectoryParticle(dustEffect, transform.position, name);
 		}
 

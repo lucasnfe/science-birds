@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameData : ABSingleton<GameData> {
 		
@@ -73,7 +74,7 @@ public class GameData : ABSingleton<GameData> {
 		envelopeAnswersA + envelopeAnswersB + envelopeAnswersS +  
 		"</intf:saveQuestionary></SOAP-ENV:Body></SOAP-ENV:Envelope>";
 				 
-		Hashtable headers = new Hashtable();
+		Dictionary<string,string> headers = new Dictionary<string,string>();
 
 		//headers["Host"] = "52.0.243.131";
 		headers["Content-Type"] = "text/xml; charset=utf-8";

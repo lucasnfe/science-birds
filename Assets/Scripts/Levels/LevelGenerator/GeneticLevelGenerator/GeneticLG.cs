@@ -187,8 +187,8 @@ public class GeneticLG : RandomLG
 			Time.timeScale = 1f;
 		
 			// Play level starting audio
-			GameWorld.Instance.audio.PlayOneShot(GameWorld.Instance._clips[0]);
-			GameWorld.Instance.audio.PlayOneShot(GameWorld.Instance._clips[1]);
+			GameWorld.Instance.GetComponent<AudioSource>().PlayOneShot(GameWorld.Instance._clips[0]);
+			GameWorld.Instance.GetComponent<AudioSource>().PlayOneShot(GameWorld.Instance._clips[1]);
 		
 			// Clear the level and decode the best genome of the last generation
 			GameWorld.Instance.DecodeLevel(genome.level.gameObjects, genome.level.birdsAmount);	

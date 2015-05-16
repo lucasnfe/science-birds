@@ -226,7 +226,7 @@ public class RandomLG : ABLevelGenerator {
 					continue;
 				
 				// Check if pig dimensions fit inside the box 
-				if(Mathf.Abs (obj.Value.GetEmptyScapeInside().y - obj.Value.UnderObjectsHeight) > GameWorld.Instance._pig.renderer.bounds.size.y)
+				if(Mathf.Abs (obj.Value.GetEmptyScapeInside().y - obj.Value.UnderObjectsHeight) > GameWorld.Instance._pig.GetComponent<Renderer>().bounds.size.y)
 				{
 					ShiftABGameObject pig = new ShiftABGameObject();
 					pig.Label = GameWorld.Instance.Templates.Length;
@@ -313,8 +313,8 @@ public class RandomLG : ABLevelGenerator {
 						offsetY = obj.Previous.Value.Position.y + 
 							obj.Previous.Value.GetBounds().size.y/2f - obj.Value.UnderObjectsHeight;
 					else
-						offsetY = GameWorld.Instance._groundTransform.collider2D.bounds.center.y + 
-							GameWorld.Instance._groundTransform.collider2D.bounds.size.y/2f;
+						offsetY = GameWorld.Instance._groundTransform.GetComponent<Collider2D>().bounds.center.y + 
+							GameWorld.Instance._groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
 					
 					offsetY += obj.Value.GetBounds().size.y/2f;
 					obj.Value.Position = new Vector2(offsetX, offsetY);

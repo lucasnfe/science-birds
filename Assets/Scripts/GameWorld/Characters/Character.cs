@@ -26,7 +26,7 @@ public class Character : MonoBehaviour {
 	
 	protected void PlayAudio(int audioIndex)
 	{
-		audio.PlayOneShot(_clips[audioIndex]);
+		GetComponent<AudioSource>().PlayOneShot(_clips[audioIndex]);
 	}
 
 	public bool IsIdle()

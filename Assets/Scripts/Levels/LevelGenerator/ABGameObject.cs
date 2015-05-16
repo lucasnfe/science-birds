@@ -34,7 +34,7 @@ public class ABGameObject
 
 		if(IsPig())
 		{
-			composedBounds = GameWorld.Instance._pig.renderer.bounds;
+			composedBounds = GameWorld.Instance._pig.GetComponent<Renderer>().bounds;
 		}
 		else
 		{

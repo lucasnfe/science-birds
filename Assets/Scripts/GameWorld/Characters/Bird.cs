@@ -58,10 +58,10 @@ public class Bird : Character {
         if(JumpToSlingshot)
             return;
 
-        if(IsIdle() && rigidbody2D.gravityScale > 0f) {
-			rigidbody2D.AddForce(Vector2.up * _jumpForce);
+        if(IsIdle() && GetComponent<Rigidbody2D>().gravityScale > 0f) {
+			GetComponent<Rigidbody2D>().AddForce(Vector2.up * _jumpForce);
 				if(Random.value < 0.5f)
-					audio.PlayOneShot(_clips[Random.Range(4, 6)]);
+					GetComponent<AudioSource>().PlayOneShot(_clips[Random.Range(4, 6)]);
 		}
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
@@ -102,7 +102,7 @@ public class Bird : Character {
 				GameWorld.Instance._slingshotBaseTransform.gameObject.SetActive(false);
 
 			if(IsSelected && IsFlying)
-				audio.PlayOneShot(_clips[3]);
+				GetComponent<AudioSource>().PlayOneShot(_clips[3]);
         }
     }
 
@@ -131,13 +131,13 @@ public class Bird : Character {
 		if(collider.tag == "Slingshot")
 		{
 			if(IsSelected && !IsFlying)
-				audio.PlayOneShot(_clips[2]);
+				GetComponent<AudioSource>().PlayOneShot(_clips[2]);
 		}
 	}
 
 	public bool IsInFrontOfSlingshot()
 	{
-		return transform.position.x + collider2D.bounds.size.x > GameWorld.Instance._slingSelectPos.x + _dragRadius;
+		return transform.position.x + GetComponent<Collider2D>().bounds.size.x > GameWorld.Instance._slingSelectPos.x + _dragRadius;
 	}
 	
     public void SelectBird()
@@ -156,7 +156,7 @@ public class Bird : Character {
 		{
 			JumpToSlingshot = false;
 			OutOfSlingShot = false;
-			rigidbody2D.velocity = Vector2.zero;
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		}
     }
 
@@ -196,12 +196,12 @@ public class Bird : Character {
 		IsFlying = true;
 				
 		// The bird starts with no gravity, so we must set it
-		rigidbody2D.gravityScale = _launchGravity;
-		rigidbody2D.AddForce(new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
+		GetComponent<Rigidbody2D>().gravityScale = _launchGravity;
+		GetComponent<Rigidbody2D>().AddForce(new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
 		                                 _launchForce.y * -deltaPosFromSlingshot.y), ForceMode2D.Impulse);
 
 		if(!GameWorld.Instance._isSimulation)
         	InvokeRepeating("DropTrajectoryParticle", 0.1f,
-		                _trajectoryParticleFrequency / Mathf.Abs(rigidbody2D.velocity.x));
+		                _trajectoryParticleFrequency / Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
 	}
 }
