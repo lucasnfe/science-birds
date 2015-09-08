@@ -36,7 +36,6 @@ public class RandomLG : ABLevelGenerator {
 		return -1;
 	}
 
-
 	public override ABLevel GenerateLevel()
 	{
 		ShiftABLevel randomLevel = GenerateRandomLevel();

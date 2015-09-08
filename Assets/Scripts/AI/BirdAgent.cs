@@ -82,7 +82,7 @@ public class BirdAgent : MonoBehaviour {
 		_lastTargetPig = targetPig;
 		
 		// 3. Estimate the trajectory
-		float birdVel = currentBird._launchForce.x * Time.fixedDeltaTime;
+		float birdVel = currentBird._launchForce.x * -2f;
 		float birdGrav =  currentBird._launchGravity * Physics2D.gravity.y;
 
 		Vector2 releasePoint = TrajectoryPlanner.estimateLaunchPoint(slingPos, shotPos, birdVel, birdGrav);

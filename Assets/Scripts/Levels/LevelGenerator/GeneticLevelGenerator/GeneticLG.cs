@@ -61,7 +61,7 @@ public class GeneticLG : RandomLG
 		_genomeIdx = 0;
 
 		// Set time scale to acelerate evolution
-		Time.timeScale = 100f;
+		Time.timeScale = 1f;
 		 
 		// Totally zoom out
 		GameWorld.Instance._camera.SetCameraWidth(Mathf.Infinity);

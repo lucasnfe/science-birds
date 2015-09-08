@@ -153,9 +153,10 @@ public class GameWorld : ABSingleton<GameWorld> {
 			if(!IsLevelStable())
 				return;
 
-			if(_pigs.Count > 0 && _birds[0] && !_birds[0].JumpToSlingshot && _lastThrownBird != _birds[0]) {
+			if(_pigs.Count > 0 && _birds[0] != null && !_birds[0].JumpToSlingshot && _lastThrownBird != _birds[0]) {
 
 				Pig randomPig = _pigs[Random.Range(0, _pigs.Count)];
+
 				_birdAgent.ThrowBird(_birds[0], randomPig, _slingSelectPos);
 				_lastThrownBird = _birds[0];
 				_birdsThrown++;

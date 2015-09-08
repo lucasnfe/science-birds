@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 6f10dc69aeb3d4ca492f4de25a93b4b5
+timeCreated: 1432004611
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: AllBlocks_0
@@ -356,6 +358,9 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 1024
@@ -366,6 +371,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
@@ -1035,7 +1041,7 @@ TextureImporter:
         x: 408
         y: 585
         width: 43
-        height: 43
+        height: 42
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1365,7 +1371,7 @@ TextureImporter:
         x: 795
         y: 585
         width: 42
-        height: 44
+        height: 42
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2235,7 +2241,7 @@ TextureImporter:
         x: 451
         y: 456
         width: 42
-        height: 43
+        height: 41
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3741,3 +3747,5 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 
