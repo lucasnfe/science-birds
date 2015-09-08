@@ -489,6 +489,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 	}
 
 	private void AdaptCameraWidthToLevel() {
+
+		if(_currentLevel.gameObjects.Count == 0)
+			return;
 		
 		// Adapt the camera to show all the blocks		
 		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f;

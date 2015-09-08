@@ -6,13 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SplashScreen.unity
+    path: Assets/Scenes/Menus/SplashScreen.unity
   - enabled: 1
     path: Assets/Scenes/Questionary/Questionary_Introduction.unity
   - enabled: 1
     path: Assets/Scenes/Questionary/Questionary_Profile.unity
   - enabled: 1
-    path: Assets/Scenes/LoadingScene.unity
+    path: Assets/Scenes/Menus/LoadingScene.unity
   - enabled: 1
     path: Assets/Scenes/Questionary/Questionary_GroupAIntro.unity
   - enabled: 1
