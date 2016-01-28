@@ -1,8 +1,9 @@
 Library/*
-Build/*
+Builds/*
 Temp/*
 *.sln
 *.csproj
 *.userprefs
 *.userprefs
+*.DS_Store
 Assets/Experiments/* 
