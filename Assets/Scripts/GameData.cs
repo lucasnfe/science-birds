@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GameData : ABSingleton<GameData> {
 		
-	private string _url = "http://52.0.243.131:8080/ABQuestionaryServer/services/QuestionaryServer";
+	private string _url = "http://52.91.62.108:8080/ABQuestionaryServer/services/QuestionaryServer";
 
 	public string Age          { get; set; }
 	public string Gender 	   { get; set; }
