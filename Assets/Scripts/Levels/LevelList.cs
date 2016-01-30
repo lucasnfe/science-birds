@@ -1,37 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LevelList : LevelSource {
+public class LevelList : ABSingleton<LevelList> {
 
-	static ABLevel []_levels;
-	public int _listLimit;
-	public bool _shuffle;
-	public TextAsset []_levelsSource;
+	private ABLevel[]   _levels;
 
-	public override int LevelLimit() {
+	public int CurrentIndex;
 
-		return _listLimit;
+	public ABLevel GetCurrentLevel() { 
+
+		if(CurrentIndex > _levels.Length - 1)
+			return null;
+
+		return _levels [CurrentIndex]; 
+	}
+
+	public void LoadLevelsFromSource(TextAsset[] levelSource, bool shuffle = false) {
+
+		CurrentIndex = 0;
+
+		_levels = new ABLevel[levelSource.Length];
+
+		if(shuffle)
+			ABArrayUtils.Shuffle(levelSource);
+
+		for(int i = 0; i < levelSource.Length; i++)
+			_levels[i] = LevelLoader.LoadXmlLevel(levelSource[i].text);
 	}
 
 	// Use this for initialization
-	public override ABLevel NextLevel() {
-	
-		if(CurrentLevel == 0) {
-			_levels = new ABLevel[_levelsSource.Length];
+	public ABLevel NextLevel() {
 
-			if(_shuffle)
-				ABArrayUtils.Shuffle(_levelsSource);
-
-			for(int i = 0; i < _levelsSource.Length; i++)
-				_levels[i] = LevelLoader.LoadXmlLevel(_levelsSource[i].text);
-		}
-
-		if(CurrentLevel > _listLimit - 1)
+		if(CurrentIndex == _levels.Length - 1)
 			return null;
 
-		ABLevel nextLevel = _levels[CurrentLevel];
-		base.NextLevel();
+		ABLevel level = _levels [CurrentIndex];
+		CurrentIndex++;
 
-		return nextLevel;
+		return level;
 	}
 }

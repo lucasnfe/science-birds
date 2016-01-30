@@ -5,11 +5,11 @@ using System.Xml;
 using System.Text;
 using System.Collections.Generic;
 
-public class LevelLoader : MonoBehaviour {
+public class LevelLoader {
 	
 	public static ABLevel[] LoadAllLevels() {
 	
-		TextAsset []levelsXmlData = Resources.LoadAll<TextAsset>("GeneratedLevels/");
+		TextAsset []levelsXmlData = (TextAsset [])Resources.LoadAll("GeneratedLevels/bn25-ln50");
 
 		ABLevel []levels = new ABLevel[levelsXmlData.Length];
 
@@ -99,7 +99,7 @@ public class LevelLoader : MonoBehaviour {
 			objsInScene.Add(b.gameObject);
 		}
 
-		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
-		SaveXmlLevel(level);
+//		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
+//		SaveXmlLevel(level);
 	}
 }

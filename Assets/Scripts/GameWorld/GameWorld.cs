@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,8 +14,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 	private List<Pig>  _pigs;
 	private List<Bird> _birds;
 	private Bird _lastThrownBird;
-
-	private static ABLevel _currentLevel;
 
 	private int _pigsAtStart;
 	public int PigsAtStart { 
@@ -50,7 +49,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public GameObject _levelFailedBanner;
 	public GameObject _levelClearedBanner;
 
-	public LevelSource    _levelSource;
 	public HUD 			  _hud;
 	public GameplayCamera _camera;
 	public BirdAgent      _birdAgent;
@@ -84,16 +82,14 @@ public class GameWorld : ABSingleton<GameWorld> {
 		_slingSelectPos.y += selectPos.y;
 		_slingSelectPos.z += _slingshotFrontTransform.position.z;
 
-		if(_currentLevel == null && _levelSource != null) 
-		{
-			_currentLevel = _levelSource.NextLevel();
-			_levelTimesTried = 0;
-		}
+		ABLevel currentLevel = LevelList.Instance.GetCurrentLevel ();
 
-		if(_currentLevel != null) 
+		if(currentLevel != null) 
 		{
-			DecodeLevel(_currentLevel.gameObjects, _currentLevel.birdsAmount);
+			DecodeLevel(currentLevel.gameObjects, currentLevel.birdsAmount);
 			AdaptCameraWidthToLevel();
+
+			_levelTimesTried = 0;
 		}
 	}
 
@@ -228,13 +224,11 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	public void NextLevel()
 	{
-		_currentLevel = null;
+		if(LevelList.Instance.NextLevel() == null)
 
-		if(LevelSource.CurrentLevel % _levelSource.LevelLimit() == 0)
-
-			ABSceneManager.Instance.LoadScene(GameData.Instance.CurrentQuestionary);
+			ABSceneManager.Instance.LoadScene("MainMenu");
 		else
-			ABSceneManager.Instance.LoadScene(Application.loadedLevelName);
+			ABSceneManager.Instance.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	public void ResetLevel()
@@ -242,7 +236,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		if(_levelFailedBanner.activeSelf)
 			_levelTimesTried++;
 
-		ABSceneManager.Instance.LoadScene(Application.loadedLevelName);
+		ABSceneManager.Instance.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	public void AddTrajectoryParticle(GameObject particleTemplate, Vector3 position, string parentName)
@@ -441,7 +435,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 			Rigidbody2D []bodies = b.GetComponentsInChildren<Rigidbody2D>();
 
 			foreach(Rigidbody2D body in bodies)
-			{
+			{				
 				if(!IsObjectOutOfWorld(body.transform))
 					totalVelocity += body.velocity.magnitude;
 			}
@@ -490,29 +484,31 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	private void AdaptCameraWidthToLevel() {
 
-		if(_currentLevel.gameObjects.Count == 0)
+		ABLevel currentLevel = LevelList.Instance.GetCurrentLevel ();
+
+		if(currentLevel.gameObjects.Count == 0)
 			return;
 		
 		// Adapt the camera to show all the blocks		
 		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f;
 		float groundSurfacePos = _groundTransform.transform.position.x + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
 				
-		float minPosX = _currentLevel.gameObjects[0].Position.x - _currentLevel.gameObjects[0].GetBounds().size.x/2f;
-		float maxPosX = _currentLevel.gameObjects[0].Position.x + _currentLevel.gameObjects[0].GetBounds().size.x/2f; 
-		float maxPosY = _currentLevel.gameObjects[0].Position.y + _currentLevel.gameObjects[0].GetBounds().size.y/2f;
+		float minPosX = currentLevel.gameObjects[0].Position.x - currentLevel.gameObjects[0].GetBounds().size.x/2f;
+		float maxPosX = currentLevel.gameObjects[0].Position.x + currentLevel.gameObjects[0].GetBounds().size.x/2f; 
+		float maxPosY = currentLevel.gameObjects[0].Position.y + currentLevel.gameObjects[0].GetBounds().size.y/2f;
 
 		// Get position of first non-empty stack
-		for(int i = 0; i < _currentLevel.gameObjects.Count; i++)
+		for(int i = 0; i < currentLevel.gameObjects.Count; i++)
 		{
-			float minPosXCandidate = _currentLevel.gameObjects[i].Position.x - _currentLevel.gameObjects[i].GetBounds().size.x/2f;
+			float minPosXCandidate = currentLevel.gameObjects[i].Position.x - currentLevel.gameObjects[i].GetBounds().size.x/2f;
 			if(minPosXCandidate < minPosX)
 				minPosX = minPosXCandidate;
 
-			float maxPosXCandidate = _currentLevel.gameObjects[i].Position.x + _currentLevel.gameObjects[i].GetBounds().size.x/2f;
+			float maxPosXCandidate = currentLevel.gameObjects[i].Position.x + currentLevel.gameObjects[i].GetBounds().size.x/2f;
 			if(maxPosXCandidate > maxPosX)
 				maxPosX = maxPosXCandidate;
 
-			float maxPosYCandidate = _currentLevel.gameObjects[i].Position.y + _currentLevel.gameObjects[i].GetBounds().size.y/2f;
+			float maxPosYCandidate = currentLevel.gameObjects[i].Position.y + currentLevel.gameObjects[i].GetBounds().size.y/2f;
 			if(maxPosYCandidate > maxPosY)
 				maxPosY = maxPosYCandidate;
 		}
