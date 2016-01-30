@@ -6,4 +6,5 @@ Temp/*
 *.userprefs
 *.userprefs
 *.DS_Store
+obj/*
 Assets/Experiments/* 

@@ -1,38 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ABSceneManager : ABSingleton<ABSceneManager> {
+
+	public delegate void ActionBetweenScenes();
 
 	public AudioClip _backgroundMusic;
 
 	private int _lastScene;
-	public int LastScene {
-		get { return _lastScene; }
-	}
+
+	public int LastScene { get { return _lastScene; } }
 
 	void Start() {
 
 		_backgroundMusic = Resources.Load("title_theme") as AudioClip;
 	}
 			
-	public void LoadScene(string sceneName, bool showLoadingScreen = true, System.Action actioneBetweenScenes = null) {
+	public void LoadScene (string sceneName, bool showLoadingScreen = true, ActionBetweenScenes actioneBetweenScenes = null) {
 
 		ABSceneManager.Instance.StartCoroutine(SceneSwitchCoroutine(sceneName, showLoadingScreen, actioneBetweenScenes));
 	}
 
-	IEnumerator SceneSwitchCoroutine(string sceneName, bool showLoadingScreen, System.Action actioneBetweenScenes) {
-		_lastScene = Application.loadedLevel;
+	IEnumerator SceneSwitchCoroutine (string sceneName, bool showLoadingScreen, ActionBetweenScenes actioneBetweenScenes) {
+
+		_lastScene = SceneManager.GetActiveScene ().buildIndex;
+
 		if(showLoadingScreen) 
-			Application.LoadLevel("LoadingScene");
+			SceneManager.LoadScene("LoadingScene");
 
 		yield return new WaitForSeconds(0.1f);
 
 		if (actioneBetweenScenes != null)
 			actioneBetweenScenes();
 
-		Application.LoadLevel(sceneName);
+		SceneManager.LoadScene(sceneName);
 
-		if (sceneName.StartsWith("Questionary")) {
+		if (sceneName.EndsWith("Menu")) {
 			if(!ABAudioController.Instance.IsPlayingMusic(_backgroundMusic))
 				ABAudioController.Instance.PlayMusic(_backgroundMusic);
 		}
