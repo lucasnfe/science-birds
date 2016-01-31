@@ -14,7 +14,7 @@ public class ABSceneManager : ABSingleton<ABSceneManager> {
 
 	void Start() {
 
-		_backgroundMusic = Resources.Load("title_theme") as AudioClip;
+		_backgroundMusic = Resources.Load("Audio/title_theme") as AudioClip;
 	}
 			
 	public void LoadScene (string sceneName, bool showLoadingScreen = true, ActionBetweenScenes actioneBetweenScenes = null) {
