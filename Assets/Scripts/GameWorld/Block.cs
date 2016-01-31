@@ -2,14 +2,45 @@
 using System.Collections;
 
 public class Block : MonoBehaviour {
-	
-	private int _imgChangedTimes = 0;
-	private float _receivedDamage = 0f;
 
+	enum BlockMaterial {wood, stone, ice };
+
+	private int   _imgChangedTimes = 0;
+	private float _receivedDamage  = 0f;
+
+	private Sprite[] _typeSprites;
+
+	public int   _material = 0;
 	public float _life = 10;
-	public Sprite []_images;
+
+	public Sprite []_woodSprites;
+	public Sprite []_stoneSprites;
+	public Sprite []_iceSprites;
+
 	public AudioClip []_damageClip;
+
 	public ParticleSystem DestructionEffect;
+
+	void Awake() {
+
+		switch (_material) {
+
+		case (int)BlockMaterial.wood:
+			_typeSprites = _woodSprites;
+			_life *= 1f;
+			break;
+
+		case (int)BlockMaterial.stone:
+			_typeSprites = _stoneSprites;
+			_life *= 2f;
+			break;
+
+		case (int)BlockMaterial.ice:
+			_typeSprites = _iceSprites;
+			_life *= 0.5f;
+			break;
+		}
+	}
 	
 	void Explode()
 	{
@@ -35,9 +66,9 @@ public class Block : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		_receivedDamage += collision.relativeVelocity.magnitude;
-		if(_receivedDamage >= _life/_images.Length)
+		if(_receivedDamage >= _life/_typeSprites.Length)
 		{
-			GetComponent<SpriteRenderer>().sprite = _images[_imgChangedTimes];
+			GetComponent<SpriteRenderer>().sprite = _typeSprites[_imgChangedTimes];
 			
 			if(!GameWorld.Instance._isSimulation)
 				GetComponent<AudioSource>().PlayOneShot(_damageClip[0]);
@@ -46,7 +77,7 @@ public class Block : MonoBehaviour {
 			_receivedDamage = 0;
 		}
 
-		if(_imgChangedTimes == _images.Length) {
+		if(_imgChangedTimes == _typeSprites.Length) {
 			ABAudioController.Instance.PlayIndependentSFX(_damageClip[1]);
 			Explode();
 		}
