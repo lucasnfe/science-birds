@@ -20,7 +20,7 @@ public class ABGameObject
 
 	public bool IsPig() 
 	{ 
-		return (Label == GameWorld.Instance.Templates.Length); 
+		return (Label == GameWorld.Instance.GetTemplatesAmount()); 
 	}
 	
 	public float GetArea()
@@ -38,7 +38,7 @@ public class ABGameObject
 		}
 		else
 		{
-			GameObject composedObj = GameWorld.Instance.Templates[Label];
+			GameObject composedObj = GameWorld.Instance.GetTemplate(Label);
 			
 			if(composedObj.transform.childCount > 0)
 			{

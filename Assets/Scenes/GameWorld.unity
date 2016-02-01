@@ -175,49 +175,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.94}
   m_SizeDelta: {x: 25.5, y: 16.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &92852258 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-  m_PrefabInternal: {fileID: 471763897}
 --- !u!4 &92852259 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-  m_PrefabInternal: {fileID: 471763897}
---- !u!58 &92852260
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 92852258}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_Offset: {x: -0.12, y: 0.7}
-  serializedVersion: 2
-  m_Radius: 0.2
---- !u!1 &176972417 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
   m_PrefabInternal: {fileID: 471763897}
 --- !u!4 &176972418 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
   m_PrefabInternal: {fileID: 471763897}
---- !u!114 &176972419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 176972417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87d60aeccf1a4be7a6d8b27a0589db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _positionOffset: {x: 0, y: 0.3, z: 0}
-  _width: 0.0625
 --- !u!1 &184613944
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,94 +578,16 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_RootMapOrder
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 12000002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 12000002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 12000000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 12000000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 100004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_TagString
-      value: Slingshot
-      objectReference: {fileID: 0}
-    - target: {fileID: 21200002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300002, guid: 4908e30de8d124063b6beb978cd2c612,
-        type: 3}
-    - target: {fileID: 21200000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300004, guid: 4908e30de8d124063b6beb978cd2c612,
-        type: 3}
-    - target: {fileID: 12000002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Positions.Array.data[1].z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 12000000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Positions.Array.data[1].z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Name
-      value: SlingshotBack
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-      propertyPath: m_Name
-      value: SlingshotFront
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &471763898 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 407796, guid: b1b742266d367484280893c54cd65ebb, type: 2}
+  m_PrefabInternal: {fileID: 471763897}
 --- !u!1 &481162110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,7 +1089,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300014, guid: 795e611b5daad49b1a2374cb5a01ec33, type: 3}
+  m_Sprite: {fileID: 21300036, guid: 795e611b5daad49b1a2374cb5a01ec33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1216,23 +1103,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824640399}
---- !u!1 &850920768 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 100000, guid: b1b742266d367484280893c54cd65ebb, type: 2}
-  m_PrefabInternal: {fileID: 471763897}
---- !u!114 &850920770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 850920768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a87d60aeccf1a4be7a6d8b27a0589db4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _positionOffset: {x: 0, y: 0.685, z: 0}
-  _width: 0.0625
 --- !u!1 &916595446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,7 +1437,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300002, guid: 795e611b5daad49b1a2374cb5a01ec33, type: 3}
+  m_Sprite: {fileID: 21300026, guid: 795e611b5daad49b1a2374cb5a01ec33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2437,7 +2307,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1475171310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.925, z: 0}
+  m_LocalPosition: {x: 0, y: 0.825, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 916595447}
@@ -2591,13 +2461,13 @@ RectTransform:
   m_GameObject: {fileID: 1537508814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.94, y: 0.94, z: 1}
   m_Children: []
   m_Father: {fileID: 1239005688}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -37}
+  m_AnchoredPosition: {x: 100, y: -35}
   m_SizeDelta: {x: 55, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1537508816
@@ -2671,7 +2541,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300012, guid: 795e611b5daad49b1a2374cb5a01ec33, type: 3}
+  m_Sprite: {fileID: 21300030, guid: 795e611b5daad49b1a2374cb5a01ec33, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2779,64 +2649,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1726411437}
---- !u!1 &1729693424
+--- !u!1 &1804021975 stripped
 GameObject:
+  m_PrefabParentObject: {fileID: 100004, guid: b1b742266d367484280893c54cd65ebb, type: 2}
+  m_PrefabInternal: {fileID: 471763897}
+--- !u!58 &1804021976
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1729693425}
-  - 212: {fileID: 1729693426}
-  m_Layer: 9
-  m_Name: SlingshotBase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1729693425
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1729693424}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.726135, z: 2.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 92852259}
-  m_RootOrder: 2
---- !u!212 &1729693426
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1729693424}
+  m_GameObject: {fileID: 1804021975}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4908e30de8d124063b6beb978cd2c612, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.1, y: 0.8}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1936918382
 GameObject:
   m_ObjectHideFlags: 0
@@ -3004,7 +2834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slingshotTransform: {fileID: 92852259}
-  _slingshotBaseTransform: {fileID: 1729693425}
+  _slingshotBaseTransform: {fileID: 471763898}
   _slingshotFrontTransform: {fileID: 176972418}
   _groundTransform: {fileID: 402149769}
   _blocksTransform: {fileID: 1560348240}
@@ -3022,19 +2852,6 @@ MonoBehaviour:
   _timesToGiveUp: 3
   _timeToResetLevel: 3
   _slingSelectPos: {x: -0.15, y: 0.8, z: 1}
-  Templates:
-  - {fileID: 175512, guid: 435179d9132ad43e0bd6396925fed90d, type: 2}
-  - {fileID: 166524, guid: bddad6d4bc74646e79f4fa9aa0b53b64, type: 2}
-  - {fileID: 107004, guid: a4fbe2ed318e34abcb1e50bfa5b73f5d, type: 2}
-  - {fileID: 145950, guid: e4b242f806d48438ba1bd8349f4367e2, type: 2}
-  - {fileID: 190880, guid: 9a4796042b50e4785beabc729cce85e5, type: 2}
-  - {fileID: 144968, guid: 4cd5f7f8c496f4068b7b3e26f44c5a53, type: 2}
-  - {fileID: 118098, guid: bcd847a9b49d24673b4f1309ee288b4f, type: 2}
-  - {fileID: 127960, guid: 7cd14d38ac59642d9a900de3a892845a, type: 2}
-  - {fileID: 178810, guid: 0970b333f2e174c1e9b1798a07769a33, type: 2}
-  - {fileID: 105740, guid: 1f30b745e27b3470f9faaaac77cf4889, type: 2}
-  - {fileID: 160794, guid: 533dfe05a49294d638378a14108292e7, type: 2}
-  - {fileID: 118350, guid: 7334a465d78104dec84beafd0eab861a, type: 2}
   _clips:
   - {fileID: 8300000, guid: d6aabc3c34a094a859e527de492307b0, type: 3}
   - {fileID: 8300000, guid: 8e23d7e7119f4462a8e04cce1916a33f, type: 3}

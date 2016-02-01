@@ -60,7 +60,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public float   _timeToResetLevel = 1f;
 	public Vector3 _slingSelectPos;
 
-	public GameObject []Templates;
+	private GameObject []_templates;
 	public AudioClip  []_clips;
 	
 	// Use this for initialization
@@ -69,6 +69,12 @@ public class GameWorld : ABSingleton<GameWorld> {
 		_pigs = new List<Pig>();
 		_birds = new List<Bird>();
 		_levelCleared = false;
+
+		Object[] objs = Resources.LoadAll("Prefabs/GameWorld/Blocks");
+
+		_templates = new GameObject[objs.Length];
+		for (int i = 0; i < objs.Length; i++)
+			_templates [i] = (GameObject)objs [i];
 
 		if(!_isSimulation) {
 
@@ -99,29 +105,17 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		foreach(ABGameObject gameObj in gameObjects)
 		{
-			if(gameObj.Label < GameWorld.Instance.Templates.Length)
+			if(gameObj.Label < GameWorld.Instance._templates.Length)
 				
-				AddBlock(GameWorld.Instance.Templates[gameObj.Label], gameObj.Position, 
-				                            GameWorld.Instance.Templates[gameObj.Label].transform.rotation);
+				AddBlock(GameWorld.Instance._templates[gameObj.Label], gameObj.Position, 
+				                            GameWorld.Instance._templates[gameObj.Label].transform.rotation);
 			else
 				AddPig(GameWorld.Instance._pig, gameObj.Position, 
 				                          GameWorld.Instance._pig.transform.rotation);
 		}
-		
-		//First bird must be in the slingshot
-		AddBird(_bird, _slingSelectPos, _bird.transform.rotation, "bird0", true);
-		
-		if(birdsAmount > 0)
-		{
-			Vector3 birdsPos = _slingshotTransform.transform.position;
-			birdsPos.y = _groundTransform.GetComponent<Collider2D>().bounds.center.y + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
-			
-			for(int i = 0; i < birdsAmount; i++)
-			{
-				birdsPos.x -= _bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
-				GameWorld.Instance.AddBird(_bird, birdsPos, _bird.transform.rotation, "bird" + (i+1));
-			}
-		}
+
+		for(int i = 0; i < birdsAmount; i++)
+			AddBird(_bird, _bird.transform.rotation);
 		
 		StartWorld();
 	}
@@ -194,10 +188,12 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public bool IsObjectOutOfWorld(Transform abGameObject)
 	{
 		Vector2 halfSize = abGameObject.GetComponent<Collider2D>().bounds.size/2f;
+
+		Collider2D ground = _groundTransform.GetComponent<Collider2D> ();
 		
-		if(abGameObject.position.x - halfSize.x > _groundTransform.GetComponent<Collider2D>().bounds.center.x + _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f ||
-		   abGameObject.position.x + halfSize.x < _groundTransform.GetComponent<Collider2D>().bounds.center.x - _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f || 
-		   abGameObject.position.y + halfSize.y < _groundTransform.GetComponent<Collider2D>().bounds.center.y - _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f)
+		if(abGameObject.position.x - halfSize.x > ground.bounds.center.x + ground.bounds.size.x/2f ||
+		   abGameObject.position.x + halfSize.x < ground.bounds.center.x - ground.bounds.size.x/2f || 
+		   abGameObject.position.y + halfSize.y < ground.bounds.center.y - ground.bounds.size.y/2f)
 
 			   return true;
 		
@@ -252,15 +248,25 @@ public class GameWorld : ABSingleton<GameWorld> {
 			Destroy(particle, 0.5f);
 	}
 	
-	public void AddBird(Object original, Vector3 position, Quaternion rotation, string birdname, bool isFirst = false)
+	public void AddBird(Object original, Quaternion rotation)
 	{
-		GameObject newGameObject = (GameObject)Instantiate(original, position, rotation);
+		Vector3 birdsPos = _slingSelectPos;
+
+		if(_birds.Count >= 1)
+		{
+			birdsPos.y = _groundTransform.GetComponent<Collider2D>().bounds.center.y + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
+
+			for(int i = 0; i < _birds.Count; i++)
+				birdsPos.x -= _bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
+		}
+
+		GameObject newGameObject = (GameObject)Instantiate(original, birdsPos, rotation);
 		newGameObject.transform.parent = _birdsTransform;
-		newGameObject.name = birdname;
+		newGameObject.name = "bird_" + _birds.Count;
 
 		Bird bird = newGameObject.GetComponent<Bird>();
 
-		if(isFirst)
+		if(_birds.Count == 0)
 			bird.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
 		if(bird != null)
@@ -414,12 +420,12 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	public int GetTemplateIndex(GameObject templateObj)
 	{
-		for(int i = 0; i < Templates.Length; i++)
+		for(int i = 0; i < _templates.Length; i++)
 		{
 			if(templateObj.name == "pig")
-				return Templates.Length;
+				return _templates.Length;
 
-			if(templateObj.name == Templates[i].name)
+			if(templateObj.name == _templates[i].name)
 				return i;
 		}
 
@@ -442,6 +448,16 @@ public class GameWorld : ABSingleton<GameWorld> {
 		}
 
 		return totalVelocity;
+	}
+
+	public GameObject GetTemplate(int index) {
+
+		return _templates[index];
+	}
+
+	public int GetTemplatesAmount() {
+
+		return _templates.Length;
 	}
 	
 	public bool IsLevelStable()
