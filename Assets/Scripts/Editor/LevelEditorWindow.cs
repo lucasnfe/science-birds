@@ -41,7 +41,7 @@ class LevelEditor : EditorWindow {
 	private static GameObject[] _pigs;
 	private static GameObject[] _blocks;
 
-	private int _birdsAdded = 0;
+	private static int _birdsAdded = 0;
 	private static Vector3 _slingshotPos;
 	private static Vector3 _groundPos;
 
@@ -72,33 +72,26 @@ class LevelEditor : EditorWindow {
 		for (int i = 0; i < objs3.Length; i++)
 			_blocks [i] = (GameObject)objs3 [i];
 
-		_slingshotPos = new Vector3 (-7.62f, -1.24f, 1f);
+
 		_groundPos = new Vector3 (0f, -2.74f, 0f);
+		_slingshotPos = new Vector3 (-7.62f, -1.24f, 1f);
+
+		_birdsAdded = GameObject.Find ("Birds").transform.childCount;
 
 		window.Show ();
 	}
 
 	void OnGUI()
 	{
+		if (GUILayout.Button ("Clear Level")) {
+
+			ClearLevel ();
+		}
+
 		_birdsOps = (BIRDS) EditorGUILayout.EnumPopup("Bird to create:", _birdsOps);
 		if (GUILayout.Button ("Create Bird", GUILayout.Width (80), GUILayout.Height (20))) {
 
-			GameObject bird = InstantiateGameObject (_birds, (int)_birdsOps);
-			bird.transform.parent = GameObject.Find ("Birds").transform;
-
-			Vector3 birdsPos = _slingshotPos;
-
-			if(_birdsAdded >= 1)
-			{
-				birdsPos.y = _groundPos.y;
-
-				for(int i = 0; i < _birdsAdded; i++)
-					birdsPos.x -= bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
-			}
-
-			bird.transform.position = birdsPos;
-
-			_birdsAdded++;
+			CreateBird ();
 		}
 
 		_pigsOps = (PIGS) EditorGUILayout.EnumPopup("Pig to create:", _pigsOps);
@@ -114,6 +107,11 @@ class LevelEditor : EditorWindow {
 			GameObject block = InstantiateGameObject (_blocks, (int)_blocksOps);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 		}
+			
+		if (GUILayout.Button ("Save Level")) {
+
+			
+		}
 	}
 
 	GameObject InstantiateGameObject(GameObject[]source, int index) {
@@ -122,6 +120,43 @@ class LevelEditor : EditorWindow {
 		cube.transform.position = Vector3.zero;
 
 		return cube;
+	}
+
+	void ClearLevel() {
+
+		_birdsAdded = 0;
+
+		DestroyImmediate (GameObject.Find ("Birds").gameObject);
+		GameObject birds = new GameObject ();
+		birds.name = "Birds";
+		birds.transform.parent = GameObject.Find ("GameWorld").transform;
+
+		DestroyImmediate (GameObject.Find ("Blocks").gameObject);
+		GameObject blocks = new GameObject ();
+		blocks.name = "Blocks";
+		blocks.transform.parent = GameObject.Find ("GameWorld").transform;
+	}
+
+	void CreateBird() {
+
+		GameObject bird = InstantiateGameObject (_birds, (int)_birdsOps);
+		bird.name = bird.name + "_" + _birdsAdded;
+		bird.transform.parent = GameObject.Find ("Birds").transform;
+
+		Vector3 birdsPos = _slingshotPos;
+
+		// From the second Bird on, they are added to the ground
+		if(_birdsAdded >= 1)
+		{
+			birdsPos.y = _groundPos.y;
+
+			for(int i = 0; i < _birdsAdded; i++)
+				birdsPos.x -= bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
+		}
+
+		bird.transform.position = birdsPos;
+
+		_birdsAdded++;
 	}
 
 	public static void ToggleGizmos(bool gizmosOn) {

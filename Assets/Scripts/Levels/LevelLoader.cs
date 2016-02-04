@@ -90,14 +90,9 @@ public class LevelLoader {
 
 	public void SaveLevelOnScene() {
 
-		Transform blocksInScene = GameWorld.Instance._blocksTransform;
-
-		List<GameObject> objsInScene = new List<GameObject>();
-
-		foreach(Transform b in blocksInScene)
-		{
-			objsInScene.Add(b.gameObject);
-		}
+//		Transform blocksInScene = GameWorld.Instance.BlocksInScene();
+//
+//		List<GameObject> objsInScene = GameWorld.Instance.BlocksInScene();
 
 //		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
 //		SaveXmlLevel(level);
