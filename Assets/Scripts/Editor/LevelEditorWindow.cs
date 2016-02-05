@@ -36,6 +36,7 @@ class LevelEditor : EditorWindow {
 	public static BIRDS  _birdsOps;
 	public static PIGS   _pigsOps;
 	public static BLOCKS _blocksOps;
+	public static MATERIALS _materials;
 
 	private static GameObject[] _birds;
 	private static GameObject[] _pigs;
@@ -88,41 +89,66 @@ class LevelEditor : EditorWindow {
 
 	void OnGUI()
 	{
-		if (GUILayout.Button ("Clear Level")) {
+		EditorGUILayout.BeginHorizontal ();
 
-			ClearLevel ();
-		}
-
-		_birdsOps = (BIRDS) EditorGUILayout.EnumPopup("Bird to create:", _birdsOps);
+		_birdsOps = (BIRDS) EditorGUILayout.EnumPopup("", _birdsOps);
 		if (GUILayout.Button ("Create Bird", GUILayout.Width (80), GUILayout.Height (20))) {
 
 			CreateBird ();
 		}
 
-		_pigsOps = (PIGS) EditorGUILayout.EnumPopup("Pig to create:", _pigsOps);
+		EditorGUILayout.EndVertical ();
+
+		// Pigs section
+		EditorGUILayout.BeginHorizontal ();
+
+		_pigsOps = (PIGS) EditorGUILayout.EnumPopup("", _pigsOps);
+
 		if (GUILayout.Button ("Create Pig", GUILayout.Width (80), GUILayout.Height (20))) {
 
 			GameObject pig = InstantiateGameObject (_pigs, (int)_pigsOps);
 			pig.transform.parent = GameObject.Find ("Blocks").transform;
 		}
 
-		_blocksOps = (BLOCKS) EditorGUILayout.EnumPopup("Block to create:", _blocksOps);
+		EditorGUILayout.EndVertical ();
+
+		// Blocks section
+		EditorGUILayout.BeginHorizontal ();
+
+		_blocksOps = (BLOCKS) EditorGUILayout.EnumPopup("", _blocksOps);
+		_materials = (MATERIALS) EditorGUILayout.EnumPopup("", _materials);
+
 		if (GUILayout.Button ("Create Block", GUILayout.Width (80), GUILayout.Height (20))) {
 
 			GameObject block = InstantiateGameObject (_blocks, (int)_blocksOps);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 		}
 
+		EditorGUILayout.EndHorizontal ();
+
 		if (GUILayout.Button ("Create Platform")) {
 
 			GameObject platform = InstantiateGameObject (_platform);
 			platform.transform.parent = GameObject.Find ("Platforms").transform;
+		}
+
+		EditorGUILayout.BeginHorizontal ();
+
+		if (GUILayout.Button ("Clear Level")) {
+
+			ClearLevel ();
+		}
+
+		if (GUILayout.Button ("Load Level")) {
+
 		}
 			
 		if (GUILayout.Button ("Save Level")) {
 
 
 		}
+
+		EditorGUILayout.EndHorizontal ();
 	}
 
 	GameObject InstantiateGameObject(GameObject[]source, int index) {

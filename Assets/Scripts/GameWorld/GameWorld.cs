@@ -15,9 +15,10 @@ public class GameWorld : ABSingleton<GameWorld> {
 	private List<Bird> _birds;
 	private Bird _lastThrownBird;
 
-	private Transform _groundTransform;
+	private Collider2D _groundTransform;
 	private Transform _blocksTransform;
 	private Transform _birdsTransform;
+	private Transform _plaftformsTransform;
 	private Transform _slingshotTransform;
 	private Transform _slingshotBaseTransform;
 	private Transform _slingshotFrontTransform;
@@ -64,14 +65,18 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public int     _timesToGiveUp;
 	public float   _timeToResetLevel = 1f;
 
-	private GameObject []_templates;
+	private GameObject []_birdsTemplate;
+	private GameObject []_pigsTemplate;
+	private GameObject []_blocksTemplate;
+	private GameObject   _platformTemplate;
+
 	public AudioClip  []_clips;
 
 	void Awake() {
 
 		_blocksTransform = GameObject.Find ("Blocks").transform;
 		_birdsTransform = GameObject.Find ("Birds").transform;
-		_groundTransform = GameObject.Find ("Ground").transform;
+		_groundTransform = GameObject.Find ("Ground").GetComponent<Collider2D>();
 		_slingshotTransform = GameObject.Find ("Slingshot").transform;
 		_slingshotBaseTransform = GameObject.Find ("slingshot_base").transform;
 		_slingshotFrontTransform = GameObject.Find ("slingshot_front").transform;
@@ -101,12 +106,11 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		_levelCleared = false;
 
-		// Load block templates and cast them to game objects
-		Object[] objs = Resources.LoadAll("Prefabs/GameWorld/Blocks");
+		_birdsTemplate = LoadABResource ("Prefabs/GameWorld/Characters/Birds");
+		_pigsTemplate = LoadABResource ("Prefabs/GameWorld/Characters/Pigs");
+		_blocksTemplate = LoadABResource ("Prefabs/GameWorld/Blocks");
 
-		_templates = new GameObject[objs.Length];
-		for (int i = 0; i < objs.Length; i++)
-			_templates [i] = (GameObject)objs [i];
+		_platformTemplate = (GameObject) Resources.Load ("Prefabs/GameWorld/Platform");
 
 		if(!_isSimulation) {
 
@@ -137,7 +141,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 			if (currentLevel != null){
 				
-				DecodeLevel (currentLevel.gameObjects, currentLevel.birdsAmount);
+				DecodeLevel (currentLevel.pigs, currentLevel.blocks, currentLevel.platforms, currentLevel.birdsAmount);
 				AdaptCameraWidthToLevel ();
 
 				_levelTimesTried = 0;
@@ -145,19 +149,38 @@ public class GameWorld : ABSingleton<GameWorld> {
 		}
 	}
 
-	public void DecodeLevel(List<ABGameObject> gameObjects, int birdsAmount) 
+	GameObject[] LoadABResource(string path) {
+
+		// Load block templates and cast them to game objects
+		Object[] objs = Resources.LoadAll(path);
+
+		GameObject[] resources = new GameObject[objs.Length];
+		for (int i = 0; i < objs.Length; i++)
+			resources [i] = (GameObject)objs [i];
+
+		return resources;
+	}
+
+	public void DecodeLevel(List<OBjData> pigs, List<OBjData> blocks, List<OBjData> platforms, int birdsAmount) 
 	{
 		ClearWorld();
 
-		foreach(ABGameObject gameObj in gameObjects)
+		foreach (OBjData gameObj in pigs) {
+
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			AddBlock(_pigsTemplate[gameObj.type], pos, _pigsTemplate[gameObj.type].transform.rotation);
+		}
+
+		foreach(OBjData gameObj in blocks) {
+
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			AddBlock(_blocksTemplate[gameObj.type], pos,  _blocksTemplate[gameObj.type].transform.rotation);
+		}
+
+		foreach(OBjData gameObj in platforms)
 		{
-			if(gameObj.Label < GameWorld.Instance._templates.Length)
-				
-				AddBlock(GameWorld.Instance._templates[gameObj.Label], gameObj.Position, 
-				                            GameWorld.Instance._templates[gameObj.Label].transform.rotation);
-			else
-				AddPig(GameWorld.Instance._pig, gameObj.Position, 
-				                          GameWorld.Instance._pig.transform.rotation);
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			AddBlock(_platformTemplate, pos,  _platformTemplate.transform.rotation);
 		}
 
 		for(int i = 0; i < birdsAmount; i++)
@@ -171,9 +194,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 	{
 		// Check if birds was trown, if it died and swap them when needed
 		ManageBirds();
-		
-		// If an object goes out of screen, destroy it
-		DestroyIfOutScreen();
 
 		// Activate game AI if it is set
 		if(_birdAgent != null && !_birdAgent.IsThrowingBird)
@@ -199,47 +219,14 @@ public class GameWorld : ABSingleton<GameWorld> {
 			}
 		}
 	}
-
-	void DestroyIfOutScreen()
-	{
-		Rigidbody2D []bodies = _blocksTransform.GetComponentsInChildren<Rigidbody2D>();
-
-		foreach(Rigidbody2D body in bodies)
-		{
-			Transform b = body.transform;
-
-			if(IsObjectOutOfWorld(b))
-			{
-				if(b.GetComponent<Pig>() != null)
-
-					b.GetComponent<Pig>().Die();
-				else
-					Destroy(b.gameObject);
-			}
-		}
 	
-		foreach(Transform b in _birdsTransform)
-		{			
-			if(IsObjectOutOfWorld(b))
-			{
-				if(b.GetComponent<Bird>() != null)
-				{
-					RemoveLastTrajectoryParticle(b.GetComponent<Bird>().name);
-					b.GetComponent<Bird>().Die();
-				}
-			}
-		}
-	}
-	
-	public bool IsObjectOutOfWorld(Transform abGameObject)
+	public bool IsObjectOutOfWorld(Transform abGameObject, Collider2D abCollider)
 	{
-		Vector2 halfSize = abGameObject.GetComponent<Collider2D>().bounds.size/2f;
-
-		Collider2D ground = _groundTransform.GetComponent<Collider2D> ();
-		
-		if(abGameObject.position.x - halfSize.x > ground.bounds.center.x + ground.bounds.size.x/2f ||
-		   abGameObject.position.x + halfSize.x < ground.bounds.center.x - ground.bounds.size.x/2f || 
-		   abGameObject.position.y + halfSize.y < ground.bounds.center.y - ground.bounds.size.y/2f)
+		Vector2 halfSize = abCollider.bounds.size/2f;
+	
+		if(abGameObject.position.x - halfSize.x > _groundTransform.bounds.center.x + _groundTransform.bounds.size.x/2f ||
+		   abGameObject.position.x + halfSize.x < _groundTransform.bounds.center.x - _groundTransform.bounds.size.x/2f || 
+		   abGameObject.position.y + halfSize.y < _groundTransform.bounds.center.y - _groundTransform.bounds.size.y/2f)
 
 			   return true;
 		
@@ -345,7 +332,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		return newGameObject;
 	}
 
-	public void SpawnPoint(uint point, Vector3 position)
+	public void SpawnScorePoint(uint point, Vector3 position)
 	{
 		GameObject pointObj = Instantiate(_point, new Vector3(position.x, position.y, _point.transform.position.z), Quaternion.identity) as GameObject; 
 		pointObj.transform.SetParent(_pointHUD.transform);
@@ -475,16 +462,21 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	public int GetTemplateIndex(GameObject templateObj)
 	{
-		for(int i = 0; i < _templates.Length; i++)
+		for(int i = 0; i < _blocksTemplate.Length; i++)
 		{
 			if(templateObj.name == "pig")
-				return _templates.Length;
+				return _blocksTemplate.Length;
 
-			if(templateObj.name == _templates[i].name)
+			if(templateObj.name == _blocksTemplate[i].name)
 				return i;
 		}
 
 		return -1;
+	}
+
+	public bool IsLevelStable()
+	{
+		return GetLevelStability() == 0f;
 	}
 
 	public float GetLevelStability()
@@ -497,22 +489,12 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 			foreach(Rigidbody2D body in bodies)
 			{				
-				if(!IsObjectOutOfWorld(body.transform))
+				if(!IsObjectOutOfWorld(body.transform, body.GetComponent<Collider2D>()))
 					totalVelocity += body.velocity.magnitude;
 			}
 		}
 
 		return totalVelocity;
-	}
-
-	public GameObject GetTemplate(int index) {
-
-		return _templates[index];
-	}
-
-	public int GetTemplatesAmount() {
-
-		return _templates.Length;
 	}
 
 	public List<GameObject> BlocksInScene() {
@@ -554,12 +536,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		return _slingshotBaseTransform.transform.position;
 	}
-	
-	public bool IsLevelStable()
-	{
-		return GetLevelStability() == 0f;
-	}
-	
+
 	public void StartWorld()
 	{
 		_pigsAtStart = GetPigsAvailableAmount();
@@ -595,31 +572,31 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	private void AdaptCameraWidthToLevel() {
 
-		ABLevel currentLevel = LevelList.Instance.GetCurrentLevel ();
+		Collider2D []bodies = _blocksTransform.GetComponentsInChildren<Collider2D>();
 
-		if(currentLevel.gameObjects.Count == 0)
+		if(bodies.Length == 0)
 			return;
 		
 		// Adapt the camera to show all the blocks		
-		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f;
-		float groundSurfacePos = _groundTransform.transform.position.x + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
+		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.bounds.size.x/2f;
+		float groundSurfacePos = _groundTransform.transform.position.x + _groundTransform.bounds.size.y/2f;
 				
-		float minPosX = currentLevel.gameObjects[0].Position.x - currentLevel.gameObjects[0].GetBounds().size.x/2f;
-		float maxPosX = currentLevel.gameObjects[0].Position.x + currentLevel.gameObjects[0].GetBounds().size.x/2f; 
-		float maxPosY = currentLevel.gameObjects[0].Position.y + currentLevel.gameObjects[0].GetBounds().size.y/2f;
+		float minPosX = Mathf.Infinity;
+		float maxPosX = -Mathf.Infinity; 
+		float maxPosY = -Mathf.Infinity;
 
 		// Get position of first non-empty stack
-		for(int i = 0; i < currentLevel.gameObjects.Count; i++)
+		for(int i = 0; i < bodies.Length; i++)
 		{
-			float minPosXCandidate = currentLevel.gameObjects[i].Position.x - currentLevel.gameObjects[i].GetBounds().size.x/2f;
+			float minPosXCandidate = bodies[i].transform.position.x - bodies[i].bounds.size.x/2f;
 			if(minPosXCandidate < minPosX)
 				minPosX = minPosXCandidate;
 
-			float maxPosXCandidate = currentLevel.gameObjects[i].Position.x + currentLevel.gameObjects[i].GetBounds().size.x/2f;
+			float maxPosXCandidate = bodies[i].transform.position.x + bodies[i].bounds.size.x/2f;
 			if(maxPosXCandidate > maxPosX)
 				maxPosX = maxPosXCandidate;
 
-			float maxPosYCandidate = currentLevel.gameObjects[i].Position.y + currentLevel.gameObjects[i].GetBounds().size.y/2f;
+			float maxPosYCandidate = bodies[i].transform.position.y + bodies[i].bounds.size.y/2f;
 			if(maxPosYCandidate > maxPosY)
 				maxPosY = maxPosYCandidate;
 		}

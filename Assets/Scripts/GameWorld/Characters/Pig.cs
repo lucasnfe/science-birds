@@ -3,15 +3,14 @@ using System.Collections;
 
 public class Pig : Character {
 
-	public float _life;
 	public GameObject dustEffect;
 
 	public override void Die()
 	{
 		if(!GameWorld.Instance._isSimulation) {
 
-			ABAudioController.Instance.PlayIndependentSFX(_clips[0]);
-			GameWorld.Instance.SpawnPoint(50, transform.position);
+			ABAudioController.Instance.PlayIndependentSFX(_typeClips[0]);
+			GameWorld.Instance.SpawnScorePoint(50, transform.position);
 			GameWorld.Instance.AddTrajectoryParticle(dustEffect, transform.position, name);
 		}
 

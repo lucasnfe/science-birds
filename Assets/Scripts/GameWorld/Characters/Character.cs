@@ -1,32 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Character : MonoBehaviour {
+public class Character : ABGameObject {
 
 	protected Animator _animator;
-
-	public float _timeToDie;
 	public float _maxTimeToBlink;
 
-	public AudioClip[] _clips;
-	
 	// Use this for initialization
-	public virtual void Awake () {
+	protected override void Awake () {
+
+		base.Awake ();
 
 		_animator = GetComponent<Animator>();
 	
 		float nextBlinkDelay = Random.Range(0.0f, _maxTimeToBlink);
 		Invoke("Blink", nextBlinkDelay + 1.0f);
-	}
-
-	public virtual void Die()
-	{
-		Destroy(gameObject);
-	}
-	
-	protected void PlayAudio(int audioIndex)
-	{
-		GetComponent<AudioSource>().PlayOneShot(_clips[audioIndex]);
 	}
 
 	public bool IsIdle()
