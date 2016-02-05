@@ -9,8 +9,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: LucasFerreira
-  productName: AngryBirdsEndless
+  companyName: UC Santa Cruz
+  productName: AngryBirds
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -395,7 +395,7 @@ PlayerSettings:
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
   scriptingDefineSymbols:
-    1: 
+    1: slingshot_base
     2: 
   metroPackageName: AngryBirds
   metroPackageVersion: 
@@ -495,7 +495,7 @@ PlayerSettings:
   WebGL::ScriptingBackend: 1
   WebGL::audioCompressionFormat: 4
   WebGL::exceptionSupport: 0
-  WebGL::memorySize: 512
+  WebGL::memorySize: 256
   iOS::Architecture: 0
   iOS::EnableIncrementalBuildSupportForIl2cpp: 0
   iOS::ScriptingBackend: 0
@@ -504,7 +504,7 @@ PlayerSettings:
   - WebGL::dataCaching
   - WebGL::useEmbeddedResources
   WebGL::analyzeBuildSize: 0
-  WebGL::dataCaching: 1
+  WebGL::dataCaching: 0
   WebGL::useEmbeddedResources: 0
   stringPropertyNames:
   - WebGL::emscriptenArgs

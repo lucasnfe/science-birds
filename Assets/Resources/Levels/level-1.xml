@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-16"?>
+<Level>
+  <BirdsAmount>3</BirdsAmount>
+  <GameObjects>
+    <Block type="6"  x="2.548333"  y="-2.49" />
+    <Block type="6"  x="1.7083334" y="-2.49" />
+    <Block type="7"  x="2.128333"  y="-1.86" />
+    <Pig   type="0" x="2.128333"  y="-1.55" />
+  </GameObjects>
+</Level>

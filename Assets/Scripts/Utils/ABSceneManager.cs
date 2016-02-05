@@ -9,12 +9,14 @@ public class ABSceneManager : ABSingleton<ABSceneManager> {
 	public AudioClip _backgroundMusic;
 
 	private int _lastScene;
-
 	public int LastScene { get { return _lastScene; } }
+
+	private int _currentScene;
+	public int CurrentScene { get { return _currentScene; } }
 
 	void Start() {
 
-		_backgroundMusic = Resources.Load("title_theme") as AudioClip;
+		_backgroundMusic = Resources.Load("Audio/title_theme") as AudioClip;
 	}
 			
 	public void LoadScene (string sceneName, bool showLoadingScreen = true, ActionBetweenScenes actioneBetweenScenes = null) {
@@ -42,6 +44,8 @@ public class ABSceneManager : ABSingleton<ABSceneManager> {
 		}
 		else
 			ABAudioController.Instance.StopMusic();
+
+		_currentScene = SceneManager.GetActiveScene ().buildIndex;
 	}
 }
 

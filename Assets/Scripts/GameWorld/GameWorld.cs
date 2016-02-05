@@ -15,6 +15,20 @@ public class GameWorld : ABSingleton<GameWorld> {
 	private List<Bird> _birds;
 	private Bird _lastThrownBird;
 
+	private Collider2D _groundTransform;
+	private Transform _blocksTransform;
+	private Transform _birdsTransform;
+	private Transform _plaftformsTransform;
+	private Transform _slingshotTransform;
+	private Transform _slingshotBaseTransform;
+	private Transform _slingshotFrontTransform;
+	private GameObject _levelFailedBanner;
+	private GameObject _levelClearedBanner;
+
+	private HUD 		      _hud;
+	private BirdAgent         _birdAgent;
+	private RectTransform     _pointHUD;
+
 	private int _pigsAtStart;
 	public int PigsAtStart { 
 		get { return _pigsAtStart; }
@@ -35,40 +49,68 @@ public class GameWorld : ABSingleton<GameWorld> {
 		get { return _stabilityUntilFirstBird; }
 	}
 
-	// Main game components
-	public Transform _slingshotTransform;
-	public Transform _slingshotBaseTransform;
-	public Transform _slingshotFrontTransform;
-	public Transform _groundTransform;
-	public Transform _blocksTransform;
-	public Transform _birdsTransform;
-
+	private Vector3 _slingSelectPos;
+	public Vector3 SlingSelectPos { 
+		get { return _slingSelectPos; }
+	}
+		
+	public GameplayCamera GameplayCam { get; set; }
+		
 	public GameObject _pig;
 	public GameObject _bird;
 	public GameObject _point;
-	public GameObject _levelFailedBanner;
-	public GameObject _levelClearedBanner;
-
-	public HUD 			  _hud;
-	public GameplayCamera _camera;
-	public BirdAgent      _birdAgent;
-	public RectTransform  _pointHUD;
 
 	// Game world properties
 	public bool    _isSimulation;
 	public int     _timesToGiveUp;
 	public float   _timeToResetLevel = 1f;
-	public Vector3 _slingSelectPos;
 
-	public GameObject []Templates;
+	private GameObject []_birdsTemplate;
+	private GameObject []_pigsTemplate;
+	private GameObject []_blocksTemplate;
+	private GameObject   _platformTemplate;
+
 	public AudioClip  []_clips;
-	
+
+	void Awake() {
+
+		_blocksTransform = GameObject.Find ("Blocks").transform;
+		_birdsTransform = GameObject.Find ("Birds").transform;
+		_groundTransform = GameObject.Find ("Ground").GetComponent<Collider2D>();
+		_slingshotTransform = GameObject.Find ("Slingshot").transform;
+		_slingshotBaseTransform = GameObject.Find ("slingshot_base").transform;
+		_slingshotFrontTransform = GameObject.Find ("slingshot_front").transform;
+
+		_levelFailedBanner = GameObject.Find ("LevelFailedBanner").gameObject;
+		_levelFailedBanner.gameObject.SetActive (false);
+
+		_levelClearedBanner = GameObject.Find ("LevelClearedBanner").gameObject;
+		_levelClearedBanner.gameObject.SetActive(false);
+
+		_hud = GameObject.Find ("HUD").GetComponent<HUD>();
+		GameplayCam = GameObject.Find ("Camera").GetComponent<GameplayCamera>();
+
+		if (GameObject.Find ("AI") != null)
+			_birdAgent = GameObject.Find ("AI").GetComponent<BirdAgent> ();
+
+		_pointHUD = GameObject.Find ("PointsHUD").GetComponent<RectTransform> ();
+
+		_slingSelectPos = new Vector3 (-0.15f, 0.7f, 1f);
+	}
+
 	// Use this for initialization
 	void Start () 
 	{	
 		_pigs = new List<Pig>();
 		_birds = new List<Bird>();
+
 		_levelCleared = false;
+
+		_birdsTemplate = LoadABResource ("Prefabs/GameWorld/Characters/Birds");
+		_pigsTemplate = LoadABResource ("Prefabs/GameWorld/Characters/Pigs");
+		_blocksTemplate = LoadABResource ("Prefabs/GameWorld/Blocks");
+
+		_platformTemplate = (GameObject) Resources.Load ("Prefabs/GameWorld/Platform");
 
 		if(!_isSimulation) {
 
@@ -78,50 +120,71 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		// Calculating slingshot select position
 		Vector3 selectPos = _slingshotTransform.position;
-		_slingSelectPos.x += selectPos.x;
-		_slingSelectPos.y += selectPos.y;
-		_slingSelectPos.z += _slingshotFrontTransform.position.z;
+		_slingSelectPos += new Vector3 (selectPos.x, selectPos.y, _slingshotFrontTransform.position.z);
 
-		ABLevel currentLevel = LevelList.Instance.GetCurrentLevel ();
+		// If there are objects in the scene, use them to play
+		if (_blocksTransform.childCount > 0 || _birdsTransform.childCount > 0) {
 
-		if(currentLevel != null) 
-		{
-			DecodeLevel(currentLevel.gameObjects, currentLevel.birdsAmount);
-			AdaptCameraWidthToLevel();
+			foreach(Transform bird in _birdsTransform)
+				AddBird (bird.GetComponent<Bird>());
 
-			_levelTimesTried = 0;
+			foreach (Transform block in _blocksTransform) {
+
+				Pig pig = block.GetComponent<Pig>();
+				if(pig != null)
+					_pigs.Add(pig);
+			}
+
+		} else {
+			
+			ABLevel currentLevel = LevelList.Instance.GetCurrentLevel ();
+
+			if (currentLevel != null){
+				
+				DecodeLevel (currentLevel.pigs, currentLevel.blocks, currentLevel.platforms, currentLevel.birdsAmount);
+				AdaptCameraWidthToLevel ();
+
+				_levelTimesTried = 0;
+			}
 		}
 	}
 
-	public void DecodeLevel(List<ABGameObject> gameObjects, int birdsAmount) 
+	GameObject[] LoadABResource(string path) {
+
+		// Load block templates and cast them to game objects
+		Object[] objs = Resources.LoadAll(path);
+
+		GameObject[] resources = new GameObject[objs.Length];
+		for (int i = 0; i < objs.Length; i++)
+			resources [i] = (GameObject)objs [i];
+
+		return resources;
+	}
+
+	public void DecodeLevel(List<OBjData> pigs, List<OBjData> blocks, List<OBjData> platforms, int birdsAmount) 
 	{
 		ClearWorld();
 
-		foreach(ABGameObject gameObj in gameObjects)
-		{
-			if(gameObj.Label < GameWorld.Instance.Templates.Length)
-				
-				AddBlock(GameWorld.Instance.Templates[gameObj.Label], gameObj.Position, 
-				                            GameWorld.Instance.Templates[gameObj.Label].transform.rotation);
-			else
-				AddPig(GameWorld.Instance._pig, gameObj.Position, 
-				                          GameWorld.Instance._pig.transform.rotation);
+		foreach (OBjData gameObj in pigs) {
+
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			AddBlock(_pigsTemplate[gameObj.type], pos, _pigsTemplate[gameObj.type].transform.rotation);
 		}
-		
-		//First bird must be in the slingshot
-		AddBird(_bird, _slingSelectPos, _bird.transform.rotation, "bird0", true);
-		
-		if(birdsAmount > 0)
-		{
-			Vector3 birdsPos = _slingshotTransform.transform.position;
-			birdsPos.y = _groundTransform.GetComponent<Collider2D>().bounds.center.y + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
-			
-			for(int i = 0; i < birdsAmount; i++)
-			{
-				birdsPos.x -= _bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
-				GameWorld.Instance.AddBird(_bird, birdsPos, _bird.transform.rotation, "bird" + (i+1));
-			}
+
+		foreach(OBjData gameObj in blocks) {
+
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			AddBlock(_blocksTemplate[gameObj.type], pos,  _blocksTemplate[gameObj.type].transform.rotation);
 		}
+
+		foreach(OBjData gameObj in platforms)
+		{
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			AddBlock(_platformTemplate, pos,  _platformTemplate.transform.rotation);
+		}
+
+		for(int i = 0; i < birdsAmount; i++)
+			AddBird(_bird, _bird.transform.rotation);
 		
 		StartWorld();
 	}
@@ -131,9 +194,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 	{
 		// Check if birds was trown, if it died and swap them when needed
 		ManageBirds();
-		
-		// If an object goes out of screen, destroy it
-		DestroyIfOutScreen();
 
 		// Activate game AI if it is set
 		if(_birdAgent != null && !_birdAgent.IsThrowingBird)
@@ -153,51 +213,20 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 				Pig randomPig = _pigs[Random.Range(0, _pigs.Count)];
 
-				_birdAgent.ThrowBird(_birds[0], randomPig, _slingSelectPos);
+				_birdAgent.ThrowBird(_birds[0], randomPig, SlingSelectPos);
 				_lastThrownBird = _birds[0];
 				_birdsThrown++;
 			}
 		}
 	}
-
-	void DestroyIfOutScreen()
-	{
-		Rigidbody2D []bodies = _blocksTransform.GetComponentsInChildren<Rigidbody2D>();
-
-		foreach(Rigidbody2D body in bodies)
-		{
-			Transform b = body.transform;
-
-			if(IsObjectOutOfWorld(b))
-			{
-				if(b.GetComponent<Pig>() != null)
-
-					b.GetComponent<Pig>().Die();
-				else
-					Destroy(b.gameObject);
-			}
-		}
 	
-		foreach(Transform b in _birdsTransform)
-		{			
-			if(IsObjectOutOfWorld(b))
-			{
-				if(b.GetComponent<Bird>() != null)
-				{
-					RemoveLastTrajectoryParticle(b.GetComponent<Bird>().name);
-					b.GetComponent<Bird>().Die();
-				}
-			}
-		}
-	}
-	
-	public bool IsObjectOutOfWorld(Transform abGameObject)
+	public bool IsObjectOutOfWorld(Transform abGameObject, Collider2D abCollider)
 	{
-		Vector2 halfSize = abGameObject.GetComponent<Collider2D>().bounds.size/2f;
-		
-		if(abGameObject.position.x - halfSize.x > _groundTransform.GetComponent<Collider2D>().bounds.center.x + _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f ||
-		   abGameObject.position.x + halfSize.x < _groundTransform.GetComponent<Collider2D>().bounds.center.x - _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f || 
-		   abGameObject.position.y + halfSize.y < _groundTransform.GetComponent<Collider2D>().bounds.center.y - _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f)
+		Vector2 halfSize = abCollider.bounds.size/2f;
+	
+		if(abGameObject.position.x - halfSize.x > _groundTransform.bounds.center.x + _groundTransform.bounds.size.x/2f ||
+		   abGameObject.position.x + halfSize.x < _groundTransform.bounds.center.x - _groundTransform.bounds.size.x/2f || 
+		   abGameObject.position.y + halfSize.y < _groundTransform.bounds.center.y - _groundTransform.bounds.size.y/2f)
 
 			   return true;
 		
@@ -251,16 +280,35 @@ public class GameWorld : ABSingleton<GameWorld> {
 		if(anim != null)
 			Destroy(particle, 0.5f);
 	}
-	
-	public void AddBird(Object original, Vector3 position, Quaternion rotation, string birdname, bool isFirst = false)
+
+	public void AddBird(Bird readyBird)
 	{
-		GameObject newGameObject = (GameObject)Instantiate(original, position, rotation);
+		if(_birds.Count == 0)
+			readyBird.GetComponent<Rigidbody2D>().gravityScale = 0f;
+
+		if(readyBird != null)
+			_birds.Add(readyBird);
+	}
+	
+	public void AddBird(Object original, Quaternion rotation)
+	{
+		Vector3 birdsPos = SlingSelectPos;
+
+		if(_birds.Count >= 1)
+		{
+			birdsPos.y = _groundTransform.GetComponent<Collider2D>().bounds.center.y + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
+
+			for(int i = 0; i < _birds.Count; i++)
+				birdsPos.x -= _bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
+		}
+
+		GameObject newGameObject = (GameObject)Instantiate(original, birdsPos, rotation);
 		newGameObject.transform.parent = _birdsTransform;
-		newGameObject.name = birdname;
+		newGameObject.name = "bird_" + _birds.Count;
 
 		Bird bird = newGameObject.GetComponent<Bird>();
 
-		if(isFirst)
+		if(_birds.Count == 0)
 			bird.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
 		if(bird != null)
@@ -284,7 +332,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		return newGameObject;
 	}
 
-	public void SpawnPoint(uint point, Vector3 position)
+	public void SpawnScorePoint(uint point, Vector3 position)
 	{
 		GameObject pointObj = Instantiate(_point, new Vector3(position.x, position.y, _point.transform.position.z), Quaternion.identity) as GameObject; 
 		pointObj.transform.SetParent(_pointHUD.transform);
@@ -414,16 +462,21 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	public int GetTemplateIndex(GameObject templateObj)
 	{
-		for(int i = 0; i < Templates.Length; i++)
+		for(int i = 0; i < _blocksTemplate.Length; i++)
 		{
 			if(templateObj.name == "pig")
-				return Templates.Length;
+				return _blocksTemplate.Length;
 
-			if(templateObj.name == Templates[i].name)
+			if(templateObj.name == _blocksTemplate[i].name)
 				return i;
 		}
 
 		return -1;
+	}
+
+	public bool IsLevelStable()
+	{
+		return GetLevelStability() == 0f;
 	}
 
 	public float GetLevelStability()
@@ -436,19 +489,54 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 			foreach(Rigidbody2D body in bodies)
 			{				
-				if(!IsObjectOutOfWorld(body.transform))
+				if(!IsObjectOutOfWorld(body.transform, body.GetComponent<Collider2D>()))
 					totalVelocity += body.velocity.magnitude;
 			}
 		}
 
 		return totalVelocity;
 	}
-	
-	public bool IsLevelStable()
-	{
-		return GetLevelStability() == 0f;
+
+	public List<GameObject> BlocksInScene() {
+
+		List<GameObject> objsInScene = new List<GameObject>();
+
+		foreach(Transform b in _blocksTransform)
+			objsInScene.Add(b.gameObject);
+
+		return objsInScene;
 	}
-	
+
+	public Vector3 DragDistance() {
+
+		return _slingshotBaseTransform.transform.position - SlingSelectPos;
+	}
+
+	public void SetSlingshotBaseActive(bool isActive) {
+
+		_slingshotBaseTransform.gameObject.SetActive(isActive);
+	}
+
+	public void ChangeSlingshotBasePosition(Vector3 position) {
+
+		_slingshotBaseTransform.transform.position = position;
+	}
+
+	public void ChangeSlingshotBaseRotation(Quaternion rotation) {
+
+		_slingshotBaseTransform.transform.rotation = rotation;
+	}
+
+	public bool IsSlingshotBaseActive() {
+
+		return _slingshotBaseTransform.gameObject.activeSelf;
+	}
+
+	public Vector3 GetSlingshotBasePosition() {
+
+		return _slingshotBaseTransform.transform.position;
+	}
+
 	public void StartWorld()
 	{
 		_pigsAtStart = GetPigsAvailableAmount();
@@ -484,31 +572,31 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 	private void AdaptCameraWidthToLevel() {
 
-		ABLevel currentLevel = LevelList.Instance.GetCurrentLevel ();
+		Collider2D []bodies = _blocksTransform.GetComponentsInChildren<Collider2D>();
 
-		if(currentLevel.gameObjects.Count == 0)
+		if(bodies.Length == 0)
 			return;
 		
 		// Adapt the camera to show all the blocks		
-		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.GetComponent<Collider2D>().bounds.size.x/2f;
-		float groundSurfacePos = _groundTransform.transform.position.x + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
+		float levelLeftBound = _groundTransform.transform.position.x - _groundTransform.bounds.size.x/2f;
+		float groundSurfacePos = _groundTransform.transform.position.x + _groundTransform.bounds.size.y/2f;
 				
-		float minPosX = currentLevel.gameObjects[0].Position.x - currentLevel.gameObjects[0].GetBounds().size.x/2f;
-		float maxPosX = currentLevel.gameObjects[0].Position.x + currentLevel.gameObjects[0].GetBounds().size.x/2f; 
-		float maxPosY = currentLevel.gameObjects[0].Position.y + currentLevel.gameObjects[0].GetBounds().size.y/2f;
+		float minPosX = Mathf.Infinity;
+		float maxPosX = -Mathf.Infinity; 
+		float maxPosY = -Mathf.Infinity;
 
 		// Get position of first non-empty stack
-		for(int i = 0; i < currentLevel.gameObjects.Count; i++)
+		for(int i = 0; i < bodies.Length; i++)
 		{
-			float minPosXCandidate = currentLevel.gameObjects[i].Position.x - currentLevel.gameObjects[i].GetBounds().size.x/2f;
+			float minPosXCandidate = bodies[i].transform.position.x - bodies[i].bounds.size.x/2f;
 			if(minPosXCandidate < minPosX)
 				minPosX = minPosXCandidate;
 
-			float maxPosXCandidate = currentLevel.gameObjects[i].Position.x + currentLevel.gameObjects[i].GetBounds().size.x/2f;
+			float maxPosXCandidate = bodies[i].transform.position.x + bodies[i].bounds.size.x/2f;
 			if(maxPosXCandidate > maxPosX)
 				maxPosX = maxPosXCandidate;
 
-			float maxPosYCandidate = currentLevel.gameObjects[i].Position.y + currentLevel.gameObjects[i].GetBounds().size.y/2f;
+			float maxPosYCandidate = bodies[i].transform.position.y + bodies[i].bounds.size.y/2f;
 			if(maxPosYCandidate > maxPosY)
 				maxPosY = maxPosYCandidate;
 		}
@@ -516,6 +604,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 		float cameraWidth = Mathf.Abs(minPosX - levelLeftBound) + 
 			Mathf.Max(Mathf.Abs(maxPosX - minPosX), Mathf.Abs(maxPosY - groundSurfacePos)) + 0.5f;
 
-		_camera.SetCameraWidth(cameraWidth);		
+		GameplayCam.SetCameraWidth(cameraWidth);		
 	}
 }

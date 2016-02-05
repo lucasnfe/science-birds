@@ -71,7 +71,7 @@ public class HUD : MonoBehaviour {
 			else
 			{
 				Vector3 dragPosition = Input.mousePosition - _dragOrigin;
-				GameWorld.Instance._camera.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
+				GameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
 			}
         }
         else if(Input.GetMouseButtonUp(0))
@@ -102,7 +102,7 @@ public class HUD : MonoBehaviour {
 	
 	public void CameraZoom(float scrollDirection)
 	{
-		GameWorld.Instance._camera.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
+		GameWorld.Instance.GameplayCam.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
 	}
 
 	public void SetScoreDisplay(uint score)

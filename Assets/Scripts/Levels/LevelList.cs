@@ -9,6 +9,9 @@ public class LevelList : ABSingleton<LevelList> {
 
 	public ABLevel GetCurrentLevel() { 
 
+		if (_levels == null)
+			return null;
+
 		if(CurrentIndex > _levels.Length - 1)
 			return null;
 

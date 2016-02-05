@@ -22,7 +22,9 @@ public class LevelLoader {
 	public static ABLevel LoadXmlLevel(string xmlString) {
 
 		ABLevel level = new ABLevel();
-		level.gameObjects = new List<ABGameObject>();
+		level.pigs = new List<OBjData>();
+		level.blocks = new List<OBjData>();
+		level.platforms = new List<OBjData>();
 
 		using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
 		{
@@ -30,25 +32,35 @@ public class LevelLoader {
 			level.birdsAmount = Convert.ToInt32(reader.ReadElementContentAsString());
 
 			reader.ReadToFollowing("GameObjects");
+			reader.Read ();
 
-			while (reader.ReadToFollowing("GameObject"))
+			while (reader.Read())
 			{
-				ABGameObject abObj = new ABGameObject();
+				OBjData abObj = new OBjData();
+				string nodeName = reader.LocalName;
 
-				reader.MoveToAttribute("label");
-				abObj.Label = Convert.ToInt32(reader.Value);
+				if (nodeName == "GameObjects")
+					break;
 
-				Vector2 position = new Vector2();
+				reader.MoveToAttribute("type");
+				abObj.type = Convert.ToInt32(reader.Value);
 
 				reader.MoveToAttribute("x");
-				position.x = (float)Convert.ToDouble(reader.Value);
+				abObj.x = (float)Convert.ToDouble(reader.Value);
 
 				reader.MoveToAttribute("y");
-				position.y = (float)Convert.ToDouble(reader.Value);
+				abObj.y = (float)Convert.ToDouble(reader.Value);
 
-				abObj.Position = position;
+				if (nodeName == "Block") {
 
-				level.gameObjects.Add(abObj);
+					level.blocks.Add (abObj);
+					reader.Read ();
+				} 
+				else if (nodeName == "Pig") {
+
+					level.pigs.Add (abObj);
+					reader.Read ();
+				}
 			}
 		}
 
@@ -71,12 +83,21 @@ public class LevelLoader {
 
 			writer.WriteStartElement("GameObjects");
 
-			foreach(ABGameObject abObj in level.gameObjects)
+			foreach(OBjData abObj in level.blocks)
 			{
-				writer.WriteStartElement("GameObject");
-				writer.WriteAttributeString("label", abObj.Label.ToString());
-				writer.WriteAttributeString("x", abObj.Position.x.ToString());
-				writer.WriteAttributeString("y", abObj.Position.y.ToString());
+				writer.WriteStartElement("Block");
+				writer.WriteAttributeString("type", abObj.type.ToString());
+				writer.WriteAttributeString("x", abObj.x.ToString());
+				writer.WriteAttributeString("y", abObj.y.ToString());
+				writer.WriteEndElement();
+			}
+
+			foreach(OBjData abObj in level.pigs)
+			{
+				writer.WriteStartElement("Pig");
+				writer.WriteAttributeString("type", abObj.type.ToString());
+				writer.WriteAttributeString("x", abObj.x.ToString());
+				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteEndElement();
 			}
 		}
@@ -90,14 +111,9 @@ public class LevelLoader {
 
 	public void SaveLevelOnScene() {
 
-		Transform blocksInScene = GameWorld.Instance._blocksTransform;
-
-		List<GameObject> objsInScene = new List<GameObject>();
-
-		foreach(Transform b in blocksInScene)
-		{
-			objsInScene.Add(b.gameObject);
-		}
+//		Transform blocksInScene = GameWorld.Instance.BlocksInScene();
+//
+//		List<GameObject> objsInScene = GameWorld.Instance.BlocksInScene();
 
 //		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
 //		SaveXmlLevel(level);

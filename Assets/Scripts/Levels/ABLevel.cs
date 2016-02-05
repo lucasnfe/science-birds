@@ -2,33 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public struct OBjData {
+
+	public int type;
+	public float x, y;
+}
+
 public class ABLevel 
 {
 	public int birdsAmount;
-	public List<ABGameObject> gameObjects;
 
-	public static int BIRDS_MAX_AMOUNT = 5;
+	public List<OBjData> pigs;
+	public List<OBjData> blocks;
+	public List<OBjData> platforms;
 
-	public ABLevel()
-	{
-		gameObjects = new List<ABGameObject>();
-	}
+	public static readonly int BIRDS_MAX_AMOUNT = 5;
 
-	public float GetBirdsFrequency()
-	{
-		return (float)(birdsAmount + 1)/BIRDS_MAX_AMOUNT;
-	}
-	
-	public float GetABGameObjectFrequency(int gameObjectIndex)
-	{
-		int gameObjectAmount = 0;
+	public ABLevel() {
 		
-		foreach(ABGameObject gameObj in gameObjects)
-		{
-			if(gameObj.Label == gameObjectIndex)
-				gameObjectAmount++;
-		}
-		
-		return (float)gameObjectAmount/gameObjects.Count;
+		pigs = new List<OBjData>();
+		blocks = new List<OBjData>();
 	}
 }
