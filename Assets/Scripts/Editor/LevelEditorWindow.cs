@@ -33,22 +33,27 @@ public enum BLOCKS {
 
 class LevelEditor : EditorWindow {
 
-	public BIRDS  _birdsOps;
-	public PIGS   _pigsOps;
-	public BLOCKS _blocksOps;
+	public static BIRDS  _birdsOps;
+	public static PIGS   _pigsOps;
+	public static BLOCKS _blocksOps;
 
 	private static GameObject[] _birds;
 	private static GameObject[] _pigs;
 	private static GameObject[] _blocks;
+	private static GameObject   _platform;
 
 	private static int _birdsAdded = 0;
 	private static Vector3 _slingshotPos;
 	private static Vector3 _groundPos;
 
 	[MenuItem ("Window/Level Editor %l")]
-	public static void ShowWindow () {
-		
-		UnityEditor.EditorWindow window = EditorWindow.GetWindow(typeof(LevelEditor));
+	static void Init () {
+
+		LevelEditor window = (LevelEditor)EditorWindow.GetWindow(typeof(LevelEditor));
+		window.Show ();
+	}
+
+	void OnFocus() {
 
 		ToggleGizmos (false);
 
@@ -72,13 +77,13 @@ class LevelEditor : EditorWindow {
 		for (int i = 0; i < objs3.Length; i++)
 			_blocks [i] = (GameObject)objs3 [i];
 
+		_platform = Resources.Load("Prefabs/GameWorld/Platform") as GameObject;
 
 		_groundPos = new Vector3 (0f, -2.74f, 0f);
 		_slingshotPos = new Vector3 (-7.62f, -1.24f, 1f);
 
 		_birdsAdded = GameObject.Find ("Birds").transform.childCount;
 
-		window.Show ();
 	}
 
 	void OnGUI()
@@ -107,16 +112,30 @@ class LevelEditor : EditorWindow {
 			GameObject block = InstantiateGameObject (_blocks, (int)_blocksOps);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 		}
+
+		if (GUILayout.Button ("Create Platform")) {
+
+			GameObject platform = InstantiateGameObject (_platform);
+			platform.transform.parent = GameObject.Find ("Platforms").transform;
+		}
 			
 		if (GUILayout.Button ("Save Level")) {
 
-			
+
 		}
 	}
 
 	GameObject InstantiateGameObject(GameObject[]source, int index) {
 
 		GameObject cube = (GameObject)PrefabUtility.InstantiatePrefab (source[index]);
+		cube.transform.position = Vector3.zero;
+
+		return cube;
+	}
+
+	GameObject InstantiateGameObject(GameObject source) {
+
+		GameObject cube = (GameObject)PrefabUtility.InstantiatePrefab (source);
 		cube.transform.position = Vector3.zero;
 
 		return cube;
@@ -135,6 +154,11 @@ class LevelEditor : EditorWindow {
 		GameObject blocks = new GameObject ();
 		blocks.name = "Blocks";
 		blocks.transform.parent = GameObject.Find ("GameWorld").transform;
+
+		DestroyImmediate (GameObject.Find ("Platforms").gameObject);
+		GameObject plats = new GameObject ();
+		plats.name = "Platforms";
+		plats.transform.parent = GameObject.Find ("GameWorld").transform;
 	}
 
 	void CreateBird() {
@@ -197,9 +221,10 @@ class LevelEditor : EditorWindow {
 		LayerMask blocksLayer = 1 << LayerMask.NameToLayer ("Blocks");
 		LayerMask birdsLayer = 1 << LayerMask.NameToLayer ("Birds");
 		LayerMask pigsLayer = 1 << LayerMask.NameToLayer ("Pigs");
+		LayerMask platLayer = 1 << LayerMask.NameToLayer ("Platforms");
 
 		Tools.visibleLayers = ~layerNumberBinary; 
-		Tools.lockedLayers = ~(blocksLayer | birdsLayer | pigsLayer);
+		Tools.lockedLayers = ~(blocksLayer | birdsLayer | pigsLayer | platLayer);
 
 		SceneView.RepaintAll();
 	}

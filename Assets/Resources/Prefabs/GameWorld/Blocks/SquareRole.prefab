@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21249392}
   - 50: {fileID: 5010192}
   - 61: {fileID: 6125294}
+  - 114: {fileID: 11431294}
   - 114: {fileID: 11435054}
   - 82: {fileID: 8275068}
   m_Layer: 10
@@ -137,6 +138,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11431294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1496dfd57e5ea402e9851887ca688cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particlePoolSize: 50
+  _minVel: 2
+  _maxVel: 3
+  _minAngle: 0
+  _maxAngle: 200
+  _minMass: 0.5
+  _maxMass: 0.65
+  _minLifetime: 0.45
+  _maxLifetime: 0.5
+  _systemLifetime: 0.5
+  _shootingRate: 0.13
+  _applyGravity: 1
+  _shootParticles: 0
+  _particlePrefab:
+  - {fileID: 114686, guid: 93d80a2cf052c442e838c6c966340dcf, type: 2}
+  _repellerPrefab: {fileID: 0}
+  _attractorPrefab: {fileID: 0}
 --- !u!114 &11435054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +178,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _material: 0
+  _points: 25
   _life: 10
+  _woodDestructionEffect:
+  - {fileID: 114686, guid: 93d80a2cf052c442e838c6c966340dcf, type: 2}
+  _stoneDestructionEffect:
+  - {fileID: 114686, guid: 51ee6060e56af4f7eabc93c6efcb8c62, type: 2}
+  _iceDestructionEffect:
+  - {fileID: 114686, guid: 51ee6060e56af4f7eabc93c6efcb8c62, type: 2}
   _woodSprites:
   - {fileID: 21300002, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
   - {fileID: 21300022, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
@@ -165,10 +201,15 @@ MonoBehaviour:
   - {fileID: 21300020, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
   - {fileID: 21300040, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
   - {fileID: 21300060, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  _damageClip:
+  _woodDamageClip:
   - {fileID: 8300000, guid: 24360b5bc58d04f5c993d06fb7c4ce74, type: 3}
   - {fileID: 8300000, guid: ae34e0b78fa7947eda07bf747dbff35d, type: 3}
-  DestructionEffect: {fileID: 19800000, guid: 339b7f15caf5c40dd8a69238c0cc962e, type: 2}
+  _stoneDamageClip:
+  - {fileID: 8300000, guid: 6bfe46151b4554c7089990a54dc5e895, type: 3}
+  - {fileID: 8300000, guid: 1330a172ee9b84e6f82f6c4ad3474b96, type: 3}
+  _iceDamageClip:
+  - {fileID: 8300000, guid: 6bfe46151b4554c7089990a54dc5e895, type: 3}
+  - {fileID: 8300000, guid: 1330a172ee9b84e6f82f6c4ad3474b96, type: 3}
 --- !u!212 &21249392
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -207,6 +248,34 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: _iceDamageClip.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _particlePrefab.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _woodDamageClip.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _stoneDamageClip.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _iceDestructionEffect.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _woodDestructionEffect.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _stoneDestructionEffect.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: _life
       value: 10
       objectReference: {fileID: 0}
@@ -214,6 +283,106 @@ Prefab:
       propertyPath: m_Name
       value: SquareHole
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _particlePoolSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _maxAngle
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _minVel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _maxVel
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _maxLifetime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _shootingRate
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _applyGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _points
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _particlePrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 114686, guid: 93d80a2cf052c442e838c6c966340dcf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _systemLifetime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _shootParticles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _minAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _minMass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _maxMass
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _minLifetime
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _material
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _woodDamageClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 24360b5bc58d04f5c993d06fb7c4ce74, type: 3}
+    - target: {fileID: 0}
+      propertyPath: _woodDamageClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: ae34e0b78fa7947eda07bf747dbff35d, type: 3}
+    - target: {fileID: 0}
+      propertyPath: _stoneDamageClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bfe46151b4554c7089990a54dc5e895, type: 3}
+    - target: {fileID: 0}
+      propertyPath: _stoneDamageClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1330a172ee9b84e6f82f6c4ad3474b96, type: 3}
+    - target: {fileID: 0}
+      propertyPath: _iceDamageClip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 6bfe46151b4554c7089990a54dc5e895, type: 3}
+    - target: {fileID: 0}
+      propertyPath: _iceDamageClip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1330a172ee9b84e6f82f6c4ad3474b96, type: 3}
+    - target: {fileID: 0}
+      propertyPath: _woodDestructionEffect.Array.data[0]
+      value: 
+      objectReference: {fileID: 114686, guid: 93d80a2cf052c442e838c6c966340dcf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _stoneDestructionEffect.Array.data[0]
+      value: 
+      objectReference: {fileID: 114686, guid: 51ee6060e56af4f7eabc93c6efcb8c62, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _iceDestructionEffect.Array.data[0]
+      value: 
+      objectReference: {fileID: 114686, guid: 51ee6060e56af4f7eabc93c6efcb8c62, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 127960}

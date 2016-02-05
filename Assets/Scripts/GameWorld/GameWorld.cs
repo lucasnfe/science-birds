@@ -24,10 +24,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 	private GameObject _levelFailedBanner;
 	private GameObject _levelClearedBanner;
 
-	private HUD 		   _hud;
-
-	private BirdAgent      _birdAgent;
-	private RectTransform  _pointHUD;
+	private HUD 		      _hud;
+	private BirdAgent         _birdAgent;
+	private RectTransform     _pointHUD;
 
 	private int _pigsAtStart;
 	public int PigsAtStart { 

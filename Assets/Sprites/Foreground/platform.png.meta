@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: aa539c1cd0f254e9591e81b4bdac72c2
-timeCreated: 1454182706
+guid: 090b154575449462c9b4607adeb487bc
+timeCreated: 1454621438
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: stone_pieces_0
-    21300002: stone_pieces_1
-    21300004: stone_pieces_2
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -29,8 +26,8 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -3
-  maxTextureSize: 256
+  textureFormat: -1
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
     aniso: -1
@@ -52,40 +49,7 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: stone_pieces_0
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 58
-        width: 13
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: stone_pieces_1
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 53
-        width: 24
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-    - name: stone_pieces_2
-      rect:
-        serializedVersion: 2
-        x: 177
-        y: 50
-        width: 33
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 

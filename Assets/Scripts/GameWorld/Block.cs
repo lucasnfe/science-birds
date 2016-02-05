@@ -5,59 +5,73 @@ public class Block : MonoBehaviour {
 
 	enum BlockMaterial {wood, stone, ice };
 
-	private int   _imgChangedTimes = 0;
-	private float _receivedDamage  = 0f;
+	private int   _imgChangedTimes;
+	private float _receivedDamage;
 
-	private Sprite[] _typeSprites;
+	private AudioSource      _audioSource;
+	private SpriteRenderer   _spriteRenderer;
+	private ABParticleSystem _destroyEffect;
 
-	public int   _material = 0;
+	private Sprite[]    _typeSprites;
+	private AudioClip[] _typeClips;
+
+	public int   _material;
+	public uint  _points;
 	public float _life = 10;
+
+	public GameObject[] _woodDestructionEffect;
+	public GameObject[] _stoneDestructionEffect;
+	public GameObject[] _iceDestructionEffect;
 
 	public Sprite []_woodSprites;
 	public Sprite []_stoneSprites;
 	public Sprite []_iceSprites;
 
-	public AudioClip []_damageClip;
-
-	public ParticleSystem DestructionEffect;
+	public AudioClip []_woodDamageClip;
+	public AudioClip []_stoneDamageClip;
+	public AudioClip []_iceDamageClip;
 
 	void Awake() {
+
+		_destroyEffect = GetComponent<ABParticleSystem> ();
+		_spriteRenderer = GetComponent<SpriteRenderer> ();
+		_audioSource = GetComponent<AudioSource> ();
 
 		switch (_material) {
 
 		case (int)BlockMaterial.wood:
+			_typeClips = _woodDamageClip;
 			_typeSprites = _woodSprites;
+			_destroyEffect._particlePrefab = _woodDestructionEffect;
 			_life *= 1f;
 			break;
 
 		case (int)BlockMaterial.stone:
+			_typeClips = _stoneDamageClip;
 			_typeSprites = _stoneSprites;
+			_destroyEffect._particlePrefab = _stoneDestructionEffect;
 			_life *= 2f;
 			break;
 
 		case (int)BlockMaterial.ice:
+			_typeClips = _iceDamageClip;
 			_typeSprites = _iceSprites;
+			_destroyEffect._particlePrefab = _iceDestructionEffect;
 			_life *= 0.5f;
 			break;
 		}
+
+		_spriteRenderer.sprite = _typeSprites [0];
 	}
 	
 	void Explode()
 	{
 		if(!GameWorld.Instance._isSimulation)
 		{
-			GameWorld.Instance.SpawnPoint(25, transform.position);
+			GameWorld.Instance.SpawnPoint(_points, transform.position);
 
-			//Instantiate our one-off particle system
-			ParticleSystem explosionEffect = Instantiate(DestructionEffect) as ParticleSystem;
-			explosionEffect.transform.position = transform.position;
-			explosionEffect.transform.parent = GameWorld.Instance.transform.FindChild("Effects");
-			
-			//play it
-			explosionEffect.loop = false;
-			explosionEffect.Play();
-			
-			Destroy(explosionEffect.gameObject, 2f);
+			_destroyEffect._shootParticles = true;
+			ABParticleManager.Instance.AddParticleSystem (_destroyEffect, transform.position);
 		}
 
 		Destroy(gameObject);
@@ -68,17 +82,17 @@ public class Block : MonoBehaviour {
 		_receivedDamage += collision.relativeVelocity.magnitude;
 		if(_receivedDamage >= _life/_typeSprites.Length)
 		{
-			GetComponent<SpriteRenderer>().sprite = _typeSprites[_imgChangedTimes];
+			_spriteRenderer.sprite = _typeSprites[_imgChangedTimes];
 			
 			if(!GameWorld.Instance._isSimulation)
-				GetComponent<AudioSource>().PlayOneShot(_damageClip[0]);
+				_audioSource.PlayOneShot(_typeClips[0]);
 
 			_imgChangedTimes++;
 			_receivedDamage = 0;
 		}
 
 		if(_imgChangedTimes == _typeSprites.Length) {
-			ABAudioController.Instance.PlayIndependentSFX(_damageClip[1]);
+			ABAudioController.Instance.PlayIndependentSFX(_typeClips[1]);
 			Explode();
 		}
 	}
