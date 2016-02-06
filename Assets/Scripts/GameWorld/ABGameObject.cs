@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 
 [RequireComponent (typeof (Collider2D))]
-public class ABGameObject : MonoBehaviour
+[RequireComponent (typeof (Rigidbody2D))]
+[RequireComponent (typeof (AudioSource))]
+public abstract class ABGameObject : MonoBehaviour
 {	
 	protected int   _imgChangedTimes;
 	protected float _receivedDamage;
@@ -19,8 +21,6 @@ public class ABGameObject : MonoBehaviour
 
 	public float _timeToDie = 1;
 	public float _life = 10;
-
-	public int Label { get; set; }
 
 	protected virtual void Awake() {
 

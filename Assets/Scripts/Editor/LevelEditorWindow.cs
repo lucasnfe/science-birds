@@ -3,33 +3,7 @@ using UnityEditor;
 using System;
 using System.Reflection;
 using System.Collections;
-
-public enum BIRDS  { 
-	Red, 
-	Green, 
-	Blue 
-};
-
-public enum PIGS   { 
-	BasicSmall, 
-	BasicMedium, 
-	BasicLarge 
-};
-
-public enum BLOCKS { 
-	Circle, 
-	CircleSmall, 
-	RectBig, 
-	RectFat, 
-	RectMedium, 
-	RectSmall, 
-	RectTiny, 
-	SquareHole, 
-	SquareSmall,
-	SquareTiny,
-	Triangle,
-	TriangleHole 
-};
+using System.Collections.Generic;
 
 class LevelEditor : EditorWindow {
 
@@ -38,9 +12,9 @@ class LevelEditor : EditorWindow {
 	public static BLOCKS _blocksOps;
 	public static MATERIALS _materials;
 
-	private static GameObject[] _birds;
-	private static GameObject[] _pigs;
-	private static GameObject[] _blocks;
+	private static Dictionary<string, GameObject> _birds;
+	private static Dictionary<string, GameObject> _pigs;
+	private static Dictionary<string, GameObject> _blocks;
 	private static GameObject   _platform;
 
 	private static int _birdsAdded = 0;
@@ -60,24 +34,9 @@ class LevelEditor : EditorWindow {
 
 		HideLayer (LayerMask.NameToLayer("UI"));
 
-		UnityEngine.Object[] objs1 = Resources.LoadAll("Prefabs/GameWorld/Characters/Birds");
-
-		_birds = new GameObject[objs1.Length];
-		for (int i = 0; i < objs1.Length; i++)
-			_birds [i] = (GameObject)objs1 [i];
-
-		UnityEngine.Object[] objs2 = Resources.LoadAll("Prefabs/GameWorld/Characters/Pigs");
-
-		_pigs = new GameObject[objs2.Length];
-		for (int i = 0; i < objs2.Length; i++)
-			_pigs [i] = (GameObject)objs2 [i];
-
-		UnityEngine.Object[] objs3 = Resources.LoadAll("Prefabs/GameWorld/Blocks");
-
-		_blocks = new GameObject[objs3.Length];
-		for (int i = 0; i < objs3.Length; i++)
-			_blocks [i] = (GameObject)objs3 [i];
-
+		_birds = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Birds");
+		_pigs = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Pigs");
+		_blocks = LevelLoader.LoadABResource ("Prefabs/GameWorld/Blocks");
 		_platform = Resources.Load("Prefabs/GameWorld/Platform") as GameObject;
 
 		_groundPos = new Vector3 (0f, -2.74f, 0f);
@@ -106,7 +65,7 @@ class LevelEditor : EditorWindow {
 
 		if (GUILayout.Button ("Create Pig", GUILayout.Width (80), GUILayout.Height (20))) {
 
-			GameObject pig = InstantiateGameObject (_pigs, (int)_pigsOps);
+			GameObject pig = InstantiateGameObject (_pigs[_pigsOps.ToString()]);
 			pig.transform.parent = GameObject.Find ("Blocks").transform;
 		}
 
@@ -120,7 +79,7 @@ class LevelEditor : EditorWindow {
 
 		if (GUILayout.Button ("Create Block", GUILayout.Width (80), GUILayout.Height (20))) {
 
-			GameObject block = InstantiateGameObject (_blocks, (int)_blocksOps);
+			GameObject block = InstantiateGameObject (_blocks[_blocksOps.ToString()]);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 		}
 
@@ -134,19 +93,14 @@ class LevelEditor : EditorWindow {
 
 		EditorGUILayout.BeginHorizontal ();
 
-		if (GUILayout.Button ("Clear Level")) {
-
+		if (GUILayout.Button ("Clear Level"))
 			ClearLevel ();
-		}
 
-		if (GUILayout.Button ("Load Level")) {
-
-		}
+		if (GUILayout.Button ("Load Level"))
+			LoadLevel ();
 			
-		if (GUILayout.Button ("Save Level")) {
-
-
-		}
+		if (GUILayout.Button ("Save Level"))
+			SaveLevel ();
 
 		EditorGUILayout.EndHorizontal ();
 	}
@@ -187,9 +141,39 @@ class LevelEditor : EditorWindow {
 		plats.transform.parent = GameObject.Find ("GameWorld").transform;
 	}
 
+	void LoadLevel() {
+
+		string path = EditorUtility.OpenFilePanel("Select level to open", "Assets/Resources/Levels/", "");
+
+		if (path != "") {
+
+			ClearLevel ();
+
+			string[] stringSeparators = new string[] {"Resources/"};
+
+			string[] arrayPath = path.Split (stringSeparators, StringSplitOptions.None);
+			string finalPath = arrayPath [1].Split ('.') [0];
+
+			TextAsset levelFile = (TextAsset)Resources.Load (finalPath);
+			ABLevel level = LevelLoader.LoadXmlLevel (levelFile.text);
+
+			DecodeLevel (level);
+		}
+	}
+
+	void SaveLevel() {
+
+		string path = EditorUtility.SaveFilePanel("Select location to save level", "Assets/Resources/Levels/", "level.xml", "xml");
+
+		if (path != "") {
+
+			LevelLoader.SaveXmlLevel (EncodeLevel (), path);
+		}
+	}
+
 	void CreateBird() {
 
-		GameObject bird = InstantiateGameObject (_birds, (int)_birdsOps);
+		GameObject bird = InstantiateGameObject (_birds["BirdRed"]);
 		bird.name = bird.name + "_" + _birdsAdded;
 		bird.transform.parent = GameObject.Find ("Birds").transform;
 
@@ -207,6 +191,82 @@ class LevelEditor : EditorWindow {
 		bird.transform.position = birdsPos;
 
 		_birdsAdded++;
+	}
+
+
+	public ABLevel EncodeLevel() 
+	{
+		ABLevel level = new ABLevel();
+
+		level.pigs = new List<OBjData>();
+		level.blocks = new List<OBjData>();
+		level.platforms = new List<OBjData>();
+
+		foreach (Transform child in GameObject.Find ("Blocks").transform) {
+
+			OBjData obj = new OBjData ();
+
+			obj.type = child.name;
+			obj.x = child.transform.position.x;
+			obj.y = child.transform.position.y;
+
+			if (child.GetComponent<Pig> () != null)
+
+				level.pigs.Add (obj);
+			else 
+				level.blocks.Add (obj);
+
+		}
+
+		foreach (Transform child in GameObject.Find ("Platforms").transform) {
+
+			OBjData obj = new OBjData ();
+
+			obj.type = child.name;
+			obj.x = child.transform.position.x;
+			obj.y = child.transform.position.y;
+
+			level.platforms.Add (obj);
+		}
+
+		level.birdsAmount = _birdsAdded;
+
+		return level;
+	}
+
+	public void DecodeLevel(ABLevel level) 
+	{
+		foreach (OBjData gameObj in level.pigs) {
+
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+
+			GameObject pig = InstantiateGameObject (_pigs[gameObj.type]);
+			pig.transform.parent = GameObject.Find ("Blocks").transform;
+			pig.transform.position = pos;
+		}
+
+		foreach(OBjData gameObj in level.blocks) {
+
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+
+			GameObject block = InstantiateGameObject (_blocks[gameObj.type]);
+			block.transform.parent = GameObject.Find ("Blocks").transform;
+			block.transform.position = pos;
+		}
+
+		foreach(OBjData gameObj in level.platforms)
+		{
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+
+			GameObject platform = InstantiateGameObject (_platform);
+			platform.transform.parent = GameObject.Find ("Platforms").transform;
+			platform.transform.position = pos;
+		}
+
+		for (int i = 0; i < level.birdsAmount; i++)
+			CreateBird ();
+
+		_birdsAdded = level.birdsAmount;
 	}
 
 	public static void ToggleGizmos(bool gizmosOn) {

@@ -16,12 +16,12 @@ public class GameWorld : ABSingleton<GameWorld> {
 	private Bird _lastThrownBird;
 
 	private Collider2D _groundTransform;
-	private Transform _blocksTransform;
-	private Transform _birdsTransform;
-	private Transform _plaftformsTransform;
-	private Transform _slingshotTransform;
-	private Transform _slingshotBaseTransform;
-	private Transform _slingshotFrontTransform;
+	private Transform  _blocksTransform;
+	private Transform  _birdsTransform;
+	private Transform  _plaftformsTransform;
+	private Transform  _slingshotTransform;
+	private Transform  _slingshotBaseTransform;
+	private Transform  _slingshotFrontTransform;
 	private GameObject _levelFailedBanner;
 	private GameObject _levelClearedBanner;
 
@@ -65,9 +65,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 	public int     _timesToGiveUp;
 	public float   _timeToResetLevel = 1f;
 
-	private GameObject []_birdsTemplate;
-	private GameObject []_pigsTemplate;
-	private GameObject []_blocksTemplate;
+	private Dictionary<string, GameObject> _birdsTemplate;
+	private Dictionary<string, GameObject> _pigsTemplate;
+	private Dictionary<string, GameObject> _blocksTemplate;
 	private GameObject   _platformTemplate;
 
 	public AudioClip  []_clips;
@@ -106,9 +106,9 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		_levelCleared = false;
 
-		_birdsTemplate = LoadABResource ("Prefabs/GameWorld/Characters/Birds");
-		_pigsTemplate = LoadABResource ("Prefabs/GameWorld/Characters/Pigs");
-		_blocksTemplate = LoadABResource ("Prefabs/GameWorld/Blocks");
+		_birdsTemplate = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Birds");
+		_pigsTemplate = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Pigs");
+		_blocksTemplate = LevelLoader.LoadABResource ("Prefabs/GameWorld/Blocks");
 
 		_platformTemplate = (GameObject) Resources.Load ("Prefabs/GameWorld/Platform");
 
@@ -147,18 +147,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 				_levelTimesTried = 0;
 			}
 		}
-	}
-
-	GameObject[] LoadABResource(string path) {
-
-		// Load block templates and cast them to game objects
-		Object[] objs = Resources.LoadAll(path);
-
-		GameObject[] resources = new GameObject[objs.Length];
-		for (int i = 0; i < objs.Length; i++)
-			resources [i] = (GameObject)objs [i];
-
-		return resources;
 	}
 
 	public void DecodeLevel(List<OBjData> pigs, List<OBjData> blocks, List<OBjData> platforms, int birdsAmount) 
@@ -296,7 +284,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 
 		if(_birds.Count >= 1)
 		{
-			birdsPos.y = _groundTransform.GetComponent<Collider2D>().bounds.center.y + _groundTransform.GetComponent<Collider2D>().bounds.size.y/2f;
+			birdsPos.y = _groundTransform.bounds.center.y + _groundTransform.bounds.size.y/2f;
 
 			for(int i = 0; i < _birds.Count; i++)
 				birdsPos.x -= _bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
@@ -458,20 +446,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 		}
 
 		return blocksAmount;
-	}
-
-	public int GetTemplateIndex(GameObject templateObj)
-	{
-		for(int i = 0; i < _blocksTemplate.Length; i++)
-		{
-			if(templateObj.name == "pig")
-				return _blocksTemplate.Length;
-
-			if(templateObj.name == _blocksTemplate[i].name)
-				return i;
-		}
-
-		return -1;
 	}
 
 	public bool IsLevelStable()

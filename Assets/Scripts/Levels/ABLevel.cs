@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public struct OBjData {
 
-	public int type;
+	public string type;
 	public float x, y;
 }
 

@@ -9,7 +9,7 @@ public class LevelLoader {
 	
 	public static ABLevel[] LoadAllLevels() {
 	
-		TextAsset []levelsXmlData = (TextAsset [])Resources.LoadAll("GeneratedLevels/bn25-ln50");
+		TextAsset []levelsXmlData = (TextAsset [])Resources.LoadAll("Levels");
 
 		ABLevel []levels = new ABLevel[levelsXmlData.Length];
 
@@ -22,6 +22,7 @@ public class LevelLoader {
 	public static ABLevel LoadXmlLevel(string xmlString) {
 
 		ABLevel level = new ABLevel();
+
 		level.pigs = new List<OBjData>();
 		level.blocks = new List<OBjData>();
 		level.platforms = new List<OBjData>();
@@ -43,7 +44,7 @@ public class LevelLoader {
 					break;
 
 				reader.MoveToAttribute("type");
-				abObj.type = Convert.ToInt32(reader.Value);
+				abObj.type = reader.Value;
 
 				reader.MoveToAttribute("x");
 				abObj.x = (float)Convert.ToDouble(reader.Value);
@@ -61,13 +62,18 @@ public class LevelLoader {
 					level.pigs.Add (abObj);
 					reader.Read ();
 				}
+				else if (nodeName == "Platform") {
+
+					level.platforms.Add (abObj);
+					reader.Read ();
+				}
 			}
 		}
 
 		return level;
 	}
 
-	public static void SaveXmlLevel(ABLevel level) {
+	public static void SaveXmlLevel(ABLevel level, string path) {
 
 		StringBuilder output = new StringBuilder();
 		XmlWriterSettings ws = new XmlWriterSettings();
@@ -100,13 +106,36 @@ public class LevelLoader {
 				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteEndElement();
 			}
+
+			foreach(OBjData abObj in level.platforms)
+			{
+				writer.WriteStartElement("Platform");
+				writer.WriteAttributeString("type", abObj.type.ToString());
+				writer.WriteAttributeString("x", abObj.x.ToString());
+				writer.WriteAttributeString("y", abObj.y.ToString());
+				writer.WriteEndElement();
+			}
 		}
-
-		int levelsAmountInResources = LoadAllLevels().Length;
-
-		StreamWriter streamWriter = new StreamWriter("Assets/Resources/GeneratedLevels/genetic-level-" + (levelsAmountInResources + 1) + ".xml");
+			
+		StreamWriter streamWriter = new StreamWriter(path);
 		streamWriter.WriteLine(output.ToString());
 		streamWriter.Close();
+	}
+
+	public static Dictionary<string, GameObject> LoadABResource(string path) {
+
+		// Load block templates and cast them to game objects
+		UnityEngine.Object[] objs = Resources.LoadAll(path);
+
+		Dictionary<string, GameObject> resources = new Dictionary<string, GameObject>();
+
+		for (int i = 0; i < objs.Length; i++) {
+
+			GameObject abGameObject = (GameObject)objs[i];
+			resources [abGameObject.name] = abGameObject;
+		}
+
+		return resources;
 	}
 
 	public void SaveLevelOnScene() {
