@@ -2,11 +2,9 @@
 <Level>
   <BirdsAmount>3</BirdsAmount>
   <GameObjects>
-    <Block type="RectTiny" x="2.548333" y="-2.73" />
-    <Block type="RectTiny" x="1.708333" y="-2.73" />
-    <Block type="SquareRole" x="2.15" y="-2.18" />
-    <Pig type="PigBasicSmall" x="2.15" y="-1.52" />
-    <Platform type="Platform1" x="1.04" y="-0.31" />
-    <Platform type="Platform2" x="1.6" y="-0.31" />
+    <Block type="RectTiny" material="wood" x="2.548333" y="-2.73" />
+    <Block type="RectTiny" material="wood" x="1.73" y="-2.7" />
+    <Block type="SquareHole" material="wood" x="2.15" y="-2.15" />
+    <Pig type="BasicSmall" material="" x="2.15" y="-1.52" />
   </GameObjects>
 </Level>

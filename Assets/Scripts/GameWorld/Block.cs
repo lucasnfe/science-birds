@@ -19,9 +19,17 @@ public class Block : ABGameObject {
 	public AudioClip []_stoneDamageClip;
 	public AudioClip []_iceDamageClip;
 
+	private PhysicsMaterial2D _woodMaterial;
+	private PhysicsMaterial2D _stoneMaterial;
+	private PhysicsMaterial2D _iceMaterial;
+
 	protected override void Awake() {
 
 		base.Awake();
+
+		_woodMaterial = Resources.Load ("Materials/Wood") as PhysicsMaterial2D;
+		_stoneMaterial = Resources.Load ("Materials/Stone") as PhysicsMaterial2D;
+		_iceMaterial = Resources.Load ("Materials/Ice") as PhysicsMaterial2D;
 
 		SetMaterial (_material);
 	}
@@ -39,15 +47,17 @@ public class Block : ABGameObject {
 		base.Die();
 	}
 
-	public void SetMaterial(MATERIALS mat) {
+	public void SetMaterial(MATERIALS material) {
 
-		switch (_material) {
+		_material = material;
+
+		switch (material) {
 
 		case MATERIALS.wood:
 			_typeClips = _woodDamageClip;
 			_typeSprites = _woodSprites;
 			_destroyEffect._particlePrefab = _woodDestructionEffect;
-			
+			_collider.sharedMaterial = _woodMaterial;
 			_life *= 1f;
 			break;
 
@@ -55,6 +65,7 @@ public class Block : ABGameObject {
 			_typeClips = _stoneDamageClip;
 			_typeSprites = _stoneSprites;
 			_destroyEffect._particlePrefab = _stoneDestructionEffect;
+			_collider.sharedMaterial = _stoneMaterial;
 
 			_life *= 2f;
 			break;
@@ -63,6 +74,7 @@ public class Block : ABGameObject {
 			_typeClips = _iceDamageClip;
 			_typeSprites = _iceSprites;
 			_destroyEffect._particlePrefab = _iceDestructionEffect;
+			_collider.sharedMaterial = _iceMaterial;
 
 			_life *= 0.5f;
 			break;

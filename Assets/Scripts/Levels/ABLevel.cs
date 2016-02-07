@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public struct OBjData {
 
 	public string type;
+	public string material;
 	public float x, y;
 }
 

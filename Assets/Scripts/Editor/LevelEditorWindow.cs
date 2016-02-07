@@ -10,7 +10,7 @@ class LevelEditor : EditorWindow {
 	public static BIRDS  _birdsOps;
 	public static PIGS   _pigsOps;
 	public static BLOCKS _blocksOps;
-	public static MATERIALS _materials;
+	public static MATERIALS _material;
 
 	private static Dictionary<string, GameObject> _birds;
 	private static Dictionary<string, GameObject> _pigs;
@@ -75,12 +75,14 @@ class LevelEditor : EditorWindow {
 		EditorGUILayout.BeginHorizontal ();
 
 		_blocksOps = (BLOCKS) EditorGUILayout.EnumPopup("", _blocksOps);
-		_materials = (MATERIALS) EditorGUILayout.EnumPopup("", _materials);
+		_material = (MATERIALS) EditorGUILayout.EnumPopup("", _material);
 
 		if (GUILayout.Button ("Create Block", GUILayout.Width (80), GUILayout.Height (20))) {
 
 			GameObject block = InstantiateGameObject (_blocks[_blocksOps.ToString()]);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
+
+			BlockEditor.UpdateBlockMaterial (block.GetComponent<Block>(), _material);
 		}
 
 		EditorGUILayout.EndHorizontal ();
@@ -93,18 +95,25 @@ class LevelEditor : EditorWindow {
 
 		EditorGUILayout.BeginHorizontal ();
 
-		if (GUILayout.Button ("Clear Level"))
-			ClearLevel ();
-
 		if (GUILayout.Button ("Load Level"))
 			LoadLevel ();
-			
+
+		if (GUILayout.Button ("New Level")) {
+
+			if (EditorUtility.DisplayDialog ("Create New Level",
+				   "Are you sure you want to create a new level? This operation will " +
+				"not save the current level in the scene", "Yes", "Cancel")) {
+
+				CleanLevel ();
+			}
+		}
+		
 		if (GUILayout.Button ("Save Level"))
 			SaveLevel ();
 
 		EditorGUILayout.EndHorizontal ();
 	}
-
+		
 	GameObject InstantiateGameObject(GameObject[]source, int index) {
 
 		GameObject cube = (GameObject)PrefabUtility.InstantiatePrefab (source[index]);
@@ -121,7 +130,7 @@ class LevelEditor : EditorWindow {
 		return cube;
 	}
 
-	void ClearLevel() {
+	void CleanLevel() {
 
 		_birdsAdded = 0;
 
@@ -147,7 +156,7 @@ class LevelEditor : EditorWindow {
 
 		if (path != "") {
 
-			ClearLevel ();
+			CleanLevel ();
 
 			string[] stringSeparators = new string[] {"Resources/"};
 
@@ -210,11 +219,16 @@ class LevelEditor : EditorWindow {
 			obj.x = child.transform.position.x;
 			obj.y = child.transform.position.y;
 
-			if (child.GetComponent<Pig> () != null)
+			if (child.GetComponent<Pig> () != null) {
 
+				obj.material = "";
 				level.pigs.Add (obj);
-			else 
+			} 
+			else if (child.GetComponent<Block> () != null) {
+				
+				obj.material = child.GetComponent<Block> ()._material.ToString ();
 				level.blocks.Add (obj);
+			}
 
 		}
 
@@ -223,6 +237,7 @@ class LevelEditor : EditorWindow {
 			OBjData obj = new OBjData ();
 
 			obj.type = child.name;
+			obj.material = "";
 			obj.x = child.transform.position.x;
 			obj.y = child.transform.position.y;
 
@@ -249,9 +264,14 @@ class LevelEditor : EditorWindow {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 
+			Debug.Log (gameObj.type);
+
 			GameObject block = InstantiateGameObject (_blocks[gameObj.type]);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 			block.transform.position = pos;
+
+			MATERIALS material = (MATERIALS)Enum.Parse(typeof(MATERIALS), gameObj.material);
+			BlockEditor.UpdateBlockMaterial(block.GetComponent<Block>(), material);
 		}
 
 		foreach(OBjData gameObj in level.platforms)

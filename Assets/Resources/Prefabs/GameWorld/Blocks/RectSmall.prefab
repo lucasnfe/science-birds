@@ -40,8 +40,8 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144968}
-  m_UseAutoMass: 0
-  m_Mass: 0.4
+  m_UseAutoMass: 1
+  m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -177,9 +177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eb3968a7123042fc919c6e4c3fb0935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _typeSprites: []
+  _typeClips: []
+  _timeToDie: 0
+  _life: 8
   _material: 0
   _points: 25
-  _life: 10
   _woodDestructionEffect:
   - {fileID: 114686, guid: 93d80a2cf052c442e838c6c966340dcf, type: 2}
   _stoneDestructionEffect:
@@ -379,6 +382,26 @@ Prefab:
       propertyPath: _iceDestructionEffect.Array.data[0]
       value: 
       objectReference: {fileID: 114686, guid: 51ee6060e56af4f7eabc93c6efcb8c62, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_UseAutoMass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_GravityScale
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _timeToDie
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _life
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 144968}

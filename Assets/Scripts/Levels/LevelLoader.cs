@@ -46,6 +46,9 @@ public class LevelLoader {
 				reader.MoveToAttribute("type");
 				abObj.type = reader.Value;
 
+				reader.MoveToAttribute("material");
+				abObj.material = reader.Value;
+
 				reader.MoveToAttribute("x");
 				abObj.x = (float)Convert.ToDouble(reader.Value);
 
@@ -93,6 +96,7 @@ public class LevelLoader {
 			{
 				writer.WriteStartElement("Block");
 				writer.WriteAttributeString("type", abObj.type.ToString());
+				writer.WriteAttributeString("material", abObj.material.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteEndElement();
@@ -102,6 +106,7 @@ public class LevelLoader {
 			{
 				writer.WriteStartElement("Pig");
 				writer.WriteAttributeString("type", abObj.type.ToString());
+				writer.WriteAttributeString("material", abObj.material.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteEndElement();
@@ -111,6 +116,7 @@ public class LevelLoader {
 			{
 				writer.WriteStartElement("Platform");
 				writer.WriteAttributeString("type", abObj.type.ToString());
+				writer.WriteAttributeString("material", abObj.material.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteEndElement();

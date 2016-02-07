@@ -156,13 +156,16 @@ public class GameWorld : ABSingleton<GameWorld> {
 		foreach (OBjData gameObj in pigs) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
-			AddBlock(_pigsTemplate[gameObj.type], pos, _pigsTemplate[gameObj.type].transform.rotation);
+			AddPig(_pigsTemplate[gameObj.type], pos, _pigsTemplate[gameObj.type].transform.rotation);
 		}
 
 		foreach(OBjData gameObj in blocks) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
-			AddBlock(_blocksTemplate[gameObj.type], pos,  _blocksTemplate[gameObj.type].transform.rotation);
+			GameObject block = AddBlock(_blocksTemplate[gameObj.type], pos,  _blocksTemplate[gameObj.type].transform.rotation);
+
+			MATERIALS material = (MATERIALS)System.Enum.Parse(typeof(MATERIALS), gameObj.material);
+			block.GetComponent<Block> ().SetMaterial (material);
 		}
 
 		foreach(OBjData gameObj in platforms)

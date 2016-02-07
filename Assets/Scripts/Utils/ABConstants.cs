@@ -26,7 +26,7 @@ public enum BLOCKS {
 	RectFat, 
 	RectMedium, 
 	RectSmall, 
-	RectTiny, 
+	RectTiny,
 	SquareHole, 
 	SquareSmall,
 	SquareTiny,
@@ -36,5 +36,4 @@ public enum BLOCKS {
 
 public class ABConstants {
 
-	 
 }

@@ -24,11 +24,11 @@ public abstract class ABGameObject : MonoBehaviour
 
 	protected virtual void Awake() {
 
-		_destroyEffect = GetComponent<ABParticleSystem> ();
+		_collider       = GetComponent<Collider2D> ();
+		_rigidBody      = GetComponent<Rigidbody2D> ();
+		_destroyEffect  = GetComponent<ABParticleSystem> ();
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
-		_audioSource = GetComponent<AudioSource> ();
-		_collider = GetComponent<Collider2D> ();
-		_rigidBody = GetComponent<Rigidbody2D> ();
+		_audioSource    = GetComponent<AudioSource> ();
 	}
 
 	protected virtual void Update() {
