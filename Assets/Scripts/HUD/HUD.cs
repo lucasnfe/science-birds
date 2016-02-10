@@ -15,7 +15,7 @@ public class HUD : MonoBehaviour {
 	private uint _totalScore;
 
 	private Vector3 _dragOrigin;
-	private Bird _selecetdBird;
+	private ABBird _selecetdBird;
 
 	void Start() {
 
@@ -48,8 +48,8 @@ public class HUD : MonoBehaviour {
             {
                 if(hit.transform.tag == "Bird")
                 {
-					_selecetdBird = hit.transform.gameObject.GetComponent<Bird>();
-					if(_selecetdBird && !_selecetdBird.IsSelected && _selecetdBird == GameWorld.Instance.GetCurrentBird())
+					_selecetdBird = hit.transform.gameObject.GetComponent<ABBird>();
+					if(_selecetdBird && !_selecetdBird.IsSelected && _selecetdBird == ABGameWorld.Instance.GetCurrentBird())
                     {
 						_selecetdBird.SelectBird();
                     }
@@ -60,7 +60,7 @@ public class HUD : MonoBehaviour {
         {
             if(_selecetdBird)
             {
-				if(!_selecetdBird.IsFlying && _selecetdBird == GameWorld.Instance.GetCurrentBird())
+				if(!_selecetdBird.IsFlying && _selecetdBird == ABGameWorld.Instance.GetCurrentBird())
 				{
                 	Vector3 dragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 					dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selecetdBird.transform.position.z);
@@ -71,12 +71,12 @@ public class HUD : MonoBehaviour {
 			else
 			{
 				Vector3 dragPosition = Input.mousePosition - _dragOrigin;
-				GameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
+				ABGameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
 			}
         }
         else if(Input.GetMouseButtonUp(0))
         {
-			if(_selecetdBird && !_selecetdBird.IsFlying && _selecetdBird == GameWorld.Instance.GetCurrentBird())
+			if(_selecetdBird && !_selecetdBird.IsFlying && _selecetdBird == ABGameWorld.Instance.GetCurrentBird())
             {
                 _selecetdBird.LaunchBird();
                 _selecetdBird = null;
@@ -102,7 +102,7 @@ public class HUD : MonoBehaviour {
 	
 	public void CameraZoom(float scrollDirection)
 	{
-		GameWorld.Instance.GameplayCam.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
+		ABGameWorld.Instance.GameplayCam.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
 	}
 
 	public void SetScoreDisplay(uint score)
