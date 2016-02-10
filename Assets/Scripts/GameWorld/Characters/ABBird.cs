@@ -203,7 +203,7 @@ public class ABBird : ABCharacter {
 		// The bird starts with no gravity, so we must set it
 		_rigidBody.gravityScale = _launchGravity;
 		_rigidBody.AddForce(new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
-		                                 _launchForce.y * -deltaPosFromSlingshot.y), ForceMode2D.Impulse);
+		                                _launchForce.y * -deltaPosFromSlingshot.y), ForceMode2D.Impulse);
 
 		if(!ABGameWorld.Instance._isSimulation)
         	InvokeRepeating("DropTrajectoryParticle", 0.1f,

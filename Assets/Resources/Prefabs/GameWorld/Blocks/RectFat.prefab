@@ -191,7 +191,7 @@ MonoBehaviour:
   _minLifetime: 0.45
   _maxLifetime: 0.5
   _systemLifetime: 0.5
-  _shootingRate: 0.13
+  _shootingRate: 0.1
   _applyGravity: 1
   _shootParticles: 0
   _particlePrefab:
@@ -301,7 +301,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _shootingRate
-      value: 0.13
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _applyGravity

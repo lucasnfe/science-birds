@@ -34,6 +34,7 @@ public class PhysicalBody : MonoBehaviour {
 
 	public void ApplyForce(Vector2 force) {
 
-		acceleration += force * mass;
+		force /= mass;
+		acceleration += force;
 	}
 }
