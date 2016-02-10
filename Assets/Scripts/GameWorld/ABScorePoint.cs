@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Point : MonoBehaviour {
+public class ABScorePoint : MonoBehaviour {
 
 	public float _timeToDie = 0.5f;
 

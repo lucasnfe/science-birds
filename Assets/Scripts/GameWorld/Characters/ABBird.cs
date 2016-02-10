@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Bird : Character {
+public class ABBird : ABCharacter {
 
     private int _nextParticleTrajectory;
 
@@ -61,7 +61,7 @@ public class Bird : Character {
         if(IsIdle() && _rigidBody.gravityScale > 0f) {
 			_rigidBody.AddForce(Vector2.up * _jumpForce);
 				if(Random.value < 0.5f)
-					_audioSource.PlayOneShot(_typeClips[Random.Range(4, 6)]);
+					_audioSource.PlayOneShot(_clips[Random.Range(4, 6)]);
 		}
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
@@ -71,12 +71,12 @@ public class Bird : Character {
     void DropTrajectoryParticle()
     {
 		_nextParticleTrajectory = (_nextParticleTrajectory + 1) % _trajectoryParticlesTemplates.Length;
-		GameWorld.Instance.AddTrajectoryParticle(_trajectoryParticlesTemplates[_nextParticleTrajectory], transform.position, name);
+		ABGameWorld.Instance.AddTrajectoryParticle(_trajectoryParticlesTemplates[_nextParticleTrajectory], transform.position, name);
     }
 
 	public override void Die()
 	{
-		GameWorld.Instance.KillBird(this);
+		ABGameWorld.Instance.KillBird(this);
 		base.Die();
 	}
 
@@ -87,7 +87,7 @@ public class Bird : Character {
 			IsFlying = false;
 
             CancelInvoke("DropTrajectoryParticle");
-			GameWorld.Instance.RemoveLastTrajectoryParticle(name);
+			ABGameWorld.Instance.RemoveLastTrajectoryParticle(name);
 
             Invoke("Die", _timeToDie);
             _animator.Play("die", 0, 0f);
@@ -99,10 +99,10 @@ public class Bird : Character {
         if(collider.tag == "Slingshot")
         {
             if(JumpToSlingshot)
-				GameWorld.Instance.SetSlingshotBaseActive(false);
+				ABGameWorld.Instance.SetSlingshotBaseActive(false);
 
 			if(IsSelected && IsFlying)
-				_audioSource.PlayOneShot(_typeClips[3]);
+				_audioSource.PlayOneShot(_clips[3]);
         }
     }
 
@@ -111,17 +111,17 @@ public class Bird : Character {
         if(collider.tag == "Slingshot")
         {
             if(JumpToSlingshot)
-				GameWorld.Instance.SetSlingshotBaseActive(false);
+				ABGameWorld.Instance.SetSlingshotBaseActive(false);
 
             if(IsFlying)
             {
 				OutOfSlingShot = true;
 
-                Vector3 slingBasePos = GameWorld.Instance.SlingSelectPos;
+				Vector3 slingBasePos = ABConstants.SLING_SELECT_POS;
                 slingBasePos.z = transform.position.z + 0.5f;
 
-				GameWorld.Instance.ChangeSlingshotBasePosition(slingBasePos);
-				GameWorld.Instance.ChangeSlingshotBaseRotation (Quaternion.identity);
+				ABGameWorld.Instance.ChangeSlingshotBasePosition(slingBasePos);
+				ABGameWorld.Instance.ChangeSlingshotBaseRotation (Quaternion.identity);
             }
         }
     }
@@ -131,33 +131,33 @@ public class Bird : Character {
 		if(collider.tag == "Slingshot")
 		{
 			if(IsSelected && !IsFlying)
-				_audioSource.PlayOneShot(_typeClips[2]);
+				_audioSource.PlayOneShot(_clips[2]);
 
 			if(!IsSelected && IsFlying)
-				_audioSource.PlayOneShot(_typeClips[0]);
+				_audioSource.PlayOneShot(_clips[0]);
 		}
 	}
 
 	public bool IsInFrontOfSlingshot()
 	{
-		return transform.position.x + _collider.bounds.size.x > GameWorld.Instance.SlingSelectPos.x + _dragRadius;
+		return transform.position.x + _collider.bounds.size.x > ABConstants.SLING_SELECT_POS.x + _dragRadius;
 	}
 	
     public void SelectBird()
     {
 		IsSelected = true;
 
-		_audioSource.PlayOneShot (_typeClips[1]);
+		_audioSource.PlayOneShot (_clips[1]);
         _animator.Play("selected", 0, 0f);
 
-		GameWorld.Instance.SetSlingshotBaseActive(true);
+		ABGameWorld.Instance.SetSlingshotBaseActive(true);
     }
 
     public void SetBirdOnSlingshot()
     {
-		transform.position = Vector3.MoveTowards(transform.position, GameWorld.Instance.SlingSelectPos, _dragSpeed * Time.deltaTime);
+		transform.position = Vector3.MoveTowards(transform.position, ABConstants.SLING_SELECT_POS, _dragSpeed * Time.deltaTime);
 
-		if(Vector3.Distance(transform.position, GameWorld.Instance.SlingSelectPos) <= 0f)
+		if(Vector3.Distance(transform.position, ABConstants.SLING_SELECT_POS) <= 0f)
 		{
 			JumpToSlingshot = false;
 			OutOfSlingShot = false;
@@ -171,23 +171,23 @@ public class Bird : Character {
 			return;
 			
 		dragPosition.z = transform.position.z;
-		float deltaPosFromSlingshot = Vector2.Distance(dragPosition, GameWorld.Instance.SlingSelectPos);
+		float deltaPosFromSlingshot = Vector2.Distance(dragPosition, ABConstants.SLING_SELECT_POS);
 
         // Lock bird movement inside a circle
         if(deltaPosFromSlingshot > _dragRadius)
-			dragPosition = (dragPosition - GameWorld.Instance.SlingSelectPos).normalized * _dragRadius + GameWorld.Instance.SlingSelectPos;
+			dragPosition = (dragPosition - ABConstants.SLING_SELECT_POS).normalized * _dragRadius + ABConstants.SLING_SELECT_POS;
 		
 		Vector3 velocity = Vector3.zero;
 		transform.position = Vector3.SmoothDamp(transform.position, dragPosition, ref velocity, 0.05f);
 		
 		// Slingshot base look to slingshot
-		Vector3 dist = GameWorld.Instance.DragDistance();
+		Vector3 dist = ABGameWorld.Instance.DragDistance();
         float angle = Mathf.Atan2(dist.y, dist.x) * Mathf.Rad2Deg;
-		GameWorld.Instance.ChangeSlingshotBaseRotation(Quaternion.AngleAxis(angle, Vector3.forward));
+		ABGameWorld.Instance.ChangeSlingshotBaseRotation(Quaternion.AngleAxis(angle, Vector3.forward));
 
         // Slingshot base rotate around the selected point
 		Collider2D col = _collider;
-		GameWorld.Instance.ChangeSlingshotBasePosition ((transform.position - GameWorld.Instance.SlingSelectPos).normalized 
+		ABGameWorld.Instance.ChangeSlingshotBasePosition ((transform.position - ABConstants.SLING_SELECT_POS).normalized 
 			* col.bounds.size.x / 2.25f + transform.position);
 	}
 
@@ -195,7 +195,7 @@ public class Bird : Character {
 	{
 		IsSelected = false;
 	
-		Vector2 deltaPosFromSlingshot = (transform.position - GameWorld.Instance.SlingSelectPos);
+		Vector2 deltaPosFromSlingshot = (transform.position - ABConstants.SLING_SELECT_POS);
 		_animator.Play("flying", 0, 0f);
 
 		IsFlying = true;
@@ -205,10 +205,10 @@ public class Bird : Character {
 		_rigidBody.AddForce(new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
 		                                 _launchForce.y * -deltaPosFromSlingshot.y), ForceMode2D.Impulse);
 
-		if(!GameWorld.Instance._isSimulation)
+		if(!ABGameWorld.Instance._isSimulation)
         	InvokeRepeating("DropTrajectoryParticle", 0.1f,
 		                _trajectoryParticleFrequency / Mathf.Abs(_rigidBody.velocity.x));
 
-		_audioSource.PlayOneShot(_typeClips[3]);
+		_audioSource.PlayOneShot(_clips[3]);
 	}
 }

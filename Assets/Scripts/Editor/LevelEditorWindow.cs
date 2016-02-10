@@ -18,7 +18,6 @@ class LevelEditor : EditorWindow {
 	private static GameObject   _platform;
 
 	private static int _birdsAdded = 0;
-	private static Vector3 _slingshotPos;
 	private static Vector3 _groundPos;
 
 	[MenuItem ("Window/Level Editor %l")]
@@ -40,10 +39,8 @@ class LevelEditor : EditorWindow {
 		_platform = Resources.Load("Prefabs/GameWorld/Platform") as GameObject;
 
 		_groundPos = new Vector3 (0f, -2.74f, 0f);
-		_slingshotPos = new Vector3 (-7.62f, -1.24f, 1f);
 
 		_birdsAdded = GameObject.Find ("Birds").transform.childCount;
-
 	}
 
 	void OnGUI()
@@ -82,7 +79,7 @@ class LevelEditor : EditorWindow {
 			GameObject block = InstantiateGameObject (_blocks[_blocksOps.ToString()]);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 
-			BlockEditor.UpdateBlockMaterial (block.GetComponent<Block>(), _material);
+			BlockEditor.UpdateBlockMaterial (block.GetComponent<ABBlock>(), _material);
 		}
 
 		EditorGUILayout.EndHorizontal ();
@@ -186,7 +183,7 @@ class LevelEditor : EditorWindow {
 		bird.name = bird.name + "_" + _birdsAdded;
 		bird.transform.parent = GameObject.Find ("Birds").transform;
 
-		Vector3 birdsPos = _slingshotPos;
+		Vector3 birdsPos = ABConstants.SLING_SELECT_POS;
 
 		// From the second Bird on, they are added to the ground
 		if(_birdsAdded >= 1)
@@ -201,7 +198,6 @@ class LevelEditor : EditorWindow {
 
 		_birdsAdded++;
 	}
-
 
 	public ABLevel EncodeLevel() 
 	{
@@ -219,14 +215,14 @@ class LevelEditor : EditorWindow {
 			obj.x = child.transform.position.x;
 			obj.y = child.transform.position.y;
 
-			if (child.GetComponent<Pig> () != null) {
+			if (child.GetComponent<ABPig> () != null) {
 
 				obj.material = "";
 				level.pigs.Add (obj);
 			} 
-			else if (child.GetComponent<Block> () != null) {
+			else if (child.GetComponent<ABBlock> () != null) {
 				
-				obj.material = child.GetComponent<Block> ()._material.ToString ();
+				obj.material = child.GetComponent<ABBlock> ()._material.ToString ();
 				level.blocks.Add (obj);
 			}
 
@@ -271,7 +267,7 @@ class LevelEditor : EditorWindow {
 			block.transform.position = pos;
 
 			MATERIALS material = (MATERIALS)Enum.Parse(typeof(MATERIALS), gameObj.material);
-			BlockEditor.UpdateBlockMaterial(block.GetComponent<Block>(), material);
+			BlockEditor.UpdateBlockMaterial(block.GetComponent<ABBlock>(), material);
 		}
 
 		foreach(OBjData gameObj in level.platforms)

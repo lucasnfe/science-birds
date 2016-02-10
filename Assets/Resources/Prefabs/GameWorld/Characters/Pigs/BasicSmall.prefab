@@ -171,18 +171,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc54fd4222824fea93b236592a2c041, type: 3}
+  m_Script: {fileID: 11500000, guid: b2b3df01e7ca54038bd1328817eb5b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _typeSprites:
-  - {fileID: 21300036, guid: cee471ae6334c4d0e9b777485441d1a0, type: 3}
-  - {fileID: 21300076, guid: cee471ae6334c4d0e9b777485441d1a0, type: 3}
-  _typeClips:
-  - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
+  _sprites:
+  - {fileID: 21300098, guid: cee471ae6334c4d0e9b777485441d1a0, type: 3}
+  - {fileID: 21300104, guid: cee471ae6334c4d0e9b777485441d1a0, type: 3}
+  _clips:
   - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
   _timeToDie: 0
-  _life: 1.5
-  _maxTimeToBlink: 2.5
+  _life: 2
+  _maxTimeToBlink: 1
   dustEffect: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
@@ -222,6 +221,14 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: _clips.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _sprites.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: _typeClips.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -252,7 +259,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _life
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _typeClips.Array.data[0]
@@ -288,6 +295,28 @@ Prefab:
       propertyPath: m_UseAutoMass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300098, guid: cee471ae6334c4d0e9b777485441d1a0,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300104, guid: cee471ae6334c4d0e9b777485441d1a0,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _clips.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
+    - target: {fileID: 0}
+      propertyPath: _maxTimeToBlink
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dustEffect
+      value: 
+      objectReference: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}

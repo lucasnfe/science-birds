@@ -174,21 +174,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 190880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eb3968a7123042fc919c6e4c3fb0935, type: 3}
+  m_Script: {fileID: 11500000, guid: 175a0df2c8fa04f8183e0687f10da674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _typeSprites: []
-  _typeClips: []
+  _sprites: []
+  _clips: []
   _timeToDie: 0
   _life: 8
   _material: 0
   _points: 25
-  _woodDestructionEffect:
-  - {fileID: 114686, guid: 93d80a2cf052c442e838c6c966340dcf, type: 2}
-  _stoneDestructionEffect:
-  - {fileID: 114686, guid: 51ee6060e56af4f7eabc93c6efcb8c62, type: 2}
-  _iceDestructionEffect:
-  - {fileID: 114686, guid: 51ee6060e56af4f7eabc93c6efcb8c62, type: 2}
   _woodSprites:
   - {fileID: 21300248, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
   - {fileID: 21300250, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
@@ -204,15 +198,6 @@ MonoBehaviour:
   - {fileID: 21300242, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
   - {fileID: 21300244, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
   - {fileID: 21300246, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  _woodDamageClip:
-  - {fileID: 8300000, guid: 24360b5bc58d04f5c993d06fb7c4ce74, type: 3}
-  - {fileID: 8300000, guid: ae34e0b78fa7947eda07bf747dbff35d, type: 3}
-  _stoneDamageClip:
-  - {fileID: 8300000, guid: 6bfe46151b4554c7089990a54dc5e895, type: 3}
-  - {fileID: 8300000, guid: 1330a172ee9b84e6f82f6c4ad3474b96, type: 3}
-  _iceDamageClip:
-  - {fileID: 8300000, guid: 6bfe46151b4554c7089990a54dc5e895, type: 3}
-  - {fileID: 8300000, guid: 1330a172ee9b84e6f82f6c4ad3474b96, type: 3}
 --- !u!212 &21244472
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -250,6 +235,18 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: _iceSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _woodSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _stoneSprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _iceDamageClip.Array.size
       value: 2
@@ -410,6 +407,66 @@ Prefab:
       propertyPath: _life
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _woodSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300248, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _woodSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300250, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _woodSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300252, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _woodSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300254, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _stoneSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300232, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _stoneSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300234, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _stoneSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300236, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _stoneSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300238, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _iceSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300240, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _iceSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300242, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _iceSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300244, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _iceSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300246, guid: 3a58c58e8a1d8472db7abac811c76ccc,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 190880}

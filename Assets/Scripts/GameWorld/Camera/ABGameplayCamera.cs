@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameplayCamera : MonoBehaviour {
+public class ABGameplayCamera : MonoBehaviour {
 
 	private Rect  _initialCameraRect;
 	
@@ -26,7 +26,7 @@ public class GameplayCamera : MonoBehaviour {
 
 		if(!_isDraging)
 		{
-			Bird target = GameWorld.Instance.GetCurrentBird();
+			ABBird target = ABGameWorld.Instance.GetCurrentBird();
 
 			Vector3 cameraNextPos = Vector3.zero;
 			cameraNextPos.x = LeftBound();
@@ -69,7 +69,7 @@ public class GameplayCamera : MonoBehaviour {
 	
 	public void DragCamera(Vector3 dragDistance)
 	{
-		Bird target = GameWorld.Instance.GetCurrentBird();
+		ABBird target = ABGameWorld.Instance.GetCurrentBird();
 
 		if(target && target.IsFlying)
 			return;
@@ -93,7 +93,7 @@ public class GameplayCamera : MonoBehaviour {
 	
 	public void ZoomCamera(float zoomFactor)
 	{
-		if(!GameWorld.Instance._isSimulation)
+		if(!ABGameWorld.Instance._isSimulation)
 		{
 			_initialCameraRect.width += zoomFactor;
 			_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _cameraMaxWidth);

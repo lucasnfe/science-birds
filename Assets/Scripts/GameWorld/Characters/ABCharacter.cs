@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Character : ABGameObject {
+public class ABCharacter : ABGameObject {
 
 	protected Animator _animator;
 	public float _maxTimeToBlink;

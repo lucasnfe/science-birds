@@ -1,13 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Slingshot : MonoBehaviour {
-
-    enum SLINGSHOT_LINE_POS
-    {
-        SLING,
-        BIRD
-    };
+public class ABSlingshot : MonoBehaviour {
 	
     public Vector3 _positionOffset;
     public float _width;
@@ -27,10 +21,10 @@ public class Slingshot : MonoBehaviour {
 
     void Update()
     {
-		if(_lineRenderer && GameWorld.Instance.IsSlingshotBaseActive())
+		if(_lineRenderer && ABGameWorld.Instance.IsSlingshotBaseActive())
         {
             _lineRenderer.enabled = true;
-			_lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, GameWorld.Instance.GetSlingshotBasePosition());
+			_lineRenderer.SetPosition((int)SLINGSHOT_LINE_POS.BIRD, ABGameWorld.Instance.GetSlingshotBasePosition());
         }
         else
 

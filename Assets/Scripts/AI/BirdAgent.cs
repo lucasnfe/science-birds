@@ -22,8 +22,8 @@ public class BirdAgent : MonoBehaviour {
 
 	private float _throwTimer;
 
-	private Pig _lastTargetPig;
-	private Bird _currentBird;
+	private ABPig _lastTargetPig;
+	private ABBird _currentBird;
 	private Shot _nextShot;
 
 	public bool IsThrowingBird{ get; set; }
@@ -45,7 +45,7 @@ public class BirdAgent : MonoBehaviour {
 		}
 	}
 
-	public void ThrowBird(Bird currentBird, Pig targetPig, Vector2 slingPos)
+	public void ThrowBird(ABBird currentBird, ABPig targetPig, Vector2 slingPos)
 	{
 		if(_lastTargetPig)
 			_lastTargetPig.GetComponent<SpriteRenderer>().material.color = Color.white;
@@ -56,14 +56,14 @@ public class BirdAgent : MonoBehaviour {
 		_currentBird = currentBird;
 
 		// Highlight the target
-		if(!GameWorld.Instance._isSimulation)
+		if(!ABGameWorld.Instance._isSimulation)
 			targetPig.GetComponent<SpriteRenderer>().material.color = Color.red;
 
 		_nextShot = Solve(currentBird, targetPig, slingPos);
 		currentBird.SelectBird();
 	}
 
-	private Shot Solve(Bird currentBird, Pig targetPig, Vector2 slingPos) 
+	private Shot Solve(ABBird currentBird, ABPig targetPig, Vector2 slingPos) 
 	{
 		// 1. Random pick up a pig
 		Vector2 shotPos = targetPig.transform.position;

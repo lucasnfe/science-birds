@@ -7,11 +7,11 @@ using System.Collections;
 [RequireComponent (typeof (AudioSource))]
 public abstract class ABGameObject : MonoBehaviour
 {	
-	protected int   _imgChangedTimes;
+	protected int   _spriteChangedTimes;
 	protected float _receivedDamage;
 
-	public Sprite[]      _typeSprites;
-	public AudioClip[]   _typeClips;
+	public Sprite[]    _sprites;
+	public AudioClip[] _clips;
 
 	protected AudioSource      _audioSource;
 	protected SpriteRenderer   _spriteRenderer;
@@ -44,27 +44,27 @@ public abstract class ABGameObject : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		_receivedDamage += collision.relativeVelocity.magnitude;
-		if(_receivedDamage >= _life/_typeSprites.Length)
+		if(_receivedDamage >= _life/_sprites.Length)
 		{
-			_spriteRenderer.sprite = _typeSprites[_imgChangedTimes];
+			_spriteRenderer.sprite = _sprites[_spriteChangedTimes];
 
-			if(!GameWorld.Instance._isSimulation)
-				_audioSource.PlayOneShot(_typeClips[0]);
+			if(!ABGameWorld.Instance._isSimulation)
+				_audioSource.PlayOneShot(_clips[0]);
 
-			_imgChangedTimes++;
+			_spriteChangedTimes++;
 			_receivedDamage = 0;
 		}
 
-		if(_imgChangedTimes == _typeSprites.Length) {
+		if(_spriteChangedTimes == _sprites.Length) {
 			
-			ABAudioController.Instance.PlayIndependentSFX(_typeClips[1]);
+			ABAudioController.Instance.PlayIndependentSFX(_clips[1]);
 			Die();
 		}
 	}
 
 	void DestroyIfOutScreen() {
 
-		if(GameWorld.Instance.IsObjectOutOfWorld(transform, _collider))
+		if(ABGameWorld.Instance.IsObjectOutOfWorld(transform, _collider))
 			Die ();
 	}
 }
