@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class ABParticleSystem : MonoBehaviour {
 
-	public int        _particlePoolSize;
 	public int		  _minVel, _maxVel;
 	public int 		  _minAngle, _maxAngle;
 	public float	  _minMass, _maxMass;
@@ -12,45 +11,23 @@ public class ABParticleSystem : MonoBehaviour {
 	public float 	  _systemLifetime;
 	public float 	  _shootingRate;
 
+	public bool 	  _addNoise;
 	public bool 	  _applyGravity;
 	public bool 	  _shootParticles;
 
-	public GameObject[] _particlePrefab;
-	public GameObject   _repellerPrefab;
-	public GameObject   _attractorPrefab;
+	public GameObject[] _particleSprites;
 
 	private float 	  _shootingTimer;
 	private float 	  _selfDestructionTimer;
-	private List<ABParticle> _particles;
 
-	// Use this for initialization
-	void Start () {
+	private ABObjectPool<ABParticle> _particles;
+
+	private void Start () {
 	
-		_particles = new List<ABParticle>();
-
-		for (int i = 0; i < _particlePoolSize; i++) {
-
-			// Instantiate the particle and make it disabled
-			GameObject randPrefab = _particlePrefab[Random.Range(0, _particlePrefab.Length)];
-			GameObject partibleObj = Instantiate(randPrefab); 
-			partibleObj.name = "SlugParticle_" + i;
-			partibleObj.transform.parent = transform;
-
-			partibleObj.SetActive(false);
-
-			ABParticle part = partibleObj.GetComponent<ABParticle> ();
-
-			if (part == null)
-				part = partibleObj.AddComponent<ABParticle> ();
-
-			part.Create (this);
-
-			_particles.Add(part);
-		}
+		_particles = new ABObjectPool<ABParticle>(25, _particleSprites, InitParticle);
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	private void Update () {
 
 		if (_shootParticles) {
 
@@ -61,7 +38,7 @@ public class ABParticleSystem : MonoBehaviour {
 
 					_shootParticles = false;
 
-					if (GetParticlesAliveAmount () == 0)
+					if (_particles.GetUsedObjects ().Count == 0)
 						Destroy (this);
 				}
 			}
@@ -76,9 +53,14 @@ public class ABParticleSystem : MonoBehaviour {
 		}
 	}
 
-	public void ShootParticle() {
+	private void InitParticle(ABParticle particle) {
 
-		ABParticle inactiveParticle = FindDeadParticle ();
+		particle.Create (this);
+	}
+
+	public ABParticle ShootParticle() {
+
+		ABParticle inactiveParticle = _particles.GetFreeObject();
 
 		if (inactiveParticle != null) {
 
@@ -90,37 +72,29 @@ public class ABParticleSystem : MonoBehaviour {
 			Vector2 velocity = new Vector2 (Mathf.Cos(randAng), Mathf.Sin(randAng)) * randVel;
 
 			inactiveParticle.mass = mass;
-			inactiveParticle.Shoot (velocity, lifetime, _applyGravity);
+			inactiveParticle.Shoot (velocity, lifetime, _applyGravity, _addNoise);
 		}
+
+		return inactiveParticle;
+	}
+
+	public void SetParciclesParent(Transform parent) {
+
+		_particles.SetObjectsParent (parent);
+	}
+
+	public List<ABParticle> GetUsedParticles() {
+
+		return _particles.GetUsedObjects ();
+	}
+
+	public void KillAllParticles() {
+
+		_particles.FreeAllObjects ();
 	}
 
 	public void KillParticle(ABParticle particle) {
 
-		particle.isAlive = false;
-		particle.gameObject.SetActive (false);
-	}
-
-	ABParticle FindDeadParticle() {
-
-		for (int i = 0; i < _particlePoolSize; i++) {
-
-			if (!_particles [i].isAlive)
-				return _particles [i];
-		}
-
-		return null;
-	}
-
-	int GetParticlesAliveAmount() {
-
-		int count = 0;
-
-		for (int i = 0; i < _particlePoolSize; i++) {
-
-			if (_particles [i].isAlive)
-				count++;
-		}
-
-		return count;
+		_particles.SetFreeObject (particle.gameObject);
 	}
 }

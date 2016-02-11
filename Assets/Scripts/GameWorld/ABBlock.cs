@@ -21,7 +21,7 @@ public class ABBlock : ABGameObject {
 	{
 		if(!ABGameWorld.Instance._isSimulation)
 		{
-			ABGameWorld.Instance.SpawnScorePoint(_points, transform.position);
+			ScoreHud.Instance.SpawnScorePoint(_points, transform.position);
 
 			_destroyEffect._shootParticles = true;
 			ABParticleManager.Instance.AddParticleSystem (_destroyEffect, transform.position);
@@ -39,7 +39,7 @@ public class ABBlock : ABGameObject {
 		case MATERIALS.wood:
 			_clips = ABWorldAssets.WOOD_DAMAGE_CLIP;
 			_sprites = _woodSprites;
-			_destroyEffect._particlePrefab = ABWorldAssets.WOOD_DESTRUCTION_EFFECT;
+			_destroyEffect._particleSprites = ABWorldAssets.WOOD_DESTRUCTION_EFFECT;
 			_collider.sharedMaterial = ABWorldAssets.WOOD_MATERIAL;
 			_life *= 1f;
 			break;
@@ -47,7 +47,7 @@ public class ABBlock : ABGameObject {
 		case MATERIALS.stone:
 			_clips = ABWorldAssets.STONE_DAMAGE_CLIP;
 			_sprites = _stoneSprites;
-			_destroyEffect._particlePrefab = ABWorldAssets.STONE_DESTRUCTION_EFFECT;
+			_destroyEffect._particleSprites = ABWorldAssets.STONE_DESTRUCTION_EFFECT;
 			_collider.sharedMaterial = ABWorldAssets.STONE_MATERIAL;
 
 			_life *= 2f;
@@ -56,7 +56,7 @@ public class ABBlock : ABGameObject {
 		case MATERIALS.ice:
 			_clips = ABWorldAssets.ICE_DAMAGE_CLIP;
 			_sprites = _iceSprites;
-			_destroyEffect._particlePrefab = ABWorldAssets.ICE_DESTRUCTION_EFFECT;
+			_destroyEffect._particleSprites = ABWorldAssets.ICE_DESTRUCTION_EFFECT;
 			_collider.sharedMaterial = ABWorldAssets.ICE_MATERIAL;
 
 			_life *= 0.5f;

@@ -10,7 +10,7 @@ public class PhysicalBody : MonoBehaviour {
 	public Vector2  acceleration {get; set;}
 
 	// Use this for initialization
-	void Start () {
+	protected virtual void Start () {
 
 	}
 	

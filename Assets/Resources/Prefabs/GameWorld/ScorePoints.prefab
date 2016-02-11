@@ -10,7 +10,6 @@ GameObject:
   - 224: {fileID: 22470382}
   - 222: {fileID: 22270382}
   - 114: {fileID: 11470382}
-  - 114: {fileID: 11435016}
   m_Layer: 5
   m_Name: ScorePoints
   m_TagString: Untagged
@@ -18,18 +17,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &11435016
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 170382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fe5b4c0c7944da6af36f54fa778eb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeToDie: 0.5
 --- !u!114 &11470382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -96,6 +83,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Name
       value: ScorePoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

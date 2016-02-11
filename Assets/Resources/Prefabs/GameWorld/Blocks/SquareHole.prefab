@@ -149,9 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1496dfd57e5ea402e9851887ca688cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particlePoolSize: 50
-  _minVel: 2
-  _maxVel: 3
+  _minVel: 4
+  _maxVel: 5
   _minAngle: 0
   _maxAngle: 200
   _minMass: 0.5
@@ -160,12 +159,10 @@ MonoBehaviour:
   _maxLifetime: 0.5
   _systemLifetime: 0.5
   _shootingRate: 0.1
+  _addNoise: 1
   _applyGravity: 1
   _shootParticles: 0
-  _particlePrefab:
-  - {fileID: 114686, guid: 93d80a2cf052c442e838c6c966340dcf, type: 2}
-  _repellerPrefab: {fileID: 0}
-  _attractorPrefab: {fileID: 0}
+  _particleSprites: []
 --- !u!114 &11435054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,11 +290,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _minVel
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _maxVel
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _maxLifetime
@@ -459,6 +456,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300060, guid: 3a58c58e8a1d8472db7abac811c76ccc,
         type: 3}
+    - target: {fileID: 0}
+      propertyPath: _addNoise
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 127960}

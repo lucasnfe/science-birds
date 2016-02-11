@@ -14,6 +14,7 @@ GameObject:
   - 95: {fileID: 9500000}
   - 82: {fileID: 8237146}
   - 60: {fileID: 6060550}
+  - 114: {fileID: 11461714}
   m_Layer: 10
   m_Name: BasicSmall
   m_TagString: Circle
@@ -176,13 +177,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites:
   - {fileID: 21300098, guid: cee471ae6334c4d0e9b777485441d1a0, type: 3}
-  - {fileID: 21300104, guid: cee471ae6334c4d0e9b777485441d1a0, type: 3}
   _clips:
+  - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
   - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
   _timeToDie: 0
   _life: 2
+  _animator: {fileID: 0}
   _maxTimeToBlink: 1
   dustEffect: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
+--- !u!114 &11461714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1496dfd57e5ea402e9851887ca688cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minVel: 0
+  _maxVel: 0
+  _minAngle: 0
+  _maxAngle: 0
+  _minMass: 0
+  _maxMass: 0
+  _minLifetime: 0.5
+  _maxLifetime: 0.5
+  _systemLifetime: 0.5
+  _shootingRate: 0
+  _addNoise: 0
+  _applyGravity: 0
+  _shootParticles: 0
+  _particleSprites:
+  - {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -222,11 +250,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: _clips.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _sprites.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _typeClips.Array.size
@@ -235,6 +263,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _typeSprites.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _particleSprites.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: panLevelCustomCurve.m_RotationOrder
@@ -317,6 +349,56 @@ Prefab:
       propertyPath: dustEffect
       value: 
       objectReference: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300104, guid: cee471ae6334c4d0e9b777485441d1a0,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300104, guid: cee471ae6334c4d0e9b777485441d1a0,
+        type: 3}
+    - target: {fileID: 0}
+      propertyPath: _particleSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _minLifetime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _maxLifetime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _minAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _maxAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _minVel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _maxVel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _shootParticles
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _systemLifetime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _shootingRate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
