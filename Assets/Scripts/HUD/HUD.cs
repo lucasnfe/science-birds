@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class HUD : MonoBehaviour {
+public class HUD : ABSingleton<HUD> {
 	
 	public float _zoomSpeed;
 	public float _dragSpeed;

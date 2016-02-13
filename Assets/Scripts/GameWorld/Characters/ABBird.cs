@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class ABBird : ABCharacter {
 
-    private int _nextParticleTrajectory;
-
     public float _dragRadius = 1.0f;
     public float _dragSpeed = 1.0f;
     public float _launchGravity = 1.0f;
@@ -17,11 +15,11 @@ public class ABBird : ABCharacter {
     
     public GameObject[] _trajectoryParticlesTemplates;
 
-	public bool IsSelected      { get; set;}
-	public bool IsFlying        { get; set;}
+	public bool IsSelected      { get; set; }
+	public bool IsFlying        { get; set; }
     public bool JumpToSlingshot { get; set; }
     public bool OutOfSlingShot  { get; set; }
-	
+
 	protected override void Awake ()
     {
 		base.Awake();
@@ -68,29 +66,29 @@ public class ABBird : ABCharacter {
         Invoke("IdleJump", nextJumpDelay + 1.0f);
     }
 
-    void DropTrajectoryParticle()
-    {
-		_nextParticleTrajectory = (_nextParticleTrajectory + 1) % _trajectoryParticlesTemplates.Length;
-		ABGameWorld.Instance.AddTrajectoryParticle(_trajectoryParticlesTemplates[_nextParticleTrajectory], transform.position, name);
-    }
-
 	public override void Die()
 	{
 		ABGameWorld.Instance.KillBird(this);
 		base.Die();
 	}
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
-        if(OutOfSlingShot)
+		if(OutOfSlingShot && !IsDying)
         {
 			IsFlying = false;
 
-            CancelInvoke("DropTrajectoryParticle");
-			ABGameWorld.Instance.RemoveLastTrajectoryParticle(name);
+			_destroyEffect._shootParticles = false;
 
-            Invoke("Die", _timeToDie);
-            _animator.Play("die", 0, 0f);
+			ABGameWorld.Instance.RemoveLastTrajectoryParticle ();
+
+			foreach (ABParticle part in _destroyEffect.GetUsedParticles())
+				ABGameWorld.Instance.AddTrajectoryParticle (part);
+
+			Invoke("Die", _timeToDie);
+			_animator.Play("die", 0, 0f);
+
+			IsDying = true;
         }
     }
 
@@ -202,12 +200,14 @@ public class ABBird : ABCharacter {
 				
 		// The bird starts with no gravity, so we must set it
 		_rigidBody.gravityScale = _launchGravity;
-		_rigidBody.AddForce(new Vector2(_launchForce.x * -deltaPosFromSlingshot.x,
-		                                 _launchForce.y * -deltaPosFromSlingshot.y), ForceMode2D.Impulse);
+
+		Vector2 f = new Vector2 (_launchForce.x * -deltaPosFromSlingshot.x, 
+								 _launchForce.y * -deltaPosFromSlingshot.y);
+		
+		_rigidBody.AddForce(f, ForceMode2D.Impulse);
 
 		if(!ABGameWorld.Instance._isSimulation)
-        	InvokeRepeating("DropTrajectoryParticle", 0.1f,
-		                _trajectoryParticleFrequency / Mathf.Abs(_rigidBody.velocity.x));
+			_destroyEffect._shootParticles = true;
 
 		_audioSource.PlayOneShot(_clips[3]);
 	}

@@ -75,19 +75,20 @@ public class BirdAgent : MonoBehaviour {
 			if(Random.value < 0.5)
 				angle *= -1f;
 
-			shotPos.x = shotPos.x + Mathf.Cos(angle) * 0.5f;
+			shotPos.x = shotPos.x + Mathf.Sin(angle) * 0.5f;
 			shotPos.y = shotPos.y + Mathf.Cos(angle) * 0.5f;
 		}
 		
 		_lastTargetPig = targetPig;
 		
 		// 3. Estimate the trajectory
-		float birdVel = currentBird._launchForce.x * -2f;
-		float birdGrav =  currentBird._launchGravity * Physics2D.gravity.y;
+		float birdMass = currentBird.GetComponent<Rigidbody2D>().mass;
+		float birdVel = (currentBird._launchForce.x * currentBird._dragRadius)/birdMass;
+		float birdGrav = currentBird._launchGravity * Physics2D.gravity.y;
 
 		Vector2 releasePoint = TrajectoryPlanner.estimateLaunchPoint(slingPos, shotPos, birdVel, birdGrav);
 
 		// 5. Calculate the tapping time according the bird type 	
-		return new Shot(slingPos.x, slingPos.y, releasePoint.x, releasePoint.y, 0.5f);
+		return new Shot(slingPos.x, slingPos.y, releasePoint.x, releasePoint.y, 1.25f);
 	}
 }

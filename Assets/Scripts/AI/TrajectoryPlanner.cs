@@ -18,12 +18,13 @@ public class TrajectoryPlanner {
 
 		// calculate relative position of the target (normalised)
 		float x = targetPig.x - slingPos.x;
-		float y = -(targetPig.y - slingPos.y) - 0.8f;
+		float y = -(targetPig.y - slingPos.y) - 0.7f;
 		
 		// first estimate launch angle using the projectile equation (constant velocity)
 		float v = birdVel;
 		float g = birdGrav;
 		float sqrt = (v*v*v*v) - (g*((g*x*x) + (2f*y*v*v)));
+			
 		float angleInRadians = Mathf.Atan(((v*v) - Mathf.Sqrt(sqrt))/(g*x));
 
 		return findReleasePoint(slingPos, angleInRadians, y);

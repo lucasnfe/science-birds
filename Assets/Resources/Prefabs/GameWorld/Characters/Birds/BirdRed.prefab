@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21200000}
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400000}
+  - 114: {fileID: 11488376}
   - 95: {fileID: 9500000}
   - 60: {fileID: 6000000}
   - 82: {fileID: 8207910}
@@ -259,6 +260,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5c0baa5d42c134d9cac0c6d850f2ff6d, type: 3}
   _timeToDie: 2
   _life: 0
+  _animator: {fileID: 0}
   _maxTimeToBlink: 2
   _dragRadius: 1
   _dragSpeed: 15
@@ -271,6 +273,33 @@ MonoBehaviour:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+--- !u!114 &11488376
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1496dfd57e5ea402e9851887ca688cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minVel: 0
+  _maxVel: 0
+  _minAngle: 0
+  _maxAngle: 0
+  _minMass: 0
+  _maxMass: 0
+  _minLifetime: 0
+  _maxLifetime: 0
+  _systemLifetime: 0
+  _shootingRate: 0.1
+  _addNoise: 0
+  _applyGravity: 0
+  _shootParticles: 0
+  _particleSprites:
+  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+  - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -315,6 +344,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _typeClips.Array.size
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _particleSprites.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _trajectoryParticlesTemplates.Array.size
@@ -433,6 +466,22 @@ Prefab:
       propertyPath: _clips.Array.data[2]
       value: 
       objectReference: {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
+    - target: {fileID: 0}
+      propertyPath: _particleSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _particleSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
+    - target: {fileID: 0}
+      propertyPath: _shootParticles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _shootingRate
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}

@@ -19,6 +19,9 @@ public class ABLevelSelect : ABMenu {
 	
 		Object[] levelSet = Resources.LoadAll ("Levels");
 
+		_startPos.x = Mathf.Clamp (_startPos.x, 0, 1f) * Screen.width;
+		_startPos.y = Mathf.Clamp (_startPos.y, 0, 1f) * Screen.height;
+
 		// Transform loaded list into text assets
 		TextAsset[] levelTexts = new TextAsset[levelSet.Length];
 

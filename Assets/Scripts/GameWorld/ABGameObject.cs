@@ -4,23 +4,27 @@ using System.Collections;
 
 [RequireComponent (typeof (Collider2D))]
 [RequireComponent (typeof (Rigidbody2D))]
+[RequireComponent (typeof (SpriteRenderer))]
+[RequireComponent (typeof (ABParticleSystem))]
 [RequireComponent (typeof (AudioSource))]
 public abstract class ABGameObject : MonoBehaviour
 {	
 	protected int   _spriteChangedTimes;
 	protected float _receivedDamage;
 
-	public Sprite[]    _sprites;
-	public AudioClip[] _clips;
-
+	protected Collider2D       _collider;
+	protected Rigidbody2D      _rigidBody;
 	protected AudioSource      _audioSource;
 	protected SpriteRenderer   _spriteRenderer;
 	protected ABParticleSystem _destroyEffect;
-	protected Collider2D       _collider;
-	protected Rigidbody2D      _rigidBody;
 
-	public float _timeToDie = 1;
-	public float _life = 10;
+	public Sprite[]    _sprites;
+	public AudioClip[] _clips;
+
+	public float _timeToDie = 1f;
+	public float _life = 10f;
+
+	public bool IsDying { get; set; }
 
 	protected virtual void Awake() {
 
@@ -29,6 +33,8 @@ public abstract class ABGameObject : MonoBehaviour
 		_destroyEffect  = GetComponent<ABParticleSystem> ();
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
 		_audioSource    = GetComponent<AudioSource> ();
+
+		IsDying = false;
 	}
 
 	protected virtual void Update() {
@@ -41,11 +47,12 @@ public abstract class ABGameObject : MonoBehaviour
 		Destroy(gameObject);
 	}
 		
-	void OnCollisionEnter2D(Collision2D collision)
+	public virtual void OnCollisionEnter2D(Collision2D collision)
 	{
 		_receivedDamage += collision.relativeVelocity.magnitude;
 		if(_receivedDamage >= _life/_sprites.Length)
 		{
+			_spriteChangedTimes = Mathf.Clamp (_spriteChangedTimes, 0, _sprites.Length - 1);
 			_spriteRenderer.sprite = _sprites[_spriteChangedTimes];
 
 			if(!ABGameWorld.Instance._isSimulation)
@@ -58,13 +65,18 @@ public abstract class ABGameObject : MonoBehaviour
 		if(_spriteChangedTimes == _sprites.Length) {
 			
 			ABAudioController.Instance.PlayIndependentSFX(_clips[1]);
-			Die();
+
+			IsDying = true;
+			Invoke("Die", _timeToDie);
 		}
 	}
 
 	void DestroyIfOutScreen() {
 
-		if(ABGameWorld.Instance.IsObjectOutOfWorld(transform, _collider))
-			Die ();
+		if (ABGameWorld.Instance.IsObjectOutOfWorld (transform, _collider)) {
+
+			IsDying = true;
+			Invoke ("Die", _timeToDie);
+		}
 	}
 }

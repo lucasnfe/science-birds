@@ -260,8 +260,6 @@ class LevelEditor : EditorWindow {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 
-			Debug.Log (gameObj.type);
-
 			GameObject block = InstantiateGameObject (_blocks[gameObj.type]);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 			block.transform.position = pos;

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ABCharacter : ABGameObject {
 
-	protected Animator _animator;
+	public Animator _animator;
 	public float _maxTimeToBlink;
 
 	// Use this for initialization
@@ -17,13 +17,13 @@ public class ABCharacter : ABGameObject {
 		Invoke("Blink", nextBlinkDelay + 1.0f);
 	}
 
-	public bool IsIdle()
-	{
+	public bool IsIdle() {
+		
 		return _animator.GetCurrentAnimatorStateInfo(0).IsName("idle");
 	}
 
-	void Blink()
-	{
+	void Blink() {
+		
 		if(IsIdle())
 			_animator.Play("blink", 0, 0f);
 		
