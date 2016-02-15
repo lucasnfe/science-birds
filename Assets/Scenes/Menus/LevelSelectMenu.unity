@@ -878,5 +878,5 @@ MonoBehaviour:
   _levelSelector: {fileID: 186936, guid: 6caba69859dc84ff88676e00e5722747, type: 2}
   _canvas: {fileID: 1103319325}
   _lines: 6
-  _startPos: {x: 180, y: 360}
+  _startPos: {x: 0.2, y: 0.65}
   _buttonSize: {x: 100, y: 100}
