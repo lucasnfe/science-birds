@@ -1,0 +1,12 @@
+<map id="RandomLG.GenerateStack" name="RandomLG.GenerateStack">
+<area shape="rect" id="node2" href="$class_a_b_math.html#a4c691d29ab1db66263164ad2c7e27f32" title="ABMath.RandomGaussian" alt="" coords="235,5,411,32"/>
+<area shape="rect" id="node3" href="$class_random_l_g.html#a5a7e5992d52da34b55f1085be94e6b4a" title="RandomLG.GenerateObject" alt="" coords="232,56,415,83"/>
+<area shape="rect" id="node7" href="$class_shift_a_b_game_object.html#acfefa32bc715aaeb3b2cf70452bd4089" title="ShiftABGameObject.GetBounds" alt="" coords="710,107,918,133"/>
+<area shape="rect" id="node11" href="$class_random_l_g.html#a630e6374be12e5fdbe322850eaa8c4c5" title="RandomLG.InsertPigs" alt="" coords="249,157,398,184"/>
+<area shape="rect" id="node4" href="$class_random_l_g.html#a8083f05cb12c0da72d296970e2147d49" title="RandomLG.DefineObjectLabel" alt="" coords="463,56,659,83"/>
+<area shape="rect" id="node5" href="$class_random_l_g.html#afdb51a5bb986a5ac15a2ad46dafcb1f2" title="RandomLG.GetStackableObjects" alt="" coords="707,5,921,32"/>
+<area shape="rect" id="node8" href="$class_a_b_game_object.html#a8dc11ace331a4ca3eafb29fc64b55af9" title="ABGameObject.GetArea" alt="" coords="731,56,897,83"/>
+<area shape="rect" id="node6" href="$class_random_l_g.html#abda841007ec52ed6b3c32e476baef9ec" title="RandomLG.GetTypeByTag" alt="" coords="972,5,1149,32"/>
+<area shape="rect" id="node9" href="$class_a_b_game_object.html#a1203061077938f33c867f24d2225c86c" title="ABGameObject.GetBounds" alt="" coords="969,56,1152,83"/>
+<area shape="rect" id="node10" href="$class_a_b_game_object.html#a836ad854ee70df42e0acaea398a9204c" title="ABGameObject.IsPig" alt="" coords="1200,56,1347,83"/>
+</map>

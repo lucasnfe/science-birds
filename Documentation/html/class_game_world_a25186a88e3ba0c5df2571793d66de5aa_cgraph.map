@@ -1,0 +1,15 @@
+<map id="GameWorld.Update" name="GameWorld.Update">
+<area shape="rect" id="node2" href="$class_game_world.html#ac38062528cefb7b618d28a66b66cd250" title="GameWorld.ManageBirds" alt="" coords="208,5,379,32"/>
+<area shape="rect" id="node3" href="$class_game_world.html#a4422cbc473c92b7d8963e631dcab230a" title="GameWorld.DestroyIfOutScreen" alt="" coords="189,56,397,83"/>
+<area shape="rect" id="node7" href="$class_game_world.html#ae17b19d4629c194bffa46ad1132aae1c" title="GameWorld.GetBlocksAvailable\lAmount" alt="" coords="190,107,397,149"/>
+<area shape="rect" id="node8" href="$class_game_world.html#a3d2ec72725d3aeca4da7324f321bbc07" title="GameWorld.IsLevelStable" alt="" coords="208,173,379,200"/>
+<area shape="rect" id="node10" href="$class_bird_agent.html#a71c43f3443806219d7ae03486a98d9da" title="BirdAgent.ThrowBird" alt="" coords="223,224,363,251"/>
+<area shape="rect" id="node4" href="$class_game_world.html#a796fc2e1f6fc850f1bb2a0cd85260f2b" title="GameWorld.IsObjectOutOfWorld" alt="" coords="716,85,927,112"/>
+<area shape="rect" id="node5" href="$class_pig.html#a322dad741583aa8599cd70dd25638150" title="Pig.Die" alt="" coords="525,56,589,83"/>
+<area shape="rect" id="node6" href="$class_game_world.html#a59f82705222d7a0f4d5e95e72b389087" title="GameWorld.RemoveLastTrajectory\lParticle" alt="" coords="445,107,668,149"/>
+<area shape="rect" id="node9" href="$class_game_world.html#a973ba895dfadc79a1808fdd0d7a8a6b7" title="GameWorld.GetLevelStability" alt="" coords="461,173,653,200"/>
+<area shape="rect" id="node11" href="$class_bird_agent.html#aaecfb72edab5f2f71de52f6fb57d458c" title="BirdAgent.Solve" alt="" coords="499,224,614,251"/>
+<area shape="rect" id="node14" href="$class_bird.html#a23460da7e7f5bf163924340e67c99d70" title="Bird.SelectBird" alt="" coords="502,275,611,301"/>
+<area shape="rect" id="node12" href="$class_trajectory_planner.html#a95bb7e5b6bb48612af5e3868464ad1dd" title="TrajectoryPlanner.estimate\lLaunchPoint" alt="" coords="733,217,910,258"/>
+<area shape="rect" id="node13" href="$class_trajectory_planner.html#a67438c3a9d4519516a0a5bc91c98077b" title="TrajectoryPlanner.findRelease\lPoint" alt="" coords="975,217,1169,258"/>
+</map>

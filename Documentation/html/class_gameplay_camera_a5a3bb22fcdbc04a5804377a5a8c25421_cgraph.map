@@ -1,0 +1,4 @@
+<map id="GameplayCamera.DragCamera" name="GameplayCamera.DragCamera">
+<area shape="rect" id="node2" href="$class_gameplay_camera.html#adf70f5531662bc1bdcff39fa7d9b083a" title="GameplayCamera.LeftBound" alt="" coords="261,5,449,32"/>
+<area shape="rect" id="node3" href="$class_gameplay_camera.html#a67e6687444d0b411454e93617c2504cf" title="GameplayCamera.RightBound" alt="" coords="256,56,453,83"/>
+</map>

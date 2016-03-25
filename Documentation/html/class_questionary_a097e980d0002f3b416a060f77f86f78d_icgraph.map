@@ -1,0 +1,11 @@
+<map id="Questionary.GetAnswers" name="Questionary.GetAnswers">
+<area shape="rect" id="node2" href="$class_immersion_questionary.html#afa0f85eecaa7c0e47125da4225509a64" title="ImmersionQuestionary.Save\lToGameData" alt="" coords="220,5,404,47"/>
+<area shape="rect" id="node4" href="$class_profile_questionary.html#a0c6fd9bb4721b45847d65257405ffcbb" title="ProfileQuestionary.SaveTo\lGameData" alt="" coords="225,71,399,112"/>
+<area shape="rect" id="node6" href="$class_questionary.html#a0b846110ffa6df5015a685e739fe3b08" title="Questionary.Update" alt="" coords="243,137,381,163"/>
+<area shape="rect" id="node7" href="$class_similarity_quesionary.html#a5cc8f0bbd6498438d4f81b07aae53732" title="SimilarityQuesionary.Save\lToGameData" alt="" coords="225,188,399,229"/>
+<area shape="rect" id="node9" href="$class_turin_test_questionary.html#a19ea371aaadb1add638c11d0e2a66185" title="TurinTestQuestionary.Save\lToGameData" alt="" coords="223,253,401,295"/>
+<area shape="rect" id="node3" href="$class_immersion_questionary.html#aa6c88571d303890e75e2e614500dc76a" title="ImmersionQuestionary.Send\lQuestionary" alt="" coords="475,5,661,47"/>
+<area shape="rect" id="node5" href="$class_profile_questionary.html#a588823967291f8696f51a44ad1d01f7c" title="ProfileQuestionary.SendQuestionary" alt="" coords="452,78,684,105"/>
+<area shape="rect" id="node8" href="$class_similarity_quesionary.html#a93b82506e27faba1fc1a3423f09a9796" title="SimilarityQuesionary.Send\lQuestionary" alt="" coords="480,188,656,229"/>
+<area shape="rect" id="node10" href="$class_turin_test_questionary.html#a9d350aeb9a830eca29b35f48ddb67681" title="TurinTestQuestionary.Send\lQuestionary" alt="" coords="479,253,657,295"/>
+</map>

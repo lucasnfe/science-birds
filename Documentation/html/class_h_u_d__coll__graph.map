@@ -1,0 +1,4 @@
+<map id="HUD" name="HUD">
+<area shape="rect" id="node4" href="$class_character.html" title="Contains information about the game characters. " alt="" coords="99,132,237,312"/>
+<area shape="rect" id="node3" href="$class_bird.html" title="Management of Bird Characters of game. " alt="" coords="91,361,298,805"/>
+</map>

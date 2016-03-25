@@ -1,0 +1,4 @@
+<map id="ImmersionQuestionary.SendQuestionary" name="ImmersionQuestionary.SendQuestionary">
+<area shape="rect" id="node2" href="$class_immersion_questionary.html#afa0f85eecaa7c0e47125da4225509a64" title="ImmersionQuestionary.Save\lToGameData" alt="" coords="240,5,424,47"/>
+<area shape="rect" id="node3" href="$class_questionary.html#a097e980d0002f3b416a060f77f86f78d" title="Questionary.GetAnswers" alt="" coords="472,13,639,39"/>
+</map>

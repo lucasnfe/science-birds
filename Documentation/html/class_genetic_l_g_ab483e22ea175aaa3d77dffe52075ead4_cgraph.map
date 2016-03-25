@@ -1,0 +1,10 @@
+<map id="GeneticLG.Crossover" name="GeneticLG.Crossover">
+<area shape="rect" id="node2" href="$class_random_l_g.html#a4e1d7ac894199cd91123a5d1ef096a26" title="RandomLG.CopyStack" alt="" coords="207,5,362,32"/>
+<area shape="rect" id="node3" href="$class_shift_a_b_level.html#a0675530c40b640d9ba8121a1707478bd" title="ShiftABLevel.AddStack" alt="" coords="207,56,363,83"/>
+<area shape="rect" id="node4" href="$class_shift_a_b_level.html#aa95ee5f8d2e116b69fbaf97c0333a769" title="ShiftABLevel.FixLevelSize" alt="" coords="199,107,371,133"/>
+<area shape="rect" id="node5" href="$class_shift_a_b_level.html#a96729d0323bf255853102b9ddbe12700" title="ShiftABLevel.GetLevelBounds" alt="" coords="419,107,612,133"/>
+<area shape="rect" id="node6" href="$class_shift_a_b_level.html#a0b1bfb90fe718d82c8975d8e7d66573b" title="ShiftABLevel.GetStackWidth" alt="" coords="661,81,849,108"/>
+<area shape="rect" id="node9" href="$class_shift_a_b_level.html#aa8d65f2dbb0754cf246ccc2cb504d038" title="ShiftABLevel.GetStackHeight" alt="" coords="660,132,851,159"/>
+<area shape="rect" id="node7" href="$class_shift_a_b_level.html#a7823819796cf2aa506f53624f4b3c6e1" title="ShiftABLevel.GetWidestObj\lInStack" alt="" coords="899,45,1080,86"/>
+<area shape="rect" id="node8" href="$class_shift_a_b_game_object.html#acfefa32bc715aaeb3b2cf70452bd4089" title="ShiftABGameObject.GetBounds" alt="" coords="1128,81,1336,108"/>
+</map>

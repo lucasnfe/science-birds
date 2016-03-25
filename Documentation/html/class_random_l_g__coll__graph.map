@@ -1,0 +1,4 @@
+<map id="RandomLG" name="RandomLG">
+<area shape="rect" id="node2" href="$class_a_b_level_generator.html" title="Inherits LevelSource, abstract class containing methods to generate Angry Birds Levels. " alt="" coords="25,271,207,392"/>
+<area shape="rect" id="node3" href="$class_level_source.html" title="Abstract class containing basic information for Levels. " alt="" coords="63,131,169,223"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="ScaleQuestionary.Start" name="ScaleQuestionary.Start">
+<area shape="rect" id="node2" href="$class_scale_questionary.html#a937a5c63b4e3d58f4b6315582b3a4bdf" title="ScaleQuestionary.ParseQuestionaryData" alt="" coords="211,5,471,32"/>
+<area shape="rect" id="node3" href="$class_scale_questionary.html#a7c70408bf6f764c468414508d420afae" title="ScaleQuestionary.AddQuestion" alt="" coords="239,56,443,83"/>
+<area shape="rect" id="node4" href="$class_scale_questionary.html#ad5444991d2adb5b39c63044ef295b889" title="ScaleQuestionary.AddScale" alt="" coords="248,107,433,133"/>
+</map>

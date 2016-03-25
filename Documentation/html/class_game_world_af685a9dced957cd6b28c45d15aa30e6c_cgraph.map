@@ -1,0 +1,14 @@
+<map id="GameWorld.Start" name="GameWorld.Start">
+<area shape="rect" id="node2" href="$class_level_source.html#a1b7f4ebec942232f9b4bf9004651d99a" title="LevelSource.NextLevel" alt="" coords="204,81,356,108"/>
+<area shape="rect" id="node3" href="$class_game_world.html#afd50b7627b75a7b40b9571590dca23bd" title="GameWorld.DecodeLevel" alt="" coords="196,132,364,159"/>
+<area shape="rect" id="node12" href="$class_game_world.html#ae6fcd54510664015f3db46f910ac5b6b" title="GameWorld.AdaptCameraWidth\lToLevel" alt="" coords="176,209,384,250"/>
+<area shape="rect" id="node4" href="$class_game_world.html#a002264818ad8168b2c659a7699af5453" title="GameWorld.ClearWorld" alt="" coords="450,5,609,32"/>
+<area shape="rect" id="node5" href="$class_game_world.html#a22cf7e8c860e664dec6b63f533c578b4" title="GameWorld.AddBlock" alt="" coords="703,71,853,97"/>
+<area shape="rect" id="node6" href="$class_game_world.html#a0c5004283d6c801313da11b0b475ddd2" title="GameWorld.AddPig" alt="" coords="461,107,598,133"/>
+<area shape="rect" id="node7" href="$class_game_world.html#a9cc9387d14c87d525b830c19fec9c8e5" title="GameWorld.AddBird" alt="" coords="459,157,600,184"/>
+<area shape="rect" id="node8" href="$class_game_world.html#add2afd8ff63a9d9c5c42a1b3501ce804" title="GameWorld.StartWorld" alt="" coords="451,208,608,235"/>
+<area shape="rect" id="node9" href="$class_game_world.html#acc3f416aa735924bdf528476b64f52c4" title="GameWorld.GetPigsAvailable\lAmount" alt="" coords="681,135,875,177"/>
+<area shape="rect" id="node10" href="$class_game_world.html#a2306d2ca8fe8ba793962c2ede4aab6b4" title="GameWorld.GetBirdsAvailable\lAmount" alt="" coords="679,201,877,242"/>
+<area shape="rect" id="node11" href="$class_game_world.html#ae17b19d4629c194bffa46ad1132aae1c" title="GameWorld.GetBlocksAvailable\lAmount" alt="" coords="675,266,881,307"/>
+<area shape="rect" id="node13" href="$class_gameplay_camera.html#ab4570fcb25246b8ca8bd37d1e9252e1c" title="GameplayCamera.SetCamera\lWidth" alt="" coords="432,259,627,301"/>
+</map>

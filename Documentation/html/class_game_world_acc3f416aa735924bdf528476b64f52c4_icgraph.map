@@ -1,0 +1,5 @@
+<map id="GameWorld.GetPigsAvailableAmount" name="GameWorld.GetPigsAvailableAmount">
+<area shape="rect" id="node2" href="$class_game_world.html#add2afd8ff63a9d9c5c42a1b3501ce804" title="GameWorld.StartWorld" alt="" coords="247,13,404,39"/>
+<area shape="rect" id="node3" href="$class_game_world.html#afd50b7627b75a7b40b9571590dca23bd" title="GameWorld.DecodeLevel" alt="" coords="452,13,620,39"/>
+<area shape="rect" id="node4" href="$class_game_world.html#af685a9dced957cd6b28c45d15aa30e6c" title="GameWorld.Start" alt="" coords="668,13,791,39"/>
+</map>

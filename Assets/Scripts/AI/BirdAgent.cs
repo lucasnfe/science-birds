@@ -1,13 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+/**
+ *  \struct Shot
+ *  \brief  Struct to hold the data of a shot and its constructor
+ *
+ *  Struct containing the data of a shot and a constructor to set all the data
+ */
 public struct Shot {
-
+    /**X and Y coordinates of sling*/
 	public float x,y;
+    /**X and Y coordinates of where to release the sling to shoot the bird*/
 	public float dx,dy;
-	public float dragTime;
-
+    /**Time of drag*/
+    public float dragTime;
+    /**
+     *  Constructor with all the parameters
+     */
 	public Shot(float x, float y, float dx, float dy, float dragTime) 
 	{
 		this.x = x;
@@ -17,17 +26,29 @@ public struct Shot {
 		this.dragTime = dragTime;
 	}
 }
-
+/** \class BirdAgent
+ *  \brief  Agent that makes the actions to shoot the bird.
+ *
+ *  Calculates the shot data using TrajectoryPlanner, adds noise if last shot missed, 
+ *  and make all the actions necessary to shoot the bird to a pig
+ */
 public class BirdAgent : MonoBehaviour {
-
+    /**Timer to wait for next shot*/
 	private float _throwTimer;
-
+    /**Pig to be targeted*/
 	private Pig _lastTargetPig;
+    /**Current Bird to be shot*/
 	private Bird _currentBird;
+    /**Shot struct with information about the next shot to be taken*/
 	private Shot _nextShot;
-
+    /**Boolean to check if already throwing a bird*/
 	public bool IsThrowingBird{ get; set; }
 
+    /**
+     *  At every Update, if going to throw a bird, drags it to drag position.
+     *  Next step is to add elapsed time since last update to _throwTimer and if greater than
+     *  drag time for next shot, sets IsThrowingBir to false and launches the _currentBird.
+     */
 	void Update()
 	{
 		if(IsThrowingBird)
@@ -44,7 +65,15 @@ public class BirdAgent : MonoBehaviour {
 			}
 		}
 	}
-
+    /**
+     *  If the target is the same as the last one, highlight it white.
+     *  Sets IsThrowingBird to true, sets the _throwTimer to 0 and updates the _currentBird.
+     *  If on simulation, Highlights the target to red.
+     *  Gets the next shot struct using Solve() and throws the currentBird
+     *  @param[in]  currentBird current Bird object to be shot
+     *  @param[in]  targetPig   current Pig targeted by shot
+     *  @param[in]  slingPos    Vector2 (X, Y) position of slingshot
+     */
 	public void ThrowBird(Bird currentBird, Pig targetPig, Vector2 slingPos)
 	{
 		if(_lastTargetPig)
@@ -62,7 +91,14 @@ public class BirdAgent : MonoBehaviour {
 		_nextShot = Solve(currentBird, targetPig, slingPos);
 		currentBird.SelectBird();
 	}
-
+    /**
+     *  Picks a pig, if is the same as before adds noise to shot, estimates the trajectory,
+     *  and returns new Shot struct with shot data
+     *  @param[in]  currentBird current bird to be shot
+     *  @param[in]  targetPig   current pig to be shot at
+     *  @param[in]  slingPos    Vector2 (X,Y) containing position of slingshot
+     *  @return Shot    Shot struct containing data about the shot
+     */
 	private Shot Solve(Bird currentBird, Pig targetPig, Vector2 slingPos) 
 	{
 		// 1. Random pick up a pig
@@ -87,7 +123,7 @@ public class BirdAgent : MonoBehaviour {
 
 		Vector2 releasePoint = TrajectoryPlanner.estimateLaunchPoint(slingPos, shotPos, birdVel, birdGrav);
 
-		// 5. Calculate the tapping time according the bird type 	
+		// 4. Calculate the tapping time according the bird type 	
 		return new Shot(slingPos.x, slingPos.y, releasePoint.x, releasePoint.y, 0.5f);
 	}
 }

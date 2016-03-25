@@ -1,0 +1,7 @@
+<map id="GameplayCamera.Update" name="GameplayCamera.Update">
+<area shape="rect" id="node2" href="$class_gameplay_camera.html#a2a5d821b5863a2933da8227ea302b3fd" title="GameplayCamera.Calculate\lOrthographicSize" alt="" coords="233,5,417,47"/>
+<area shape="rect" id="node3" href="$class_gameplay_camera.html#adf70f5531662bc1bdcff39fa7d9b083a" title="GameplayCamera.LeftBound" alt="" coords="231,71,419,98"/>
+<area shape="rect" id="node4" href="$class_bird.html#ae11d0f00e0ec345135099efb11a4ed24" title="Bird.IsInFrontOfSlingshot" alt="" coords="242,122,409,149"/>
+<area shape="rect" id="node5" href="$class_gameplay_camera.html#a67e6687444d0b411454e93617c2504cf" title="GameplayCamera.RightBound" alt="" coords="227,173,424,199"/>
+<area shape="rect" id="node6" href="$class_gameplay_camera.html#a82fac3fab8d6aa87987c9e8d730532cf" title="GameplayCamera.FollowTarget" alt="" coords="224,223,427,250"/>
+</map>

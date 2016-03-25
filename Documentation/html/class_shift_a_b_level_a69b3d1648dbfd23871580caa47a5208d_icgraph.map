@@ -1,0 +1,8 @@
+<map id="ShiftABLevel.GetTotalObjectsAmount" name="ShiftABLevel.GetTotalObjectsAmount">
+<area shape="rect" id="node2" href="$class_angry_birds_gen.html#a8650827aed62694484f2173fa0ca3948" title="AngryBirdsGen.Equals" alt="" coords="280,9,435,36"/>
+<area shape="rect" id="node4" href="$class_random_l_g.html#ae93ba796d574a105d84634e3c0c385d2" title="RandomLG.GenerateRandomLevel" alt="" coords="247,64,468,91"/>
+<area shape="rect" id="node3" href="$class_angry_birds_gen.html#a780e20df1e23acb77cb63da6f54cd3e3" title="AngryBirdsGen.Equals" alt="" coords="525,5,680,32"/>
+<area shape="rect" id="node5" href="$class_genetic_l_g.html#aa21831eeee4e1d7b0d737fd0d5418941" title="GeneticLG.InitAngryBirds\lGenome" alt="" coords="518,57,687,98"/>
+<area shape="rect" id="node7" href="$class_random_l_g.html#ac9986698197e93b902a3bc57e0b1c76b" title="RandomLG.GenerateLevel" alt="" coords="516,123,689,149"/>
+<area shape="rect" id="node6" href="$class_genetic_l_g.html#a8302772dd0746d79ae80b5eaddac9a77" title="GeneticLG.Start" alt="" coords="737,64,853,91"/>
+</map>

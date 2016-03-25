@@ -1,0 +1,6 @@
+<map id="BirdAgent.ThrowBird" name="BirdAgent.ThrowBird">
+<area shape="rect" id="node2" href="$class_bird_agent.html#aaecfb72edab5f2f71de52f6fb57d458c" title="BirdAgent.Solve" alt="" coords="193,13,308,39"/>
+<area shape="rect" id="node5" href="$class_bird.html#a23460da7e7f5bf163924340e67c99d70" title="Bird.SelectBird" alt="" coords="196,63,305,90"/>
+<area shape="rect" id="node3" href="$class_trajectory_planner.html#a95bb7e5b6bb48612af5e3868464ad1dd" title="TrajectoryPlanner.estimate\lLaunchPoint" alt="" coords="356,5,533,47"/>
+<area shape="rect" id="node4" href="$class_trajectory_planner.html#a67438c3a9d4519516a0a5bc91c98077b" title="TrajectoryPlanner.findRelease\lPoint" alt="" coords="581,5,776,47"/>
+</map>

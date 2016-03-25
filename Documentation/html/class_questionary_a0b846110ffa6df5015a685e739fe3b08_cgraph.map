@@ -1,0 +1,4 @@
+<map id="Questionary.Update" name="Questionary.Update">
+<area shape="rect" id="node2" href="$class_questionary.html#a097e980d0002f3b416a060f77f86f78d" title="Questionary.GetAnswers" alt="" coords="221,5,388,32"/>
+<area shape="rect" id="node3" href="$class_questionary.html#a671a85cd0b3f619a10a6ce04977f7477" title="Questionary.GetNonEmptyAnswers\lAmount" alt="" coords="191,57,419,98"/>
+</map>

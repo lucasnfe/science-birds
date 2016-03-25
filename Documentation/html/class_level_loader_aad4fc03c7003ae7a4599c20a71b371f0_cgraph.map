@@ -1,0 +1,4 @@
+<map id="LevelLoader.SaveXmlLevel" name="LevelLoader.SaveXmlLevel">
+<area shape="rect" id="node2" href="$class_level_loader.html#af502d62704063948beb757fe8f354737" title="LevelLoader.LoadAllLevels" alt="" coords="225,5,399,32"/>
+<area shape="rect" id="node3" href="$class_level_loader.html#ae359e16611464c051db9856395e807e6" title="LevelLoader.LoadXmlLevel" alt="" coords="447,5,619,32"/>
+</map>

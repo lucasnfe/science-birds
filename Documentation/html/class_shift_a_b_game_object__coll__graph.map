@@ -1,0 +1,6 @@
+<map id="ShiftABGameObject" name="ShiftABGameObject">
+<area shape="rect" id="node2" href="$class_a_b_game_object.html" title="Manages the game objects, their attributes and some util. methods. " alt="" coords="5,459,128,653"/>
+<area shape="rect" id="node3" href="$class_random_l_g.html" title="Creates a level by generating objects and pigs at random and randomly creating the stacks..." alt="" coords="152,444,373,668"/>
+<area shape="rect" id="node4" href="$class_a_b_level_generator.html" title="Inherits LevelSource, abstract class containing methods to generate Angry Birds Levels. " alt="" coords="171,273,354,395"/>
+<area shape="rect" id="node5" href="$class_level_source.html" title="Abstract class containing basic information for Levels. " alt="" coords="210,132,315,224"/>
+</map>

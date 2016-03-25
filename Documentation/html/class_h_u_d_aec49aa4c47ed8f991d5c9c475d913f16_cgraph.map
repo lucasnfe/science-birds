@@ -1,0 +1,6 @@
+<map id="HUD.Update" name="HUD.Update">
+<area shape="rect" id="node2" href="$class_h_u_d.html#a0268b171a9ec0a6b98eda952a181e81b" title="HUD.CameraZoom" alt="" coords="148,5,279,32"/>
+<area shape="rect" id="node3" href="$class_bird.html#a23460da7e7f5bf163924340e67c99d70" title="Bird.SelectBird" alt="" coords="159,56,268,83"/>
+<area shape="rect" id="node4" href="$class_bird.html#afe0e4e85286304d515583c3a5840d71a" title="Bird.DragBird" alt="" coords="164,107,263,133"/>
+<area shape="rect" id="node5" href="$class_bird.html#a3e3bf8cdbc6861340b7b5da90b999068" title="Bird.LaunchBird" alt="" coords="156,157,271,184"/>
+</map>

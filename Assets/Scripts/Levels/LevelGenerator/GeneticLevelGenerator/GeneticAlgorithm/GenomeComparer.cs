@@ -1,14 +1,27 @@
 ﻿using System;
 using System.Collections;
 
-// Compares genomes by fitness
+/** \class GenomeComparer
+ *  \brief  Compares two genomes by their fitness
+ *
+ *  Compares the fitness of two genomes, looking which is greater of if they are equal.
+ */
 public sealed class GenomeComparer<T> : IComparer
 {
+    /**
+     *  Empty constructor
+     */
 	public GenomeComparer() {
 
 	}
-
-	public int Compare(object x, object y) {
+    /**
+     *  Compare two objects of genome type by their fitness, if at least one of them is not
+     *  of genome type, throws ArgumentException
+     *  @param[in]  x   object to be compared first, should be of Genome type
+     *  @param[in]  y   object to be compared second, should be of Genome type
+     *  @return int 1 if x fitness > y fitness, 0 if they are equal, -1 otherwise
+     */
+    public int Compare(object x, object y) {
 
 		if ( !(x is Genome<T>) || !(y is Genome<T>))
 			throw new ArgumentException("Not of type Genome");

@@ -1,28 +1,47 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+/** \class HUD
+ *  \brief  Handles the HUD display, zooming of the scene and player drag on slingshot
+ *
+ *  Handles the HUD display, showing and updating the score,
+ *  handles the zooming in and out of the scene as well as its speed, 
+ *  and the player drag on slingshot to throw the birds
+ */
 public class HUD : MonoBehaviour {
-	
+	/**Zooming speed*/
 	public float _zoomSpeed;
+    /**Slingshot drag speed*/
 	public float _dragSpeed;
-
+    /**Display Rectangle for score*/
 	public RectTransform  _scoreDisplay;
+    /**Control boolean to know if is zooming in*/
+	private bool _isZoomingIn;
+    /**Control boolean to know if is zooming out*/
+    private bool _isZoomingOut;
 
-	private bool _isZoomingIn; 
-	private bool _isZoomingOut;
-
-	private uint _totalScore;
-
-	private Vector3 _dragOrigin;
+    /**Score amount of the player*/
+    private uint _totalScore;
+    /**Coordinates of the origin of the drag on the slingshot (where the player first clicked before dragging)*/
+    private Vector3 _dragOrigin;
+    /**Which bird is currently selected to be shot*/
 	private Bird _selecetdBird;
-
+    /**
+     *  When the script is initialized, displays the score
+     */
 	void Start() {
 
 		SetScoreDisplay(_totalScore);
 	}
 
-	// Update is called once per frame
+	/**
+     *  Once per frame, checks if zooming in or out and do the zoom if doing any.
+     *  Also checks if left mouse button is pressed, if it is, check if a bird is selected, if it is not,
+     *  and a bird is being clicked, put this bird as selected. Also, if a bird is selected and the mouse 
+     *  left-button is clicked, check where the mouse is, if not on bird, carries the bird to the new position.
+     *  Also checks if mouse left-button got up, and, if a bird where selected and not already flying, throws the bird.
+     *  Lastly, check if mouse is being scrolled and if it is, zoom accordingly to the scroll direction.
+     */
 	void Update () {
 		
 		if(_isZoomingIn)
@@ -89,22 +108,34 @@ public class HUD : MonoBehaviour {
 			CameraZoom(scrollDirection);
 		}
 	}
-	
+	/**
+     *  Setter for the variable _isZoomingIn.
+     *  @param[in]  zoomIn  true if is zooming in, false otherwhise.
+     */
 	public void SetZoomIn(bool zoomIn)
 	{
 		_isZoomingIn = zoomIn;
 	}
-	
-	public void SetZoomOut(bool zoomOut)
+    /**
+     *  Setter for the variable _isZoomingOut.
+     *  @param[in]  zoomOut  true if is zooming in, false otherwhise.
+     */
+    public void SetZoomOut(bool zoomOut)
 	{
 		_isZoomingOut = zoomOut;
 	}
-	
-	public void CameraZoom(float scrollDirection)
+    /**
+     *  Calculates and does the zoom of the camera.
+     *  @param[in]  scrollDirection  A positive floating number if it is zooming in, a negative one if zooming out
+     */
+    public void CameraZoom(float scrollDirection)
 	{
 		GameWorld.Instance._camera.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
 	}
-
+    /**
+     *  Sets the current scrote on the display if the score display exists.
+     *  @param[in]  score   Unsigned integer containing the actual score to be displayed
+     */
 	public void SetScoreDisplay(uint score)
 	{
 		if(_scoreDisplay)
@@ -113,13 +144,19 @@ public class HUD : MonoBehaviour {
 			_scoreDisplay.GetComponent<Text>().text = _totalScore.ToString();
 		}
 	}
-
+    /**
+     *  Adds new points to the actual score and updates the display
+     *  @param[in]  score   Unsigned integer corresponding to the new points
+     */
 	public void AddScore(uint score)
 	{
 		_totalScore += score;
 		_scoreDisplay.GetComponent<Text>().text = _totalScore.ToString();
 	}
-
+    /**
+     *  LateUpdate() is called every after Update() has been called, checks if left mouse button is down
+     *  and if it is, saves a new drag origin using the actual mouse position
+     */
 	void LateUpdate()
 	{
 		if(Input.GetMouseButton(0))

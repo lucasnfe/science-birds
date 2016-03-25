@@ -1,0 +1,10 @@
+<map id="GameWorld.DecodeLevel" name="GameWorld.DecodeLevel">
+<area shape="rect" id="node2" href="$class_game_world.html#a002264818ad8168b2c659a7699af5453" title="GameWorld.ClearWorld" alt="" coords="221,5,380,32"/>
+<area shape="rect" id="node3" href="$class_game_world.html#a22cf7e8c860e664dec6b63f533c578b4" title="GameWorld.AddBlock" alt="" coords="456,71,607,97"/>
+<area shape="rect" id="node4" href="$class_game_world.html#a0c5004283d6c801313da11b0b475ddd2" title="GameWorld.AddPig" alt="" coords="232,107,369,133"/>
+<area shape="rect" id="node5" href="$class_game_world.html#a9cc9387d14c87d525b830c19fec9c8e5" title="GameWorld.AddBird" alt="" coords="230,157,371,184"/>
+<area shape="rect" id="node6" href="$class_game_world.html#add2afd8ff63a9d9c5c42a1b3501ce804" title="GameWorld.StartWorld" alt="" coords="222,208,379,235"/>
+<area shape="rect" id="node7" href="$class_game_world.html#acc3f416aa735924bdf528476b64f52c4" title="GameWorld.GetPigsAvailable\lAmount" alt="" coords="435,135,628,177"/>
+<area shape="rect" id="node8" href="$class_game_world.html#a2306d2ca8fe8ba793962c2ede4aab6b4" title="GameWorld.GetBirdsAvailable\lAmount" alt="" coords="433,201,630,242"/>
+<area shape="rect" id="node9" href="$class_game_world.html#ae17b19d4629c194bffa46ad1132aae1c" title="GameWorld.GetBlocksAvailable\lAmount" alt="" coords="428,266,635,307"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="GameWorld.DestroyIfOutScreen" name="GameWorld.DestroyIfOutScreen">
+<area shape="rect" id="node2" href="$class_game_world.html#a796fc2e1f6fc850f1bb2a0cd85260f2b" title="GameWorld.IsObjectOutOfWorld" alt="" coords="267,5,478,32"/>
+<area shape="rect" id="node3" href="$class_pig.html#a322dad741583aa8599cd70dd25638150" title="Pig.Die" alt="" coords="341,56,405,83"/>
+<area shape="rect" id="node4" href="$class_game_world.html#a59f82705222d7a0f4d5e95e72b389087" title="GameWorld.RemoveLastTrajectory\lParticle" alt="" coords="261,107,484,149"/>
+</map>

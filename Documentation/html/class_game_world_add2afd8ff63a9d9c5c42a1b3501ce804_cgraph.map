@@ -1,0 +1,5 @@
+<map id="GameWorld.StartWorld" name="GameWorld.StartWorld">
+<area shape="rect" id="node2" href="$class_game_world.html#acc3f416aa735924bdf528476b64f52c4" title="GameWorld.GetPigsAvailable\lAmount" alt="" coords="217,5,411,47"/>
+<area shape="rect" id="node3" href="$class_game_world.html#a2306d2ca8fe8ba793962c2ede4aab6b4" title="GameWorld.GetBirdsAvailable\lAmount" alt="" coords="215,71,413,112"/>
+<area shape="rect" id="node4" href="$class_game_world.html#ae17b19d4629c194bffa46ad1132aae1c" title="GameWorld.GetBlocksAvailable\lAmount" alt="" coords="211,136,417,177"/>
+</map>

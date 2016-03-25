@@ -1,0 +1,4 @@
+<map id="Character.IsIdle" name="Character.IsIdle">
+<area shape="rect" id="node2" href="$class_bird.html#aea4c3995832b1d9b8b888eac096b1c57" title="Bird.IdleJump" alt="" coords="171,5,271,32"/>
+<area shape="rect" id="node3" href="$class_character.html#ae1999ca672c2e56f161d552ed578617e" title="Character.Blink" alt="" coords="165,56,276,83"/>
+</map>

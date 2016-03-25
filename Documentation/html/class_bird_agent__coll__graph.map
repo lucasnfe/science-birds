@@ -1,0 +1,6 @@
+<map id="BirdAgent" name="BirdAgent">
+<area shape="rect" id="node4" href="$class_character.html" title="Contains information about the game characters. " alt="" coords="124,132,262,312"/>
+<area shape="rect" id="node3" href="$class_bird.html" title="Management of Bird Characters of game. " alt="" coords="90,361,296,805"/>
+<area shape="rect" id="node6" href="$class_pig.html" title="Management of Pig Characters of game. " alt="" coords="320,530,471,637"/>
+<area shape="rect" id="node5" href="$struct_shot.html" title="Struct to hold the data of a shot and its constructor. " alt="" coords="495,515,582,651"/>
+</map>

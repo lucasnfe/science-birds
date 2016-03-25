@@ -1,0 +1,32 @@
+<map id="GeneticLG.Start" name="GeneticLG.Start">
+<area shape="rect" id="node2" href="$class_genetic_algorithm.html#ad41d17c48f995d6207677a894d91ad36" title="GeneticAlgorithm.GAInitGenome" alt="" coords="169,140,380,167"/>
+<area shape="rect" id="node3" href="$class_genetic_l_g.html#aa21831eeee4e1d7b0d737fd0d5418941" title="GeneticLG.InitAngryBirds\lGenome" alt="" coords="190,242,359,283"/>
+<area shape="rect" id="node25" href="$class_genetic_algorithm.html#a28f37f603fc5f30cbff7ccfe8e462454" title="GeneticAlgorithm.GAMutation" alt="" coords="177,359,372,385"/>
+<area shape="rect" id="node26" href="$class_genetic_l_g.html#a1b0a872a5db188855a95ab4494aea92d" title="GeneticLG.Mutate" alt="" coords="475,119,603,145"/>
+<area shape="rect" id="node27" href="$class_genetic_algorithm.html#ac380a8a1528807f9dfefa51117e54d19" title="GeneticAlgorithm.GACrossover" alt="" coords="173,409,376,436"/>
+<area shape="rect" id="node28" href="$class_genetic_l_g.html#ab483e22ea175aaa3d77dffe52075ead4" title="GeneticLG.Crossover" alt="" coords="466,417,611,444"/>
+<area shape="rect" id="node30" href="$class_genetic_algorithm.html#aa91767055dcdad261b30b0fd87aafa73" title="GeneticAlgorithm.GAFitness\lFunction" alt="" coords="181,461,369,502"/>
+<area shape="rect" id="node31" href="$class_genetic_l_g.html#a9f81934d83ec60ff1f5b870f779ced8d" title="GeneticLG.EvaluateUsingAI" alt="" coords="183,527,366,553"/>
+<area shape="rect" id="node4" href="$class_random_l_g.html#ae93ba796d574a105d84634e3c0c385d2" title="RandomLG.GenerateRandomLevel" alt="" coords="428,249,649,276"/>
+<area shape="rect" id="node5" href="$class_a_b_math.html#a4c691d29ab1db66263164ad2c7e27f32" title="ABMath.RandomGaussian" alt="" coords="961,216,1137,243"/>
+<area shape="rect" id="node6" href="$class_random_l_g.html#a5dd7fa54bce7ca360dcd861e255271d0" title="RandomLG.GenerateStack" alt="" coords="711,72,890,99"/>
+<area shape="rect" id="node16" href="$class_shift_a_b_level.html#a0675530c40b640d9ba8121a1707478bd" title="ShiftABLevel.AddStack" alt="" coords="723,392,879,419"/>
+<area shape="rect" id="node17" href="$class_shift_a_b_level.html#a0b1bfb90fe718d82c8975d8e7d66573b" title="ShiftABLevel.GetStackWidth" alt="" coords="1197,275,1385,301"/>
+<area shape="rect" id="node19" href="$class_shift_a_b_level.html#a69b3d1648dbfd23871580caa47a5208d" title="ShiftABLevel.GetTotalObjects\lAmount" alt="" coords="704,326,897,367"/>
+<area shape="rect" id="node20" href="$class_shift_a_b_level.html#afba16349e56192c5a4ec17026ca49286" title="ShiftABLevel.GetStacksAmount" alt="" coords="697,123,904,149"/>
+<area shape="rect" id="node21" href="$class_shift_a_b_level.html#a640faab5247ce96c0cb14615f8c86731" title="ShiftABLevel.SetStack" alt="" coords="724,173,877,200"/>
+<area shape="rect" id="node22" href="$class_shift_a_b_level.html#aa95ee5f8d2e116b69fbaf97c0333a769" title="ShiftABLevel.FixLevelSize" alt="" coords="715,443,887,469"/>
+<area shape="rect" id="node7" href="$class_random_l_g.html#a5a7e5992d52da34b55f1085be94e6b4a" title="RandomLG.GenerateObject" alt="" coords="957,56,1140,83"/>
+<area shape="rect" id="node11" href="$class_shift_a_b_game_object.html#acfefa32bc715aaeb3b2cf70452bd4089" title="ShiftABGameObject.GetBounds" alt="" coords="1700,187,1908,213"/>
+<area shape="rect" id="node15" href="$class_random_l_g.html#a630e6374be12e5fdbe322850eaa8c4c5" title="RandomLG.InsertPigs" alt="" coords="974,107,1123,133"/>
+<area shape="rect" id="node8" href="$class_random_l_g.html#a8083f05cb12c0da72d296970e2147d49" title="RandomLG.DefineObjectLabel" alt="" coords="1193,56,1389,83"/>
+<area shape="rect" id="node9" href="$class_random_l_g.html#afdb51a5bb986a5ac15a2ad46dafcb1f2" title="RandomLG.GetStackableObjects" alt="" coords="1437,5,1652,32"/>
+<area shape="rect" id="node12" href="$class_a_b_game_object.html#a8dc11ace331a4ca3eafb29fc64b55af9" title="ABGameObject.GetArea" alt="" coords="1462,56,1627,83"/>
+<area shape="rect" id="node10" href="$class_random_l_g.html#abda841007ec52ed6b3c32e476baef9ec" title="RandomLG.GetTypeByTag" alt="" coords="1715,5,1893,32"/>
+<area shape="rect" id="node13" href="$class_a_b_game_object.html#a1203061077938f33c867f24d2225c86c" title="ABGameObject.GetBounds" alt="" coords="1713,56,1895,83"/>
+<area shape="rect" id="node14" href="$class_a_b_game_object.html#a836ad854ee70df42e0acaea398a9204c" title="ABGameObject.IsPig" alt="" coords="1956,56,2103,83"/>
+<area shape="rect" id="node18" href="$class_shift_a_b_level.html#a7823819796cf2aa506f53624f4b3c6e1" title="ShiftABLevel.GetWidestObj\lInStack" alt="" coords="1454,209,1635,250"/>
+<area shape="rect" id="node23" href="$class_shift_a_b_level.html#a96729d0323bf255853102b9ddbe12700" title="ShiftABLevel.GetLevelBounds" alt="" coords="952,384,1145,411"/>
+<area shape="rect" id="node24" href="$class_shift_a_b_level.html#aa8d65f2dbb0754cf246ccc2cb504d038" title="ShiftABLevel.GetStackHeight" alt="" coords="1196,384,1387,411"/>
+<area shape="rect" id="node29" href="$class_random_l_g.html#a4e1d7ac894199cd91123a5d1ef096a26" title="RandomLG.CopyStack" alt="" coords="723,493,878,520"/>
+</map>

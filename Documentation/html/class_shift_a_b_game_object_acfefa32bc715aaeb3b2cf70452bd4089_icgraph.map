@@ -1,0 +1,20 @@
+<map id="ShiftABGameObject.GetBounds" name="ShiftABGameObject.GetBounds">
+<area shape="rect" id="node2" href="$class_random_l_g.html#a5dd7fa54bce7ca360dcd861e255271d0" title="RandomLG.GenerateStack" alt="" coords="785,46,963,73"/>
+<area shape="rect" id="node8" href="$class_random_l_g.html#a8083f05cb12c0da72d296970e2147d49" title="RandomLG.DefineObjectLabel" alt="" coords="277,57,473,84"/>
+<area shape="rect" id="node10" href="$class_random_l_g.html#a69b8394eda7fa03874984e62bd7f7a7a" title="RandomLG.ConvertShiftGBtoABGB" alt="" coords="261,276,488,302"/>
+<area shape="rect" id="node13" href="$class_shift_a_b_game_object.html#a69ed39ac68be5722460065205bd54818" title="ShiftABGameObject.AddObject\lInside" alt="" coords="273,327,477,368"/>
+<area shape="rect" id="node14" href="$class_shift_a_b_level.html#a17174f1fcf772a8641d77acbbaea5bac" title="ShiftABLevel.GetLevelDensity" alt="" coords="536,177,729,204"/>
+<area shape="rect" id="node15" href="$class_shift_a_b_level.html#a0b1bfb90fe718d82c8975d8e7d66573b" title="ShiftABLevel.GetStackWidth" alt="" coords="539,126,727,153"/>
+<area shape="rect" id="node19" href="$class_shift_a_b_level.html#a7823819796cf2aa506f53624f4b3c6e1" title="ShiftABLevel.GetWidestObj\lInStack" alt="" coords="284,159,465,200"/>
+<area shape="rect" id="node3" href="$class_genetic_l_g.html#a1b0a872a5db188855a95ab4494aea92d" title="GeneticLG.Mutate" alt="" coords="1041,25,1169,52"/>
+<area shape="rect" id="node5" href="$class_random_l_g.html#ae93ba796d574a105d84634e3c0c385d2" title="RandomLG.GenerateRandomLevel" alt="" coords="1239,144,1460,170"/>
+<area shape="rect" id="node4" href="$class_genetic_l_g.html#a8302772dd0746d79ae80b5eaddac9a77" title="GeneticLG.Start" alt="" coords="1729,85,1845,112"/>
+<area shape="rect" id="node6" href="$class_genetic_l_g.html#aa21831eeee4e1d7b0d737fd0d5418941" title="GeneticLG.InitAngryBirds\lGenome" alt="" coords="1510,136,1679,178"/>
+<area shape="rect" id="node7" href="$class_random_l_g.html#ac9986698197e93b902a3bc57e0b1c76b" title="RandomLG.GenerateLevel" alt="" coords="1508,210,1681,237"/>
+<area shape="rect" id="node9" href="$class_random_l_g.html#a5a7e5992d52da34b55f1085be94e6b4a" title="RandomLG.GenerateObject" alt="" coords="541,57,724,84"/>
+<area shape="rect" id="node11" href="$class_genetic_l_g.html#a4995259e35e99b3b92a22f6b7072306f" title="GeneticLG.StartEvaluating\lGenome" alt="" coords="545,279,720,320"/>
+<area shape="rect" id="node12" href="$class_genetic_l_g.html#a554388a75943b9900c4d8a51ff314a7a" title="GeneticLG.Update" alt="" coords="809,286,939,313"/>
+<area shape="rect" id="node16" href="$class_shift_a_b_level.html#a96729d0323bf255853102b9ddbe12700" title="ShiftABLevel.GetLevelBounds" alt="" coords="777,126,971,153"/>
+<area shape="rect" id="node17" href="$class_shift_a_b_level.html#aa95ee5f8d2e116b69fbaf97c0333a769" title="ShiftABLevel.FixLevelSize" alt="" coords="1019,126,1191,153"/>
+<area shape="rect" id="node18" href="$class_genetic_l_g.html#ab483e22ea175aaa3d77dffe52075ead4" title="GeneticLG.Crossover" alt="" coords="1277,89,1422,116"/>
+</map>

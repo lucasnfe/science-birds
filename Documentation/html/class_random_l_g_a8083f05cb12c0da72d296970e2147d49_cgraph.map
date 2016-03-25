@@ -1,0 +1,8 @@
+<map id="RandomLG.DefineObjectLabel" name="RandomLG.DefineObjectLabel">
+<area shape="rect" id="node2" href="$class_random_l_g.html#afdb51a5bb986a5ac15a2ad46dafcb1f2" title="RandomLG.GetStackableObjects" alt="" coords="249,5,464,32"/>
+<area shape="rect" id="node4" href="$class_shift_a_b_game_object.html#acfefa32bc715aaeb3b2cf70452bd4089" title="ShiftABGameObject.GetBounds" alt="" coords="253,56,461,83"/>
+<area shape="rect" id="node5" href="$class_a_b_game_object.html#a8dc11ace331a4ca3eafb29fc64b55af9" title="ABGameObject.GetArea" alt="" coords="274,107,439,133"/>
+<area shape="rect" id="node3" href="$class_random_l_g.html#abda841007ec52ed6b3c32e476baef9ec" title="RandomLG.GetTypeByTag" alt="" coords="515,5,692,32"/>
+<area shape="rect" id="node6" href="$class_a_b_game_object.html#a1203061077938f33c867f24d2225c86c" title="ABGameObject.GetBounds" alt="" coords="512,107,695,133"/>
+<area shape="rect" id="node7" href="$class_a_b_game_object.html#a836ad854ee70df42e0acaea398a9204c" title="ABGameObject.IsPig" alt="" coords="743,107,889,133"/>
+</map>

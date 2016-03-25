@@ -1,0 +1,4 @@
+<map id="ScaleQuestionary" name="ScaleQuestionary">
+<area shape="rect" id="node2" href="$class_questionary.html" title="Handles the general Questionary behaviours. " alt="" coords="5,132,224,297"/>
+<area shape="rect" id="node4" href="$struct_immersion_questionary_item.html" title="Struct to hold an item for Immersion Questionary. " alt="" coords="249,154,426,275"/>
+</map>

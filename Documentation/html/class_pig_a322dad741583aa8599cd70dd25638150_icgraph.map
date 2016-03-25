@@ -1,0 +1,4 @@
+<map id="Pig.Die" name="Pig.Die">
+<area shape="rect" id="node2" href="$class_game_world.html#a4422cbc473c92b7d8963e631dcab230a" title="GameWorld.DestroyIfOutScreen" alt="" coords="117,5,325,32"/>
+<area shape="rect" id="node3" href="$class_game_world.html#a25186a88e3ba0c5df2571793d66de5aa" title="GameWorld.Update" alt="" coords="373,5,509,32"/>
+</map>

@@ -2,26 +2,48 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/** \class GameData
+ *  \brief  Handles division of different level groups and request for questionary.
+ * 
+ *  Selects the names of the generated and rovio level groups, shuffle the groups, create request for questionary and converts the questionary attributes to string
+ */
 public class GameData : ABSingleton<GameData> {
 		
-	private string _url = "http://52.91.62.108:8080/ABQuestionaryServer/services/QuestionaryServer";
+    /** URL for the questionary server*/
+	private string _url = "http://52.0.243.131:8080/ABQuestionaryServer/services/QuestionaryServer";
 
+    /**Age of the user*/
 	public string Age          { get; set; }
-	public string Gender 	   { get; set; }
-	public string GameXP       { get; set; }
-	public string AngryBirdsXP { get; set; }
-	public string Education    { get; set; }
-	
-	public string LevelGroupA  		 { get; set; }
-	public string LevelGroupB  		 { get; set; }
-	public string CurrentQuestionary { get; set; }
+    /**Gender of the user*/
+    public string Gender 	   { get; set; }
+    /**Game Experience level of the user*/
+    public string GameXP       { get; set; }
+    /**Angry Birds Exeperience level of the user*/
+    public string AngryBirdsXP { get; set; }
+    /**Education level of the user*/
+    public string Education    { get; set; }
 
-	public string AnswersTurinTest               { get; set; }
-	public string []AnswersImmersionQuestionaryA { get; set; }
-	public string []AnswersImmersionQuestionaryB { get; set; }
-	public string []AnswersSimilarityQuestionary { get; set; }
+    /**Name of the origin of levels at group A (GeneratedLevels or RovioLevels)*/
+    public string LevelGroupA  		 { get; set; }
+    /**Name of the origin of levels at group B (GeneratedLevels or RovioLevels)*/
+    public string LevelGroupB  		 { get; set; }
+    /**Current Questionary being used*/
+    public string CurrentQuestionary { get; set; }
 
-	public string GetGeneratedGroupName() {
+    /**User's answer to Turing Test*/
+    public string AnswersTurinTest               { get; set; }
+    /**User's answers to Immersion Questionary for group A of levels*/
+    public string []AnswersImmersionQuestionaryA { get; set; }
+    /**User's answers to Immersion Questionary for group B of levels*/
+    public string []AnswersImmersionQuestionaryB { get; set; }
+    /**User's answers to Similarity Questionary for levels in same group*/
+    public string []AnswersSimilarityQuestionary { get; set; }
+
+    /**
+     *  Get which group the Generated Levels are in
+     *  @return string  "Group A" if Generated Levels are on LevelGroupA , "Group B" if they are on LevelGroupB
+     */
+    public string GetGeneratedGroupName() {
 
 		string groupName = "";
 
@@ -33,7 +55,9 @@ public class GameData : ABSingleton<GameData> {
 
 		return groupName;
 	}
-
+    /**
+     *  Shuffle the Generated and Rovio level groups between LevelGroup A and B with equal probability
+     */
 	public void ShuffleLevelGroups() {
 
 		if(Random.value < 0.5) 
@@ -47,7 +71,12 @@ public class GameData : ABSingleton<GameData> {
 			LevelGroupB = "GeneratedLevels";
 		}
 	}
-
+    /**
+     *  Creates a request for the questionary
+     *  Contains information about Immersion Questionary A and B, Similarity Questionary, User's Age, Gender,
+     *  Game Experience, Angry Birds Experience, Education level, Turing Test and header information
+     *  @return WWW object created with url, all the information from the questionary, and headers
+     */
 	public WWW CreateRequest() {
 
 		string envelopeAnswersA = "";
@@ -86,6 +115,11 @@ public class GameData : ABSingleton<GameData> {
 		return new WWW (_url, System.Text.Encoding.UTF8.GetBytes(envelope), headers);
 	}
 
+    /**
+     *  Overrides ToString method to convert information about Age, Gender, Game Experience, Angry Birds Experience, Education Level,
+     *  Turing Test, Immersion Questionaries answers and Immersion Questionary answer to a single string.
+     * @return string   String containing all the information about the questionaries
+     */
 	public override string ToString() {
 
 		string dataString = "";

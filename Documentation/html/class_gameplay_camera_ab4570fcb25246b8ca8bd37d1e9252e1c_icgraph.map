@@ -1,0 +1,4 @@
+<map id="GameplayCamera.SetCameraWidth" name="GameplayCamera.SetCameraWidth">
+<area shape="rect" id="node2" href="$class_game_world.html#ae6fcd54510664015f3db46f910ac5b6b" title="GameWorld.AdaptCameraWidth\lToLevel" alt="" coords="248,5,456,47"/>
+<area shape="rect" id="node3" href="$class_game_world.html#af685a9dced957cd6b28c45d15aa30e6c" title="GameWorld.Start" alt="" coords="504,13,627,39"/>
+</map>

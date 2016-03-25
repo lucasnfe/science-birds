@@ -1,0 +1,5 @@
+<map id="GeneticLG.WriteLogToFile" name="GeneticLG.WriteLogToFile">
+<area shape="rect" id="node2" href="$class_genetic_l_g.html#a789781f6ef2edeca32cf8f14fd7c1e41" title="GeneticLG.EndEvolution" alt="" coords="243,5,406,32"/>
+<area shape="rect" id="node4" href="$class_genetic_l_g.html#ae5e9fea756058cbd1ace423ef10404b9" title="GeneticLG.OnApplicationQuit" alt="" coords="228,56,421,83"/>
+<area shape="rect" id="node3" href="$class_genetic_l_g.html#a554388a75943b9900c4d8a51ff314a7a" title="GeneticLG.Update" alt="" coords="469,5,599,32"/>
+</map>

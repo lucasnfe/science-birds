@@ -1,0 +1,4 @@
+<map id="ImmersionQuestionary" name="ImmersionQuestionary">
+<area shape="rect" id="node2" href="$class_scale_questionary.html" title="Handles the positions and sizes of questions. " alt="" coords="19,344,211,583"/>
+<area shape="rect" id="node3" href="$class_questionary.html" title="Handles the general Questionary behaviours. " alt="" coords="5,131,224,296"/>
+</map>

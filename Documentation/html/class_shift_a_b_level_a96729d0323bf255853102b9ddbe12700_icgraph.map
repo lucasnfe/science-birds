@@ -1,0 +1,8 @@
+<map id="ShiftABLevel.GetLevelBounds" name="ShiftABLevel.GetLevelBounds">
+<area shape="rect" id="node2" href="$class_shift_a_b_level.html#aa95ee5f8d2e116b69fbaf97c0333a769" title="ShiftABLevel.FixLevelSize" alt="" coords="247,33,419,60"/>
+<area shape="rect" id="node3" href="$class_genetic_l_g.html#ab483e22ea175aaa3d77dffe52075ead4" title="GeneticLG.Crossover" alt="" coords="505,5,650,32"/>
+<area shape="rect" id="node5" href="$class_random_l_g.html#ae93ba796d574a105d84634e3c0c385d2" title="RandomLG.GenerateRandomLevel" alt="" coords="467,60,688,87"/>
+<area shape="rect" id="node4" href="$class_genetic_l_g.html#a8302772dd0746d79ae80b5eaddac9a77" title="GeneticLG.Start" alt="" coords="957,31,1073,57"/>
+<area shape="rect" id="node6" href="$class_genetic_l_g.html#aa21831eeee4e1d7b0d737fd0d5418941" title="GeneticLG.InitAngryBirds\lGenome" alt="" coords="738,53,907,94"/>
+<area shape="rect" id="node7" href="$class_random_l_g.html#ac9986698197e93b902a3bc57e0b1c76b" title="RandomLG.GenerateLevel" alt="" coords="736,119,909,145"/>
+</map>

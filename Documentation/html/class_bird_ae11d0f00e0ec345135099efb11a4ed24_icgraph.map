@@ -1,0 +1,4 @@
+<map id="Bird.IsInFrontOfSlingshot" name="Bird.IsInFrontOfSlingshot">
+<area shape="rect" id="node2" href="$class_bird.html#a89ff63c63630be84c9738f81bade842a" title="Bird.Update" alt="" coords="260,5,351,32"/>
+<area shape="rect" id="node3" href="$class_gameplay_camera.html#a74c1caa7519a07c049abec327c541054" title="GameplayCamera.Update" alt="" coords="220,56,391,83"/>
+</map>

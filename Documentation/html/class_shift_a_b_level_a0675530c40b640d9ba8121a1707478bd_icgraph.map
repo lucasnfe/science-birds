@@ -1,0 +1,7 @@
+<map id="ShiftABLevel.AddStack" name="ShiftABLevel.AddStack">
+<area shape="rect" id="node2" href="$class_genetic_l_g.html#ab483e22ea175aaa3d77dffe52075ead4" title="GeneticLG.Crossover" alt="" coords="247,5,393,32"/>
+<area shape="rect" id="node4" href="$class_random_l_g.html#ae93ba796d574a105d84634e3c0c385d2" title="RandomLG.GenerateRandomLevel" alt="" coords="209,60,431,87"/>
+<area shape="rect" id="node3" href="$class_genetic_l_g.html#a8302772dd0746d79ae80b5eaddac9a77" title="GeneticLG.Start" alt="" coords="700,31,816,57"/>
+<area shape="rect" id="node5" href="$class_genetic_l_g.html#aa21831eeee4e1d7b0d737fd0d5418941" title="GeneticLG.InitAngryBirds\lGenome" alt="" coords="481,53,650,94"/>
+<area shape="rect" id="node6" href="$class_random_l_g.html#ac9986698197e93b902a3bc57e0b1c76b" title="RandomLG.GenerateLevel" alt="" coords="479,119,652,145"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="Questionary" name="Questionary">
+<area shape="rect" id="node3" href="$class_profile_questionary.html" title="Handles the Profile Questionary answers and scene transition. " alt="" coords="5,417,148,509"/>
+<area shape="rect" id="node4" href="$class_scale_questionary.html" title="Handles the positions and sizes of questions. " alt="" coords="173,344,365,583"/>
+<area shape="rect" id="node7" href="$class_turin_test_answer_questionary.html" title="Handles the Turing Test Questionary answer by checking which group was chosen. " alt="" coords="389,425,577,502"/>
+<area shape="rect" id="node8" href="$class_turin_test_questionary.html" title="Handles the Turing Test Questionary answers and scene transition. " alt="" coords="601,417,747,509"/>
+<area shape="rect" id="node5" href="$class_immersion_questionary.html" title="Handles the Immersion Questionary answers and scene transition. " alt="" coords="97,645,249,737"/>
+<area shape="rect" id="node6" href="$class_similarity_quesionary.html" title="{SimilarityQuesionary\n|&#45; _waitingServerConfirmation\l|# Start()\l# Update()\l# SendQuestionary()\l&#45; SaveToGameData()\l}" alt="" coords="273,631,459,752"/>
+</map>

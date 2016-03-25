@@ -1,0 +1,5 @@
+<map id="ScaleQuestionary" name="ScaleQuestionary">
+<area shape="rect" id="node4" href="$class_immersion_questionary.html" title="Handles the Immersion Questionary answers and scene transition. " alt="" coords="5,645,157,737"/>
+<area shape="rect" id="node5" href="$class_similarity_quesionary.html" title="{SimilarityQuesionary\n|&#45; _waitingServerConfirmation\l|# Start()\l# Update()\l# SendQuestionary()\l&#45; SaveToGameData()\l}" alt="" coords="182,631,367,752"/>
+<area shape="rect" id="node2" href="$class_questionary.html" title="Handles the general Questionary behaviours. " alt="" coords="68,131,287,296"/>
+</map>

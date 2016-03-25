@@ -1,0 +1,5 @@
+<map id="Bird.SelectBird" name="Bird.SelectBird">
+<area shape="rect" id="node2" href="$class_bird_agent.html#a71c43f3443806219d7ae03486a98d9da" title="BirdAgent.ThrowBird" alt="" coords="163,5,303,32"/>
+<area shape="rect" id="node4" href="$class_h_u_d.html#aec49aa4c47ed8f991d5c9c475d913f16" title="HUD.Update" alt="" coords="185,56,280,83"/>
+<area shape="rect" id="node3" href="$class_game_world.html#a25186a88e3ba0c5df2571793d66de5aa" title="GameWorld.Update" alt="" coords="351,5,487,32"/>
+</map>

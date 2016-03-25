@@ -1,0 +1,10 @@
+<map id="ABSingleton&lt; T &gt;" name="ABSingleton&lt; T &gt;">
+<area shape="rect" id="node3" href="$class_a_b_singleton.html" title="{ABSingleton\&lt; GameData \&gt;\n|+ Instance\l&#45; _instance\l|# ABSingleton()\l}" alt="" coords="39,287,219,379"/>
+<area shape="rect" id="node5" href="$class_a_b_singleton.html" title="{ABSingleton\&lt; GameWorld \&gt;\n|+ Instance\l&#45; _instance\l|# ABSingleton()\l}" alt="" coords="245,287,431,379"/>
+<area shape="rect" id="node7" href="$class_a_b_singleton.html" title="{ABSingleton\&lt; ABSceneManager \&gt;\n|+ Instance\l&#45; _instance\l|# ABSingleton()\l}" alt="" coords="456,287,679,379"/>
+<area shape="rect" id="node9" href="$class_a_b_singleton.html" title="{ABSingleton\&lt; ABAudioController \&gt;\n|+ Instance\l&#45; _instance\l|# ABSingleton()\l}" alt="" coords="703,287,927,379"/>
+<area shape="rect" id="node4" href="$class_game_data.html" title="Handles division of different level groups and request for questionary. " alt="" coords="5,626,228,923"/>
+<area shape="rect" id="node6" href="$class_game_world.html" title="Contains all the information about the game world. " alt="" coords="253,428,447,1121"/>
+<area shape="rect" id="node8" href="$class_a_b_scene_manager.html" title="Controller of Scenes. " alt="" coords="483,707,652,843"/>
+<area shape="rect" id="node10" href="$class_a_b_audio_controller.html" title="Manages the audio of the game. " alt="" coords="721,699,909,850"/>
+</map>

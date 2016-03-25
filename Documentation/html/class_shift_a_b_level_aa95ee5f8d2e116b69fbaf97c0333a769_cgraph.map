@@ -1,0 +1,7 @@
+<map id="ShiftABLevel.FixLevelSize" name="ShiftABLevel.FixLevelSize">
+<area shape="rect" id="node2" href="$class_shift_a_b_level.html#a96729d0323bf255853102b9ddbe12700" title="ShiftABLevel.GetLevelBounds" alt="" coords="225,67,419,94"/>
+<area shape="rect" id="node3" href="$class_shift_a_b_level.html#a0b1bfb90fe718d82c8975d8e7d66573b" title="ShiftABLevel.GetStackWidth" alt="" coords="468,42,656,69"/>
+<area shape="rect" id="node6" href="$class_shift_a_b_level.html#aa8d65f2dbb0754cf246ccc2cb504d038" title="ShiftABLevel.GetStackHeight" alt="" coords="467,93,657,119"/>
+<area shape="rect" id="node4" href="$class_shift_a_b_level.html#a7823819796cf2aa506f53624f4b3c6e1" title="ShiftABLevel.GetWidestObj\lInStack" alt="" coords="705,5,887,47"/>
+<area shape="rect" id="node5" href="$class_shift_a_b_game_object.html#acfefa32bc715aaeb3b2cf70452bd4089" title="ShiftABGameObject.GetBounds" alt="" coords="935,42,1143,69"/>
+</map>

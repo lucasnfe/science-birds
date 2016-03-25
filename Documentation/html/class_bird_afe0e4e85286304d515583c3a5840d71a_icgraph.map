@@ -1,0 +1,5 @@
+<map id="Bird.DragBird" name="Bird.DragBird">
+<area shape="rect" id="node2" href="$class_bird.html#a89ff63c63630be84c9738f81bade842a" title="Bird.Update" alt="" coords="169,5,259,32"/>
+<area shape="rect" id="node3" href="$class_bird_agent.html#a88d02dc88fcf1003e8914fc2f96703bd" title="BirdAgent.Update" alt="" coords="152,56,276,83"/>
+<area shape="rect" id="node4" href="$class_h_u_d.html#aec49aa4c47ed8f991d5c9c475d913f16" title="HUD.Update" alt="" coords="167,107,261,133"/>
+</map>

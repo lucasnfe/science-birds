@@ -1,0 +1,4 @@
+<map id="GameWorld.AddBird" name="GameWorld.AddBird">
+<area shape="rect" id="node2" href="$class_game_world.html#afd50b7627b75a7b40b9571590dca23bd" title="GameWorld.DecodeLevel" alt="" coords="195,5,363,32"/>
+<area shape="rect" id="node3" href="$class_game_world.html#af685a9dced957cd6b28c45d15aa30e6c" title="GameWorld.Start" alt="" coords="411,5,533,32"/>
+</map>

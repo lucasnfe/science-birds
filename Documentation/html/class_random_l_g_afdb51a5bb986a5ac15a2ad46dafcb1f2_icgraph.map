@@ -1,0 +1,10 @@
+<map id="RandomLG.GetStackableObjects" name="RandomLG.GetStackableObjects">
+<area shape="rect" id="node2" href="$class_random_l_g.html#a8083f05cb12c0da72d296970e2147d49" title="RandomLG.DefineObjectLabel" alt="" coords="268,33,464,60"/>
+<area shape="rect" id="node3" href="$class_random_l_g.html#a5a7e5992d52da34b55f1085be94e6b4a" title="RandomLG.GenerateObject" alt="" coords="512,33,695,60"/>
+<area shape="rect" id="node4" href="$class_random_l_g.html#a5dd7fa54bce7ca360dcd861e255271d0" title="RandomLG.GenerateStack" alt="" coords="743,33,921,60"/>
+<area shape="rect" id="node5" href="$class_genetic_l_g.html#a1b0a872a5db188855a95ab4494aea92d" title="GeneticLG.Mutate" alt="" coords="1016,5,1144,32"/>
+<area shape="rect" id="node7" href="$class_random_l_g.html#ae93ba796d574a105d84634e3c0c385d2" title="RandomLG.GenerateRandomLevel" alt="" coords="969,60,1191,87"/>
+<area shape="rect" id="node6" href="$class_genetic_l_g.html#a8302772dd0746d79ae80b5eaddac9a77" title="GeneticLG.Start" alt="" coords="1460,31,1576,57"/>
+<area shape="rect" id="node8" href="$class_genetic_l_g.html#aa21831eeee4e1d7b0d737fd0d5418941" title="GeneticLG.InitAngryBirds\lGenome" alt="" coords="1241,53,1410,94"/>
+<area shape="rect" id="node9" href="$class_random_l_g.html#ac9986698197e93b902a3bc57e0b1c76b" title="RandomLG.GenerateLevel" alt="" coords="1239,119,1412,145"/>
+</map>
