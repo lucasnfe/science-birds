@@ -4,6 +4,7 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 
 class LevelEditor : EditorWindow {
 
@@ -23,6 +24,17 @@ class LevelEditor : EditorWindow {
 	[MenuItem ("Window/Level Editor %l")]
 	static void Init () {
 
+		if (EditorSceneManager.GetActiveScene ().name != "GameWorld") {
+
+			if (EditorUtility.DisplayDialog ("Warning", "This window can only be opened in the Game World scene. " +
+			   "Do you wanna go to that scene?", "Yes", "Cancel")) {
+
+				EditorSceneManager.OpenScene ("Assets/Scenes/GameWorld.unity");
+			}
+			else 
+				return;
+		}
+
 		LevelEditor window = (LevelEditor)EditorWindow.GetWindow(typeof(LevelEditor));
 		window.Show ();
 	}
@@ -41,6 +53,12 @@ class LevelEditor : EditorWindow {
 		_groundPos = new Vector3 (0f, -2.74f, 0f);
 
 		_birdsAdded = GameObject.Find ("Birds").transform.childCount;
+	}
+
+	void OnHierarchyChange() {
+
+		if (EditorSceneManager.GetActiveScene ().name != "GameWorld")
+			Close ();
 	}
 
 	void OnGUI()
