@@ -8,8 +8,14 @@ public class ABSceneManager : ABSingleton<ABSceneManager> {
 
 	public AudioClip _backgroundMusic;
 
+	private string _lastSceneName;
+	public string LastSceneName { get { return _lastSceneName; } }
+
 	private int _lastScene;
 	public int LastScene { get { return _lastScene; } }
+
+	private string _currentSceneName;
+	public string CurrentSceneName { get { return _currentSceneName; } }
 
 	private int _currentScene;
 	public int CurrentScene { get { return _currentScene; } }
@@ -27,6 +33,7 @@ public class ABSceneManager : ABSingleton<ABSceneManager> {
 	IEnumerator SceneSwitchCoroutine (string sceneName, bool showLoadingScreen, ActionBetweenScenes actioneBetweenScenes) {
 
 		_lastScene = SceneManager.GetActiveScene ().buildIndex;
+		_lastSceneName = SceneManager.GetActiveScene ().name;
 
 		if(showLoadingScreen) 
 			SceneManager.LoadScene("LoadingScene");
@@ -46,6 +53,7 @@ public class ABSceneManager : ABSingleton<ABSceneManager> {
 			ABAudioController.Instance.StopMusic();
 
 		_currentScene = SceneManager.GetActiveScene ().buildIndex;
+		_currentSceneName = SceneManager.GetActiveScene ().name;
 	}
 }
 
