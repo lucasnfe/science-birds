@@ -4,9 +4,10 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 
 class LevelEditor : EditorWindow {
-
+ 
 	public static BIRDS  _birdsOps;
 	public static PIGS   _pigsOps;
 	public static BLOCKS _blocksOps;
@@ -23,16 +24,24 @@ class LevelEditor : EditorWindow {
 	[MenuItem ("Window/Level Editor %l")]
 	static void Init () {
 
+		if (EditorSceneManager.GetActiveScene ().name != "GameWorld") {
+
+			if (EditorUtility.DisplayDialog ("Warning", "This window can only be opened in the Game World scene. " +
+			   "Do you wanna go to that scene?", "Yes", "Cancel")) {
+
+				EditorSceneManager.OpenScene ("Assets/Scenes/GameWorld.unity");
+			}
+			else 
+				return;
+		}
+			
 		LevelEditor window = (LevelEditor)EditorWindow.GetWindow(typeof(LevelEditor));
 		window.Show ();
+
 	}
 
-	void OnFocus() {
-
-		ToggleGizmos (false);
-
-		HideLayer (LayerMask.NameToLayer("UI"));
-
+	void OnEnable ()
+	{
 		_birds = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Birds");
 		_pigs = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Pigs");
 		_blocks = LevelLoader.LoadABResource ("Prefabs/GameWorld/Blocks");
@@ -41,6 +50,19 @@ class LevelEditor : EditorWindow {
 		_groundPos = new Vector3 (0f, -2.74f, 0f);
 
 		_birdsAdded = GameObject.Find ("Birds").transform.childCount;
+	}
+		
+	void OnFocus() {
+
+		ToggleGizmos (false);
+
+		HideLayer (LayerMask.NameToLayer("UI"));
+	}
+
+	void OnHierarchyChange() {
+
+		if (EditorSceneManager.GetActiveScene ().name != "GameWorld")
+			Close ();
 	}
 
 	void OnGUI()

@@ -127,7 +127,7 @@ public class LevelLoader {
 		streamWriter.WriteLine(output.ToString());
 		streamWriter.Close();
 	}
-
+		
 	public static Dictionary<string, GameObject> LoadABResource(string path) {
 
 		// Load block templates and cast them to game objects
