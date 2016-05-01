@@ -8,12 +8,12 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 	static int _levelTimesTried;
 
-	private int  _birdsThrown;
 	private bool _levelCleared;
 
-	private List<ABPig>  _pigs;
-	private List<ABBird> _birds;
+	private List<ABPig>      _pigs;
+	private List<ABBird>     _birds;
 	private List<ABParticle> _birdTrajectory;
+
 	private ABBird _lastThrownBird;
 
 	private Collider2D _groundTransform;
@@ -21,10 +21,17 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 	private Transform  _birdsTransform;
 	private Transform  _plaftformsTransform;
 	private Transform  _slingshotBaseTransform;
-	private GameObject _levelFailedBanner;
-	private GameObject _levelClearedBanner;
 
-	private BirdAgent         _birdAgent;
+	private GameObject _levelFailedBanner;
+
+	public bool LevelFailed() { 
+		return _levelFailedBanner.activeSelf;
+	}
+
+	private GameObject _levelClearedBanner;
+	public bool LevelCleared() { 
+		return _levelClearedBanner.activeSelf;
+	}
 
 	private int _pigsAtStart;
 	public int PigsAtStart { 
@@ -67,9 +74,6 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 		_levelClearedBanner = GameObject.Find ("LevelClearedBanner").gameObject;
 		_levelClearedBanner.gameObject.SetActive(false);
-
-		if (GameObject.Find ("AI") != null)
-			_birdAgent = GameObject.Find ("AI").GetComponent<BirdAgent> ();
 
 		GameplayCam = GameObject.Find ("Camera").GetComponent<ABGameplayCamera>();
 	}
@@ -153,30 +157,6 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		
 		// Check if birds was trown, if it died and swap them when needed
 		ManageBirds();
-
-		// Activate game AI if it is set
-		if(_birdAgent != null && !_birdAgent.IsThrowingBird) {
-			
-			if(_birds.Count == 0)
-				return;
-			
-			// Calculate stability until first birds is trown
-			if(_birdsThrown == 0)
-				_stabilityUntilFirstBird += (BlocksAtStart - GetBlocksAvailableAmount());
-
-			// Wait the level stay stable before tthrowing next bird
-			if(!IsLevelStable())
-				return;
-
-			if(_pigs.Count > 0 && _birds[0] != null && !_birds[0].JumpToSlingshot && _lastThrownBird != _birds[0]) {
-
-				ABPig randomPig = _pigs[Random.Range(0, _pigs.Count)];
-
-				_birdAgent.ThrowBird(_birds[0], randomPig, ABConstants.SLING_SELECT_POS);
-				_lastThrownBird = _birds[0];
-				_birdsThrown++;
-			}
-		}
 	}
 	
 	public bool IsObjectOutOfWorld(Transform abGameObject, Collider2D abCollider) {
@@ -472,7 +452,6 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 		_birds.Clear();
 		
-		_birdsThrown = 0;
 		_stabilityUntilFirstBird = 0;
 	}
 

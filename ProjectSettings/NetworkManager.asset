@@ -3,6 +3,6 @@
 --- !u!149 &1
 NetworkManager:
   m_ObjectHideFlags: 0
-  m_DebugLevel: 2
+  m_DebugLevel: 0
   m_Sendrate: 15
   m_AssetToPrefab: {}
