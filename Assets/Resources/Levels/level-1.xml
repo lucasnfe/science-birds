@@ -2,9 +2,8 @@
 <Level>
   <BirdsAmount>3</BirdsAmount>
   <GameObjects>
-    <Block type="RectTiny" material="wood" x="2.548333" y="-2.73" />
-    <Block type="RectTiny" material="wood" x="1.73" y="-2.7" />
-    <Block type="SquareHole" material="wood" x="2.15" y="-2.15" />
-    <Pig type="BasicSmall" material="" x="2.15" y="-1.52" />
+    <Block type="RectMedium" material="wood" x="0.25" y="-2.73" rotation="0" />
+    <Block type="RectFat" material="wood" x="0.22" y="-2.21" rotation="90.00001" />
+    <Pig type="BasicSmall" x="0.21" y="-1.53" rotation="0" />
   </GameObjects>
 </Level>

@@ -128,13 +128,16 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		foreach (OBjData gameObj in pigs) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
-			AddPig(ABWorldAssets.PIGS[gameObj.type], pos, ABWorldAssets.PIGS[gameObj.type].transform.rotation);
+			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
+			AddPig(ABWorldAssets.PIGS[gameObj.type], pos, rotation);
 		}
 
 		foreach(OBjData gameObj in blocks) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
-			GameObject block = AddBlock(ABWorldAssets.BLOCKS[gameObj.type], pos,  ABWorldAssets.BLOCKS[gameObj.type].transform.rotation);
+			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
+
+			GameObject block = AddBlock(ABWorldAssets.BLOCKS[gameObj.type], pos,  rotation);
 
 			MATERIALS material = (MATERIALS)System.Enum.Parse(typeof(MATERIALS), gameObj.material);
 			block.GetComponent<ABBlock> ().SetMaterial (material);
@@ -143,7 +146,9 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		foreach(OBjData gameObj in platforms) {
 			
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
-			AddBlock(ABWorldAssets.PLATFORM, pos,  ABWorldAssets.PLATFORM.transform.rotation);
+			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
+
+			AddBlock(ABWorldAssets.PLATFORM, pos, rotation);
 		}
 
 		for(int i = 0; i < birdsAmount; i++)

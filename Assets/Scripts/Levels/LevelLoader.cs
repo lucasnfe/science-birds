@@ -46,14 +46,25 @@ public class LevelLoader {
 				reader.MoveToAttribute("type");
 				abObj.type = reader.Value;
 
-				reader.MoveToAttribute("material");
-				abObj.material = reader.Value;
+				abObj.material = "";
+				if (reader.GetAttribute ("material") != null) {
 
+					reader.MoveToAttribute("material");
+					abObj.material = reader.Value;
+				}
+					
 				reader.MoveToAttribute("x");
 				abObj.x = (float)Convert.ToDouble(reader.Value);
 
 				reader.MoveToAttribute("y");
 				abObj.y = (float)Convert.ToDouble(reader.Value);
+
+				abObj.rotation = 0f;
+				if (reader.GetAttribute ("rotation") != null) {
+				
+					reader.MoveToAttribute ("rotation");
+					abObj.rotation = (float)Convert.ToDouble (reader.Value);
+				}
 
 				if (nodeName == "Block") {
 
@@ -99,6 +110,7 @@ public class LevelLoader {
 				writer.WriteAttributeString("material", abObj.material.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
+				writer.WriteAttributeString("rotation", abObj.rotation.ToString());
 				writer.WriteEndElement();
 			}
 
@@ -109,6 +121,7 @@ public class LevelLoader {
 				writer.WriteAttributeString("material", abObj.material.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
+				writer.WriteAttributeString("rotation", abObj.rotation.ToString());
 				writer.WriteEndElement();
 			}
 
@@ -119,6 +132,7 @@ public class LevelLoader {
 				writer.WriteAttributeString("material", abObj.material.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
+				writer.WriteAttributeString("rotation", abObj.rotation.ToString());
 				writer.WriteEndElement();
 			}
 		}
