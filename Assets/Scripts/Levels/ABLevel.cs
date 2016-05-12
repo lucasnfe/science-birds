@@ -6,8 +6,7 @@ public struct OBjData {
 
 	public string type;
 	public string material;
-	public float  rotation;
-	public float  x, y;
+	public float x, y;
 }
 
 public class ABLevel 
