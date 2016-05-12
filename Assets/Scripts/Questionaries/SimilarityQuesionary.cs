@@ -1,12 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-
+/** \class SimilarityQuestionary
+ *  \brief  Handles the Similarity Questionary behaviours and submits the answers
+ *
+ *  Manages the questions based on level group order, save them to game data
+ *  And submits questionary
+ */
 public class SimilarityQuesionary : ScaleQuestionary {
 
+    /**Boolean to know if is still waiting confirmation of questionary submission from server*/
 	private bool _waitingServerConfirmation;
 
-	protected override void Start() {
+    /**
+     *  Called on initialization of Game Object, starts the base, gets questions for the level group,
+     *  changes the quesitons that depend on the level group order and sets them for showing
+     */
+    protected override void Start() {
 
 		base.Start();
 
@@ -18,19 +28,28 @@ public class SimilarityQuesionary : ScaleQuestionary {
 
 		SetQuestions(quesionsWithUpdateLevelGroup);
 	}
-
+    /**
+     *  Updates the base if not waiting confirmation from submission to server
+     */
 	protected override void Update() {
 
 		if(!_waitingServerConfirmation)
 			base.Update();
 	}
-
-	private void SaveToGameData() {
+    /**
+     *  Save answers of Similarity Questionary to the GameData Instance
+     */
+    private void SaveToGameData() {
 
 		GameData.Instance.AnswersSimilarityQuestionary = GetAnswers();
 	}
-	
-	protected override IEnumerator SendQuestionary(string sceneToLoadAfterSubmit) {
+    /**
+     *  Starts waiting for server confirmation, updates button interactiviy, 
+     *  Saves the questionary to the Game Data, creates request to submit questionary
+     *  and Load the next scene after submiting the answer, if it worked correctly
+     *  @param  [in]    sceneToLoadAfterSubmit  String containing the name of the next scene to be loaded
+     */
+    protected override IEnumerator SendQuestionary(string sceneToLoadAfterSubmit) {
 
 		_waitingServerConfirmation = true;
 

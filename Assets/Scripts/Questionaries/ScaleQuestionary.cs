@@ -2,30 +2,56 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
-
+/**
+ *  \struct ImmersionQuestionaryItem
+ *  \brief  Struct to hold an item for Immersion Questionary
+ *
+ *  Struct to hold the question for the Immersion Questionary, 
+ *  Its Low Value Meaning and High Value Meaning for scale, and the scale
+ */
 public struct ImmersionQuestionaryItem {
-	
+	/**String containing the question text*/
 	public string question;
-	public string scaleLowValueMeaning;
-	public string scaleHighValueMeaning;
-	public string []scale;
+    /**String containing the low value meaning of the scale*/
+    public string scaleLowValueMeaning;
+    /**String containing the high value meaning of the scale*/
+    public string scaleHighValueMeaning;
+    /**Array of strings containing the scale values*/
+    public string []scale;
 }
 
+/** \class ScaleQuestionary
+ *  \brief  Handles the positions and sizes of questions
+ *
+ *  Manages the questionanry data, scales and positions the questions and boxes,
+ *  adds questions to screen, and parses the questionary data
+ */
 public class ScaleQuestionary : Questionary {
-
+    /**String containing questionary's title*/
 	private string _title;
+    /**Array fo itens from Immersion Questionary*/
 	private ImmersionQuestionaryItem []_items;
 	
+    /**GameObject of question Prefab*/
 	public GameObject _questionPrefab;
-	public GameObject _scaleMeaningPrefab;
-	public GameObject _scaleTogglePrefab;
-	public TextAsset _questionaryData;
+    /**GameObject of scale meaning Prefab*/
+    public GameObject _scaleMeaningPrefab;
+    /**GameObject of scale toggle Prefab*/
+    public GameObject _scaleTogglePrefab;
+    /**Text Asset for questionary data*/
+    public TextAsset _questionaryData;
 	
+    /**default size for questions*/
 	public int _questionSize = 50;
+    /**offset of question from title*/
 	public int _questionOffsetFromTitle = 15;
+    /**offset of toggle box from question*/
 	public int _toggleOffsetFromQuestion = 15;
 	
-	// Use this for initialization
+	/**
+     *  At the initilization of the script, parse questionary data, gets its components, 
+     *  Calculates sizes and positions on screen for questions, toggle boxes ad header
+     */
 	protected virtual void Start () {
 		
 		if(_questionaryData != null) {
@@ -61,7 +87,11 @@ public class ScaleQuestionary : Questionary {
 			scrollView.GetComponent<ScrollRect>().content = panelRect;
 		}
 	}
-
+    /**
+     *  Adds a question game object to game with its desired position.
+     *  @param[in]  question    String with question text
+     *  @param[in]  position    X, Y coordinate for the position of the question
+     */
 	void AddQuestion(string question, Vector2 position) {
 		
 		GameObject questionObj = Instantiate(_questionPrefab) as GameObject;
@@ -74,8 +104,17 @@ public class ScaleQuestionary : Questionary {
 		RectTransform rectTransform = questionObj.GetComponent<RectTransform>();
 		rectTransform.position = position;
 	}
-	
-	void AddScale(string []scale, string scaleLowValueMeaning, string scaleHighValueMeaning, Vector2 position, float toggleWidth) {
+
+    /**
+     *  Creates Game Objects for toggle button group, scale low and high meaning,
+     *  Instantiates these objects, adds their texts components, anchors them on screen and calculates their positions
+     *  @param[in]  scale   Array of strings with texts for toggle buttons.
+     *  @param[in]  scaleLowValueMeaning    String containing Low Value Meaning of Scale
+     *  @param[in]  scaleHighValueMeaning    String containing High Value Meaning of Scale
+     *  @param[in]  position    Vector2 contianing X and Y coordinates to place the toggle buttons
+     *  @param[in]  toggleWidth Float value containing the width desired for the toggle button
+     */
+    void AddScale(string []scale, string scaleLowValueMeaning, string scaleHighValueMeaning, Vector2 position, float toggleWidth) {
 		
 		GameObject toggleGroup = new GameObject();
 		toggleGroup.transform.SetParent(_questions.transform);
@@ -120,7 +159,10 @@ public class ScaleQuestionary : Questionary {
 		rectTransform = scaleHighMeaning.GetComponent<RectTransform>();
 		rectTransform.position = new Vector2(position.x + toggleWidth * (scale.Length + 0.5f) + rectTransform.sizeDelta.x/2.5f, position.y);
 	}
-	
+	/**
+     *  Splits questionary data string by line and parses the data of each line accordingly
+     *  @param[in]  questionaryData String containing the full questionary data
+     */
 	void ParseQuestionaryData(string questionaryData) {
 		
 		string []lines = questionaryData.Split('\n');

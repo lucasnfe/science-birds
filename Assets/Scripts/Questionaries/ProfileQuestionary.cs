@@ -2,9 +2,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+/** \class ProfileQuestionary
+ *  \brief  Handles the Profile Questionary answers and scene transition.
+ */
 public class ProfileQuestionary : Questionary {
 
-	private void SaveToGameData() {
+    /**
+     *  Save answers of Profile Questionary of Age, Gender, Game Experience, Angry Birds Experience and Educational level to GameData Instance
+     *  Also throws exception if answer vector size is differente than expected (5)
+     */
+    private void SaveToGameData() {
 		
 		string []answers = GetAnswers();
 		
@@ -18,7 +25,12 @@ public class ProfileQuestionary : Questionary {
 		GameData.Instance.Education = answers[4].Substring(0, answers[4].Length - 1);
 	}
 
-	protected override IEnumerator SendQuestionary(string sceneToLoadAfterSubmit) {
+    /**
+     *  Saves the questionary to the Game Data, Shuffle the Level Groups, choosing randomly with equal chances if Group A will contain 
+     *  Generated or Rovio Levels. Group B will have the other one. Also Load the next scene after submiting the answer
+     *  @param  [in]    sceneToLoadAfterSubmit  String containing the name of the next scene to be loaded
+     */
+    protected override IEnumerator SendQuestionary(string sceneToLoadAfterSubmit) {
 		
 		SaveToGameData();
 		yield return new WaitForSeconds(0.1f);

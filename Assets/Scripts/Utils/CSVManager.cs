@@ -161,7 +161,7 @@ public class CSVManager
     {
         //Load eveything in the file
         TextAsset[] levelsCSVData = Resources.LoadAll<TextAsset>(filename);
-        
+
         int count = 0;
         //Load each line into a level
         for (int i = 0; i < levelsCSVData.Length; i++)

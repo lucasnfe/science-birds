@@ -1,4 +1,4 @@
-﻿
+﻿using UnityEngine;
 using System;
 using System.IO;
 using System.Collections;
@@ -20,6 +20,13 @@ public class GeneticAlgorithm<T> {
      *  @param[out] values   initialized genomes
      */
 	public delegate void GAInitGenome(out T values);
+
+    /**
+     *  Delegate of genome initialization function using pre-population
+     *  @param[out] values  initialized genomes
+     *  @param[in]  level   loaded level
+     */
+    public delegate void GAInitGenomePrePop(out T values, ShiftABLevel level);
     /**
      *  Delegate of the crossover function
      *  @param[in]  genome1 First genome to cross
@@ -63,6 +70,8 @@ public class GeneticAlgorithm<T> {
     static private GAFitnessFunction getFitness;
     /**"Pointer" to the initialize genome method*/
     static private GAInitGenome getInitGenome;
+    /**"Pointer" to the initialize genome method*/
+    static private GAInitGenomePrePop getInitGenomePrePop;
     /**"Pointer" to the crossover method*/
     static private GACrossover  getCrossover;
     /**"Pointer" to the mutation method*/
@@ -140,6 +149,19 @@ public class GeneticAlgorithm<T> {
 		}
 	}
 
+    /**Accessor for the genome initialization function*/
+    public GAInitGenomePrePop InitGenomePrePop
+    {
+
+        get
+        {
+            return getInitGenomePrePop;
+        }
+        set
+        {
+            getInitGenomePrePop = value;
+        }
+    }
     //  Properties
     /**Accessor for the population size variable*/
     public int PopulationSize {
@@ -234,7 +256,7 @@ public class GeneticAlgorithm<T> {
     /**
      *  Starts the evolution of the GA, checking if the delegate functions have been supplied,
      *  Creates the current and next generations arrays. Sets the mutation rate of the genome
-     *  And initializes the population. 
+     *  And initializes the population with randomly generated levels. 
      */
 	public void StartEvolution() {
 
@@ -257,20 +279,43 @@ public class GeneticAlgorithm<T> {
 		Genome<T>.MutationRate = _mutationRate;
 
 		InitializePopulation();
-		//RankPopulation();
-		
-		//for (int i = 0; i < _generationSize; i++) {
-
-		//	CreateNextGeneration();
-		//	RankPopulation();
-		//}
 	}
+    //Starts a genome with a fixed pre population
+    /**
+     *  Starts the evolution of the GA, checking if the delegate functions have been supplied,
+     *  Creates the current and next generations arrays. Sets the mutation rate of the genome
+     *  And initializes the population with levels loaded from a data set. 
+     */
+    public void StartEvolutionPrePop()
+    {
+
+        if (getFitness == null)
+            throw new ArgumentNullException("Need to supply fitness function");
+
+        if (getInitGenome == null)
+            throw new ArgumentNullException("Need to supply initialization function");
+
+        if (getCrossover == null)
+            throw new ArgumentNullException("Need to supply crossover function");
+
+        if (getMutation == null)
+            throw new ArgumentNullException("Need to supply mutation function");
+
+        // Create current and next generations
+        _thisGeneration = new ArrayList(_generationSize);
+        _nextGeneration = new ArrayList(_generationSize);
+        Genome<T>.MutationRate = _mutationRate;
+        //Load all the level genomes from a folder
+        ShiftABLevel[] levels = LevelLoader.LoadAllGenomes();
+        //Initialize the population with the loaded levels
+        InitializePopulationWithPrePop(levels);
+    }
     /**
      *  Do the tournament selection, selecting randomly two individuals and returning the one with better fitness.
      *  @param[in]  size    size of the tournament
      *  @return     Genome<T>   Winning genome.
      */
-	private Genome<T> TournamentSelection(int size = 2) {
+    private Genome<T> TournamentSelection(int size = 2) {
 
 		Genome<T> []tournamentPopulation = new Genome<T>[size];
 
@@ -291,14 +336,13 @@ public class GeneticAlgorithm<T> {
 	public void CreateNextGeneration()
 	{
 		_nextGeneration.Clear();
-
 		for (int i = 0; i < _populationSize; i += 2) {
 			
 			Genome<T> parent1, parent2, child1, child2;
-			
+
 			parent1 = ((Genome<T>) TournamentSelection());
-			parent2 = ((Genome<T>) TournamentSelection());
-				
+            parent2 = ((Genome<T>)TournamentSelection());
+			
 			Crossover(ref parent1, ref parent2, out child1, out child2);
 			
 			Mutation(ref child1);
@@ -312,8 +356,8 @@ public class GeneticAlgorithm<T> {
 			_nextGeneration[UnityEngine.Random.Range(0, _nextGeneration.Count)] = (Genome<T>)_thisGeneration[0];
 		
 		_thisGeneration.Clear();
-		
-		for (int i = 0; i < _populationSize; i++)
+
+        for (int i = 0; i < _populationSize; i++)
 			_thisGeneration.Add(_nextGeneration[i]);
 	}
 
@@ -339,6 +383,7 @@ public class GeneticAlgorithm<T> {
      */
 	private void InitializePopulation() {
         cl = (weka.classifiers.trees.RandomForest)weka.core.SerializationHelper.read(_dataMiningManager.modelClassifierPath);
+
         for (int i = 0; i < _populationSize ; i++) {
 			
 			Genome<T> g = new Genome<T>();
@@ -364,4 +409,38 @@ public class GeneticAlgorithm<T> {
 			_thisGeneration.Add(g);
 		}
 	}
+
+    /** 
+     *  Create the initial genomes by calling the supplied InitGenome() function and adds them to the actual generation.
+     */
+    private void InitializePopulationWithPrePop(ShiftABLevel[] levels)
+    {
+        cl = (weka.classifiers.trees.RandomForest)weka.core.SerializationHelper.read(_dataMiningManager.modelClassifierPath);
+
+        for (int i = 0; i < _populationSize; i++)
+        {
+
+            Genome<T> g = new Genome<T>();
+
+            T genes = g.Genes;
+            /*
+             * Creates only levels that would be classified as finishable
+             */
+            if (GeneticLG.setCreatePrePopulation)
+            {
+                AngryBirdsGen ABgenes;
+                do
+                {
+                    InitGenome(out genes);
+                    ABgenes = (AngryBirdsGen)Convert.ChangeType(genes, typeof(AngryBirdsGen));
+                } while ((_dataMiningManager.EvaluateUsingClassifier(ABgenes.level, cl) == 0));
+            }
+            else
+            {
+                InitGenomePrePop(out genes, levels[i]);
+            }
+            g.Genes = genes;
+            _thisGeneration.Add(g);
+        }
+    }
 }

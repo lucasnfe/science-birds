@@ -192,6 +192,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		// If an object goes out of screen, destroy it
 		DestroyIfOutScreen();
 
+
         // Activate game AI if it is set
         if (_birdAgent != null && !_birdAgent.IsThrowingBird)
         {
@@ -202,10 +203,18 @@ public class GameWorld : ABSingleton<GameWorld> {
             stability = GetLevelStability();
             if (_birdsThrown == 0)
             {
-                //Normalize it by the max velocity of all blocks summed.
+                //_stabilityUntilFirstBird += (BlocksAtStart - GetBlocksAvailableAmount());
+                //if (isCalcStability)
+                //{
                 _stabilityUntilFirstBird += stability/maxVelocity;
+                //}
             }
+            /**else
+            {
+                isCalcStability = false;
+            }*/
             // Wait the level stay stable before throwing next bird
+            //if (!IsLevelStable())
 			if(stability != 0f)
                 return;
 
@@ -606,10 +615,7 @@ public class GameWorld : ABSingleton<GameWorld> {
 		}
 		return totalVelocity;
 	}
-    /**
-     *  Sums the maximun velocity of each block in the world and returns this sum.
-     *  @return float   sum of the velocities of all the blocks inside the world.
-     */
+
     public float GetLevelMaxVelocity()
     {
         float maxVelocity = 0f;
@@ -641,7 +647,6 @@ public class GameWorld : ABSingleton<GameWorld> {
 	
     /**
      *  Starts the world by saving the amount of pigs, blocks and bird available.
-     *  And getting the maximum velocity that all the block in the level can have.
      */
 	public void StartWorld()
 	{
