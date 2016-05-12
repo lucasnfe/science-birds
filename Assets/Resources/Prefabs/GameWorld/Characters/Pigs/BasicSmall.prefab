@@ -181,7 +181,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
   - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
   _timeToDie: 0
-  _life: 2
+  _life: 4
   _animator: {fileID: 0}
   _maxTimeToBlink: 1
   dustEffect: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
