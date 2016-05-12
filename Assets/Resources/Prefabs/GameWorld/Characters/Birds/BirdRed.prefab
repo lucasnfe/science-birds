@@ -263,7 +263,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _maxTimeToBlink: 2
   _dragRadius: 1
-  _dragSpeed: 15
+  _dragSpeed: 100
   _launchGravity: 0.5
   _trajectoryParticleFrequency: 0.5
   _jumpForce: 100

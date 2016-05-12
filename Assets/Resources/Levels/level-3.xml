@@ -14,17 +14,17 @@
     <Block type="RectFat" material="wood" x="1.99" y="-1.72" />
     <Block type="RectFat" material="wood" x="1.99" y="-2.16" />
     <Block type="RectFat" material="wood" x="2" y="-2.6" />
-    <Pig type="BasicSmall" material="" x="1.14" y="-2.6" />
-    <Pig type="BasicSmall" material="" x="1.335" y="-2.231" />
-    <Pig type="BasicSmall" material="" x="0.88" y="-2.251" />
-    <Pig type="BasicSmall" material="" x="0.833" y="-1.855" />
-    <Pig type="BasicSmall" material="" x="1.288" y="-1.816" />
-    <Pig type="BasicSmall" material="" x="0.845" y="-1.442" />
-    <Pig type="BasicSmall" material="" x="0.83" y="-1.039" />
-    <Pig type="BasicSmall" material="" x="1.3" y="-1.413" />
-    <Pig type="BasicSmall" material="" x="1.29" y="-1.01" />
-    <Pig type="BasicSmall" material="" x="0.8" y="-0.62" />
-    <Pig type="BasicSmall" material="" x="1.26" y="-0.6" />
-    <Pig type="BasicSmall" material="" x="0.93" y="-0.24" />
+    <Pig type="BasicSmall"  x="1.14" y="-2.6" />
+    <Pig type="BasicSmall"  x="1.335" y="-2.231" />
+    <Pig type="BasicSmall"  x="0.88" y="-2.251" />
+    <Pig type="BasicSmall"  x="0.833" y="-1.855" />
+    <Pig type="BasicSmall"  x="1.288" y="-1.816" />
+    <Pig type="BasicSmall"  x="0.845" y="-1.442" />
+    <Pig type="BasicSmall"  x="0.83" y="-1.039" />
+    <Pig type="BasicSmall"  x="1.3" y="-1.413" />
+    <Pig type="BasicSmall"  x="1.29" y="-1.01" />
+    <Pig type="BasicSmall"  x="0.8" y="-0.62" />
+    <Pig type="BasicSmall"  x="1.26" y="-0.6" />
+    <Pig type="BasicSmall"  x="0.93" y="-0.24" />
   </GameObjects>
 </Level>

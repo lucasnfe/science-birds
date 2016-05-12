@@ -236,6 +236,7 @@ class LevelEditor : EditorWindow {
 			obj.type = child.name;
 			obj.x = child.transform.position.x;
 			obj.y = child.transform.position.y;
+			obj.rotation = child.transform.rotation.eulerAngles.z;
 
 			if (child.GetComponent<ABPig> () != null) {
 
@@ -258,6 +259,7 @@ class LevelEditor : EditorWindow {
 			obj.material = "";
 			obj.x = child.transform.position.x;
 			obj.y = child.transform.position.y;
+			obj.rotation = child.transform.rotation.eulerAngles.z;
 
 			level.platforms.Add (obj);
 		}
@@ -272,19 +274,23 @@ class LevelEditor : EditorWindow {
 		foreach (OBjData gameObj in level.pigs) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
 
 			GameObject pig = InstantiateGameObject (_pigs[gameObj.type]);
 			pig.transform.parent = GameObject.Find ("Blocks").transform;
 			pig.transform.position = pos;
+			pig.transform.rotation = rotation;
 		}
 
 		foreach(OBjData gameObj in level.blocks) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
 
 			GameObject block = InstantiateGameObject (_blocks[gameObj.type]);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 			block.transform.position = pos;
+			block.transform.rotation = rotation;
 
 			MATERIALS material = (MATERIALS)Enum.Parse(typeof(MATERIALS), gameObj.material);
 			BlockEditor.UpdateBlockMaterial(block.GetComponent<ABBlock>(), material);
@@ -293,10 +299,12 @@ class LevelEditor : EditorWindow {
 		foreach(OBjData gameObj in level.platforms)
 		{
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
 
 			GameObject platform = InstantiateGameObject (_platform);
 			platform.transform.parent = GameObject.Find ("Platforms").transform;
 			platform.transform.position = pos;
+			platform.transform.rotation = rotation;
 		}
 
 		for (int i = 0; i < level.birdsAmount; i++)
