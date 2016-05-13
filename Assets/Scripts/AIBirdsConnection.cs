@@ -45,13 +45,16 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		yield return new WaitForEndOfFrame ();
 
 		float dragX = data[2]["x"].AsFloat;
-		float dragY = Screen.height - data[2]["y"].AsFloat;
+		float dragY = data[2]["y"].AsFloat;
 
-		float dragDX = data[2]["dx"].AsFloat;
-		float dragDY = Screen.height - data[2]["dy"].AsFloat;
+		float dragDX = dragX + data[2]["dx"].AsFloat;
+		float dragDY = dragY + data[2]["dy"].AsFloat;
 
-		Vector2 dragPos = new Vector2 (dragX, dragY);
-		Vector2 deltaPos = new Vector2 (dragDX, dragDY);
+		Vector2 dragPos = new Vector2 (dragX, Screen.height - dragY);
+		Vector2 deltaPos = new Vector2 (dragDX, Screen.height - dragDY);
+
+		Debug.Log ("POS = " + dragPos);
+		Debug.Log ("DRAG = " + deltaPos);
 
 		HUD.Instance.SimulateInputEvent = 1;
 		HUD.Instance.SimulateInputPos = dragPos;

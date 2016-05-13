@@ -65,7 +65,7 @@ public class HUD : ABSingleton<HUD> {
 
 			if(SimulateInputEvent > 0 && !isMouseControlling)
 				
-				Drag (SimulateInputDelta + _inputPos);
+				Drag (SimulateInputDelta);
 			else
 				Drag (_inputPos);
 
