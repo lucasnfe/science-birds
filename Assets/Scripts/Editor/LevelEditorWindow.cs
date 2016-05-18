@@ -177,11 +177,7 @@ class LevelEditor : EditorWindow {
 
 			CleanLevel ();
 
-			Debug.Log (path);
-
-//			TextAsset levelFile = (TextAsset)Resources.Load (finalPath);
 			string levelText = LevelLoader.ReadXmlLevel (path);
-			Debug.Log (levelText);
 			ABLevel level = LevelLoader.LoadXmlLevel (levelText);
 
 			DecodeLevel (level);

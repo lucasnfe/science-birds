@@ -4,13 +4,15 @@ using System.Collections;
 public class ABGameplayCamera : MonoBehaviour {
 
 	private Rect  _initialCameraRect;
-	
+
 	private bool  _isDraging;
 	private float _minWidth;
 	private float _dragDistance;
 
 	public float _dampTime;
 	public float _cameraMaxWidth;
+
+	public bool IsZooming { get; set; }
 
 	void Awake()
 	{
@@ -120,9 +122,13 @@ public class ABGameplayCamera : MonoBehaviour {
 			orthographicSize = Mathf.Abs(_initialCameraRect.width) / GetComponent<Camera>().aspect / 2f;
 		else
 			orthographicSize = Mathf.Abs(_initialCameraRect.height) / 2f;
-		
+
 		GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, orthographicSize, _dampTime * Time.deltaTime);
-		
+
+		IsZooming = false;
+		if(Mathf.Abs((GetComponent<Camera>().orthographicSize - orthographicSize)) > 0.05f)
+			IsZooming = true; 
+
 		return orthographicSize;
 	}
 }
