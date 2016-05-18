@@ -58,7 +58,7 @@ public class ABConstants {
 
 	#else 
 
-	public static readonly float  MOUSE_SENSIBILITY = 0.75f;
+	public static readonly float  MOUSE_SENSIBILITY = 0.65f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
 
 	#endif
