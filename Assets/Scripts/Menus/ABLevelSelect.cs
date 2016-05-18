@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 using System.Collections;
 
 public class ABLevelSelect : ABMenu {
@@ -16,23 +17,21 @@ public class ABLevelSelect : ABMenu {
 
 	// Use this for initialization
 	void Start () {
-	
-		Object[] levelSet = Resources.LoadAll ("Levels");
+
+		string[] levelFiles = Directory.GetFiles (Application.dataPath + ABConstants.LEVELS_FOLDER, "*.xml");
+		string[] levelXml = new string[levelFiles.Length];
+
+		for (int i = 0; i < levelFiles.Length; i++)
+			levelXml [i] = File.ReadAllText (levelFiles [i]);
 
 		_startPos.x = Mathf.Clamp (_startPos.x, 0, 1f) * Screen.width;
 		_startPos.y = Mathf.Clamp (_startPos.y, 0, 1f) * Screen.height;
 
-		// Transform loaded list into text assets
-		TextAsset[] levelTexts = new TextAsset[levelSet.Length];
-
-		for(int i = 0; i < levelSet.Length; i++)
-			levelTexts[i] = (TextAsset)levelSet[i];	
-
-		LevelList.Instance.LoadLevelsFromSource (levelTexts);
+		LevelList.Instance.LoadLevelsFromSource (levelXml);
 
 		int j = 0;
 
-		for(int i = 0; i < levelSet.Length; i++) {
+		for(int i = 0; i < levelXml.Length; i++) {
 
 			Vector2 pos = _startPos + new Vector2 ((i % _lines) * _buttonSize.x, j * _buttonSize.y);
 

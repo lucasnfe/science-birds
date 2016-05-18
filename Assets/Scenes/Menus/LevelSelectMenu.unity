@@ -847,7 +847,7 @@ GameObject:
   - 4: {fileID: 2008889563}
   - 114: {fileID: 2008889564}
   m_Layer: 0
-  m_Name: Menu
+  m_Name: LevelSelectMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

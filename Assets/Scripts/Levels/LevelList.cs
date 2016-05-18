@@ -18,7 +18,7 @@ public class LevelList : ABSingleton<LevelList> {
 		return _levels [CurrentIndex]; 
 	}
 
-	public void LoadLevelsFromSource(TextAsset[] levelSource, bool shuffle = false) {
+	public void LoadLevelsFromSource(string[] levelSource, bool shuffle = false) {
 
 		CurrentIndex = 0;
 
@@ -28,7 +28,7 @@ public class LevelList : ABSingleton<LevelList> {
 			ABArrayUtils.Shuffle(levelSource);
 
 		for(int i = 0; i < levelSource.Length; i++)
-			_levels[i] = LevelLoader.LoadXmlLevel(levelSource[i].text);
+			_levels[i] = LevelLoader.LoadXmlLevel(levelSource[i]);
 	}
 
 	// Use this for initialization
