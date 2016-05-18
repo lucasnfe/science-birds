@@ -18,20 +18,42 @@ public class ABLevelSelect : ABMenu {
 	// Use this for initialization
 	void Start () {
 
-		string[] levelFiles = Directory.GetFiles (Application.dataPath + ABConstants.LEVELS_FOLDER, "*.xml");
-		string[] levelXml = new string[levelFiles.Length];
+		// Load levels in the resources folder
+		TextAsset []levelsData = Resources.LoadAll<TextAsset>(ABConstants.DEFAULT_LEVELS_FOLDER);
 
+		string[] resourcesXml = new string[levelsData.Length];
+		for (int i = 0; i < levelsData.Length; i++)
+			resourcesXml [i] = levelsData[i].text;
+			
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+
+		// WebGL builds does not load local files
+		string[] streamingXml = new string[0];
+
+#else
+		// Load levels in the streaming folder
+		string[] levelFiles = Directory.GetFiles (Application.dataPath + ABConstants.CUSTOM_LEVELS_FOLDER, "*.xml");
+
+		string[] streamingXml = new string[levelFiles.Length];
 		for (int i = 0; i < levelFiles.Length; i++)
-			levelXml [i] = File.ReadAllText (levelFiles [i]);
+			streamingXml [i] = File.ReadAllText (levelFiles [i]);
+
+#endif
+
+		// Combine the two sources of levels
+		string[] allXmlFiles = new string[resourcesXml.Length + streamingXml.Length];
+		resourcesXml.CopyTo(allXmlFiles, 0);
+		streamingXml.CopyTo(allXmlFiles, resourcesXml.Length);
 
 		_startPos.x = Mathf.Clamp (_startPos.x, 0, 1f) * Screen.width;
 		_startPos.y = Mathf.Clamp (_startPos.y, 0, 1f) * Screen.height;
 
-		LevelList.Instance.LoadLevelsFromSource (levelXml);
+		LevelList.Instance.LoadLevelsFromSource (allXmlFiles);
 
 		int j = 0;
 
-		for(int i = 0; i < levelXml.Length; i++) {
+		for(int i = 0; i < allXmlFiles.Length; i++) {
 
 			Vector2 pos = _startPos + new Vector2 ((i % _lines) * _buttonSize.x, j * _buttonSize.y);
 
@@ -44,7 +66,6 @@ public class ABLevelSelect : ABMenu {
 			Button selectButton = obj.GetComponent<Button> ();
 
 			selectButton.onClick.AddListener (delegate { 
-				
 				LoadNextScene("GameWorld", true, sel.UpdateLevelList); });
 
 			Text selectText = selectButton.GetComponentInChildren<Text> ();

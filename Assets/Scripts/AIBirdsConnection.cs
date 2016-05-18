@@ -37,7 +37,11 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		string id = data [0];
 		string message = "[" + id + "," + "{}" + "]";
 
+	#if UNITY_WEBGL && !UNITY_EDITOR
+		socket.Send(System.Text.Encoding.UTF8.GetBytes(message));	
+	#else
 		socket.Send(message);	
+	#endif
 	}
 
 	IEnumerator Drag(JSONNode data) {
@@ -63,7 +67,12 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		string id = data [0];
 		string message = "[" + id + "," + "{}" + "]";
 
+	#if UNITY_WEBGL && !UNITY_EDITOR
+		socket.Send(System.Text.Encoding.UTF8.GetBytes(message));
+	#else
 		socket.Send(message);	
+	#endif
+
 	}
 
 	IEnumerator MouseWheel(JSONNode data) {
@@ -77,7 +86,13 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		string id = data [0];
 		string message = "[" + id + "," + "{}" + "]";
 
-		socket.Send(message);
+
+	#if UNITY_WEBGL && !UNITY_EDITOR
+		socket.Send(System.Text.Encoding.UTF8.GetBytes(message));
+	#else
+		socket.Send(message);	
+	#endif
+
 	}
 
 	IEnumerator Screenshot(JSONNode data) {
@@ -99,7 +114,12 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		string json = JsonUtility.ToJson (msg);
 		string message = "[" + id + "," + json + "]";
 
-		socket.Send(message);
+	#if UNITY_WEBGL && !UNITY_EDITOR
+		socket.Send(System.Text.Encoding.UTF8.GetBytes(message));
+	#else
+		socket.Send(message);	
+	#endif
+
 	}
 
 	IEnumerator SelectLevel(JSONNode data) {
@@ -119,7 +139,12 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		string id = data [0];
 		string message = "[" + id + "," + "{}" + "]";
 
-		socket.Send(message);
+	#if UNITY_WEBGL && !UNITY_EDITOR
+		socket.Send(System.Text.Encoding.UTF8.GetBytes(message));
+	#else
+		socket.Send(message);	
+	#endif
+
 	}
 
 	IEnumerator LoadScene(JSONNode data) {
@@ -132,7 +157,12 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		string id = data [0];
 		string message = "[" + id + "," + "{}" + "]";
 
-		socket.Send(message);
+	#if UNITY_WEBGL && !UNITY_EDITOR
+		socket.Send(System.Text.Encoding.UTF8.GetBytes(message));
+	#else
+		socket.Send(message);	
+	#endif
+
 	}
 
 	IEnumerator Score(JSONNode data) {
@@ -148,7 +178,11 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		string json = JsonUtility.ToJson (msg);
 		string message = "[" + id + "," + json + "]";
 
-		socket.Send(message);
+	#if UNITY_WEBGL && !UNITY_EDITOR
+		socket.Send(System.Text.Encoding.UTF8.GetBytes(message));
+	#else
+		socket.Send(message);	
+	#endif
 	}
 
 	IEnumerator GameState(JSONNode data) {
@@ -179,7 +213,11 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 		string json = JsonUtility.ToJson (msg);
 		string message = "[" + id + "," + json + "]";
 
+	#if UNITY_WEBGL && !UNITY_EDITOR
+		socket.Send(System.Text.Encoding.UTF8.GetBytes(message));
+	#else
 		socket.Send(message);	
+	#endif
 	}
 
 	public void InitHandlers() {

@@ -177,13 +177,12 @@ class LevelEditor : EditorWindow {
 
 			CleanLevel ();
 
-			string[] stringSeparators = new string[] {"Resources/"};
+			Debug.Log (path);
 
-			string[] arrayPath = path.Split (stringSeparators, StringSplitOptions.None);
-			string finalPath = arrayPath [1].Split ('.') [0];
-
-			TextAsset levelFile = (TextAsset)Resources.Load (finalPath);
-			ABLevel level = LevelLoader.LoadXmlLevel (levelFile.text);
+//			TextAsset levelFile = (TextAsset)Resources.Load (finalPath);
+			string levelText = LevelLoader.ReadXmlLevel (path);
+			Debug.Log (levelText);
+			ABLevel level = LevelLoader.LoadXmlLevel (levelText);
 
 			DecodeLevel (level);
 		}
