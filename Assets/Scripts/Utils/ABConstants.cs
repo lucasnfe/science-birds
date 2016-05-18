@@ -47,14 +47,17 @@ public class ABConstants {
 
 	#if UNITY_EDITOR
 
+	public static readonly float MOUSE_SENSIBILITY = 1f;
 	public static readonly string LEVELS_FOLDER = "/StreamingAssets/Levels";
 
 	#elif UNITY_STANDALONE_OSX
 
+	public static readonly float MOUSE_SENSIBILITY = 5f;
 	public static readonly string LEVELS_FOLDER = "/Resources/Data/StreamingAssets/Levels";
 
 	#elif UNITY_STANDALONE_WIN
 
+	public static readonly float MOUSE_SENSIBILITY = 25f;
 	public static readonly string LEVELS_FOLDER = "/StreamingAssets/Levels";
 
 	#endif
