@@ -32,19 +32,51 @@ public class HUD : ABSingleton<HUD> {
 
 	// Update is called once per frame
 	void Update () {
+
+		float scrollDirection = Input.GetAxis("Mouse ScrollWheel");
+
+		if(scrollDirection != 0f) {
+
+			if (scrollDirection > 0f)
+				_isZoomingIn = true;
+			
+			else if (scrollDirection < 0f)
+				_isZoomingOut = true;
+		}
 		
 		if(_isZoomingIn) {
 			
-			CameraZoom(-0.5f);
+			if (scrollDirection != 0f) {
+
+				// Zoom triggered via MouseWheel
+				_isZoomingIn = false;
+				CameraZoom(-ABConstants.MOUSE_SENSIBILITY);
+			} 
+			else {
+
+				// Zoom triggered via HUD
+				CameraZoom(-1f);
+			}
+			
 			return;
 		}
 		
 		if(_isZoomingOut) {
 			
-			CameraZoom(0.5f);
+			if (scrollDirection != 0f) {
+
+				// Zoom triggered via MouseWheel
+				_isZoomingOut = false;
+				CameraZoom (ABConstants.MOUSE_SENSIBILITY);
+			} 
+			else {
+
+				// Zoom triggered via HUD
+				CameraZoom(1f);
+			}
+
 			return;
 		}
-
 
 		bool isMouseControlling = true;
 		_inputPos = Input.mousePosition;
@@ -65,7 +97,7 @@ public class HUD : ABSingleton<HUD> {
 
 			if(SimulateInputEvent > 0 && !isMouseControlling)
 				
-				Drag (SimulateInputDelta + _inputPos);
+				Drag (SimulateInputDelta);
 			else
 				Drag (_inputPos);
 
@@ -85,12 +117,6 @@ public class HUD : ABSingleton<HUD> {
 			if(!isMouseControlling)
 				SimulateInputEvent = 0;
         }
-		
-		if(Input.GetAxis("Mouse ScrollWheel") != 0f) {
-			
-			float scrollDirection = Input.GetAxis("Mouse ScrollWheel");
-			CameraZoom(scrollDirection);
-		}
 	}
 
 	void LateUpdate() {
@@ -159,7 +185,7 @@ public class HUD : ABSingleton<HUD> {
 	
 	public void CameraZoom(float scrollDirection) {
 
-		ABGameWorld.Instance.GameplayCam.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
+		ABGameWorld.Instance.GameplayCam.ZoomCamera(scrollDirection * _zoomSpeed * Time.deltaTime);
 	}
 
 	public void SetScoreDisplay(uint score) {
