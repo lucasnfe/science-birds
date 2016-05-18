@@ -44,6 +44,20 @@ public enum SLINGSHOT_LINE_POS
 public class ABConstants {
 
 	public static readonly Vector3 SLING_SELECT_POS = new Vector3 (-7.62f, -1.24f, 1f);
+
+	#if UNITY_EDITOR
+
+	public static readonly string LEVELS_FOLDER = "/StreamingAssets/Levels";
+
+	#elif UNITY_STANDALONE_OSX
+
+	public static readonly string LEVELS_FOLDER = "/Resources/Data/StreamingAssets/Levels";
+
+	#elif UNITY_STANDALONE_WIN
+
+	public static readonly string LEVELS_FOLDER = "/StreamingAssets/Levels";
+
+	#endif
 }
 
 public class ABWorldAssets {

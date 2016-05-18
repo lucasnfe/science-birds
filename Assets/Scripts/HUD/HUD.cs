@@ -35,13 +35,13 @@ public class HUD : ABSingleton<HUD> {
 		
 		if(_isZoomingIn) {
 			
-			CameraZoom(-0.5f);
+			CameraZoom(-1f);
 			return;
 		}
 		
 		if(_isZoomingOut) {
 			
-			CameraZoom(0.5f);
+			CameraZoom(1f);
 			return;
 		}
 
@@ -159,7 +159,7 @@ public class HUD : ABSingleton<HUD> {
 	
 	public void CameraZoom(float scrollDirection) {
 
-		ABGameWorld.Instance.GameplayCam.ZoomCamera(Mathf.Clamp(scrollDirection, -1f, 1f) * _zoomSpeed * Time.deltaTime);
+		ABGameWorld.Instance.GameplayCam.ZoomCamera(Mathf.Sign(scrollDirection) * _zoomSpeed * Time.deltaTime);
 	}
 
 	public void SetScoreDisplay(uint score) {

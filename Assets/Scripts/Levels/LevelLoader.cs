@@ -9,12 +9,18 @@ public class LevelLoader {
 	
 	public static ABLevel[] LoadAllLevels() {
 	
-		TextAsset []levelsXmlData = (TextAsset [])Resources.LoadAll("Levels");
+//		TextAsset []levelsXmlData = (TextAsset [])Resources.LoadAll("Levels");
 
-		ABLevel []levels = new ABLevel[levelsXmlData.Length];
+		string[] levelFiles = Directory.GetFiles (Application.dataPath + ABConstants.LEVELS_FOLDER, "*.xml");
+		string[] levelXml = new string[levelFiles.Length];
 
-		for(int i = 0; i < levelsXmlData.Length; i++)
-			levels[i] = LoadXmlLevel(levelsXmlData[i].text);
+		for (int i = 0; i < levelFiles.Length; i++)
+			levelXml [i] = File.ReadAllText (levelFiles [i]);
+
+		ABLevel []levels = new ABLevel[levelXml.Length];
+
+		for(int i = 0; i < levelXml.Length; i++)
+			levels[i] = LoadXmlLevel(levelXml[i]);
 
 		return levels;
 	}
