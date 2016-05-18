@@ -7,8 +7,9 @@ using System.Collections.Generic;
 
 public class LevelLoader {
 	
-	public static ABLevel[] LoadAllLevels() {
+	public static string ReadXmlLevel(string path) {
 	
+<<<<<<< HEAD
 //		TextAsset []levelsXmlData = (TextAsset [])Resources.LoadAll("Levels");
 
 		string[] levelFiles = Directory.GetFiles (Application.dataPath + ABConstants.LEVELS_FOLDER, "*.xml");
@@ -21,8 +22,25 @@ public class LevelLoader {
 
 		for(int i = 0; i < levelXml.Length; i++)
 			levels[i] = LoadXmlLevel(levelXml[i]);
+=======
+		string xmlText = "";
 
-		return levels;
+		if (path.Contains ("StreamingAssets")) {
+
+			xmlText = File.ReadAllText (path);
+		} 
+		else {
+>>>>>>> AIBirdsCompetition
+
+			string[] stringSeparators = new string[] {"Levels/"};
+			string[] arrayPath = path.Split (stringSeparators, StringSplitOptions.None);
+			string finalPath = arrayPath [1].Split ('.') [0];
+
+			TextAsset levelData = Resources.Load<TextAsset>("Levels/" + finalPath);
+			xmlText = levelData.text;
+		}
+
+		return xmlText;
 	}
 	
 	public static ABLevel LoadXmlLevel(string xmlString) {
