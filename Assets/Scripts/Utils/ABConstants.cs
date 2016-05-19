@@ -44,21 +44,22 @@ public enum SLINGSHOT_LINE_POS
 public class ABConstants {
 
 	public static readonly Vector3 SLING_SELECT_POS = new Vector3 (-7.62f, -1.24f, 1f);
+	public static readonly string DEFAULT_LEVELS_FOLDER = "Levels";
 
-	#if UNITY_EDITOR
-
-	public static readonly float MOUSE_SENSIBILITY = 1f;
-	public static readonly string LEVELS_FOLDER = "/StreamingAssets/Levels";
-
-	#elif UNITY_STANDALONE_OSX
+	#if UNITY_STANDALONE_OSX
 
 	public static readonly float MOUSE_SENSIBILITY = 5f;
-	public static readonly string LEVELS_FOLDER = "/Resources/Data/StreamingAssets/Levels";
+	public static readonly string CUSTOM_LEVELS_FOLDER = "/Resources/Data/StreamingAssets/Levels";
 
 	#elif UNITY_STANDALONE_WIN
 
 	public static readonly float MOUSE_SENSIBILITY = 25f;
-	public static readonly string LEVELS_FOLDER = "/StreamingAssets/Levels";
+	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
+
+	#else 
+
+	public static readonly float  MOUSE_SENSIBILITY = 0.65f;
+	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
 
 	#endif
 }

@@ -6,25 +6,28 @@ using System.Text;
 using System.Collections.Generic;
 
 public class LevelLoader {
-	
-	public static ABLevel[] LoadAllLevels() {
-	
-//		TextAsset []levelsXmlData = (TextAsset [])Resources.LoadAll("Levels");
 
-		string[] levelFiles = Directory.GetFiles (Application.dataPath + ABConstants.LEVELS_FOLDER, "*.xml");
-		string[] levelXml = new string[levelFiles.Length];
+	public static string ReadXmlLevel(string path) {
 
-		for (int i = 0; i < levelFiles.Length; i++)
-			levelXml [i] = File.ReadAllText (levelFiles [i]);
+		string xmlText = "";
 
-		ABLevel []levels = new ABLevel[levelXml.Length];
+		if (path.Contains ("StreamingAssets")) {
 
-		for(int i = 0; i < levelXml.Length; i++)
-			levels[i] = LoadXmlLevel(levelXml[i]);
+			xmlText = File.ReadAllText (path);
+		} 
+		else {
 
-		return levels;
+			string[] stringSeparators = new string[] {"Levels/"};
+			string[] arrayPath = path.Split (stringSeparators, StringSplitOptions.None);
+			string finalPath = arrayPath [1].Split ('.') [0];
+
+			TextAsset levelData = Resources.Load<TextAsset>("Levels/" + finalPath);
+			xmlText = levelData.text;
+		}
+
+		return xmlText;
 	}
-	
+
 	public static ABLevel LoadXmlLevel(string xmlString) {
 
 		ABLevel level = new ABLevel();
@@ -58,7 +61,7 @@ public class LevelLoader {
 					reader.MoveToAttribute("material");
 					abObj.material = reader.Value;
 				}
-					
+
 				reader.MoveToAttribute("x");
 				abObj.x = (float)Convert.ToDouble(reader.Value);
 
@@ -67,7 +70,7 @@ public class LevelLoader {
 
 				abObj.rotation = 0f;
 				if (reader.GetAttribute ("rotation") != null) {
-				
+
 					reader.MoveToAttribute ("rotation");
 					abObj.rotation = (float)Convert.ToDouble (reader.Value);
 				}
@@ -142,12 +145,12 @@ public class LevelLoader {
 				writer.WriteEndElement();
 			}
 		}
-			
+
 		StreamWriter streamWriter = new StreamWriter(path);
 		streamWriter.WriteLine(output.ToString());
 		streamWriter.Close();
 	}
-		
+
 	public static Dictionary<string, GameObject> LoadABResource(string path) {
 
 		// Load block templates and cast them to game objects
@@ -166,11 +169,11 @@ public class LevelLoader {
 
 	public void SaveLevelOnScene() {
 
-//		Transform blocksInScene = GameWorld.Instance.BlocksInScene();
-//
-//		List<GameObject> objsInScene = GameWorld.Instance.BlocksInScene();
+		//		Transform blocksInScene = GameWorld.Instance.BlocksInScene();
+		//
+		//		List<GameObject> objsInScene = GameWorld.Instance.BlocksInScene();
 
-//		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
-//		SaveXmlLevel(level);
+		//		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
+		//		SaveXmlLevel(level);
 	}
 }

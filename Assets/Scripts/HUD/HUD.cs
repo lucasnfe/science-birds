@@ -86,6 +86,9 @@ public class HUD : ABSingleton<HUD> {
 			isMouseControlling = false;
 		}
 
+		if (ABGameWorld.Instance.GameplayCam.IsZooming)
+			return;
+
 		if(Input.GetMouseButtonDown(0) || SimulateInputEvent == 1) {
 
 			ClickDown (_inputPos);
@@ -169,7 +172,7 @@ public class HUD : ABSingleton<HUD> {
 		else {
 			
 			Vector3 dragPosition = position - _dragOrigin;
-			ABGameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
+			ABGameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.deltaTime);
 		}
 	}
 
