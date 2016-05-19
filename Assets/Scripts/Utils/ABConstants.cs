@@ -48,7 +48,7 @@ public class ABConstants {
 
 	#if UNITY_STANDALONE_OSX && !UNITY_EDITOR
 
-	public static readonly float MOUSE_SENSIBILITY = 5f;
+	public static readonly float MOUSE_SENSIBILITY = 0.8f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/Resources/Data/StreamingAssets/Levels";
 
 	#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
@@ -58,12 +58,12 @@ public class ABConstants {
 
 	#elif UNITY_WEBGL && !UNITY_EDITOR
 
-	public static readonly float  MOUSE_SENSIBILITY = 0.5f;
+	public static readonly float  MOUSE_SENSIBILITY = 0.25f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
 
 	#else
 
-	public static readonly float  MOUSE_SENSIBILITY = 1f;
+	public static readonly float  MOUSE_SENSIBILITY = 0.6f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
 
 	#endif

@@ -1575,7 +1575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681f82b6e24ba4e5c9aaddaf2550bd60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dampTime: 8
+  _dampTime: 6
   _cameraMaxWidth: 24.5
 --- !u!81 &944210275
 AudioListener:
