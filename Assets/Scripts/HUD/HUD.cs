@@ -37,44 +37,19 @@ public class HUD : ABSingleton<HUD> {
 
 		if(scrollDirection != 0f) {
 
-			if (scrollDirection > 0f)
-				_isZoomingIn = true;
-			
-			else if (scrollDirection < 0f)
-				_isZoomingOut = true;
+			CameraZoom (Mathf.Sign (scrollDirection) * ABConstants.MOUSE_SENSIBILITY);
+			return;
 		}
 		
 		if(_isZoomingIn) {
-			
-			if (scrollDirection != 0f) {
 
-				// Zoom triggered via MouseWheel
-				_isZoomingIn = false;
-				CameraZoom(-ABConstants.MOUSE_SENSIBILITY);
-			} 
-			else {
-
-				// Zoom triggered via HUD
-				CameraZoom(-1f);
-			}
-			
+			CameraZoom(-ABConstants.MOUSE_SENSIBILITY);
 			return;
 		}
 		
 		if(_isZoomingOut) {
 			
-			if (scrollDirection != 0f) {
-
-				// Zoom triggered via MouseWheel
-				_isZoomingOut = false;
-				CameraZoom (ABConstants.MOUSE_SENSIBILITY);
-			} 
-			else {
-
-				// Zoom triggered via HUD
-				CameraZoom(1f);
-			}
-
+			CameraZoom (ABConstants.MOUSE_SENSIBILITY);
 			return;
 		}
 
