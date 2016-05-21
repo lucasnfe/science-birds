@@ -24,14 +24,14 @@ public class ABLevelSelect : ABMenu {
 		string[] resourcesXml = new string[levelsData.Length];
 		for (int i = 0; i < levelsData.Length; i++)
 			resourcesXml [i] = levelsData[i].text;
-			
 
-#if UNITY_WEBGL && !UNITY_EDITOR
+
+		#if UNITY_WEBGL && !UNITY_EDITOR
 
 		// WebGL builds does not load local files
 		string[] streamingXml = new string[0];
 
-#else
+		#else
 		// Load levels in the streaming folder
 		string[] levelFiles = Directory.GetFiles (Application.dataPath + ABConstants.CUSTOM_LEVELS_FOLDER, "*.xml");
 
@@ -39,7 +39,7 @@ public class ABLevelSelect : ABMenu {
 		for (int i = 0; i < levelFiles.Length; i++)
 			streamingXml [i] = File.ReadAllText (levelFiles [i]);
 
-#endif
+		#endif
 
 		// Combine the two sources of levels
 		string[] allXmlFiles = new string[resourcesXml.Length + streamingXml.Length];
