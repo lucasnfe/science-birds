@@ -46,24 +46,19 @@ public class ABConstants {
 	public static readonly Vector3 SLING_SELECT_POS = new Vector3 (-7.62f, -1.24f, 1f);
 	public static readonly string DEFAULT_LEVELS_FOLDER = "Levels";
 
-	#if UNITY_STANDALONE_OSX && !UNITY_EDITOR
-
-	public static readonly float MOUSE_SENSIBILITY = 0.8f;
-	public static readonly string CUSTOM_LEVELS_FOLDER = "/Resources/Data/StreamingAssets/Levels";
-
-	#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
+	#if UNITY_STANDALONE_OSX
 
 	public static readonly float MOUSE_SENSIBILITY = 5f;
+	public static readonly string CUSTOM_LEVELS_FOLDER = "/Resources/Data/StreamingAssets/Levels";
+
+	#elif UNITY_STANDALONE_WIN
+
+	public static readonly float MOUSE_SENSIBILITY = 25f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
 
-	#elif UNITY_WEBGL && !UNITY_EDITOR
+	#else 
 
-	public static readonly float  MOUSE_SENSIBILITY = 0.25f;
-	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
-
-	#else
-
-	public static readonly float  MOUSE_SENSIBILITY = 0.6f;
+	public static readonly float  MOUSE_SENSIBILITY = 0.65f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
 
 	#endif

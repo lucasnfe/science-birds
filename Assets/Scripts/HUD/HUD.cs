@@ -37,19 +37,44 @@ public class HUD : ABSingleton<HUD> {
 
 		if(scrollDirection != 0f) {
 
-			CameraZoom (Mathf.Sign (scrollDirection) * ABConstants.MOUSE_SENSIBILITY);
-			return;
+			if (scrollDirection > 0f)
+				_isZoomingIn = true;
+			
+			else if (scrollDirection < 0f)
+				_isZoomingOut = true;
 		}
 		
 		if(_isZoomingIn) {
+			
+			if (scrollDirection != 0f) {
 
-			CameraZoom(-ABConstants.MOUSE_SENSIBILITY);
+				// Zoom triggered via MouseWheel
+				_isZoomingIn = false;
+				CameraZoom(-ABConstants.MOUSE_SENSIBILITY);
+			} 
+			else {
+
+				// Zoom triggered via HUD
+				CameraZoom(-1f);
+			}
+			
 			return;
 		}
 		
 		if(_isZoomingOut) {
 			
-			CameraZoom (ABConstants.MOUSE_SENSIBILITY);
+			if (scrollDirection != 0f) {
+
+				// Zoom triggered via MouseWheel
+				_isZoomingOut = false;
+				CameraZoom (ABConstants.MOUSE_SENSIBILITY);
+			} 
+			else {
+
+				// Zoom triggered via HUD
+				CameraZoom(1f);
+			}
+
 			return;
 		}
 
@@ -60,9 +85,6 @@ public class HUD : ABSingleton<HUD> {
 			_inputPos = SimulateInputPos;
 			isMouseControlling = false;
 		}
-
-		if (ABGameWorld.Instance.GameplayCam.IsZooming)
-			return;
 
 		if(Input.GetMouseButtonDown(0) || SimulateInputEvent == 1) {
 
@@ -147,7 +169,7 @@ public class HUD : ABSingleton<HUD> {
 		else {
 			
 			Vector3 dragPosition = position - _dragOrigin;
-			ABGameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.deltaTime);
+			ABGameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
 		}
 	}
 
