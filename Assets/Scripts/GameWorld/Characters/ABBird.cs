@@ -66,15 +66,19 @@ public class ABBird : ABCharacter {
         Invoke("IdleJump", nextJumpDelay + 1.0f);
     }
 
-	public override void Die()
-	{
+	private void CheckVelocityToDie() {
+
 		if (_rigidBody.velocity.magnitude < 0.005f) {
 
 			CancelInvoke ();
+			Die ();
+		}
+	}
 
+	public override void Die()
+	{
 			ABGameWorld.Instance.KillBird (this);
 			base.Die ();
-		}
 	}
 
     public override void OnCollisionEnter2D(Collision2D collision)
@@ -90,7 +94,7 @@ public class ABBird : ABCharacter {
 			foreach (ABParticle part in _destroyEffect.GetUsedParticles())
 				ABGameWorld.Instance.AddTrajectoryParticle (part);
 
-			InvokeRepeating("Die", 0f, _timeToDie);
+			InvokeRepeating("CheckVelocityToDie", 0f, _timeToDie);
 			_animator.Play("die", 0, 0f);
 
 			IsDying = true;

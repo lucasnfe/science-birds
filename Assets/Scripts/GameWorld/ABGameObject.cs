@@ -11,7 +11,6 @@ public abstract class ABGameObject : MonoBehaviour
 {	
 	protected int   _spriteChangedTimes;
 	protected float _receivedDamage;
-	protected float _timeToDie = 1f;
 
 	protected Collider2D       _collider;
 	protected Rigidbody2D      _rigidBody;
@@ -23,6 +22,7 @@ public abstract class ABGameObject : MonoBehaviour
 	public AudioClip[] _clips;
 
 	public float _life = 10f;
+	public float _timeToDie = 1f;
 
 	public bool IsDying { get; set; }
 
@@ -62,7 +62,7 @@ public abstract class ABGameObject : MonoBehaviour
 			_receivedDamage = 0;
 		}
 
-		if(_spriteChangedTimes == _sprites.Length) {
+		if(_spriteChangedTimes >= _sprites.Length) {
 			
 			ABAudioController.Instance.PlayIndependentSFX(_clips[1]);
 
@@ -76,7 +76,7 @@ public abstract class ABGameObject : MonoBehaviour
 		if (ABGameWorld.Instance.IsObjectOutOfWorld (transform, _collider)) {
 
 			IsDying = true;
-			Invoke ("Die", _timeToDie);
+			Die ();
 		}
 	}
 }
