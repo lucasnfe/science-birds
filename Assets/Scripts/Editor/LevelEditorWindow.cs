@@ -19,6 +19,7 @@ class LevelEditor : EditorWindow {
 	private static GameObject   _platform;
 
 	private static int _birdsAdded = 0;
+	private static int _birdsAmounInARow = 5;
 	private static Vector3 _groundPos;
 
 	[MenuItem ("Window/Level Editor %l")]
@@ -211,8 +212,16 @@ class LevelEditor : EditorWindow {
 		{
 			birdsPos.y = _groundPos.y;
 
-			for(int i = 0; i < _birdsAdded; i++)
-				birdsPos.x -= bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
+			for(int i = 0; i < _birdsAdded; i++) {
+
+				if ((i + 1) % _birdsAmounInARow == 0) {
+
+					float coin = (UnityEngine.Random.value < 0.5f ? 1f : -1);
+					birdsPos.x = ABConstants.SLING_SELECT_POS.x + (UnityEngine.Random.value * 0.5f * coin);
+				}
+
+				birdsPos.x -=  bird.GetComponent<SpriteRenderer>().bounds.size.x * 1.75f;
+			}
 		}
 
 		bird.transform.position = birdsPos;

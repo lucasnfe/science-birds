@@ -59,6 +59,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 	public bool    _isSimulation;
 	public int     _timesToGiveUp;
 	public float   _timeToResetLevel = 1f;
+	public int 	   _birdsAmounInARow = 5;
 
 	public AudioClip  []_clips;
 
@@ -240,8 +241,16 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			
 			birdsPos.y = _groundTransform.bounds.center.y + _groundTransform.bounds.size.y/2f;
 
-			for(int i = 0; i < _birds.Count; i++)
-				birdsPos.x -= ABWorldAssets.BIRDS["BirdRed"].GetComponent<SpriteRenderer>().bounds.size.x * 2f;
+			for (int i = 0; i < _birds.Count; i++) {
+
+				if ((i + 1) % _birdsAmounInARow == 0) {
+
+					float coin = (Random.value < 0.5f ? 1f : -1);
+					birdsPos.x = ABConstants.SLING_SELECT_POS.x + (Random.value * 0.5f * coin);
+				}
+					
+				birdsPos.x -= ABWorldAssets.BIRDS ["BirdRed"].GetComponent<SpriteRenderer> ().bounds.size.x * 1.75f;
+			}
 		}
 
 		GameObject newGameObject = (GameObject)Instantiate(original, birdsPos, rotation);

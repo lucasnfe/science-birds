@@ -3224,6 +3224,7 @@ MonoBehaviour:
   _isSimulation: 0
   _timesToGiveUp: 3
   _timeToResetLevel: 1
+  _birdsAmounInARow: 5
   _clips:
   - {fileID: 8300000, guid: d6aabc3c34a094a859e527de492307b0, type: 3}
   - {fileID: 8300000, guid: 8e23d7e7119f4462a8e04cce1916a33f, type: 3}

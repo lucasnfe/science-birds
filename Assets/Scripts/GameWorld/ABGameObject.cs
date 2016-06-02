@@ -11,6 +11,7 @@ public abstract class ABGameObject : MonoBehaviour
 {	
 	protected int   _spriteChangedTimes;
 	protected float _receivedDamage;
+	protected float _timeToDie = 1f;
 
 	protected Collider2D       _collider;
 	protected Rigidbody2D      _rigidBody;
@@ -21,7 +22,6 @@ public abstract class ABGameObject : MonoBehaviour
 	public Sprite[]    _sprites;
 	public AudioClip[] _clips;
 
-	public float _timeToDie = 1f;
 	public float _life = 10f;
 
 	public bool IsDying { get; set; }
