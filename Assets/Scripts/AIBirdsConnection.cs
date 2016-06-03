@@ -16,8 +16,6 @@ public class Message {
 
 public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 
-	private int _currentLevel;
-
 	Dictionary<String, Handler> handlers;
 	WebSocket socket;
 
@@ -128,12 +126,9 @@ public class AIBirdsConnection : ABSingleton<AIBirdsConnection> {
 
 		int levelIndex = data[2]["levelIndex"].AsInt;
 
-		if(levelIndex > _currentLevel)
-			LevelList.Instance.NextLevel ();
+		Debug.Log ("Level index:" + levelIndex);
 
-		Debug.Log ("Level index:" + levelIndex + " " + _currentLevel);
-
-		_currentLevel = levelIndex;
+		LevelList.Instance.SetLevel(levelIndex - 1);
 		ABSceneManager.Instance.LoadScene ("GameWorld");
 
 		string id = data [0];

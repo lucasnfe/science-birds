@@ -42,4 +42,16 @@ public class LevelList : ABSingleton<LevelList> {
 
 		return level;
 	}
+
+	// Use this for initialization
+	public ABLevel SetLevel(int index) {
+
+		if(index < 0 || index >= _levels.Length)
+			return null;
+
+		CurrentIndex = index;
+		ABLevel level = _levels [CurrentIndex];
+
+		return level;
+	}
 }
