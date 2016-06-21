@@ -1,0 +1,1082 @@
+fileFormatVersion: 2
+guid: 39c7f64c29e1449da925a3468b648a26
+timeCreated: 1466449512
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: blocks-stone_0
+    21300002: blocks-stone_1
+    21300004: blocks-stone_2
+    21300006: blocks-stone_3
+    21300008: blocks-stone_4
+    21300010: blocks-stone_5
+    21300012: blocks-stone_6
+    21300014: blocks-stone_7
+    21300016: blocks-stone_8
+    21300018: blocks-stone_9
+    21300020: blocks-stone_10
+    21300022: blocks-stone_11
+    21300024: blocks-stone_12
+    21300026: blocks-stone_13
+    21300028: blocks-stone_14
+    21300030: blocks-stone_15
+    21300032: blocks-stone_16
+    21300034: blocks-stone_17
+    21300036: blocks-stone_18
+    21300038: blocks-stone_19
+    21300040: blocks-stone_20
+    21300042: blocks-stone_21
+    21300044: blocks-stone_22
+    21300046: blocks-stone_23
+    21300048: blocks-stone_24
+    21300050: blocks-stone_25
+    21300052: blocks-stone_26
+    21300054: blocks-stone_27
+    21300056: blocks-stone_28
+    21300058: blocks-stone_29
+    21300060: blocks-stone_30
+    21300062: blocks-stone_31
+    21300064: blocks-stone_32
+    21300066: blocks-stone_33
+    21300068: blocks-stone_34
+    21300070: blocks-stone_35
+    21300072: blocks-stone_36
+    21300074: blocks-stone_37
+    21300076: blocks-stone_38
+    21300078: blocks-stone_39
+    21300080: blocks-stone_40
+    21300082: blocks-stone_41
+    21300084: blocks-stone_42
+    21300086: blocks-stone_43
+    21300088: blocks-stone_44
+    21300090: blocks-stone_45
+    21300092: blocks-stone_46
+    21300094: blocks-stone_47
+    21300096: blocks-stone_48
+    21300098: blocks-stone_49
+    21300100: blocks-stone_50
+    21300102: blocks-stone_51
+    21300104: blocks-stone_52
+    21300106: blocks-stone_53
+    21300108: blocks-stone_54
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: blocks-stone_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1085
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 35}
+        - {x: -20, y: 28}
+        - {x: -70, y: -29}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 10, y: 35}
+    - name: blocks-stone_1
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1085
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 35}
+        - {x: -35, y: 29}
+        - {x: -35, y: -29}
+        - {x: -34, y: -35}
+        - {x: 31, y: -35}
+        - {x: 35, y: -26}
+        - {x: 35, y: 29}
+        - {x: 25, y: 35}
+    - name: blocks-stone_2
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 1085
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-stone_3
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 1085
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 35}
+        - {x: -20, y: 28}
+        - {x: -70, y: -29}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 10, y: 35}
+    - name: blocks-stone_4
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 1085
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 35}
+        - {x: -35, y: 29}
+        - {x: -35, y: -29}
+        - {x: -34, y: -35}
+        - {x: 31, y: -35}
+        - {x: 35, y: -26}
+        - {x: 35, y: 29}
+        - {x: 25, y: 35}
+    - name: blocks-stone_5
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 1085
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-stone_6
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 1085
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-stone_7
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 1085
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 35}
+        - {x: -35, y: 27}
+        - {x: -35, y: -29}
+        - {x: -33, y: -35}
+        - {x: 26, y: -35}
+        - {x: 35, y: -28}
+        - {x: 35, y: 22}
+        - {x: 30, y: 35}
+    - name: blocks-stone_8
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 1085
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-stone_9
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 935
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+      - - {x: -18, y: 91}
+        - {x: 18, y: 91}
+        - {x: 18, y: -91}
+        - {x: -18, y: -91}
+    - name: blocks-stone_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-stone_11
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 35}
+        - {x: -35, y: 21}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 22}
+        - {x: 21, y: 35}
+    - name: blocks-stone_12
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-stone_13
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 33}
+        - {x: 68, y: 35}
+    - name: blocks-stone_14
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 1005
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 35}
+        - {x: -110, y: 32}
+        - {x: -110, y: -32}
+        - {x: -107, y: -35}
+        - {x: 108, y: -35}
+        - {x: 110, y: -34}
+        - {x: 110, y: 35}
+    - name: blocks-stone_15
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-stone_16
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -68, y: 35}
+        - {x: -70, y: 34}
+        - {x: -70, y: -33}
+        - {x: -68, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 35}
+    - name: blocks-stone_17
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 925
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -33}
+        - {x: -108, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+    - name: blocks-stone_18
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 855
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+    - name: blocks-stone_19
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 855
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 70}
+        - {x: -70, y: 67}
+        - {x: -70, y: -67}
+        - {x: -67, y: -70}
+        - {x: 69, y: -70}
+        - {x: 70, y: -69}
+        - {x: 70, y: 70}
+    - name: blocks-stone_20
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 855
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 70}
+        - {x: -110, y: 67}
+        - {x: -110, y: -67}
+        - {x: -107, y: -70}
+        - {x: 107, y: -70}
+        - {x: 110, y: -67}
+        - {x: 110, y: 68}
+        - {x: 108, y: 70}
+    - name: blocks-stone_21
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 775
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -107}
+        - {x: -32, y: -110}
+        - {x: 32, y: -110}
+        - {x: 35, y: -107}
+        - {x: 35, y: 110}
+    - name: blocks-stone_22
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 775
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -107}
+        - {x: -67, y: -110}
+        - {x: 69, y: -110}
+        - {x: 70, y: -109}
+        - {x: 70, y: 110}
+    - name: blocks-stone_23
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 855
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-stone_24
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 775
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 35}
+        - {x: -35, y: 27}
+        - {x: -35, y: -29}
+        - {x: -33, y: -35}
+        - {x: 26, y: -35}
+        - {x: 35, y: -28}
+        - {x: 35, y: 22}
+        - {x: 30, y: 35}
+    - name: blocks-stone_25
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 775
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-stone_26
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 775
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-stone_27
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 705
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 70}
+    - name: blocks-stone_28
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 625
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 32, y: -70}
+        - {x: 35, y: -67}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+    - name: blocks-stone_29
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 625
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+    - name: blocks-stone_30
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 625
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 70}
+        - {x: -110, y: 67}
+        - {x: -110, y: -67}
+        - {x: -107, y: -70}
+        - {x: 108, y: -70}
+        - {x: 110, y: -68}
+        - {x: 110, y: 70}
+    - name: blocks-stone_31
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 545
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+    - name: blocks-stone_32
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 545
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 68, y: 110}
+        - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -108}
+        - {x: -69, y: -110}
+        - {x: 67, y: -110}
+        - {x: 70, y: -107}
+        - {x: 70, y: 109}
+    - name: blocks-stone_33
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 695
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+      - - {x: -18, y: 16}
+        - {x: 18, y: 16}
+        - {x: 18, y: -16}
+        - {x: -18, y: -16}
+    - name: blocks-stone_34
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 695
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 33}
+        - {x: 68, y: 35}
+      - - {x: -53, y: 16}
+        - {x: 53, y: 16}
+        - {x: 53, y: -16}
+        - {x: -53, y: -16}
+    - name: blocks-stone_35
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 615
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+      - - {x: -93, y: 16}
+        - {x: 93, y: 16}
+        - {x: 93, y: -16}
+        - {x: -93, y: -16}
+    - name: blocks-stone_36
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 475
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+    - name: blocks-stone_37
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 535
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+      - - {x: -18, y: 16}
+        - {x: 18, y: 16}
+        - {x: 18, y: -16}
+        - {x: -18, y: -16}
+    - name: blocks-stone_38
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 535
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -33}
+        - {x: -68, y: -35}
+        - {x: 69, y: -35}
+        - {x: 70, y: -33}
+        - {x: 70, y: 35}
+      - - {x: -53, y: 16}
+        - {x: 53, y: 16}
+        - {x: 53, y: -16}
+        - {x: -53, y: -16}
+    - name: blocks-stone_39
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 535
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+        - {x: -110, y: 35}
+      - - {x: -93, y: 16}
+        - {x: 93, y: 16}
+        - {x: 93, y: -16}
+        - {x: -93, y: -16}
+    - name: blocks-stone_40
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 465
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+      - - {x: -18, y: 51}
+        - {x: 18, y: 51}
+        - {x: 18, y: -51}
+        - {x: -18, y: -51}
+    - name: blocks-stone_41
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 465
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+      - - {x: -53, y: 51}
+        - {x: 53, y: 51}
+        - {x: 53, y: -51}
+        - {x: -53, y: -51}
+    - name: blocks-stone_42
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 315
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 70}
+        - {x: -110, y: -70}
+        - {x: 110, y: -70}
+        - {x: 110, y: 68}
+        - {x: 108, y: 70}
+      - - {x: -93, y: 51}
+        - {x: 93, y: 51}
+        - {x: 93, y: -51}
+        - {x: -93, y: -51}
+    - name: blocks-stone_43
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 235
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 108}
+        - {x: 33, y: 110}
+      - - {x: -18, y: 91}
+        - {x: 18, y: 91}
+        - {x: 18, y: -91}
+        - {x: -18, y: -91}
+    - name: blocks-stone_44
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 235
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 110}
+        - {x: -70, y: -110}
+        - {x: 69, y: -110}
+        - {x: 70, y: -109}
+        - {x: 70, y: 110}
+      - - {x: -53, y: 91}
+        - {x: 53, y: 91}
+        - {x: 53, y: -91}
+        - {x: -53, y: -91}
+    - name: blocks-stone_45
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 315
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 32, y: -70}
+        - {x: 35, y: -67}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+      - - {x: -18, y: 51}
+        - {x: 18, y: 51}
+        - {x: 18, y: -51}
+        - {x: -18, y: -51}
+    - name: blocks-stone_46
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 315
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+      - - {x: -53, y: 51}
+        - {x: 53, y: 51}
+        - {x: 53, y: -51}
+        - {x: -53, y: -51}
+    - name: blocks-stone_47
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 315
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 70}
+        - {x: -110, y: -69}
+        - {x: -108, y: -70}
+        - {x: 109, y: -70}
+        - {x: 110, y: -69}
+        - {x: 110, y: 70}
+      - - {x: -93, y: 51}
+        - {x: 93, y: 51}
+        - {x: 93, y: -51}
+        - {x: -93, y: -51}
+    - name: blocks-stone_48
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 85
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 110}
+        - {x: -70, y: -110}
+        - {x: 70, y: -110}
+        - {x: 70, y: 110}
+      - - {x: -53, y: 91}
+        - {x: 53, y: 91}
+        - {x: 53, y: -91}
+        - {x: -53, y: -91}
+    - name: blocks-stone_49
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 235
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-stone_50
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 235
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 35}
+    - name: blocks-stone_51
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 235
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+    - name: blocks-stone_52
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 85
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 67, y: -70}
+        - {x: 70, y: -67}
+        - {x: 70, y: 70}
+    - name: blocks-stone_53
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 85
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110, y: -67}
+        - {x: 110, y: 70}
+        - {x: -110, y: 70}
+        - {x: -110, y: -70}
+        - {x: 107, y: -70}
+    - name: blocks-stone_54
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 5
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 70, y: -107}
+        - {x: 70, y: 108}
+        - {x: 68, y: 110}
+        - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -107}
+        - {x: -67, y: -110}
+        - {x: 67, y: -110}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

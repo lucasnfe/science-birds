@@ -43,7 +43,7 @@ public enum SLINGSHOT_LINE_POS
 
 public class ABConstants {
 
-	public static readonly Vector3 SLING_SELECT_POS = new Vector3 (-7.62f, -1.24f, 1f);
+	public static readonly Vector3 SLING_SELECT_POS = new Vector3 (-7.7f, -1.2f, 1f);
 	public static readonly string DEFAULT_LEVELS_FOLDER = "Levels";
 
 	#if UNITY_STANDALONE_OSX && !UNITY_EDITOR
@@ -68,7 +68,7 @@ public class ABWorldAssets {
 
 	public static readonly GameObject[] WOOD_DESTRUCTION_EFFECT  = Resources.LoadAll<GameObject>("Prefabs/GameWorld/Particles/Wood");
 	public static readonly GameObject[] STONE_DESTRUCTION_EFFECT = Resources.LoadAll<GameObject>("Prefabs/GameWorld/Particles/Stone");
-	public static readonly GameObject[] ICE_DESTRUCTION_EFFECT   = Resources.LoadAll<GameObject>("Prefabs/GameWorld/Particles/Stone");
+	public static readonly GameObject[] ICE_DESTRUCTION_EFFECT   = Resources.LoadAll<GameObject>("Prefabs/GameWorld/Particles/Ice");
 
 	public static readonly Dictionary<string, GameObject> BIRDS = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Birds");
 	public static readonly Dictionary<string, GameObject> PIGS = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Pigs");

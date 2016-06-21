@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 166524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,7 +41,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166524}
   m_UseAutoMass: 1
-  m_Mass: 1
+  m_Mass: 0.0919387
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -64,14 +64,14 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -0.091299415, y: 0.20391178}
-      - {x: -0.20999992, y: 0.059123993}
-      - {x: -0.19782495, y: -0.07564354}
-      - {x: -0.11, y: -0.21}
-      - {x: 0.063474536, y: -0.20695591}
-      - {x: 0.20086855, y: -0.09000015}
-      - {x: 0.2008686, y: 0.09912491}
-      - {x: 0.059562206, y: 0.20391178}
+    - - {x: -0.21386719, y: 0.3111589}
+      - {x: -0.34788895, y: 0.04380274}
+      - {x: -0.2744298, y: -0.19821167}
+      - {x: -0.12532091, y: -0.34788918}
+      - {x: 0.12475872, y: -0.34484506}
+      - {x: 0.35407877, y: -0.13919759}
+      - {x: 0.30811548, y: 0.17572999}
+      - {x: 0.074882984, y: 0.3418007}
 --- !u!82 &8259954
 AudioSource:
   m_ObjectHideFlags: 1
@@ -159,25 +159,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites: []
   _clips: []
+  _life: 4
   _timeToDie: 0
-  _life: 5
   _material: 0
-  _points: 25
+  _points: 15
   _woodSprites:
-  - {fileID: 21300130, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300132, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300134, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300110, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300000, guid: 3741381c5a43549f5ad0eccce07667a0, type: 3}
+  - {fileID: 21300012, guid: 3741381c5a43549f5ad0eccce07667a0, type: 3}
+  - {fileID: 21300046, guid: 3741381c5a43549f5ad0eccce07667a0, type: 3}
   _stoneSprites:
-  - {fileID: 21300112, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300114, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300116, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300118, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300002, guid: 39c7f64c29e1449da925a3468b648a26, type: 3}
+  - {fileID: 21300014, guid: 39c7f64c29e1449da925a3468b648a26, type: 3}
+  - {fileID: 21300048, guid: 39c7f64c29e1449da925a3468b648a26, type: 3}
   _iceSprites:
-  - {fileID: 21300182, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300136, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300156, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300158, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300004, guid: 8f76fe742d4104ed897cbfa4a9ec0c90, type: 3}
+  - {fileID: 21300016, guid: 8f76fe742d4104ed897cbfa4a9ec0c90, type: 3}
+  - {fileID: 21300082, guid: 8f76fe742d4104ed897cbfa4a9ec0c90, type: 3}
 --- !u!114 &11495678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,7 +226,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300130, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3741381c5a43549f5ad0eccce07667a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

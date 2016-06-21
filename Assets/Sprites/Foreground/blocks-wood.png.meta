@@ -1,0 +1,1082 @@
+fileFormatVersion: 2
+guid: 3741381c5a43549f5ad0eccce07667a0
+timeCreated: 1466449371
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: blocks-wood_0
+    21300002: blocks-wood_1
+    21300004: blocks-wood_2
+    21300006: blocks-wood_3
+    21300008: blocks-wood_4
+    21300010: blocks-wood_5
+    21300012: blocks-wood_6
+    21300014: blocks-wood_7
+    21300016: blocks-wood_8
+    21300018: blocks-wood_9
+    21300020: blocks-wood_10
+    21300022: blocks-wood_11
+    21300024: blocks-wood_12
+    21300026: blocks-wood_13
+    21300028: blocks-wood_14
+    21300030: blocks-wood_15
+    21300032: blocks-wood_16
+    21300034: blocks-wood_17
+    21300036: blocks-wood_18
+    21300038: blocks-wood_19
+    21300040: blocks-wood_20
+    21300042: blocks-wood_21
+    21300044: blocks-wood_22
+    21300046: blocks-wood_23
+    21300048: blocks-wood_24
+    21300050: blocks-wood_25
+    21300052: blocks-wood_26
+    21300054: blocks-wood_27
+    21300056: blocks-wood_28
+    21300058: blocks-wood_29
+    21300060: blocks-wood_30
+    21300062: blocks-wood_31
+    21300064: blocks-wood_32
+    21300066: blocks-wood_33
+    21300068: blocks-wood_34
+    21300070: blocks-wood_35
+    21300072: blocks-wood_36
+    21300074: blocks-wood_37
+    21300076: blocks-wood_38
+    21300078: blocks-wood_39
+    21300080: blocks-wood_40
+    21300082: blocks-wood_41
+    21300084: blocks-wood_42
+    21300086: blocks-wood_43
+    21300088: blocks-wood_44
+    21300090: blocks-wood_45
+    21300092: blocks-wood_46
+    21300094: blocks-wood_47
+    21300096: blocks-wood_48
+    21300098: blocks-wood_49
+    21300100: blocks-wood_50
+    21300102: blocks-wood_51
+    21300104: blocks-wood_52
+    21300106: blocks-wood_53
+    21300108: blocks-wood_54
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: blocks-wood_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 35}
+        - {x: -35, y: 29}
+        - {x: -35, y: -29}
+        - {x: -34, y: -35}
+        - {x: 31, y: -35}
+        - {x: 35, y: -26}
+        - {x: 35, y: 29}
+        - {x: 25, y: 35}
+    - name: blocks-wood_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-wood_2
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 35}
+        - {x: -20, y: 28}
+        - {x: -70, y: -29}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 10, y: 35}
+    - name: blocks-wood_3
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 35}
+        - {x: -35, y: 29}
+        - {x: -35, y: -29}
+        - {x: -34, y: -35}
+        - {x: 31, y: -35}
+        - {x: 35, y: -26}
+        - {x: 35, y: 29}
+        - {x: 25, y: 35}
+    - name: blocks-wood_4
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-wood_5
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-wood_6
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 35}
+        - {x: -35, y: 27}
+        - {x: -35, y: -29}
+        - {x: -33, y: -35}
+        - {x: 26, y: -35}
+        - {x: 35, y: -28}
+        - {x: 35, y: 22}
+        - {x: 30, y: 35}
+    - name: blocks-wood_7
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-wood_8
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-wood_9
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 855
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 110}
+        - {x: -70, y: -110}
+        - {x: 70, y: -110}
+        - {x: 70, y: 110}
+      - - {x: -53, y: 91}
+        - {x: 53, y: 91}
+        - {x: 53, y: -91}
+        - {x: -53, y: -91}
+    - name: blocks-wood_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 925
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 35}
+        - {x: -35, y: 21}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 22}
+        - {x: 21, y: 35}
+    - name: blocks-wood_11
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 925
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-wood_12
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 925
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 33}
+        - {x: 68, y: 35}
+    - name: blocks-wood_13
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 925
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 35}
+        - {x: -110, y: 32}
+        - {x: -110, y: -32}
+        - {x: -107, y: -35}
+        - {x: 108, y: -35}
+        - {x: 110, y: -34}
+        - {x: 110, y: 35}
+    - name: blocks-wood_14
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 925
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-wood_15
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 925
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -68, y: 35}
+        - {x: -70, y: 34}
+        - {x: -70, y: -33}
+        - {x: -68, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 35}
+    - name: blocks-wood_16
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 855
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+    - name: blocks-wood_17
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 775
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -107}
+        - {x: -32, y: -110}
+        - {x: 32, y: -110}
+        - {x: 35, y: -107}
+        - {x: 35, y: 110}
+    - name: blocks-wood_18
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 845
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -33}
+        - {x: -108, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+    - name: blocks-wood_19
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 775
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 70}
+        - {x: -110, y: 67}
+        - {x: -110, y: -67}
+        - {x: -107, y: -70}
+        - {x: 107, y: -70}
+        - {x: 110, y: -67}
+        - {x: 110, y: 68}
+        - {x: 108, y: 70}
+    - name: blocks-wood_20
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 705
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 70}
+        - {x: -70, y: 67}
+        - {x: -70, y: -67}
+        - {x: -67, y: -70}
+        - {x: 69, y: -70}
+        - {x: 70, y: -69}
+        - {x: 70, y: 70}
+    - name: blocks-wood_21
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 705
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 70}
+        - {x: -110, y: 67}
+        - {x: -110, y: -67}
+        - {x: -107, y: -70}
+        - {x: 108, y: -70}
+        - {x: 110, y: -68}
+        - {x: 110, y: 70}
+    - name: blocks-wood_22
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 775
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-wood_23
+      rect:
+        serializedVersion: 2
+        x: 1015
+        y: 775
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 35}
+        - {x: -35, y: 27}
+        - {x: -35, y: -29}
+        - {x: -33, y: -35}
+        - {x: 26, y: -35}
+        - {x: 35, y: -28}
+        - {x: 35, y: 22}
+        - {x: 30, y: 35}
+    - name: blocks-wood_24
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 545
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -107}
+        - {x: -67, y: -110}
+        - {x: 69, y: -110}
+        - {x: 70, y: -109}
+        - {x: 70, y: 110}
+    - name: blocks-wood_25
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 625
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 32, y: -70}
+        - {x: 35, y: -67}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+    - name: blocks-wood_26
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 625
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+    - name: blocks-wood_27
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 545
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+    - name: blocks-wood_28
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 695
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+      - - {x: -18, y: 16}
+        - {x: 18, y: 16}
+        - {x: 18, y: -16}
+        - {x: -18, y: -16}
+    - name: blocks-wood_29
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 695
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-wood_30
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 475
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 68, y: 110}
+        - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -108}
+        - {x: -69, y: -110}
+        - {x: 67, y: -110}
+        - {x: 70, y: -107}
+        - {x: 70, y: 109}
+    - name: blocks-wood_31
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 625
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 33}
+        - {x: 68, y: 35}
+      - - {x: -53, y: 16}
+        - {x: 53, y: 16}
+        - {x: 53, y: -16}
+        - {x: -53, y: -16}
+    - name: blocks-wood_32
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 615
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+      - - {x: -18, y: 16}
+        - {x: 18, y: 16}
+        - {x: 18, y: -16}
+        - {x: -18, y: -16}
+    - name: blocks-wood_33
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 615
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-wood_34
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 615
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-wood_35
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 465
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+      - - {x: -18, y: 51}
+        - {x: 18, y: 51}
+        - {x: 18, y: -51}
+        - {x: -18, y: -51}
+    - name: blocks-wood_36
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 545
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+      - - {x: -93, y: 16}
+        - {x: 93, y: 16}
+        - {x: 93, y: -16}
+        - {x: -93, y: -16}
+    - name: blocks-wood_37
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 385
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 108}
+        - {x: 33, y: 110}
+      - - {x: -18, y: 91}
+        - {x: 18, y: 91}
+        - {x: 18, y: -91}
+        - {x: -18, y: -91}
+    - name: blocks-wood_38
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 535
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 35}
+    - name: blocks-wood_39
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 465
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -33}
+        - {x: -68, y: -35}
+        - {x: 69, y: -35}
+        - {x: 70, y: -33}
+        - {x: 70, y: 35}
+      - - {x: -53, y: 16}
+        - {x: 53, y: 16}
+        - {x: 53, y: -16}
+        - {x: -53, y: -16}
+    - name: blocks-wood_40
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 465
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+        - {x: -110, y: 35}
+      - - {x: -93, y: 16}
+        - {x: 93, y: 16}
+        - {x: 93, y: -16}
+        - {x: -93, y: -16}
+    - name: blocks-wood_41
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 395
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+      - - {x: -53, y: 51}
+        - {x: 53, y: 51}
+        - {x: 53, y: -51}
+        - {x: -53, y: -51}
+    - name: blocks-wood_42
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 385
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 70}
+    - name: blocks-wood_43
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 245
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 70}
+        - {x: -110, y: -70}
+        - {x: 110, y: -70}
+        - {x: 110, y: 68}
+        - {x: 108, y: 70}
+      - - {x: -93, y: 51}
+        - {x: 93, y: 51}
+        - {x: 93, y: -51}
+        - {x: -93, y: -51}
+    - name: blocks-wood_44
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 155
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 110}
+        - {x: -70, y: -110}
+        - {x: 69, y: -110}
+        - {x: 70, y: -109}
+        - {x: 70, y: 110}
+      - - {x: -53, y: 91}
+        - {x: 53, y: 91}
+        - {x: 53, y: -91}
+        - {x: -53, y: -91}
+    - name: blocks-wood_45
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 235
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 32, y: -70}
+        - {x: 35, y: -67}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+      - - {x: -18, y: 51}
+        - {x: 18, y: 51}
+        - {x: 18, y: -51}
+        - {x: -18, y: -51}
+    - name: blocks-wood_46
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 235
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+      - - {x: -53, y: 51}
+        - {x: 53, y: 51}
+        - {x: 53, y: -51}
+        - {x: -53, y: -51}
+    - name: blocks-wood_47
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 245
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 70}
+        - {x: -110, y: -69}
+        - {x: -108, y: -70}
+        - {x: 109, y: -70}
+        - {x: 110, y: -69}
+        - {x: 110, y: 70}
+      - - {x: -93, y: 51}
+        - {x: 93, y: 51}
+        - {x: 93, y: -51}
+        - {x: -93, y: -51}
+    - name: blocks-wood_48
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 155
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+      - - {x: -18, y: 91}
+        - {x: 18, y: 91}
+        - {x: 18, y: -91}
+        - {x: -18, y: -91}
+    - name: blocks-wood_49
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 235
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 67, y: -70}
+        - {x: 70, y: -67}
+        - {x: 70, y: 70}
+    - name: blocks-wood_50
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 155
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 35}
+        - {x: -20, y: 28}
+        - {x: -70, y: -29}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 10, y: 35}
+    - name: blocks-wood_51
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 85
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110, y: -67}
+        - {x: 110, y: 70}
+        - {x: -110, y: 70}
+        - {x: -110, y: -70}
+        - {x: 107, y: -70}
+    - name: blocks-wood_52
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 5
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+    - name: blocks-wood_53
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 5
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 70, y: -107}
+        - {x: 70, y: 108}
+        - {x: 68, y: 110}
+        - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -107}
+        - {x: -67, y: -110}
+        - {x: 67, y: -110}
+    - name: blocks-wood_54
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 75
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -2,22 +2,21 @@
 <Level>
   <BirdsAmount>4</BirdsAmount>
   <GameObjects>
-    <Block type="RectMedium" material="wood" x="2.78" y="-2.68" rotation="0" />
-    <Block type="RectFat" material="wood" x="2.75" y="-2.16" rotation="90.00001" />
+    <Block type="RectFat" material="wood" x="2.79" y="-1.28" rotation="90.00001" />
     <Block type="RectFat" material="wood" x="3.42" y="-2.35" rotation="0" />
     <Block type="RectFat" material="wood" x="2.03" y="-2.34" rotation="0" />
-    <Block type="SquareHole" material="stone" x="2.04" y="-1.7" rotation="0" />
-    <Block type="SquareHole" material="stone" x="3.43" y="-1.7" rotation="0" />
-    <Block type="SquareHole" material="wood" x="-0.07" y="-2.3" rotation="0" />
-    <Block type="SquareHole" material="wood" x="-0.05" y="-1.45" rotation="0" />
-    <Block type="SquareHole" material="wood" x="-0.05" y="-0.59" rotation="0" />
-    <Block type="SquareHole" material="wood" x="5.3" y="-2.34" rotation="0" />
-    <Block type="SquareHole" material="wood" x="5.3" y="-1.48" rotation="0" />
-    <Block type="SquareHole" material="wood" x="5.32" y="-0.64" rotation="0" />
-    <Block type="RectSmall" material="wood" x="1.51" y="-2.67" rotation="0" />
-    <Block type="RectSmall" material="wood" x="4.05" y="-2.68" rotation="0" />
-    <Pig type="BasicSmall" material="" x="2.74" y="-1.48" rotation="0" />
-    <Pig type="BasicSmall" material="" x="-0.04" y="0.06" rotation="0" />
-    <Pig type="BasicSmall" material="" x="5.32" y="0.03" rotation="0" />
+    <Block type="SquareHole" material="stone" x="2.08" y="-1.64" rotation="0" />
+    <Block type="SquareHole" material="stone" x="3.48" y="-1.62" rotation="0" />
+    <Block type="SquareHole" material="wood" x="-0.05" y="-2.63" rotation="0" />
+    <Block type="SquareHole" material="wood" x="-0.05" y="-1.93" rotation="0" />
+    <Block type="SquareHole" material="wood" x="-0.043" y="-1.224" rotation="0" />
+    <Block type="SquareHole" material="wood" x="5.327" y="-2.633" rotation="0" />
+    <Block type="SquareHole" material="wood" x="5.32" y="-1.923" rotation="0" />
+    <Block type="SquareHole" material="wood" x="5.32" y="-1.219" rotation="0" />
+    <Block type="RectSmall" material="wood" x="1.6" y="-2.82" rotation="0" />
+    <Block type="RectSmall" material="wood" x="4.02" y="-2.83" rotation="0" />
+    <Pig type="BasicSmall" material="" x="2.79" y="-0.24" rotation="0" />
+    <Pig type="BasicSmall" material="" x="-0.04" y="-0.527" rotation="0" />
+    <Pig type="BasicSmall" material="" x="5.32" y="-0.515" rotation="0" />
   </GameObjects>
 </Level>

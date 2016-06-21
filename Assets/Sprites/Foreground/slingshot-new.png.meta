@@ -1,0 +1,108 @@
+fileFormatVersion: 2
+guid: 156552b12eea54c23b9581aa84177920
+timeCreated: 1466529748
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: slingshot-new_0
+    21300002: slingshot-new_1
+    21300004: slingshot-new_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: slingshot-new_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 214
+        width: 22
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: slingshot-new_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 32
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 64.5}
+        - {x: -16, y: -23.5}
+        - {x: 10, y: -61.5}
+        - {x: 16, y: -61.5}
+        - {x: 16, y: 63.5}
+        - {x: 15, y: 64.5}
+    - name: slingshot-new_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 40
+        height: 207
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 95.5}
+        - {x: -6, y: 91.5}
+        - {x: -7, y: 75.5}
+        - {x: -7, y: 52.5}
+        - {x: -20, y: 30.5}
+        - {x: -20, y: -103.5}
+        - {x: 5, y: -103.5}
+        - {x: 20, y: -14.5}
+        - {x: 20, y: 95.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

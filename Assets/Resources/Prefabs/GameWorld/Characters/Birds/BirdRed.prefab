@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -65,15 +65,18 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0.06, y: 0.225}
-      - {x: -0.09, y: 0.225}
-      - {x: -0.23, y: 0.075}
-      - {x: -0.23, y: -0.065}
-      - {x: -0.14, y: -0.225}
-      - {x: 0.16, y: -0.225}
-      - {x: 0.23, y: -0.155}
-      - {x: 0.23, y: 0.035}
-      - {x: 0.21, y: 0.085}
+    - - {x: 0.2910018, y: 0.14713049}
+      - {x: 0.15153408, y: 0.31122565}
+      - {x: 0.012965202, y: 0.35342336}
+      - {x: -0.1263175, y: 0.3367902}
+      - {x: -0.3322122, y: 0.1504732}
+      - {x: -0.32315874, y: -0.11131725}
+      - {x: -0.3449489, y: -0.14115718}
+      - {x: -0.23264885, y: -0.28261125}
+      - {x: 0.007748604, y: -0.36025345}
+      - {x: 0.15012622, y: -0.32736084}
+      - {x: 0.34564257, y: -0.12225151}
+      - {x: 0.34773588, y: 0.02613604}
 --- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
@@ -326,7 +329,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300038, guid: 01d8182a7a5694f4f9545847cd98417c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3bc493e7d3fc94625b201450a816af43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: c3bf4d04b90e043f98cbd984d3194d00
+timeCreated: 1466487373
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: hud-new_0
+    21300002: hud-new_1
+    21300004: hud-new_2
+    21300006: hud-new_3
+    21300008: hud-new_4
+    21300010: hud-new_5
+    21300012: hud-new_6
+    21300014: hud-new_7
+    21300016: hud-new_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: hud-new_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 242
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hud-new_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 241
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hud-new_2
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 241
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: hud-new_3
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 155
+        width: 111
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -50.5, y: 58}
+        - {x: -55.5, y: 55}
+        - {x: -55.5, y: -58}
+        - {x: 55.5, y: -58}
+        - {x: 55.5, y: 42}
+        - {x: 46.5, y: 58}
+    - name: hud-new_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 155
+        width: 139
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -69.5, y: 34.5}
+        - {x: -69.5, y: -34.5}
+        - {x: 69.5, y: -34.5}
+        - {x: 69.5, y: 34.5}
+    - name: hud-new_5
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 155
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: 23}
+        - {x: -22, y: 22}
+        - {x: -22, y: -23}
+        - {x: 14, y: -23}
+        - {x: 22, y: -18}
+        - {x: 22, y: 16}
+        - {x: 17, y: 23}
+    - name: hud-new_6
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 38
+        width: 94
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43, y: 49.5}
+        - {x: -47, y: 33.5}
+        - {x: -47, y: -38.5}
+        - {x: -29, y: -49.5}
+        - {x: 26, y: -49.5}
+        - {x: 47, y: -30.5}
+        - {x: 47, y: 49.5}
+    - name: hud-new_7
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 38
+        width: 94
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43, y: 49.5}
+        - {x: -47, y: 33.5}
+        - {x: -47, y: -38.5}
+        - {x: -29, y: -49.5}
+        - {x: 26, y: -49.5}
+        - {x: 47, y: -30.5}
+        - {x: 47, y: 49.5}
+    - name: hud-new_8
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 38
+        width: 94
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -43, y: 49.5}
+        - {x: -47, y: 33.5}
+        - {x: -47, y: -38.5}
+        - {x: -29, y: -49.5}
+        - {x: 26, y: -49.5}
+        - {x: 47, y: -30.5}
+        - {x: 47, y: 49.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

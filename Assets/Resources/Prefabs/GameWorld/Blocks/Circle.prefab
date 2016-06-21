@@ -41,7 +41,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175512}
   m_UseAutoMass: 1
-  m_Mass: 1
+  m_Mass: 0.49229997
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -189,25 +189,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites: []
   _clips: []
+  _life: 4
   _timeToDie: 0
-  _life: 5
   _material: 0
-  _points: 25
+  _points: 15
   _woodSprites:
-  - {fileID: 21300086, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300106, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300126, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300146, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300000, guid: 3741381c5a43549f5ad0eccce07667a0, type: 3}
+  - {fileID: 21300012, guid: 3741381c5a43549f5ad0eccce07667a0, type: 3}
+  - {fileID: 21300046, guid: 3741381c5a43549f5ad0eccce07667a0, type: 3}
   _stoneSprites:
-  - {fileID: 21300054, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300056, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300058, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300068, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300002, guid: 39c7f64c29e1449da925a3468b648a26, type: 3}
+  - {fileID: 21300014, guid: 39c7f64c29e1449da925a3468b648a26, type: 3}
+  - {fileID: 21300048, guid: 39c7f64c29e1449da925a3468b648a26, type: 3}
   _iceSprites:
-  - {fileID: 21300050, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300052, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300170, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300048, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300004, guid: 8f76fe742d4104ed897cbfa4a9ec0c90, type: 3}
+  - {fileID: 21300016, guid: 8f76fe742d4104ed897cbfa4a9ec0c90, type: 3}
+  - {fileID: 21300082, guid: 8f76fe742d4104ed897cbfa4a9ec0c90, type: 3}
 --- !u!212 &21290922
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -234,7 +231,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300086, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3741381c5a43549f5ad0eccce07667a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

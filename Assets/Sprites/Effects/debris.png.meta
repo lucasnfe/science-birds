@@ -1,0 +1,237 @@
+fileFormatVersion: 2
+guid: c2a311af8c6e2402e857110c06f2b361
+timeCreated: 1466532966
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: debris_0
+    21300002: debris_1
+    21300004: debris_2
+    21300006: debris_3
+    21300008: debris_4
+    21300010: debris_5
+    21300012: debris_6
+    21300014: debris_7
+    21300016: debris_8
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: debris_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 142
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: -19}
+        - {x: -26, y: -28}
+        - {x: 7, y: -28}
+        - {x: 32, y: -5}
+        - {x: 32, y: 20}
+        - {x: 27, y: 28}
+        - {x: -25, y: 28}
+        - {x: -32, y: 18}
+    - name: debris_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 137
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5, y: 30.5}
+        - {x: -27.5, y: 3.5}
+        - {x: -27.5, y: -27.5}
+        - {x: -26.5, y: -30.5}
+        - {x: 23.5, y: -30.5}
+        - {x: 27.5, y: -17.5}
+        - {x: 27.5, y: 17.5}
+        - {x: 17.5, y: 30.5}
+    - name: debris_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 137
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5, y: 30.5}
+        - {x: -27.5, y: 3.5}
+        - {x: -27.5, y: -27.5}
+        - {x: -26.5, y: -30.5}
+        - {x: 23.5, y: -30.5}
+        - {x: 27.5, y: -17.5}
+        - {x: 27.5, y: 17.5}
+        - {x: 17.5, y: 30.5}
+    - name: debris_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 137
+        width: 55
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3.5, y: 30.5}
+        - {x: -27.5, y: 3.5}
+        - {x: -27.5, y: -27.5}
+        - {x: -26.5, y: -30.5}
+        - {x: 23.5, y: -30.5}
+        - {x: 27.5, y: -17.5}
+        - {x: 27.5, y: 17.5}
+        - {x: 17.5, y: 30.5}
+    - name: debris_4
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 75
+        width: 59
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 26}
+        - {x: -29.5, y: 8}
+        - {x: -29.5, y: -16}
+        - {x: -15.5, y: -26}
+        - {x: 17.5, y: -26}
+        - {x: 29.5, y: -16}
+        - {x: 29.5, y: 23}
+        - {x: 21.5, y: 26}
+    - name: debris_5
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 71
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: -19}
+        - {x: -26, y: -28}
+        - {x: 7, y: -28}
+        - {x: 32, y: -5}
+        - {x: 32, y: 20}
+        - {x: 27, y: 28}
+        - {x: -25, y: 28}
+        - {x: -32, y: 18}
+    - name: debris_6
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 75
+        width: 59
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 26}
+        - {x: -29.5, y: 8}
+        - {x: -29.5, y: -16}
+        - {x: -15.5, y: -26}
+        - {x: 17.5, y: -26}
+        - {x: 29.5, y: -16}
+        - {x: 29.5, y: 23}
+        - {x: 21.5, y: 26}
+    - name: debris_7
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 9
+        width: 59
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15.5, y: 26}
+        - {x: -29.5, y: 8}
+        - {x: -29.5, y: -16}
+        - {x: -15.5, y: -26}
+        - {x: 17.5, y: -26}
+        - {x: 29.5, y: -16}
+        - {x: 29.5, y: 23}
+        - {x: 21.5, y: 26}
+    - name: debris_8
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 5
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: -19}
+        - {x: -26, y: -28}
+        - {x: 7, y: -28}
+        - {x: 32, y: -5}
+        - {x: 32, y: 20}
+        - {x: 27, y: 28}
+        - {x: -25, y: 28}
+        - {x: -32, y: 18}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

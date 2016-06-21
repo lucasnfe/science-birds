@@ -1,0 +1,1082 @@
+fileFormatVersion: 2
+guid: 8f76fe742d4104ed897cbfa4a9ec0c90
+timeCreated: 1466449503
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: blocks-glass_0
+    21300002: blocks-glass_1
+    21300004: blocks-glass_2
+    21300006: blocks-glass_3
+    21300008: blocks-glass_4
+    21300010: blocks-glass_5
+    21300012: blocks-glass_6
+    21300014: blocks-glass_7
+    21300016: blocks-glass_8
+    21300018: blocks-glass_9
+    21300020: blocks-glass_10
+    21300022: blocks-glass_11
+    21300024: blocks-glass_12
+    21300026: blocks-glass_13
+    21300028: blocks-glass_14
+    21300030: blocks-glass_15
+    21300032: blocks-glass_16
+    21300034: blocks-glass_17
+    21300036: blocks-glass_18
+    21300038: blocks-glass_19
+    21300040: blocks-glass_20
+    21300042: blocks-glass_21
+    21300044: blocks-glass_22
+    21300046: blocks-glass_23
+    21300048: blocks-glass_24
+    21300050: blocks-glass_25
+    21300052: blocks-glass_26
+    21300054: blocks-glass_27
+    21300056: blocks-glass_28
+    21300058: blocks-glass_29
+    21300060: blocks-glass_30
+    21300062: blocks-glass_31
+    21300064: blocks-glass_32
+    21300066: blocks-glass_33
+    21300068: blocks-glass_34
+    21300070: blocks-glass_35
+    21300072: blocks-glass_36
+    21300074: blocks-glass_37
+    21300076: blocks-glass_38
+    21300078: blocks-glass_39
+    21300080: blocks-glass_40
+    21300082: blocks-glass_41
+    21300084: blocks-glass_42
+    21300086: blocks-glass_43
+    21300088: blocks-glass_44
+    21300090: blocks-glass_45
+    21300092: blocks-glass_46
+    21300094: blocks-glass_47
+    21300096: blocks-glass_48
+    21300098: blocks-glass_49
+    21300100: blocks-glass_50
+    21300102: blocks-glass_51
+    21300104: blocks-glass_52
+    21300106: blocks-glass_53
+    21300108: blocks-glass_54
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 0
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: blocks-glass_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-glass_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 35}
+        - {x: -20, y: 28}
+        - {x: -70, y: -29}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 10, y: 35}
+    - name: blocks-glass_2
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 20, y: 35}
+        - {x: -25, y: 35}
+        - {x: -35, y: 28}
+        - {x: -35, y: -26}
+        - {x: -31, y: -35}
+        - {x: 22, y: -35}
+        - {x: 35, y: -23}
+        - {x: 35, y: 22}
+    - name: blocks-glass_3
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-glass_4
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 35}
+        - {x: -20, y: 28}
+        - {x: -70, y: -29}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 10, y: 35}
+    - name: blocks-glass_5
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 35}
+        - {x: -35, y: 29}
+        - {x: -35, y: -29}
+        - {x: -34, y: -35}
+        - {x: 31, y: -35}
+        - {x: 35, y: -26}
+        - {x: 35, y: 29}
+        - {x: 25, y: 35}
+    - name: blocks-glass_6
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-glass_7
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 1005
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-glass_8
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 1005
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 35}
+        - {x: -35, y: 27}
+        - {x: -35, y: -29}
+        - {x: -33, y: -35}
+        - {x: 26, y: -35}
+        - {x: 35, y: -28}
+        - {x: 35, y: 22}
+        - {x: 30, y: 35}
+    - name: blocks-glass_9
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 855
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 110}
+        - {x: -70, y: -110}
+        - {x: 69, y: -110}
+        - {x: 70, y: -109}
+        - {x: 70, y: 110}
+      - - {x: -53, y: 91}
+        - {x: 53, y: 91}
+        - {x: 53, y: -91}
+        - {x: -53, y: -91}
+    - name: blocks-glass_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 925
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-glass_11
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 925
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-glass_12
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 925
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 35}
+        - {x: -35, y: 21}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 22}
+        - {x: 21, y: 35}
+    - name: blocks-glass_13
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 925
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-glass_14
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 925
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 33}
+        - {x: 68, y: 35}
+    - name: blocks-glass_15
+      rect:
+        serializedVersion: 2
+        x: 545
+        y: 925
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 35}
+        - {x: -110, y: 32}
+        - {x: -110, y: -32}
+        - {x: -107, y: -35}
+        - {x: 108, y: -35}
+        - {x: 110, y: -34}
+        - {x: 110, y: 35}
+    - name: blocks-glass_16
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 925
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-glass_17
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 855
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+    - name: blocks-glass_18
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 845
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -68, y: 35}
+        - {x: -70, y: 34}
+        - {x: -70, y: -33}
+        - {x: -68, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 35}
+    - name: blocks-glass_19
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 845
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -33}
+        - {x: -108, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+    - name: blocks-glass_20
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 775
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 70}
+        - {x: -110, y: 67}
+        - {x: -110, y: -67}
+        - {x: -107, y: -70}
+        - {x: 107, y: -70}
+        - {x: 110, y: -67}
+        - {x: 110, y: 68}
+        - {x: 108, y: 70}
+    - name: blocks-glass_21
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 705
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 70}
+        - {x: -70, y: 67}
+        - {x: -70, y: -67}
+        - {x: -67, y: -70}
+        - {x: 69, y: -70}
+        - {x: 70, y: -69}
+        - {x: 70, y: 70}
+    - name: blocks-glass_22
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 625
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -107}
+        - {x: -32, y: -110}
+        - {x: 32, y: -110}
+        - {x: 35, y: -107}
+        - {x: 35, y: 110}
+    - name: blocks-glass_23
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 705
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 32, y: -70}
+        - {x: 35, y: -67}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+    - name: blocks-glass_24
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 705
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 32, y: -70}
+        - {x: 35, y: -67}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+      - - {x: -18, y: 51}
+        - {x: 18, y: 51}
+        - {x: 18, y: -51}
+        - {x: -18, y: -51}
+    - name: blocks-glass_25
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 775
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: -29}
+        - {x: -29, y: 35}
+    - name: blocks-glass_26
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 625
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+      - - {x: -18, y: 16}
+        - {x: 18, y: 16}
+        - {x: 18, y: -16}
+        - {x: -18, y: -16}
+    - name: blocks-glass_27
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 555
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+    - name: blocks-glass_28
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 475
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+    - name: blocks-glass_29
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 475
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 68, y: 110}
+        - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -108}
+        - {x: -69, y: -110}
+        - {x: 67, y: -110}
+        - {x: 70, y: -107}
+        - {x: 70, y: 109}
+    - name: blocks-glass_30
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 625
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -107, y: 70}
+        - {x: -110, y: 67}
+        - {x: -110, y: -67}
+        - {x: -107, y: -70}
+        - {x: 108, y: -70}
+        - {x: 110, y: -68}
+        - {x: 110, y: 70}
+    - name: blocks-glass_31
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 625
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+      - - {x: -18, y: 16}
+        - {x: 18, y: 16}
+        - {x: 18, y: -16}
+        - {x: -18, y: -16}
+    - name: blocks-glass_32
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 555
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+      - - {x: -53, y: 51}
+        - {x: 53, y: 51}
+        - {x: 53, y: -51}
+        - {x: -53, y: -51}
+    - name: blocks-glass_33
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 395
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -107}
+        - {x: -67, y: -110}
+        - {x: 69, y: -110}
+        - {x: 70, y: -109}
+        - {x: 70, y: 110}
+    - name: blocks-glass_34
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 545
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 33}
+        - {x: 68, y: 35}
+      - - {x: -53, y: 16}
+        - {x: 53, y: 16}
+        - {x: 53, y: -16}
+        - {x: -53, y: -16}
+    - name: blocks-glass_35
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 545
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+      - - {x: -93, y: 16}
+        - {x: 93, y: 16}
+        - {x: 93, y: -16}
+        - {x: -93, y: -16}
+    - name: blocks-glass_36
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 465
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -33}
+        - {x: -68, y: -35}
+        - {x: 69, y: -35}
+        - {x: 70, y: -33}
+        - {x: 70, y: 35}
+      - - {x: -53, y: 16}
+        - {x: 53, y: 16}
+        - {x: 53, y: -16}
+        - {x: -53, y: -16}
+    - name: blocks-glass_37
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 465
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+        - {x: -110, y: 35}
+      - - {x: -93, y: 16}
+        - {x: 93, y: 16}
+        - {x: 93, y: -16}
+        - {x: -93, y: -16}
+    - name: blocks-glass_38
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 395
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 68}
+        - {x: 33, y: 70}
+      - - {x: -18, y: 51}
+        - {x: 18, y: 51}
+        - {x: 18, y: -51}
+        - {x: -18, y: -51}
+    - name: blocks-glass_39
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 315
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 108}
+        - {x: 33, y: 110}
+      - - {x: -18, y: 91}
+        - {x: 18, y: 91}
+        - {x: 18, y: -91}
+        - {x: -18, y: -91}
+    - name: blocks-glass_40
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 325
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+      - - {x: -18, y: 91}
+        - {x: 18, y: 91}
+        - {x: 18, y: -91}
+        - {x: -18, y: -91}
+    - name: blocks-glass_41
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 475
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 35}
+        - {x: -35, y: 27}
+        - {x: -35, y: -29}
+        - {x: -33, y: -35}
+        - {x: 26, y: -35}
+        - {x: 35, y: -28}
+        - {x: 35, y: 22}
+        - {x: 30, y: 35}
+    - name: blocks-glass_42
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 315
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 70}
+        - {x: -110, y: -70}
+        - {x: 110, y: -70}
+        - {x: 110, y: 68}
+        - {x: 108, y: 70}
+      - - {x: -93, y: 51}
+        - {x: 93, y: 51}
+        - {x: 93, y: -51}
+        - {x: -93, y: -51}
+    - name: blocks-glass_43
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 395
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 35}
+        - {x: -35, y: -35}
+        - {x: 35, y: -35}
+        - {x: 35, y: 35}
+    - name: blocks-glass_44
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 325
+        width: 70
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 70}
+        - {x: -35, y: -70}
+        - {x: 35, y: -70}
+        - {x: 35, y: 70}
+    - name: blocks-glass_45
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 245
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 70, y: -70}
+        - {x: 70, y: 70}
+      - - {x: -53, y: 51}
+        - {x: 53, y: 51}
+        - {x: 53, y: -51}
+        - {x: -53, y: -51}
+    - name: blocks-glass_46
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 165
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 70}
+        - {x: -110, y: -69}
+        - {x: -108, y: -70}
+        - {x: 109, y: -70}
+        - {x: 110, y: -69}
+        - {x: 110, y: 70}
+      - - {x: -93, y: 51}
+        - {x: 93, y: 51}
+        - {x: 93, y: -51}
+        - {x: -93, y: -51}
+    - name: blocks-glass_47
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 95
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 110}
+        - {x: -70, y: -110}
+        - {x: 70, y: -110}
+        - {x: 70, y: 110}
+      - - {x: -53, y: 91}
+        - {x: 53, y: 91}
+        - {x: 53, y: -91}
+        - {x: -53, y: -91}
+    - name: blocks-glass_48
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 245
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -7, y: 35}
+        - {x: -70, y: -26}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: -28}
+        - {x: 6, y: 35}
+    - name: blocks-glass_49
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 245
+        width: 140
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 35}
+        - {x: -70, y: -35}
+        - {x: 70, y: -35}
+        - {x: 70, y: 35}
+    - name: blocks-glass_50
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 235
+        width: 220
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -110, y: 35}
+        - {x: -110, y: -35}
+        - {x: 110, y: -35}
+        - {x: 110, y: 35}
+    - name: blocks-glass_51
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 85
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -70, y: 70}
+        - {x: -70, y: -70}
+        - {x: 67, y: -70}
+        - {x: 70, y: -67}
+        - {x: 70, y: 70}
+    - name: blocks-glass_52
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 85
+        width: 220
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110, y: -67}
+        - {x: 110, y: 70}
+        - {x: -110, y: 70}
+        - {x: -110, y: -70}
+        - {x: 107, y: -70}
+    - name: blocks-glass_53
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 5
+        width: 70
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 110}
+        - {x: -35, y: -110}
+        - {x: 35, y: -110}
+        - {x: 35, y: 110}
+    - name: blocks-glass_54
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 5
+        width: 140
+        height: 220
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 70, y: -107}
+        - {x: 70, y: 108}
+        - {x: 68, y: 110}
+        - {x: -67, y: 110}
+        - {x: -70, y: 107}
+        - {x: -70, y: -107}
+        - {x: -67, y: -110}
+        - {x: 67, y: -110}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

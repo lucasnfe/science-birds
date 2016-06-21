@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -65,14 +65,11 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -0.16499999, y: 0.225}
-      - {x: -0.235, y: 0.105}
-      - {x: -0.235, y: -0.175}
-      - {x: -0.16499999, y: -0.225}
-      - {x: 0.21499999, y: -0.225}
-      - {x: 0.235, y: -0.175}
-      - {x: 0.235, y: 0.114999995}
-      - {x: 0.114999995, y: 0.225}
+    - - {x: -0.33692884, y: 0.33150905}
+      - {x: -0.34825468, y: -0.3335563}
+      - {x: 0.32199502, y: -0.32692933}
+      - {x: 0.3282547, y: -0.34958005}
+      - {x: 0.31427813, y: 0.33018363}
 --- !u!82 &8237146
 AudioSource:
   m_ObjectHideFlags: 1
@@ -176,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprites:
-  - {fileID: 21300098, guid: cee471ae6334c4d0e9b777485441d1a0, type: 3}
+  - {fileID: 21300002, guid: 3bc493e7d3fc94625b201450a816af43, type: 3}
   _clips:
   - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
   - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
@@ -237,7 +234,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300098, guid: cee471ae6334c4d0e9b777485441d1a0, type: 3}
+  m_Sprite: {fileID: 21300002, guid: 3bc493e7d3fc94625b201450a816af43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
