@@ -2,27 +2,27 @@
 <Level>
   <BirdsAmount>3</BirdsAmount>
   <GameObjects>
-    <Block type="RectTiny" material="stone" x="2.87" y="-2.869" rotation="0" />
-    <Block type="RectTiny" material="stone" x="2.06" y="-2.86" rotation="0" />
-    <Block type="SquareHole" material="stone" x="2.459" y="-2.395" rotation="0" />
-    <Block type="SquareHole" material="ice" x="2.459" y="0.643" rotation="0" />
-    <Block type="RectTiny" material="ice" x="2.06" y="0.17" rotation="0" />
-    <Block type="RectTiny" material="ice" x="2.85" y="0.169" rotation="0" />
-    <Block type="RectTiny" material="stone" x="2.849" y="2.891" rotation="0" />
-    <Block type="RectTiny" material="stone" x="2.07" y="2.896" rotation="0" />
-    <Block type="SquareHole" material="stone" x="2.459" y="3.365" rotation="0" />
-    <Pig type="BasicSmall" material="" x="2.475" y="-1.695" rotation="0" />
-    <Pig type="BasicSmall" material="" x="2.475" y="1.343" rotation="0" />
-    <Pig type="BasicSmall" material="" x="2.475" y="4.065" rotation="0" />
-    <Platform type="Platform" material="" x="1.04" y="-0.32" rotation="0" />
-    <Platform type="Platform" material="" x="1.71" y="-0.32" rotation="0" />
-    <Platform type="Platform" material="" x="2.36" y="-0.32" rotation="0" />
-    <Platform type="Platform" material="" x="3.72" y="-0.32" rotation="0" />
-    <Platform type="Platform" material="" x="3.04" y="-0.32" rotation="0" />
-    <Platform type="Platform" material="" x="3.04" y="2.41" rotation="0" />
-    <Platform type="Platform" material="" x="3.71" y="2.41" rotation="0" />
-    <Platform type="Platform" material="" x="2.35" y="2.41" rotation="0" />
-    <Platform type="Platform" material="" x="1.65" y="2.41" rotation="0" />
-    <Platform type="Platform" material="" x="0.97" y="2.41" rotation="0" />
+    <Block    type="RectTiny"    material="wood"  x="2.54" y="-2.73" />
+    <Block    type="RectTiny"    material="wood"  x="1.70" y="-2.73" />
+    <Block    type="SquareHole"  material="wood"  x="2.15" y="-2.18" />
+    <Block    type="SquareHole"  material="stone" x="2.2"  y="0.72"   />
+    <Block    type="RectTiny"    material="stone" x="1.76" y="0.17"   />
+    <Block    type="RectTiny"    material="stone" x="2.6"  y="0.17"   />
+    <Block    type="RectTiny"    material="ice"   x="2.6"  y="2.91"   />
+    <Block    type="RectTiny"    material="ice"   x="1.76" y="2.91"   />
+    <Block    type="SquareHole"  material="ice"   x="2.2"  y="3.46"   />
+    <Pig      type="BasicSmall"  material=""      x="2.15" y="-1.52"  />
+    <Pig      type="BasicSmall"  material=""      x="2.2"  y="1.38"   />
+    <Pig      type="BasicSmall"  material=""      x="2.2"  y="4.12"   />
+    <Platform type="Platform"    material=""      x="1.04" y="-0.31"  />
+    <Platform type="Platform"    material=""      x="1.64" y="-0.31"  />
+    <Platform type="Platform"    material=""      x="2.27" y="-0.31"  />
+    <Platform type="Platform"    material=""      x="3.47" y="-0.31"  />
+    <Platform type="Platform"    material=""      x="2.86" y="-0.31"   />
+    <Platform type="Platform"    material=""      x="2.79" y="2.4"    />
+    <Platform type="Platform"    material=""      x="3.4"  y="2.4"    />
+    <Platform type="Platform"    material=""      x="2.2"  y="2.4"    />
+    <Platform type="Platform"    material=""      x="1.58" y="2.4"    />
+    <Platform type="Platform"    material=""      x="0.97" y="2.4"    />
   </GameObjects>
 </Level>
