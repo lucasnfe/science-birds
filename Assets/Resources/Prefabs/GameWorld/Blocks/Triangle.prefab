@@ -41,7 +41,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160794}
   m_UseAutoMass: 1
-  m_Mass: 0.45554662
+  m_Mass: 0.3372875
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0.5
@@ -64,13 +64,11 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: -0.39, y: 0.41}
-      - {x: -0.41, y: 0.39}
-      - {x: -0.41, y: -0.39999998}
-      - {x: -0.39999998, y: -0.41}
-      - {x: 0.41, y: -0.41}
-      - {x: 0.42431745, y: -0.3915873}
-      - {x: -0.35999998, y: 0.41}
+    - - {x: -0.35, y: 0.35}
+      - {x: -0.35, y: -0.35}
+      - {x: 0.35, y: -0.35}
+      - {x: 0.35, y: -0.29999998}
+      - {x: -0.29999998, y: 0.35}
 --- !u!82 &8257428
 AudioSource:
   m_ObjectHideFlags: 1
