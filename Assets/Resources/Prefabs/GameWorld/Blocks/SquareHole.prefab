@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites: []
   _clips: []
-  _life: 4
+  _life: 5
   _timeToDie: 0
   _material: 0
   _points: 15
