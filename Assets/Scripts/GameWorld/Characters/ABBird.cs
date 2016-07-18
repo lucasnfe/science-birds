@@ -15,10 +15,16 @@ public class ABBird : ABCharacter {
     
     public GameObject[] _trajectoryParticlesTemplates;
 
-	public bool IsSelected      { get; set; }
-	public bool IsFlying        { get; set; }
-    public bool JumpToSlingshot { get; set; }
-    public bool OutOfSlingShot  { get; set; }
+	private bool _isSelected;
+	public  bool IsSelected      { get { return _isSelected; } }
+
+	private bool _isFlying;    
+	public  bool IsFlying        { get { return _isFlying; } }
+   
+	private bool _isOutOfSlingshot;
+	public  bool OutOfSlingShot  { get { return _isOutOfSlingshot; } }
+
+	public bool JumpToSlingshot { get; set; }
 
 	protected override void Awake ()
     {
@@ -26,29 +32,6 @@ public class ABBird : ABCharacter {
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
-		
-		// Disable collision agains blocks to avoid early collisions
-		int birdsLayer = LayerMask.NameToLayer("Birds");
-		int blocksLayer = LayerMask.NameToLayer("Blocks");
-		
-		Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, true);
-    }
-
-	protected override void Update()
-    {
-		base.Update ();
-
-        if(IsFlying && !OutOfSlingShot)
-            DragBird(transform.position);
-		
-		if(IsInFrontOfSlingshot())
-		{
-			// Enabling collision agains blocks
-			int birdsLayer = LayerMask.NameToLayer("Birds");
-			int blocksLayer = LayerMask.NameToLayer("Blocks");
-			
-			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
-		}
     }
 
     void IdleJump()
@@ -68,11 +51,17 @@ public class ABBird : ABCharacter {
 
 	private void CheckVelocityToDie() {
 
-		if (_rigidBody.velocity.magnitude < 0.005f) {
+		if (_rigidBody.velocity.magnitude < 0.001f) {
 
 			CancelInvoke ();
 			Die ();
 		}
+	}
+
+	// Used to move the camera towards the blocks only when bird is thrown to frontwards
+	public bool IsInFrontOfSlingshot()
+	{
+		return transform.position.x + _collider.bounds.size.x > ABConstants.SLING_SELECT_POS.x + _dragRadius * 2f;
 	}
 
 	public override void Die()
@@ -85,8 +74,7 @@ public class ABBird : ABCharacter {
     {
 		if(OutOfSlingShot && !IsDying)
         {
-			IsFlying = false;
-
+			_isFlying = false;
 			_destroyEffect._shootParticles = false;
 
 			ABGameWorld.Instance.RemoveLastTrajectoryParticle ();
@@ -94,7 +82,7 @@ public class ABBird : ABCharacter {
 			foreach (ABParticle part in _destroyEffect.GetUsedParticles())
 				ABGameWorld.Instance.AddTrajectoryParticle (part);
 
-			InvokeRepeating("CheckVelocityToDie", 0f, _timeToDie);
+			InvokeRepeating("CheckVelocityToDie", 3f, 1f);
 			_animator.Play("die", 0, 0f);
 
 			IsDying = true;
@@ -122,7 +110,7 @@ public class ABBird : ABCharacter {
 
             if(IsFlying)
             {
-				OutOfSlingShot = true;
+				_isOutOfSlingshot = true;
 
 				Vector3 slingBasePos = ABConstants.SLING_SELECT_POS;
                 slingBasePos.z = transform.position.z + 0.5f;
@@ -144,15 +132,13 @@ public class ABBird : ABCharacter {
 				_audioSource.PlayOneShot(_clips[0]);
 		}
 	}
-
-	public bool IsInFrontOfSlingshot()
-	{
-		return transform.position.x + _collider.bounds.size.x > ABConstants.SLING_SELECT_POS.x + _dragRadius;
-	}
 	
     public void SelectBird()
     {
-		IsSelected = true;
+		if (IsFlying || IsDying)
+			return;
+		
+		_isSelected = true;
 
 		_audioSource.PlayOneShot (_clips[1]);
         _animator.Play("selected", 0, 0f);
@@ -167,7 +153,7 @@ public class ABBird : ABCharacter {
 		if(Vector3.Distance(transform.position, ABConstants.SLING_SELECT_POS) <= 0f)
 		{
 			JumpToSlingshot = false;
-			OutOfSlingShot = false;
+			_isOutOfSlingshot = false;
 			_rigidBody.velocity = Vector2.zero;
 		}
     }
@@ -199,12 +185,11 @@ public class ABBird : ABCharacter {
 
 	public void LaunchBird()
 	{
-		IsSelected = false;
-	
 		Vector2 deltaPosFromSlingshot = (transform.position - ABConstants.SLING_SELECT_POS);
 		_animator.Play("flying", 0, 0f);
 
-		IsFlying = true;
+		_isFlying = true;
+		_isSelected = false;
 				
 		// The bird starts with no gravity, so we must set it
 		_rigidBody.gravityScale = _launchGravity;

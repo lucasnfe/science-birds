@@ -23,7 +23,7 @@ public class HUD : ABSingleton<HUD> {
 
 	private Vector3 _inputPos;
 	private Vector3 _dragOrigin;
-	private ABBird _selecetdBird;
+	private ABBird _selectedBird;
 
 	void Start() {
 
@@ -125,7 +125,7 @@ public class HUD : ABSingleton<HUD> {
 			_dragOrigin = _inputPos;
 	}
 
-	public void ClickDown(Vector3 position) {
+	private void ClickDown(Vector3 position) {
 
 		_dragOrigin = position;
 
@@ -136,34 +136,39 @@ public class HUD : ABSingleton<HUD> {
 		{
 			if(hit.transform.tag == "Bird")
 			{
-				_selecetdBird = hit.transform.gameObject.GetComponent<ABBird>();
-				if(_selecetdBird && !_selecetdBird.IsSelected && _selecetdBird == ABGameWorld.Instance.GetCurrentBird())
+				_selectedBird = hit.transform.gameObject.GetComponent<ABBird>();
+				if(_selectedBird && !_selectedBird.IsSelected && _selectedBird == ABGameWorld.Instance.GetCurrentBird())
 				{
-					_selecetdBird.SelectBird();
+					_selectedBird.SelectBird();
 				}
 			}
 		}
 	}
 
-	public void ClickUp() {
+	private void ClickUp() {
 
-		if(_selecetdBird && !_selecetdBird.IsFlying && _selecetdBird == ABGameWorld.Instance.GetCurrentBird())
-		{
-			_selecetdBird.LaunchBird();
-			_selecetdBird = null;
+		if (_selectedBird) {
+
+			if (!_selectedBird.IsFlying && !_selectedBird.IsDying && 
+				_selectedBird == ABGameWorld.Instance.GetCurrentBird ()) {
+
+				_selectedBird.LaunchBird ();
+				_selectedBird = null;
+			}
 		}
 	}
 
-	public void Drag(Vector3 position) {
+	private void Drag(Vector3 position) {
 
-		if(_selecetdBird) {
+		if(_selectedBird) {
 
-			if(!_selecetdBird.IsFlying && _selecetdBird == ABGameWorld.Instance.GetCurrentBird()) {
+			if (!_selectedBird.IsFlying && !_selectedBird.IsDying && 
+				_selectedBird == ABGameWorld.Instance.GetCurrentBird ()) {
 				
 				Vector3 dragPosition = Camera.main.ScreenToWorldPoint(position);
-				dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selecetdBird.transform.position.z);
+				dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selectedBird.transform.position.z);
 
-				_selecetdBird.DragBird(dragPosition);
+				_selectedBird.DragBird(dragPosition);
 			}
 		}
 		else {
@@ -173,12 +178,12 @@ public class HUD : ABSingleton<HUD> {
 		}
 	}
 
-	public void SetZoomIn(bool zoomIn) {
+	private void SetZoomIn(bool zoomIn) {
 		
 		_isZoomingIn = zoomIn;
 	}
 	
-	public void SetZoomOut(bool zoomOut) {
+	private void SetZoomOut(bool zoomOut) {
 		
 		_isZoomingOut = zoomOut;
 	}
@@ -188,7 +193,7 @@ public class HUD : ABSingleton<HUD> {
 		ABGameWorld.Instance.GameplayCam.ZoomCamera(scrollDirection * _zoomSpeed * Time.deltaTime);
 	}
 
-	public void SetScoreDisplay(uint score) {
+	private void SetScoreDisplay(uint score) {
 		
 		if(_scoreDisplay) {
 			

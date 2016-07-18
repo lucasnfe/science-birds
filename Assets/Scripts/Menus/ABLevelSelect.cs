@@ -2,13 +2,14 @@
 using UnityEngine.UI;
 using System.IO;
 using System.Collections;
+using System.Linq;
 
 public class ABLevelSelect : ABMenu {
 
+	public int _lines = 5;
+
 	public GameObject _levelSelector;
 	public GameObject _canvas;
-
-	public int _lines = 5;
 
 	public Vector2 _startPos;
 	public Vector2 _buttonSize;
@@ -33,7 +34,8 @@ public class ABLevelSelect : ABMenu {
 
 #else
 		// Load levels in the streaming folder
-		string[] levelFiles = Directory.GetFiles (Application.dataPath + ABConstants.CUSTOM_LEVELS_FOLDER, "*.xml");
+		string   levelsPath = Application.dataPath + ABConstants.CUSTOM_LEVELS_FOLDER;
+		string[] levelFiles = Directory.GetFiles (levelsPath, "*.xml");
 
 		string[] streamingXml = new string[levelFiles.Length];
 		for (int i = 0; i < levelFiles.Length; i++)

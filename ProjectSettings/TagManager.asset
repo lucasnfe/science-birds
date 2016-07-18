@@ -14,6 +14,7 @@ TagManager:
   - Catapult
   - Question
   - Triangle
+  - Ground
   layers:
   - Default
   - TransparentFX

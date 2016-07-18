@@ -186,6 +186,15 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		// Move next bird to the slingshot
 		if(_birds[0].JumpToSlingshot)
 			_birds[0].SetBirdOnSlingshot();
+
+		int birdsLayer = LayerMask.NameToLayer("Birds");
+		int blocksLayer = LayerMask.NameToLayer("Blocks");
+
+		if(_birds[0].IsFlying || _birds[0].IsDying)
+			
+			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
+		else 
+			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, true);
 	}
 
 	public ABBird GetCurrentBird() {
