@@ -1,3 +1,22 @@
+// SCIENCE BIRDS: A clone version of the Angry Birds game used for 
+// research purposes
+// 
+// Copyright (C) 2016 - Lucas N. Ferreira - lucasnfe@gmail.com
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>
+//
+
 ﻿using UnityEngine;
 using UnityEditor;
 using System;
@@ -19,6 +38,7 @@ class LevelEditor : EditorWindow {
 	private static GameObject   _platform;
 
 	private static int _birdsAdded = 0;
+	private static int _birdsAmounInARow = 5;
 	private static Vector3 _groundPos;
 
 	[MenuItem ("Window/Level Editor %l")]
@@ -177,7 +197,11 @@ class LevelEditor : EditorWindow {
 
 			CleanLevel ();
 
+			Debug.Log (path);
+
+//			TextAsset levelFile = (TextAsset)Resources.Load (finalPath);
 			string levelText = LevelLoader.ReadXmlLevel (path);
+			Debug.Log (levelText);
 			ABLevel level = LevelLoader.LoadXmlLevel (levelText);
 
 			DecodeLevel (level);
@@ -207,8 +231,16 @@ class LevelEditor : EditorWindow {
 		{
 			birdsPos.y = _groundPos.y;
 
-			for(int i = 0; i < _birdsAdded; i++)
-				birdsPos.x -= bird.GetComponent<SpriteRenderer>().bounds.size.x * 2f;
+			for(int i = 0; i < _birdsAdded; i++) {
+
+				if ((i + 1) % _birdsAmounInARow == 0) {
+
+					float coin = (UnityEngine.Random.value < 0.5f ? 1f : -1);
+					birdsPos.x = ABConstants.SLING_SELECT_POS.x + (UnityEngine.Random.value * 0.5f * coin);
+				}
+
+				birdsPos.x -=  bird.GetComponent<SpriteRenderer>().bounds.size.x * 1.75f;
+			}
 		}
 
 		bird.transform.position = birdsPos;

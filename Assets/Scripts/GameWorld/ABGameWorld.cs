@@ -1,3 +1,22 @@
+// SCIENCE BIRDS: A clone version of the Angry Birds game used for 
+// research purposes
+// 
+// Copyright (C) 2016 - Lucas N. Ferreira - lucasnfe@gmail.com
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>
+//
+
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -59,6 +78,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 	public bool    _isSimulation;
 	public int     _timesToGiveUp;
 	public float   _timeToResetLevel = 1f;
+	public int 	   _birdsAmounInARow = 5;
 
 	public AudioClip  []_clips;
 
@@ -185,6 +205,15 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		// Move next bird to the slingshot
 		if(_birds[0].JumpToSlingshot)
 			_birds[0].SetBirdOnSlingshot();
+
+		int birdsLayer = LayerMask.NameToLayer("Birds");
+		int blocksLayer = LayerMask.NameToLayer("Blocks");
+
+		if(_birds[0].IsFlying || _birds[0].IsDying)
+			
+			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
+		else 
+			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, true);
 	}
 
 	public ABBird GetCurrentBird() {
@@ -240,8 +269,16 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			
 			birdsPos.y = _groundTransform.bounds.center.y + _groundTransform.bounds.size.y/2f;
 
-			for(int i = 0; i < _birds.Count; i++)
-				birdsPos.x -= ABWorldAssets.BIRDS["BirdRed"].GetComponent<SpriteRenderer>().bounds.size.x * 2f;
+			for (int i = 0; i < _birds.Count; i++) {
+
+				if ((i + 1) % _birdsAmounInARow == 0) {
+
+					float coin = (Random.value < 0.5f ? 1f : -1);
+					birdsPos.x = ABConstants.SLING_SELECT_POS.x + (Random.value * 0.5f * coin);
+				}
+					
+				birdsPos.x -= ABWorldAssets.BIRDS ["BirdRed"].GetComponent<SpriteRenderer> ().bounds.size.x * 1.75f;
+			}
 		}
 
 		GameObject newGameObject = (GameObject)Instantiate(original, birdsPos, rotation);

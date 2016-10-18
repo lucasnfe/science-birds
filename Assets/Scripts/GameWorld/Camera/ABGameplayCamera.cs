@@ -1,18 +1,35 @@
+// SCIENCE BIRDS: A clone version of the Angry Birds game used for 
+// research purposes
+// 
+// Copyright (C) 2016 - Lucas N. Ferreira - lucasnfe@gmail.com
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>
+//
+
 ﻿using UnityEngine;
 using System.Collections;
 
 public class ABGameplayCamera : MonoBehaviour {
 
 	private Rect  _initialCameraRect;
-
+	
 	private bool  _isDraging;
 	private float _minWidth;
 	private float _dragDistance;
 
 	public float _dampTime;
 	public float _cameraMaxWidth;
-
-	public bool IsZooming { get; set; }
 
 	void Awake()
 	{
@@ -122,13 +139,9 @@ public class ABGameplayCamera : MonoBehaviour {
 			orthographicSize = Mathf.Abs(_initialCameraRect.width) / GetComponent<Camera>().aspect / 2f;
 		else
 			orthographicSize = Mathf.Abs(_initialCameraRect.height) / 2f;
-
+		
 		GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, orthographicSize, _dampTime * Time.deltaTime);
-
-		IsZooming = false;
-		if(Mathf.Abs((GetComponent<Camera>().orthographicSize - orthographicSize)) > 0.05f)
-			IsZooming = true; 
-
+		
 		return orthographicSize;
 	}
 }

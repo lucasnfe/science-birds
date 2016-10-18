@@ -162,7 +162,8 @@ MonoBehaviour:
   _addNoise: 1
   _applyGravity: 1
   _shootParticles: 0
-  _particleSprites: []
+  _particleSprites:
+  - {fileID: 114686, guid: 93d80a2cf052c442e838c6c966340dcf, type: 2}
 --- !u!114 &11410176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,8 +177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites: []
   _clips: []
-  _timeToDie: 0
   _life: 3
+  _timeToDie: 0
   _material: 0
   _points: 25
   _woodSprites:
