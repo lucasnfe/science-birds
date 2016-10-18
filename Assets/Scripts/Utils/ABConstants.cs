@@ -1,3 +1,22 @@
+// SCIENCE BIRDS: A clone version of the Angry Birds game used for 
+// research purposes
+// 
+// Copyright (C) 2016 - Lucas N. Ferreira - lucasnfe@gmail.com
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>
+//
+
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,27 +62,22 @@ public enum SLINGSHOT_LINE_POS
 
 public class ABConstants {
 
-	public static readonly Vector3 SLING_SELECT_POS = new Vector3 (-7.62f, -1.24f, 1f);
+	public static readonly Vector3 SLING_SELECT_POS = new Vector3 (-7.65f, -1.2f, 1f);
 	public static readonly string DEFAULT_LEVELS_FOLDER = "Levels";
 
 	#if UNITY_STANDALONE_OSX && !UNITY_EDITOR
 
-	public static readonly float MOUSE_SENSIBILITY = 0.8f;
+	public static readonly float MOUSE_SENSIBILITY = 5f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/Resources/Data/StreamingAssets/Levels";
 
 	#elif UNITY_STANDALONE_WIN && !UNITY_EDITOR
 
-	public static readonly float MOUSE_SENSIBILITY = 5f;
+	public static readonly float MOUSE_SENSIBILITY = 25f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
 
-	#elif UNITY_WEBGL && !UNITY_EDITOR
+	#else 
 
-	public static readonly float  MOUSE_SENSIBILITY = 0.25f;
-	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
-
-	#else
-
-	public static readonly float  MOUSE_SENSIBILITY = 0.6f;
+	public static readonly float  MOUSE_SENSIBILITY = 0.65f;
 	public static readonly string CUSTOM_LEVELS_FOLDER = "/StreamingAssets/Levels";
 
 	#endif

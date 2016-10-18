@@ -1,3 +1,22 @@
+// SCIENCE BIRDS: A clone version of the Angry Birds game used for 
+// research purposes
+// 
+// Copyright (C) 2016 - Lucas N. Ferreira - lucasnfe@gmail.com
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>
+//
+
 ﻿using UnityEngine;
 using System;
 using System.Collections;
@@ -21,8 +40,8 @@ public abstract class ABGameObject : MonoBehaviour
 	public Sprite[]    _sprites;
 	public AudioClip[] _clips;
 
-	public float _timeToDie = 1f;
 	public float _life = 10f;
+	public float _timeToDie = 1f;
 
 	public bool IsDying { get; set; }
 
@@ -62,7 +81,7 @@ public abstract class ABGameObject : MonoBehaviour
 			_receivedDamage = 0;
 		}
 
-		if(_spriteChangedTimes == _sprites.Length) {
+		if(_spriteChangedTimes >= _sprites.Length) {
 			
 			ABAudioController.Instance.PlayIndependentSFX(_clips[1]);
 
@@ -76,7 +95,7 @@ public abstract class ABGameObject : MonoBehaviour
 		if (ABGameWorld.Instance.IsObjectOutOfWorld (transform, _collider)) {
 
 			IsDying = true;
-			Invoke ("Die", _timeToDie);
+			Die ();
 		}
 	}
 }

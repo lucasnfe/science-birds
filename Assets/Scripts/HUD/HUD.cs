@@ -1,3 +1,22 @@
+// SCIENCE BIRDS: A clone version of the Angry Birds game used for 
+// research purposes
+// 
+// Copyright (C) 2016 - Lucas N. Ferreira - lucasnfe@gmail.com
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>
+//
+
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -23,7 +42,7 @@ public class HUD : ABSingleton<HUD> {
 
 	private Vector3 _inputPos;
 	private Vector3 _dragOrigin;
-	private ABBird _selecetdBird;
+	private ABBird _selectedBird;
 
 	void Start() {
 
@@ -37,19 +56,44 @@ public class HUD : ABSingleton<HUD> {
 
 		if(scrollDirection != 0f) {
 
-			CameraZoom (Mathf.Sign (scrollDirection) * ABConstants.MOUSE_SENSIBILITY);
-			return;
+			if (scrollDirection > 0f)
+				_isZoomingIn = true;
+			
+			else if (scrollDirection < 0f)
+				_isZoomingOut = true;
 		}
 		
 		if(_isZoomingIn) {
+			
+			if (scrollDirection != 0f) {
 
-			CameraZoom(-ABConstants.MOUSE_SENSIBILITY);
+				// Zoom triggered via MouseWheel
+				_isZoomingIn = false;
+				CameraZoom(-ABConstants.MOUSE_SENSIBILITY);
+			} 
+			else {
+
+				// Zoom triggered via HUD
+				CameraZoom(-1f);
+			}
+			
 			return;
 		}
 		
 		if(_isZoomingOut) {
 			
-			CameraZoom (ABConstants.MOUSE_SENSIBILITY);
+			if (scrollDirection != 0f) {
+
+				// Zoom triggered via MouseWheel
+				_isZoomingOut = false;
+				CameraZoom (ABConstants.MOUSE_SENSIBILITY);
+			} 
+			else {
+
+				// Zoom triggered via HUD
+				CameraZoom(1f);
+			}
+
 			return;
 		}
 
@@ -60,9 +104,6 @@ public class HUD : ABSingleton<HUD> {
 			_inputPos = SimulateInputPos;
 			isMouseControlling = false;
 		}
-
-		if (ABGameWorld.Instance.GameplayCam.IsZooming)
-			return;
 
 		if(Input.GetMouseButtonDown(0) || SimulateInputEvent == 1) {
 
@@ -103,7 +144,7 @@ public class HUD : ABSingleton<HUD> {
 			_dragOrigin = _inputPos;
 	}
 
-	public void ClickDown(Vector3 position) {
+	private void ClickDown(Vector3 position) {
 
 		_dragOrigin = position;
 
@@ -114,49 +155,54 @@ public class HUD : ABSingleton<HUD> {
 		{
 			if(hit.transform.tag == "Bird")
 			{
-				_selecetdBird = hit.transform.gameObject.GetComponent<ABBird>();
-				if(_selecetdBird && !_selecetdBird.IsSelected && _selecetdBird == ABGameWorld.Instance.GetCurrentBird())
+				_selectedBird = hit.transform.gameObject.GetComponent<ABBird>();
+				if(_selectedBird && !_selectedBird.IsSelected && _selectedBird == ABGameWorld.Instance.GetCurrentBird())
 				{
-					_selecetdBird.SelectBird();
+					_selectedBird.SelectBird();
 				}
 			}
 		}
 	}
 
-	public void ClickUp() {
+	private void ClickUp() {
 
-		if(_selecetdBird && !_selecetdBird.IsFlying && _selecetdBird == ABGameWorld.Instance.GetCurrentBird())
-		{
-			_selecetdBird.LaunchBird();
-			_selecetdBird = null;
+		if (_selectedBird) {
+
+			if (!_selectedBird.IsFlying && !_selectedBird.IsDying && 
+				_selectedBird == ABGameWorld.Instance.GetCurrentBird ()) {
+
+				_selectedBird.LaunchBird ();
+				_selectedBird = null;
+			}
 		}
 	}
 
-	public void Drag(Vector3 position) {
+	private void Drag(Vector3 position) {
 
-		if(_selecetdBird) {
+		if(_selectedBird) {
 
-			if(!_selecetdBird.IsFlying && _selecetdBird == ABGameWorld.Instance.GetCurrentBird()) {
+			if (!_selectedBird.IsFlying && !_selectedBird.IsDying && 
+				_selectedBird == ABGameWorld.Instance.GetCurrentBird ()) {
 				
 				Vector3 dragPosition = Camera.main.ScreenToWorldPoint(position);
-				dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selecetdBird.transform.position.z);
+				dragPosition = new Vector3(dragPosition.x, dragPosition.y, _selectedBird.transform.position.z);
 
-				_selecetdBird.DragBird(dragPosition);
+				_selectedBird.DragBird(dragPosition);
 			}
 		}
 		else {
 			
 			Vector3 dragPosition = position - _dragOrigin;
-			ABGameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.deltaTime);
+			ABGameWorld.Instance.GameplayCam.DragCamera(dragPosition * _dragSpeed * Time.fixedDeltaTime);
 		}
 	}
 
-	public void SetZoomIn(bool zoomIn) {
+	private void SetZoomIn(bool zoomIn) {
 		
 		_isZoomingIn = zoomIn;
 	}
 	
-	public void SetZoomOut(bool zoomOut) {
+	private void SetZoomOut(bool zoomOut) {
 		
 		_isZoomingOut = zoomOut;
 	}
@@ -166,7 +212,7 @@ public class HUD : ABSingleton<HUD> {
 		ABGameWorld.Instance.GameplayCam.ZoomCamera(scrollDirection * _zoomSpeed * Time.deltaTime);
 	}
 
-	public void SetScoreDisplay(uint score) {
+	private void SetScoreDisplay(uint score) {
 		
 		if(_scoreDisplay) {
 			

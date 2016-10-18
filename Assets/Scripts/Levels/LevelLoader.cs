@@ -1,3 +1,22 @@
+// SCIENCE BIRDS: A clone version of the Angry Birds game used for 
+// research purposes
+// 
+// Copyright (C) 2016 - Lucas N. Ferreira - lucasnfe@gmail.com
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>
+//
+
 ﻿using UnityEngine;
 using System;
 using System.IO;
@@ -6,9 +25,9 @@ using System.Text;
 using System.Collections.Generic;
 
 public class LevelLoader {
-
+	
 	public static string ReadXmlLevel(string path) {
-
+	
 		string xmlText = "";
 
 		if (path.Contains ("StreamingAssets")) {
@@ -27,7 +46,7 @@ public class LevelLoader {
 
 		return xmlText;
 	}
-
+	
 	public static ABLevel LoadXmlLevel(string xmlString) {
 
 		ABLevel level = new ABLevel();
@@ -61,7 +80,7 @@ public class LevelLoader {
 					reader.MoveToAttribute("material");
 					abObj.material = reader.Value;
 				}
-
+					
 				reader.MoveToAttribute("x");
 				abObj.x = (float)Convert.ToDouble(reader.Value);
 
@@ -70,7 +89,7 @@ public class LevelLoader {
 
 				abObj.rotation = 0f;
 				if (reader.GetAttribute ("rotation") != null) {
-
+				
 					reader.MoveToAttribute ("rotation");
 					abObj.rotation = (float)Convert.ToDouble (reader.Value);
 				}
@@ -145,12 +164,12 @@ public class LevelLoader {
 				writer.WriteEndElement();
 			}
 		}
-
+			
 		StreamWriter streamWriter = new StreamWriter(path);
 		streamWriter.WriteLine(output.ToString());
 		streamWriter.Close();
 	}
-
+		
 	public static Dictionary<string, GameObject> LoadABResource(string path) {
 
 		// Load block templates and cast them to game objects
@@ -169,11 +188,11 @@ public class LevelLoader {
 
 	public void SaveLevelOnScene() {
 
-		//		Transform blocksInScene = GameWorld.Instance.BlocksInScene();
-		//
-		//		List<GameObject> objsInScene = GameWorld.Instance.BlocksInScene();
+//		Transform blocksInScene = GameWorld.Instance.BlocksInScene();
+//
+//		List<GameObject> objsInScene = GameWorld.Instance.BlocksInScene();
 
-		//		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
-		//		SaveXmlLevel(level);
+//		ABLevel level = ABLevelGenerator.GameObjectsToABLevel(objsInScene.ToArray());
+//		SaveXmlLevel(level);
 	}
 }
