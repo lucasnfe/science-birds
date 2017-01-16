@@ -80,7 +80,8 @@ public class ABBird : ABCharacter {
 	// Used to move the camera towards the blocks only when bird is thrown to frontwards
 	public bool IsInFrontOfSlingshot()
 	{
-		return transform.position.x + _collider.bounds.size.x > ABConstants.SLING_SELECT_POS.x + _dragRadius * 2f;
+		float slingXPos = ABGameWorld.Instance.Slingshot ().transform.position.x - ABConstants.SLING_SELECT_POS.x;
+		return transform.position.x + _collider.bounds.size.x > slingXPos + _dragRadius * 2f;
 	}
 
 	public override void Die()
@@ -131,7 +132,7 @@ public class ABBird : ABCharacter {
             {
 				_isOutOfSlingshot = true;
 
-				Vector3 slingBasePos = ABConstants.SLING_SELECT_POS;
+				Vector3 slingBasePos = ABGameWorld.Instance.Slingshot().transform.position - ABConstants.SLING_SELECT_POS;
                 slingBasePos.z = transform.position.z + 0.5f;
 
 				ABGameWorld.Instance.ChangeSlingshotBasePosition(slingBasePos);
@@ -167,9 +168,10 @@ public class ABBird : ABCharacter {
 
     public void SetBirdOnSlingshot()
     {
-		transform.position = Vector3.MoveTowards(transform.position, ABConstants.SLING_SELECT_POS, _dragSpeed * Time.deltaTime);
+		Vector3 slingshotPos = ABGameWorld.Instance.Slingshot ().transform.position - ABConstants.SLING_SELECT_POS;
+		transform.position = Vector3.MoveTowards(transform.position, slingshotPos, _dragSpeed * Time.deltaTime);
 
-		if(Vector3.Distance(transform.position, ABConstants.SLING_SELECT_POS) <= 0f)
+		if(Vector3.Distance(transform.position, slingshotPos) <= 0f)
 		{
 			JumpToSlingshot = false;
 			_isOutOfSlingshot = false;
@@ -183,12 +185,13 @@ public class ABBird : ABCharacter {
 			return;
 			
 		dragPosition.z = transform.position.z;
-		float deltaPosFromSlingshot = Vector2.Distance(dragPosition, ABConstants.SLING_SELECT_POS);
+		Vector3 slingshotPos = ABGameWorld.Instance.Slingshot ().transform.position - ABConstants.SLING_SELECT_POS;
+		float deltaPosFromSlingshot = Vector2.Distance(dragPosition, slingshotPos);
 
         // Lock bird movement inside a circle
         if(deltaPosFromSlingshot > _dragRadius)
-			dragPosition = (dragPosition - ABConstants.SLING_SELECT_POS).normalized * _dragRadius + ABConstants.SLING_SELECT_POS;
-		
+			dragPosition = (dragPosition - slingshotPos).normalized * _dragRadius + slingshotPos;
+
 		transform.position = Vector3.Lerp(transform.position, dragPosition, _dragSpeed * Time.deltaTime);
 		
 		// Slingshot base look to slingshot
@@ -198,13 +201,14 @@ public class ABBird : ABCharacter {
 
         // Slingshot base rotate around the selected point
 		Collider2D col = _collider;
-		ABGameWorld.Instance.ChangeSlingshotBasePosition ((transform.position - ABConstants.SLING_SELECT_POS).normalized 
+		ABGameWorld.Instance.ChangeSlingshotBasePosition ((transform.position - slingshotPos).normalized 
 			* col.bounds.size.x / 2.25f + transform.position);
 	}
 
 	public void LaunchBird()
 	{
-		Vector2 deltaPosFromSlingshot = (transform.position - ABConstants.SLING_SELECT_POS);
+		Vector3 slingshotPos = ABGameWorld.Instance.Slingshot ().transform.position - ABConstants.SLING_SELECT_POS;
+		Vector2 deltaPosFromSlingshot = (transform.position - slingshotPos);
 		_animator.Play("flying", 0, 0f);
 
 		_isFlying = true;

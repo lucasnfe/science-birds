@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-16"?>
 <Level>
   <BirdsAmount>4</BirdsAmount>
+  <Slingshot x="-7.5" y="-2">
   <GameObjects>
     <Block type="RectMedium" material="wood" x="2.78" y="-2.68" rotation="0" />
     <Block type="RectFat" material="wood" x="2.75" y="-2.16" rotation="90.00001" />
