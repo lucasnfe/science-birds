@@ -33,6 +33,11 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 	private List<ABBird>     _birds;
 	private List<ABParticle> _birdTrajectory;
 
+	private GameObject _slingshot;
+	public GameObject Slingshot() {
+		return _slingshot;
+	}
+
 	private ABBird _lastThrownBird;
 
 	private Collider2D _groundTransform;
@@ -87,7 +92,6 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		_blocksTransform = GameObject.Find ("Blocks").transform;
 		_birdsTransform  = GameObject.Find ("Birds").transform;
 		_groundTransform = GameObject.Find ("Ground").GetComponent<Collider2D>();
-		_slingshotBaseTransform = GameObject.Find ("slingshot_base").transform;
 
 		_levelFailedBanner = GameObject.Find ("LevelFailedBanner").gameObject;
 		_levelFailedBanner.gameObject.SetActive (false);
@@ -133,17 +137,24 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 			if (currentLevel != null) {
 				
-				DecodeLevel (currentLevel.pigs, currentLevel.blocks, currentLevel.platforms, currentLevel.birdsAmount);
+				DecodeLevel (currentLevel.pigs, currentLevel.blocks, currentLevel.platforms, currentLevel.birdsAmount, currentLevel.slingshot);
 				AdaptCameraWidthToLevel ();
 
 				_levelTimesTried = 0;
+
+				_slingshotBaseTransform = GameObject.Find ("slingshot_base").transform;
 			}
 		}
 	}
 
-	public void DecodeLevel(List<OBjData> pigs, List<OBjData> blocks, List<OBjData> platforms, int birdsAmount)  {
+	public void DecodeLevel(List<OBjData> pigs, List<OBjData> blocks, List<OBjData> platforms, int birdsAmount, SlingData slingshot)  {
 		
 		ClearWorld();
+
+		Vector2 slingshotPos = new Vector2 (slingshot.x, slingshot.y);
+		_slingshot = (GameObject)Instantiate(ABWorldAssets.SLINGSHOT, slingshotPos, Quaternion.identity);
+		_slingshot.name = "Slingshot";
+		_slingshot.transform.parent = GameObject.Find ("GameWorld").transform;
 
 		foreach (OBjData gameObj in pigs) {
 
@@ -263,7 +274,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 	
 	public void AddBird(Object original, Quaternion rotation) {
 		
-		Vector3 birdsPos = ABConstants.SLING_SELECT_POS;
+		Vector3 birdsPos = _slingshot.transform.position - ABConstants.SLING_SELECT_POS;
 
 		if(_birds.Count >= 1) {
 			
@@ -274,7 +285,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 				if ((i + 1) % _birdsAmounInARow == 0) {
 
 					float coin = (Random.value < 0.5f ? 1f : -1);
-					birdsPos.x = ABConstants.SLING_SELECT_POS.x + (Random.value * 0.5f * coin);
+					birdsPos.x = _slingshot.transform.position.x + (Random.value * 0.5f * coin);
 				}
 					
 				birdsPos.x -= ABWorldAssets.BIRDS ["BirdRed"].GetComponent<SpriteRenderer> ().bounds.size.x * 1.75f;
@@ -447,7 +458,8 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 	public Vector3 DragDistance() {
 
-		return _slingshotBaseTransform.transform.position - ABConstants.SLING_SELECT_POS;
+		Vector3 selectPos = (_slingshot.transform.position - ABConstants.SLING_SELECT_POS);
+		return _slingshotBaseTransform.transform.position - selectPos;
 	}
 
 	public void SetSlingshotBaseActive(bool isActive) {

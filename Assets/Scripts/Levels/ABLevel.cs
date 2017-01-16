@@ -29,9 +29,16 @@ public struct OBjData {
 	public float  x, y;
 }
 
+public struct SlingData {
+
+	public float x, y;
+}
+
 public class ABLevel 
 {
 	public int birdsAmount;
+
+	public SlingData slingshot;
 
 	public List<OBjData> pigs;
 	public List<OBjData> blocks;

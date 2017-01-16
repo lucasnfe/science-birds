@@ -60,6 +60,14 @@ public class LevelLoader {
 			reader.ReadToFollowing("BirdsAmount");
 			level.birdsAmount = Convert.ToInt32(reader.ReadElementContentAsString());
 
+			reader.ReadToFollowing("Slingshot");
+
+			reader.MoveToAttribute("x");
+			level.slingshot.x = (float)Convert.ToDouble (reader.Value);
+
+			reader.MoveToAttribute("y");
+			level.slingshot.y = (float)Convert.ToDouble (reader.Value);
+
 			reader.ReadToFollowing("GameObjects");
 			reader.Read ();
 
@@ -127,6 +135,11 @@ public class LevelLoader {
 
 			writer.WriteStartElement("BirdsAmount");
 			writer.WriteValue(level.birdsAmount);
+			writer.WriteEndElement();
+
+			writer.WriteStartElement("Slingshot");
+			writer.WriteAttributeString("x", level.slingshot.x.ToString());
+			writer.WriteAttributeString("y", level.slingshot.y.ToString());
 			writer.WriteEndElement();
 
 			writer.WriteStartElement("GameObjects");
