@@ -21,12 +21,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public struct OBjData {
+public class OBjData {
 
 	public string type;
 	public string material;
 	public float  rotation;
 	public float  x, y;
+}
+
+public class PlatData : OBjData {
+
+	public int width;
+	public int height;
 }
 
 public struct SlingData {
@@ -42,7 +48,7 @@ public class ABLevel
 
 	public List<OBjData> pigs;
 	public List<OBjData> blocks;
-	public List<OBjData> platforms;
+	public List<PlatData> platforms;
 
 	public static readonly int BIRDS_MAX_AMOUNT = 5;
 

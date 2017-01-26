@@ -254,7 +254,7 @@ class LevelEditor : EditorWindow {
 
 		level.pigs = new List<OBjData>();
 		level.blocks = new List<OBjData>();
-		level.platforms = new List<OBjData>();
+		level.platforms = new List<PlatData>();
 
 		foreach (Transform child in GameObject.Find ("Blocks").transform) {
 
@@ -280,13 +280,15 @@ class LevelEditor : EditorWindow {
 
 		foreach (Transform child in GameObject.Find ("Platforms").transform) {
 
-			OBjData obj = new OBjData ();
+			PlatData obj = new PlatData ();
 
 			obj.type = child.name;
 			obj.material = "";
 			obj.x = child.transform.position.x;
 			obj.y = child.transform.position.y;
 			obj.rotation = child.transform.rotation.eulerAngles.z;
+			obj.width = 1;
+			obj.height = 1;
 
 			level.platforms.Add (obj);
 		}

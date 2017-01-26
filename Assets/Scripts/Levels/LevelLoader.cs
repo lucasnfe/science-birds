@@ -53,7 +53,7 @@ public class LevelLoader {
 
 		level.pigs = new List<OBjData>();
 		level.blocks = new List<OBjData>();
-		level.platforms = new List<OBjData>();
+		level.platforms = new List<PlatData>();
 
 		using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
 		{
@@ -73,11 +73,11 @@ public class LevelLoader {
 
 			while (reader.Read())
 			{
-				OBjData abObj = new OBjData();
 				string nodeName = reader.LocalName;
-
 				if (nodeName == "GameObjects")
 					break;
+
+				PlatData abObj = new PlatData();
 
 				reader.MoveToAttribute("type");
 				abObj.type = reader.Value;
@@ -104,15 +104,29 @@ public class LevelLoader {
 
 				if (nodeName == "Block") {
 
-					level.blocks.Add (abObj);
+					level.blocks.Add ((OBjData)abObj);
 					reader.Read ();
 				} 
 				else if (nodeName == "Pig") {
 
-					level.pigs.Add (abObj);
+					level.pigs.Add ((OBjData)abObj);
 					reader.Read ();
 				}
 				else if (nodeName == "Platform") {
+
+					abObj.width = 1;
+					if (reader.GetAttribute ("width") != null) {
+
+						reader.MoveToAttribute ("width");
+						abObj.width = (int)Convert.ToInt32 (reader.Value);
+					}
+
+					abObj.height = 1;
+					if (reader.GetAttribute ("height") != null) {
+
+						reader.MoveToAttribute ("height");
+						abObj.height = (int)Convert.ToInt32 (reader.Value);
+					}
 
 					level.platforms.Add (abObj);
 					reader.Read ();
@@ -166,7 +180,7 @@ public class LevelLoader {
 				writer.WriteEndElement();
 			}
 
-			foreach(OBjData abObj in level.platforms)
+			foreach(PlatData abObj in level.platforms)
 			{
 				writer.WriteStartElement("Platform");
 				writer.WriteAttributeString("type", abObj.type.ToString());
@@ -174,6 +188,8 @@ public class LevelLoader {
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteAttributeString("rotation", abObj.rotation.ToString());
+				writer.WriteAttributeString("width", abObj.width.ToString());
+				writer.WriteAttributeString("height", abObj.height.ToString());
 				writer.WriteEndElement();
 			}
 		}

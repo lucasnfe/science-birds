@@ -147,7 +147,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		}
 	}
 
-	public void DecodeLevel(List<OBjData> pigs, List<OBjData> blocks, List<OBjData> platforms, int birdsAmount, SlingData slingshot)  {
+	public void DecodeLevel(List<OBjData> pigs, List<OBjData> blocks, List<PlatData> platforms, int birdsAmount, SlingData slingshot)  {
 		
 		ClearWorld();
 
@@ -174,12 +174,12 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			block.GetComponent<ABBlock> ().SetMaterial (material);
 		}
 
-		foreach(OBjData gameObj in platforms) {
+		foreach(PlatData gameObj in platforms) {
 			
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
 
-			AddBlock(ABWorldAssets.PLATFORM, pos, rotation);
+			AddPlatform(ABWorldAssets.PLATFORM, pos, rotation, gameObj.width, gameObj.height);
 		}
 
 		for(int i = 0; i < birdsAmount; i++)
@@ -272,7 +272,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			_birds.Add(readyBird);
 	}
 	
-	public void AddBird(Object original, Quaternion rotation) {
+	public void AddBird(GameObject original, Quaternion rotation, float scale = 1f) {
 		
 		Vector3 birdsPos = _slingshot.transform.position - ABConstants.SLING_SELECT_POS;
 
@@ -296,6 +296,11 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		newGameObject.transform.parent = _birdsTransform;
 		newGameObject.name = "bird_" + _birds.Count;
 
+		Vector3 newScale = newGameObject.transform.localScale;
+		newScale.x = scale;
+		newScale.y = scale;
+		newGameObject.transform.localScale = newScale;
+
 		ABBird bird = newGameObject.GetComponent<ABBird>();
 
 		if(_birds.Count == 0)
@@ -305,19 +310,54 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			_birds.Add(bird);
 	}
 
-	public void AddPig(Object original, Vector3 position, Quaternion rotation) {
+	public void AddPig(GameObject original, Vector3 position, Quaternion rotation, float scale = 1f) {
 		
-		GameObject newGameObject = AddBlock(original, position, rotation);
+		GameObject newGameObject = AddBlock(original, position, rotation, scale);
 
 		ABPig pig = newGameObject.GetComponent<ABPig>();
 		if(pig != null)
 			_pigs.Add(pig);
 	}
 
-	public GameObject AddBlock(Object original, Vector3 position, Quaternion rotation) {
+	public GameObject AddPlatform(GameObject original, Vector3 position, Quaternion rotation, int width, int height) {
+
+		GameObject newPlatform = new GameObject();
+
+		float platfSize = 0.63f;
+
+		newPlatform.name = original.name;
+
+		Vector3 pos = position;
+		pos.x -= platfSize * 0.5f;
+	
+		for (int i = 0; i < width; i++) {
+
+			pos = position;
+
+			pos.x += i * platfSize;
+			pos.y -= platfSize * 0.5f;
+
+			for (int j = 0; j < height; j++) {
+		
+				pos.y += j * platfSize;
+				GameObject adjacPlatform = AddBlock (original, pos, Quaternion.identity, 1f);
+				adjacPlatform.transform.parent = newPlatform.transform;
+			}
+		}
+
+		newPlatform.transform.rotation = rotation;
+		return newPlatform;
+	}
+
+	public GameObject AddBlock(GameObject original, Vector3 position, Quaternion rotation, float scale = 1f) {
 		
 		GameObject newGameObject = (GameObject)Instantiate(original, position, rotation);
 		newGameObject.transform.parent = _blocksTransform;
+
+		Vector3 newScale = newGameObject.transform.localScale;
+		newScale.x = scale;
+		newScale.y = scale;
+		newGameObject.transform.localScale = newScale;
 
 		return newGameObject;
 	}
