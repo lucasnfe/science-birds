@@ -5,6 +5,6 @@
   <GameObjects>
     <Block type="RectMedium" material="wood" x="0.25" y="-2.73" rotation="0" />
     <Block type="RectFat" material="wood" x="0.22" y="-2.21" rotation="90.00001" />
-    <Pig type="BasicSmall" x="0.21" y="-1.53" rotation="0" />
+    <Pig type="BasicMedium" x="0.21" y="-1.53" rotation="0" />
   </GameObjects>
 </Level>
