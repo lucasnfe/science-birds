@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-16"?>
 <Level>
   <BirdsAmount>3</BirdsAmount>
-  <Slingshot x="-7.5" y="-2">
+  <Slingshot x="-5.5" y="-2">
   <GameObjects>
-    <Block type="RectMedium" material="wood" x="0.25" y="-2.73" rotation="0" />
-    <Block type="RectFat" material="wood" x="0.22" y="-2.21" rotation="90.00001" />
-    <Pig type="BasicMedium" x="0.21" y="-1.53" rotation="0" />
+    <Block type="RectMedium" material="wood" x="3.25" y="-2.73" rotation="0" />
+    <Block type="RectFat" material="wood" x="3.22" y="-2.21" rotation="90.00001" />
+    <Pig type="BasicMedium" x="3.21" y="-1.53" rotation="0" />
   </GameObjects>
 </Level>
