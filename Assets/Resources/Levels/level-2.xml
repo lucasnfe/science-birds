@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-16"?>
 <Level>
   <BirdsAmount>3</BirdsAmount>
-  <Slingshot x="-5.5" y="-2">
+  <Slingshot x="-5.5" y="-2.5">
   <GameObjects>
     <Block    type="RectTiny"    material="wood"  x="2.54" y="-2.73" />
     <Block    type="RectTiny"    material="wood"  x="1.70" y="-2.73" />
@@ -13,8 +13,8 @@
     <Block    type="RectTiny"    material="ice"   x="1.76" y="2.91"  />
     <Block    type="SquareHole"  material="ice"   x="2.2"  y="3.46"  />
     <Pig      type="BasicSmall"  material=""      x="2.15" y="-1.52" />
-    <Pig      type="BasicSmall" material=""      x="2.2"  y="1.38"  />
-    <Pig      type="BasicSmall"    material=""      x="2.2"  y="4.12"  />
+    <Pig      type="BasicSmall" material=""       x="2.2"  y="1.38"  />
+    <Pig      type="BasicSmall"    material=""    x="2.2"  y="4.12"  />
     <Platform type="Platform"    material=""      x="1.04" y="-0.31" width="5" />
     <Platform type="Platform"    material=""      x="0.97" y="2.4"   width="5" />
   </GameObjects>
