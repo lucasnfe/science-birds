@@ -35,6 +35,13 @@ public class PlatData : OBjData {
 	public int height;
 }
 
+public struct CameraData {
+
+	public float minWidth;
+	public float maxWidth;
+	public float x, y;
+}
+
 public struct SlingData {
 
 	public float x, y;
@@ -43,7 +50,9 @@ public struct SlingData {
 public class ABLevel 
 {
 	public int birdsAmount;
+	public int width;
 
+	public CameraData camera;
 	public SlingData slingshot;
 
 	public List<OBjData> pigs;
@@ -53,7 +62,10 @@ public class ABLevel
 	public static readonly int BIRDS_MAX_AMOUNT = 5;
 
 	public ABLevel() {
-		
+
+		birdsAmount = 0;
+		width = 1;
+
 		pigs = new List<OBjData>();
 		blocks = new List<OBjData>();
 	}

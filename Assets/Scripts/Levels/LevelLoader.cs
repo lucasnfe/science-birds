@@ -57,6 +57,29 @@ public class LevelLoader {
 
 		using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
 		{
+			reader.ReadToFollowing("Level");
+
+			level.width = 1;
+			if (reader.GetAttribute ("width") != null) {
+
+				reader.MoveToAttribute("width");
+				level.width = (int)Convert.ToInt32 (reader.Value);
+			}
+
+			reader.ReadToFollowing("Camera");
+
+			reader.MoveToAttribute("x");
+			level.camera.x = (float)Convert.ToDouble (reader.Value);
+
+			reader.MoveToAttribute("y");
+			level.camera.y = (float)Convert.ToDouble (reader.Value);
+
+			reader.MoveToAttribute("minWidth");
+			level.camera.minWidth = (float)Convert.ToDouble (reader.Value);
+
+			reader.MoveToAttribute("maxWidth");
+			level.camera.maxWidth = (float)Convert.ToDouble (reader.Value);
+				
 			reader.ReadToFollowing("BirdsAmount");
 			level.birdsAmount = Convert.ToInt32(reader.ReadElementContentAsString());
 
@@ -146,6 +169,7 @@ public class LevelLoader {
 		using (XmlWriter writer = XmlWriter.Create(output, ws))
 		{
 			writer.WriteStartElement("Level");
+			writer.WriteAttributeString("width", level.width.ToString());
 
 			writer.WriteStartElement("BirdsAmount");
 			writer.WriteValue(level.birdsAmount);
