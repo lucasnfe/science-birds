@@ -22,7 +22,7 @@ using System.Collections;
 
 public class ABCharacter : ABGameObject {
 
-	public Animator _animator;
+	protected Animator _animator;
 	public float _maxTimeToBlink;
 
 	// Use this for initialization

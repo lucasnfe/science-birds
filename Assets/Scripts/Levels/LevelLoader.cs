@@ -51,10 +51,6 @@ public class LevelLoader {
 
 		ABLevel level = new ABLevel();
 
-		level.pigs = new List<OBjData>();
-		level.blocks = new List<OBjData>();
-		level.platforms = new List<PlatData>();
-
 		using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
 		{
 			reader.ReadToFollowing("Level");
@@ -80,8 +76,21 @@ public class LevelLoader {
 			reader.MoveToAttribute("maxWidth");
 			level.camera.maxWidth = (float)Convert.ToDouble (reader.Value);
 				
-			reader.ReadToFollowing("BirdsAmount");
-			level.birdsAmount = Convert.ToInt32(reader.ReadElementContentAsString());
+			reader.ReadToFollowing("Birds");
+			reader.Read ();
+
+			while (reader.Read ()) {
+
+				string nodeName = reader.LocalName;
+				if (nodeName == "Birds")
+					break;
+
+				reader.MoveToAttribute("type");
+				string type = reader.Value;
+
+				level.birds.Add (new BirdData (type));
+				reader.Read ();
+			}
 
 			reader.ReadToFollowing("Slingshot");
 
@@ -100,58 +109,56 @@ public class LevelLoader {
 				if (nodeName == "GameObjects")
 					break;
 
-				PlatData abObj = new PlatData();
-
 				reader.MoveToAttribute("type");
-				abObj.type = reader.Value;
+				string type = reader.Value;
 
-				abObj.material = "";
+				string material = "";
 				if (reader.GetAttribute ("material") != null) {
 
 					reader.MoveToAttribute("material");
-					abObj.material = reader.Value;
+					material = reader.Value;
 				}
 					
 				reader.MoveToAttribute("x");
-				abObj.x = (float)Convert.ToDouble(reader.Value);
+				float x = (float)Convert.ToDouble(reader.Value);
 
 				reader.MoveToAttribute("y");
-				abObj.y = (float)Convert.ToDouble(reader.Value);
+				float y = (float)Convert.ToDouble(reader.Value);
 
-				abObj.rotation = 0f;
+				float rotation = 0f;
 				if (reader.GetAttribute ("rotation") != null) {
 				
 					reader.MoveToAttribute ("rotation");
-					abObj.rotation = (float)Convert.ToDouble (reader.Value);
+					rotation = (float)Convert.ToDouble (reader.Value);
 				}
 
 				if (nodeName == "Block") {
 
-					level.blocks.Add ((OBjData)abObj);
+					level.blocks.Add (new BlockData (type, rotation, x, y, material));
 					reader.Read ();
 				} 
 				else if (nodeName == "Pig") {
 
-					level.pigs.Add ((OBjData)abObj);
+					level.pigs.Add (new OBjData (type, rotation, x, y));
 					reader.Read ();
 				}
 				else if (nodeName == "Platform") {
 
-					abObj.width = 1;
+					int width = 1;
 					if (reader.GetAttribute ("width") != null) {
 
 						reader.MoveToAttribute ("width");
-						abObj.width = (int)Convert.ToInt32 (reader.Value);
+						width = (int)Convert.ToInt32 (reader.Value);
 					}
 
-					abObj.height = 1;
+					int height = 1;
 					if (reader.GetAttribute ("height") != null) {
 
 						reader.MoveToAttribute ("height");
-						abObj.height = (int)Convert.ToInt32 (reader.Value);
+						height = (int)Convert.ToInt32 (reader.Value);
 					}
 
-					level.platforms.Add (abObj);
+					level.platforms.Add (new PlatData (type, rotation, x, y, width, height));
 					reader.Read ();
 				}
 			}
@@ -171,9 +178,21 @@ public class LevelLoader {
 			writer.WriteStartElement("Level");
 			writer.WriteAttributeString("width", level.width.ToString());
 
-			writer.WriteStartElement("BirdsAmount");
-			writer.WriteValue(level.birdsAmount);
+			writer.WriteStartElement("Camera");
+			writer.WriteAttributeString("x", level.camera.x.ToString());
+			writer.WriteAttributeString("y", level.camera.y.ToString());
+			writer.WriteAttributeString("minWidth", level.camera.minWidth.ToString());
+			writer.WriteAttributeString("maxWidth", level.camera.maxWidth.ToString());
 			writer.WriteEndElement();
+
+			writer.WriteStartElement("Birds");
+
+			foreach(BirdData abBird in level.birds)
+			{
+				writer.WriteStartElement("Bird");
+				writer.WriteAttributeString("type", abBird.type.ToString());
+				writer.WriteEndElement();
+			}
 
 			writer.WriteStartElement("Slingshot");
 			writer.WriteAttributeString("x", level.slingshot.x.ToString());
@@ -182,7 +201,7 @@ public class LevelLoader {
 
 			writer.WriteStartElement("GameObjects");
 
-			foreach(OBjData abObj in level.blocks)
+			foreach(BlockData abObj in level.blocks)
 			{
 				writer.WriteStartElement("Block");
 				writer.WriteAttributeString("type", abObj.type.ToString());
@@ -197,7 +216,6 @@ public class LevelLoader {
 			{
 				writer.WriteStartElement("Pig");
 				writer.WriteAttributeString("type", abObj.type.ToString());
-				writer.WriteAttributeString("material", abObj.material.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteAttributeString("rotation", abObj.rotation.ToString());
@@ -208,7 +226,6 @@ public class LevelLoader {
 			{
 				writer.WriteStartElement("Platform");
 				writer.WriteAttributeString("type", abObj.type.ToString());
-				writer.WriteAttributeString("material", abObj.material.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteAttributeString("rotation", abObj.rotation.ToString());

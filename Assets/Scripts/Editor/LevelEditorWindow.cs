@@ -92,7 +92,7 @@ class LevelEditor : EditorWindow {
 		_birdsOps = (BIRDS) EditorGUILayout.EnumPopup("", _birdsOps);
 		if (GUILayout.Button ("Create Bird", GUILayout.Width (80), GUILayout.Height (20))) {
 
-			CreateBird ();
+			CreateBird (_birdsOps.ToString());
 		}
 
 		EditorGUILayout.EndVertical ();
@@ -218,9 +218,9 @@ class LevelEditor : EditorWindow {
 		}
 	}
 
-	void CreateBird() {
+	void CreateBird(string type) {
 
-		GameObject bird = InstantiateGameObject (_birds["BirdRed"]);
+		GameObject bird = InstantiateGameObject (_birds[type]);
 		bird.name = bird.name + "_" + _birdsAdded;
 		bird.transform.parent = GameObject.Find ("Birds").transform;
 
@@ -252,28 +252,32 @@ class LevelEditor : EditorWindow {
 	{
 		ABLevel level = new ABLevel();
 
+		level.birds = new List<BirdData>(); 
 		level.pigs = new List<OBjData>();
-		level.blocks = new List<OBjData>();
+		level.blocks = new List<BlockData>();
 		level.platforms = new List<PlatData>();
+
+		foreach (Transform child in GameObject.Find ("Birds").transform) {
+
+			string type = child.name;
+			level.birds.Add (new BirdData (type));
+		}
 
 		foreach (Transform child in GameObject.Find ("Blocks").transform) {
 
-			OBjData obj = new OBjData ();
-
-			obj.type = child.name;
-			obj.x = child.transform.position.x;
-			obj.y = child.transform.position.y;
-			obj.rotation = child.transform.rotation.eulerAngles.z;
+			string type = child.name;
+			float x = child.transform.position.x;
+			float y = child.transform.position.y;
+			float rotation = child.transform.rotation.eulerAngles.z;
 
 			if (child.GetComponent<ABPig> () != null) {
 
-				obj.material = "";
-				level.pigs.Add (obj);
+				level.pigs.Add (new OBjData (type, rotation, x, y));
 			} 
 			else if (child.GetComponent<ABBlock> () != null) {
 				
-				obj.material = child.GetComponent<ABBlock> ()._material.ToString ();
-				level.blocks.Add (obj);
+				string material = child.GetComponent<ABBlock> ()._material.ToString ();
+				level.blocks.Add (new BlockData (type, rotation, x, y, material));
 			}
 
 		}
@@ -283,7 +287,6 @@ class LevelEditor : EditorWindow {
 			PlatData obj = new PlatData ();
 
 			obj.type = child.name;
-			obj.material = "";
 			obj.x = child.transform.position.x;
 			obj.y = child.transform.position.y;
 			obj.rotation = child.transform.rotation.eulerAngles.z;
@@ -292,9 +295,7 @@ class LevelEditor : EditorWindow {
 
 			level.platforms.Add (obj);
 		}
-
-		level.birdsAmount = _birdsAdded;
-
+			
 		return level;
 	}
 
@@ -311,7 +312,14 @@ class LevelEditor : EditorWindow {
 			pig.transform.rotation = rotation;
 		}
 
-		foreach(OBjData gameObj in level.blocks) {
+		_birdsAdded = 0;
+		foreach(BirdData gameObj in level.birds){
+			
+			CreateBird (gameObj.type);
+			_birdsAdded++;
+		}
+
+		foreach(BlockData gameObj in level.blocks) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
@@ -335,11 +343,6 @@ class LevelEditor : EditorWindow {
 			platform.transform.position = pos;
 			platform.transform.rotation = rotation;
 		}
-
-		for (int i = 0; i < level.birdsAmount; i++)
-			CreateBird ();
-
-		_birdsAdded = level.birdsAmount;
 	}
 
 	public static void ToggleGizmos(bool gizmosOn) {

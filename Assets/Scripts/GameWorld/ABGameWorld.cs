@@ -73,6 +73,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 		_blocksTransform = GameObject.Find ("Blocks").transform;
 		_birdsTransform  = GameObject.Find ("Birds").transform;
+		_plaftformsTransform = GameObject.Find ("Platforms").transform;
 
 		_levelFailedBanner = GameObject.Find ("LevelFailedBanner").gameObject;
 		_levelFailedBanner.gameObject.SetActive (false);
@@ -179,6 +180,11 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		_slingshot.name = "Slingshot";
 		_slingshot.transform.parent = transform;
 
+		foreach(BirdData gameObj in currentLevel.birds){
+
+			AddBird(ABWorldAssets.BIRDS[gameObj.type], ABWorldAssets.BIRDS[gameObj.type].transform.rotation);
+		}
+
 		foreach (OBjData gameObj in currentLevel.pigs) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
@@ -186,7 +192,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			AddPig(ABWorldAssets.PIGS[gameObj.type], pos, rotation);
 		}
 
-		foreach(OBjData gameObj in currentLevel.blocks) {
+		foreach(BlockData gameObj in currentLevel.blocks) {
 
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
@@ -204,9 +210,6 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 			AddPlatform(ABWorldAssets.PLATFORM, pos, rotation, gameObj.width, gameObj.height);
 		}
-
-		for(int i = 0; i < currentLevel.birdsAmount; i++)
-			AddBird(ABWorldAssets.BIRDS["BirdRed"], ABWorldAssets.BIRDS["BirdRed"].transform.rotation);
 		
 		StartWorld();
 	}
@@ -239,14 +242,13 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		if(_birds[0].JumpToSlingshot)
 			_birds[0].SetBirdOnSlingshot();
 
-		int birdsLayer = LayerMask.NameToLayer("Birds");
-		int blocksLayer = LayerMask.NameToLayer("Blocks");
-
-		if(_birds[0].IsFlying || _birds[0].IsDying)
-			
-			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
-		else 
-			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, true);
+//		int birdsLayer = LayerMask.NameToLayer("Birds");
+//		int blocksLayer = LayerMask.NameToLayer("Blocks");
+//		if(_birds[0].IsFlying || _birds[0].IsDying)
+//			
+//			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, false);
+//		else 
+//			Physics2D.IgnoreLayerCollision(birdsLayer, blocksLayer, true);
 	}
 
 	public ABBird GetCurrentBird() {
@@ -294,7 +296,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			_birds.Add(readyBird);
 	}
 	
-	public void AddBird(GameObject original, Quaternion rotation, float scale = 1f) {
+	public GameObject AddBird(GameObject original, Quaternion rotation) {
 		
 		Vector3 birdsPos = _slingshot.transform.position - ABConstants.SLING_SELECT_POS;
 
@@ -310,35 +312,40 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 					birdsPos.x = _slingshot.transform.position.x + (Random.value * 0.5f * coin);
 				}
 					
-				birdsPos.x -= ABWorldAssets.BIRDS ["BirdRed"].GetComponent<SpriteRenderer> ().bounds.size.x * 1.75f;
+				birdsPos.x -= ABWorldAssets.BIRDS [original.name].GetComponent<SpriteRenderer> ().bounds.size.x * 1.75f;
 			}
 		}
 
 		GameObject newGameObject = (GameObject)Instantiate(original, birdsPos, rotation);
+		Vector3 scale = newGameObject.transform.localScale;
+		scale.x = original.transform.localScale.x;
+		scale.y = original.transform.localScale.y;
+		newGameObject.transform.localScale = scale;
+
 		newGameObject.transform.parent = _birdsTransform;
 		newGameObject.name = "bird_" + _birds.Count;
 
-		Vector3 newScale = newGameObject.transform.localScale;
-		newScale.x = scale;
-		newScale.y = scale;
-		newGameObject.transform.localScale = newScale;
-
 		ABBird bird = newGameObject.GetComponent<ABBird>();
+		bird.SendMessage ("CreateChildren", SendMessageOptions.DontRequireReceiver);
 
 		if(_birds.Count == 0)
 			bird.GetComponent<Rigidbody2D>().gravityScale = 0f;
 
 		if(bird != null)
 			_birds.Add(bird);
+
+		return newGameObject;
 	}
 
-	public void AddPig(GameObject original, Vector3 position, Quaternion rotation, float scale = 1f) {
+	public GameObject AddPig(GameObject original, Vector3 position, Quaternion rotation, float scale = 1f) {
 		
 		GameObject newGameObject = AddBlock(original, position, rotation, scale);
 
 		ABPig pig = newGameObject.GetComponent<ABPig>();
 		if(pig != null)
 			_pigs.Add(pig);
+
+		return newGameObject;
 	}
 
 	public GameObject AddPlatform(GameObject original, Vector3 position, Quaternion rotation, int width, int height) {
@@ -363,7 +370,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		
 				pos.y += j * platfSize;
 				GameObject adjacPlatform = AddBlock (original, pos, Quaternion.identity, 1f);
-				adjacPlatform.transform.parent = newPlatform.transform;
+				adjacPlatform.transform.parent = _plaftformsTransform.transform;
 			}
 		}
 
@@ -444,6 +451,9 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 	}
 	
 	public void KillBird(ABBird bird) {
+
+		if (!_birds.Contains (bird))
+			return;
 		
 		_birds.Remove(bird);
 		

@@ -23,26 +23,24 @@ using System.Collections.Generic;
 
 public class ABBird : ABCharacter {
 
-    public float _dragRadius = 1.0f;
-    public float _dragSpeed = 1.0f;
+    public float _dragRadius    = 1.0f;
+    public float _dragSpeed     = 1.0f;
     public float _launchGravity = 1.0f;
+
+	public float _woodDamage  = 1.0f;
+	public float _stoneDamage = 1.0f;
+	public float _iceDamage   = 1.0f;
+
     public float _trajectoryParticleFrequency = 0.5f;
     public float _jumpForce;
     public float _maxTimeToJump;
 
-    public Vector2   _launchForce;
-    
+    public Vector2      _launchForce;
     public GameObject[] _trajectoryParticlesTemplates;
 
-	private bool _isSelected;
-	public  bool IsSelected      { get { return _isSelected; } }
-
-	private bool _isFlying;    
-	public  bool IsFlying        { get { return _isFlying; } }
-   
-	private bool _isOutOfSlingshot;
-	public  bool OutOfSlingShot  { get { return _isOutOfSlingshot; } }
-
+	public bool IsSelected      { get; set; }
+	public bool IsFlying        { get; set; }
+	public bool OutOfSlingShot  { get; set; }
 	public bool JumpToSlingshot { get; set; }
 
 	protected override void Awake ()
@@ -86,15 +84,15 @@ public class ABBird : ABCharacter {
 
 	public override void Die()
 	{
-			ABGameWorld.Instance.KillBird (this);
-			base.Die ();
+		ABGameWorld.Instance.KillBird (this);
+		base.Die ();
 	}
 
     public override void OnCollisionEnter2D(Collision2D collision)
     {
 		if(OutOfSlingShot && !IsDying)
         {
-			_isFlying = false;
+			IsFlying = false;
 			_destroyEffect._shootParticles = false;
 
 			ABGameWorld.Instance.RemoveLastTrajectoryParticle ();
@@ -130,7 +128,7 @@ public class ABBird : ABCharacter {
 
             if(IsFlying)
             {
-				_isOutOfSlingshot = true;
+				OutOfSlingShot = true;
 
 				Vector3 slingBasePos = ABGameWorld.Instance.Slingshot().transform.position - ABConstants.SLING_SELECT_POS;
                 slingBasePos.z = transform.position.z + 0.5f;
@@ -158,7 +156,7 @@ public class ABBird : ABCharacter {
 		if (IsFlying || IsDying)
 			return;
 		
-		_isSelected = true;
+		IsSelected = true;
 
 		_audioSource.PlayOneShot (_clips[1]);
         _animator.Play("selected", 0, 0f);
@@ -174,7 +172,7 @@ public class ABBird : ABCharacter {
 		if(Vector3.Distance(transform.position, slingshotPos) <= 0f)
 		{
 			JumpToSlingshot = false;
-			_isOutOfSlingshot = false;
+			OutOfSlingShot = false;
 			_rigidBody.velocity = Vector2.zero;
 		}
     }
@@ -211,16 +209,34 @@ public class ABBird : ABCharacter {
 		Vector2 deltaPosFromSlingshot = (transform.position - slingshotPos);
 		_animator.Play("flying", 0, 0f);
 
-		_isFlying = true;
-		_isSelected = false;
-				
+		IsFlying = true;
+		IsSelected = false;
+
 		// The bird starts with no gravity, so we must set it
+		_rigidBody.velocity = Vector2.zero;
 		_rigidBody.gravityScale = _launchGravity;
 
 		Vector2 f = new Vector2 (_launchForce.x * -deltaPosFromSlingshot.x, 
-								 _launchForce.y * -deltaPosFromSlingshot.y);
-		
+			_launchForce.y * -deltaPosFromSlingshot.y);
+
 		_rigidBody.AddForce(f, ForceMode2D.Impulse);
+
+		if(!ABGameWorld.Instance._isSimulation)
+			_destroyEffect._shootParticles = true;
+
+		_audioSource.PlayOneShot(_clips[3]);
+	}
+
+	public void LaunchBird(Vector2 force)
+	{
+		IsFlying = true;
+		IsSelected = false;
+
+		// The bird starts with no gravity, so we must set it
+		_rigidBody.velocity = Vector2.zero;
+		_rigidBody.gravityScale = _launchGravity;
+
+		_rigidBody.AddForce(force, ForceMode2D.Impulse);
 
 		if(!ABGameWorld.Instance._isSimulation)
 			_destroyEffect._shootParticles = true;

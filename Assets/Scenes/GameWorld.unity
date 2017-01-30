@@ -1121,7 +1121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dampTime: 6
-  _cameraMaxWidth: 17.5
+  _minWidth: 0
+  _maxWidth: 0
 --- !u!81 &944210275
 AudioListener:
   m_ObjectHideFlags: 0

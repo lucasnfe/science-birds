@@ -29,7 +29,6 @@ using System.Collections;
 public abstract class ABGameObject : MonoBehaviour
 {	
 	protected int   _spriteChangedTimes;
-	protected float _receivedDamage;
 
 	protected Collider2D       _collider;
 	protected Rigidbody2D      _rigidBody;
@@ -65,11 +64,15 @@ public abstract class ABGameObject : MonoBehaviour
 	{
 		Destroy(gameObject);
 	}
-		
+
 	public virtual void OnCollisionEnter2D(Collision2D collision)
 	{
-		_receivedDamage += collision.relativeVelocity.magnitude;
-		if(_receivedDamage >= _life/_sprites.Length)
+		DealDamage (collision.relativeVelocity.magnitude);
+	}
+
+	public void DealDamage(float damage) {
+
+		if(damage >= _life/_sprites.Length)
 		{
 			_spriteChangedTimes = Mathf.Clamp (_spriteChangedTimes, 0, _sprites.Length - 1);
 			_spriteRenderer.sprite = _sprites[_spriteChangedTimes];
@@ -78,11 +81,10 @@ public abstract class ABGameObject : MonoBehaviour
 				_audioSource.PlayOneShot(_clips[0]);
 
 			_spriteChangedTimes++;
-			_receivedDamage = 0;
 		}
 
-		if(_spriteChangedTimes >= _sprites.Length) {
-			
+		if(_spriteChangedTimes >= _sprites.Length || damage > _life) {
+
 			ABAudioController.Instance.PlayIndependentSFX(_clips[1]);
 
 			IsDying = true;

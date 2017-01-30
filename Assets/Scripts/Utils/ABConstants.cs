@@ -28,9 +28,8 @@ public enum MATERIALS {
 };
 
 public enum BIRDS  { 
-	Red, 
-	Green, 
-	Blue 
+	BirdRed, 
+	BirdBlue,
 };
 
 public enum PIGS   { 

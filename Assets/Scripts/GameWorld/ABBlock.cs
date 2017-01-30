@@ -84,4 +84,35 @@ public class ABBlock : ABGameObject {
 
 		_spriteRenderer.sprite = _sprites [0];
 	}
+
+	public override void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Bird") {
+
+			ABBird bird = collision.gameObject.GetComponent<ABBird> ();
+			float collisionMagnitude = collision.relativeVelocity.magnitude;
+			float birdDamage = 1f;
+
+			switch (_material) {
+
+			case MATERIALS.wood:
+				birdDamage = bird._woodDamage;
+				break;
+
+			case MATERIALS.stone:
+				birdDamage = bird._stoneDamage;
+				break;
+
+			case MATERIALS.ice:
+				birdDamage = bird._iceDamage;
+				break;
+			}
+
+			DealDamage (collisionMagnitude * birdDamage);
+		} 
+		else {
+
+			base.OnCollisionEnter2D (collision);
+		}
+	}
 }

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-16"?>
 <Level width="2">
   <Camera x="0" y="0" minWidth="20" maxWidth="26">
-  <BirdsAmount>3</BirdsAmount>
+  <Birds>
+  	<Bird type="BirdBlue"/>
+  	<Bird type="BirdRed"/>
+  	<Bird type="BirdRed"/>
+  </Birds>
   <Slingshot x="-9" y="-2.5">
   <GameObjects>
     <Block    type="RectTiny"    material="wood"  x="2.54" y="-2.73" />
