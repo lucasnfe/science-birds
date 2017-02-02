@@ -22,8 +22,8 @@ using System.Collections;
 
 public class ABBBirdBlue : ABBird {
 
-	public  int           _childrenAmount = 3;
-	public  Vector2       _attackForce;
+	public  int   _childrenAmount = 3;
+	public  float _angleBetweenBirds = 5f;
 	private ABBBirdBlue []_childrenBirds;
 
 	void CreateChildren() {
@@ -40,18 +40,20 @@ public class ABBBirdBlue : ABBird {
 		
 	void SpecialAttack() {
 
-		Vector2 force = _attackForce;
+		float currentBirdAngle = _angleBetweenBirds * 0.5f * _childrenBirds.Length;
+		Vector2 direction = Quaternion.AngleAxis(currentBirdAngle, Vector3.forward) * _rigidBody.velocity.normalized;
+
 		foreach (ABBBirdBlue child in _childrenBirds) {
 
-			child.IsSelected = IsSelected;
 			child.IsFlying = IsFlying;
 			child.OutOfSlingShot = OutOfSlingShot;
 			child.JumpToSlingshot = JumpToSlingshot;
 			child.transform.position = transform.position;
 
 			child.gameObject.SetActive (true);
-			child.LaunchBird (force);
-			force.y -= 1f;
+			child.LaunchBird (direction * _launchForce);
+
+			direction = Quaternion.AngleAxis(-_angleBetweenBirds, Vector3.forward) * direction.normalized;
 		}
 
 		Die ();

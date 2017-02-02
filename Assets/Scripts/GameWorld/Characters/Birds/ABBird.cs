@@ -35,7 +35,7 @@ public class ABBird : ABCharacter {
     public float _jumpForce;
     public float _maxTimeToJump;
 
-    public Vector2      _launchForce;
+    public float _launchForce = 1.0f;
     public GameObject[] _trajectoryParticlesTemplates;
 
 	public bool IsSelected      { get; set; }
@@ -216,8 +216,7 @@ public class ABBird : ABCharacter {
 		_rigidBody.velocity = Vector2.zero;
 		_rigidBody.gravityScale = _launchGravity;
 
-		Vector2 f = new Vector2 (_launchForce.x * -deltaPosFromSlingshot.x, 
-			_launchForce.y * -deltaPosFromSlingshot.y);
+		Vector2 f = -deltaPosFromSlingshot * _launchForce;
 
 		_rigidBody.AddForce(f, ForceMode2D.Impulse);
 
@@ -233,14 +232,9 @@ public class ABBird : ABCharacter {
 		IsSelected = false;
 
 		// The bird starts with no gravity, so we must set it
-		_rigidBody.velocity = Vector2.zero;
-		_rigidBody.gravityScale = _launchGravity;
-
 		_rigidBody.AddForce(force, ForceMode2D.Impulse);
 
 		if(!ABGameWorld.Instance._isSimulation)
 			_destroyEffect._shootParticles = true;
-
-		_audioSource.PlayOneShot(_clips[3]);
 	}
 }
