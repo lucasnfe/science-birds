@@ -64,19 +64,17 @@ public class BlockData: OBjData {
 
 public class PlatData : OBjData {
 
-	public int width;
-	public int height;
+	public float scale;
 
 	public PlatData () { }
 
-	public PlatData(string type, float rotation, float x, float y, int width, int height) {
+	public PlatData(string type, float rotation, float x, float y, float scale) {
 
 		this.type = type;
 		this.rotation = rotation;
 		this.x = x;
 		this.y = y;
-		this.width = width;
-		this.height = height;
+		this.scale = scale;
 	}
 }
 

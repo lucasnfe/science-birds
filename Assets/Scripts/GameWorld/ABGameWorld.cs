@@ -208,7 +208,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
 
-			AddPlatform(ABWorldAssets.PLATFORM, pos, rotation, gameObj.width, gameObj.height);
+			AddPlatform(ABWorldAssets.PLATFORM, pos, rotation, gameObj.scale);
 		}
 		
 		StartWorld();
@@ -348,34 +348,12 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		return newGameObject;
 	}
 
-	public GameObject AddPlatform(GameObject original, Vector3 position, Quaternion rotation, int width, int height) {
+	public GameObject AddPlatform(GameObject original, Vector3 position, Quaternion rotation, float scale) {
 
-		GameObject newPlatform = new GameObject();
+		GameObject platform = AddBlock (original, position, rotation, scale);
+		platform.transform.parent = _plaftformsTransform;
 
-		float platfSize = 0.63f;
-
-		newPlatform.name = original.name;
-
-		Vector3 pos = position;
-		pos.x -= platfSize * 0.5f;
-	
-		for (int i = 0; i < width; i++) {
-
-			pos = position;
-
-			pos.x += i * platfSize;
-			pos.y -= platfSize * 0.5f;
-
-			for (int j = 0; j < height; j++) {
-		
-				pos.y += j * platfSize;
-				GameObject adjacPlatform = AddBlock (original, pos, Quaternion.identity, 1f);
-				adjacPlatform.transform.parent = _plaftformsTransform.transform;
-			}
-		}
-
-		newPlatform.transform.rotation = rotation;
-		return newPlatform;
+		return platform;
 	}
 
 	public GameObject AddBlock(GameObject original, Vector3 position, Quaternion rotation, float scale = 1f) {

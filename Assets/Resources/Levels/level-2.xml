@@ -8,19 +8,7 @@
   </Birds>
   <Slingshot x="-9" y="-2.5">
   <GameObjects>
-    <Block    type="RectTiny"    material="wood"  x="2.54" y="-2.73" />
-    <Block    type="RectTiny"    material="wood"  x="1.70" y="-2.73" />
-    <Block    type="SquareHole"  material="wood"  x="2.15" y="-2.18" />
-    <Block    type="SquareHole"  material="stone" x="2.2"  y="0.72"  />
-    <Block    type="RectTiny"    material="stone" x="1.76" y="0.17"  />
-    <Block    type="RectTiny"    material="stone" x="2.6"  y="0.17"  />
-    <Block    type="RectTiny"    material="ice"   x="2.6"  y="2.91"  />
-    <Block    type="RectTiny"    material="ice"   x="1.76" y="2.91"  />
-    <Block    type="SquareHole"  material="ice"   x="2.2"  y="3.46"  />
-    <Pig      type="BasicSmall"  material=""      x="2.15" y="-1.52" />
-    <Pig      type="BasicSmall" material=""       x="2.2"  y="1.38"  />
-    <Pig      type="BasicSmall"    material=""    x="2.2"  y="4.12"  />
-    <Platform type="Platform"    material=""      x="1.04" y="-0.31" width="5" />
-    <Platform type="Platform"    material=""      x="0.97" y="2.4"   width="5" />
+    <Pig      type="BasicBig"  x="2"  y="2"  />
+    <Platform type="Platform"  x="2"  y="1" scale="3" />
   </GameObjects>
 </Level>
