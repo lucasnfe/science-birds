@@ -144,14 +144,21 @@ public class LevelLoader {
 				}
 				else if (nodeName == "Platform") {
 
-					float scale = 1f;
-					if (reader.GetAttribute ("scale") != null) {
+					float scaleX = 1f;
+					if (reader.GetAttribute ("scaleX") != null) {
 
-						reader.MoveToAttribute ("scale");
-						scale = (int)Convert.ToInt32 (reader.Value);
+						reader.MoveToAttribute ("scaleX");
+						scaleX = (int)Convert.ToDouble (reader.Value);
 					}
 
-					level.platforms.Add (new PlatData (type, rotation, x, y, scale));
+					float scaleY = 1f;
+					if (reader.GetAttribute ("scaleY") != null) {
+
+						reader.MoveToAttribute ("scaleY");
+						scaleY = (int)Convert.ToDouble (reader.Value);
+					}
+
+					level.platforms.Add (new PlatData (type, rotation, x, y, scaleX, scaleY));
 					reader.Read ();
 				}
 			}
@@ -222,7 +229,8 @@ public class LevelLoader {
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());
 				writer.WriteAttributeString("rotation", abObj.rotation.ToString());
-				writer.WriteAttributeString("scale", abObj.scale.ToString());
+				writer.WriteAttributeString("scaleX", abObj.scaleX.ToString());
+				writer.WriteAttributeString("scaleY", abObj.scaleY.ToString());
 				writer.WriteEndElement();
 			}
 		}

@@ -290,7 +290,8 @@ class LevelEditor : EditorWindow {
 			obj.x = child.transform.position.x;
 			obj.y = child.transform.position.y;
 			obj.rotation = child.transform.rotation.eulerAngles.z;
-			obj.scale = child.transform.localScale.x;
+			obj.scaleX = child.transform.localScale.x;
+			obj.scaleY = child.transform.localScale.y;
 
 			level.platforms.Add (obj);
 		}

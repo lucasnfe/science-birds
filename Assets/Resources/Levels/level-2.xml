@@ -9,6 +9,6 @@
   <Slingshot x="-9" y="-2.5">
   <GameObjects>
     <Pig      type="BasicBig"  x="2"  y="2"  />
-    <Platform type="Platform"  x="2"  y="1" scale="3" />
+    <Platform type="Platform"  x="2"  y="-1" scaleX="5.5" scaleY="8"/>
   </GameObjects>
 </Level>
