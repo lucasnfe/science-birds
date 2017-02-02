@@ -45,13 +45,15 @@ public class ABBBirdBlue : ABBird {
 
 		foreach (ABBBirdBlue child in _childrenBirds) {
 
+			child.CancelInvoke ("IdleJump");
+
 			child.IsFlying = IsFlying;
 			child.OutOfSlingShot = OutOfSlingShot;
 			child.JumpToSlingshot = JumpToSlingshot;
 			child.transform.position = transform.position;
 
 			child.gameObject.SetActive (true);
-			child.LaunchBird (direction * _launchForce);
+			child._rigidBody.velocity = direction * _rigidBody.velocity.magnitude;
 
 			direction = Quaternion.AngleAxis(-_angleBetweenBirds, Vector3.forward) * direction.normalized;
 		}

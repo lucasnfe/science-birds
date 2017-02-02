@@ -23,19 +23,21 @@ using System.Collections.Generic;
 
 public class ABBird : ABCharacter {
 
+	public float _dragSpeed     = 1.0f;
     public float _dragRadius    = 1.0f;
-    public float _dragSpeed     = 1.0f;
     public float _launchGravity = 1.0f;
 
 	public float _woodDamage  = 1.0f;
 	public float _stoneDamage = 1.0f;
 	public float _iceDamage   = 1.0f;
 
-    public float _trajectoryParticleFrequency = 0.5f;
     public float _jumpForce;
-    public float _maxTimeToJump;
+	public float _launchForce = 1.0f;
 
-    public float _launchForce = 1.0f;
+	public float _jumpTimer;
+    public float _maxTimeToJump;
+	public float _trajectoryParticleFrequency = 0.5f;
+
     public GameObject[] _trajectoryParticlesTemplates;
 
 	public bool IsSelected      { get; set; }
@@ -43,10 +45,8 @@ public class ABBird : ABCharacter {
 	public bool OutOfSlingShot  { get; set; }
 	public bool JumpToSlingshot { get; set; }
 
-	protected override void Awake ()
+	void Start ()
     {
-		base.Awake();
-
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
     }
@@ -224,17 +224,5 @@ public class ABBird : ABCharacter {
 			_destroyEffect._shootParticles = true;
 
 		_audioSource.PlayOneShot(_clips[3]);
-	}
-
-	public void LaunchBird(Vector2 force)
-	{
-		IsFlying = true;
-		IsSelected = false;
-
-		// The bird starts with no gravity, so we must set it
-		_rigidBody.AddForce(force, ForceMode2D.Impulse);
-
-		if(!ABGameWorld.Instance._isSimulation)
-			_destroyEffect._shootParticles = true;
 	}
 }
