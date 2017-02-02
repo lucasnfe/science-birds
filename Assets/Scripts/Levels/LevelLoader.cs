@@ -148,14 +148,14 @@ public class LevelLoader {
 					if (reader.GetAttribute ("scaleX") != null) {
 
 						reader.MoveToAttribute ("scaleX");
-						scaleX = (int)Convert.ToDouble (reader.Value);
+						scaleX = (float)Convert.ToDouble (reader.Value);
 					}
 
 					float scaleY = 1f;
 					if (reader.GetAttribute ("scaleY") != null) {
 
 						reader.MoveToAttribute ("scaleY");
-						scaleY = (int)Convert.ToDouble (reader.Value);
+						scaleY = (float)Convert.ToDouble (reader.Value);
 					}
 
 					level.platforms.Add (new PlatData (type, rotation, x, y, scaleX, scaleY));
