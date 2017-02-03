@@ -3,7 +3,7 @@
   <Camera x="0" y="0" minWidth="20" maxWidth="26">
   <Birds>
   	<Bird type="BirdBlue"/>
-  	<Bird type="BirdRed"/>
+  	<Bird type="BirdYellow"/>
   	<Bird type="BirdRed"/>
   </Birds>
   <Slingshot x="-9" y="-2.5">

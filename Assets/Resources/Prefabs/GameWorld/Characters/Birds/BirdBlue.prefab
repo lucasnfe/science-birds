@@ -225,16 +225,17 @@ MonoBehaviour:
   _life: 0
   _timeToDie: 3
   _maxTimeToBlink: 2
-  _dragRadius: 1
   _dragSpeed: 15
+  _dragRadius: 1
   _launchGravity: 0.48
   _woodDamage: 0.25
   _stoneDamage: 0
   _iceDamage: 2
-  _trajectoryParticleFrequency: 0.5
   _jumpForce: 100
-  _maxTimeToJump: 2
   _launchForce: 5
+  _jumpTimer: 0
+  _maxTimeToJump: 2
+  _trajectoryParticleFrequency: 0.5
   _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}

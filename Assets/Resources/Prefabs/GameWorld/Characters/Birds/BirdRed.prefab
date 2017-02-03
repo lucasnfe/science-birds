@@ -251,8 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2677f554f484d188dcfaebf29ce472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sprites:
-  - {fileID: 21300056, guid: 01d8182a7a5694f4f9545847cd98417c, type: 3}
+  _sprites: []
   _clips:
   - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
   - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
@@ -263,16 +262,17 @@ MonoBehaviour:
   _life: 0
   _timeToDie: 2
   _maxTimeToBlink: 2
-  _dragRadius: 1
   _dragSpeed: 15
+  _dragRadius: 1
   _launchGravity: 0.48
   _woodDamage: 1
   _stoneDamage: 1
   _iceDamage: 1
-  _trajectoryParticleFrequency: 0.5
   _jumpForce: 100
-  _maxTimeToJump: 2
   _launchForce: 5
+  _jumpTimer: 0
+  _maxTimeToJump: 2
+  _trajectoryParticleFrequency: 0.5
   _trajectoryParticlesTemplates:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}

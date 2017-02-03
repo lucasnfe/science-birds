@@ -24,7 +24,8 @@ GameObject:
   - 114: {fileID: 114000010329369706}
   - 82: {fileID: 82000010438361728}
   - 50: {fileID: 50000012102873088}
-  - 114: {fileID: 114000010275019974}
+  - 95: {fileID: 95000013149125606}
+  - 114: {fileID: 114000014214154384}
   m_Layer: 8
   m_Name: BirdYellow
   m_TagString: Bird
@@ -150,42 +151,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114000010275019974
-MonoBehaviour:
+--- !u!95 &95000013149125606
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013682053586}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c2677f554f484d188dcfaebf29ce472, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sprites: []
-  _clips:
-  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
-  - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
-  - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
-  - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
-  - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
-  - {fileID: 8300000, guid: 5c0baa5d42c134d9cac0c6d850f2ff6d, type: 3}
-  _life: 0
-  _timeToDie: 2
-  _maxTimeToBlink: 2
-  _dragRadius: 1
-  _dragSpeed: 15
-  _launchGravity: 0.48
-  _woodDamage: 1
-  _stoneDamage: 1
-  _iceDamage: 1
-  _trajectoryParticleFrequency: 0.5
-  _jumpForce: 100
-  _maxTimeToJump: 2
-  _launchForce: {x: 5, y: 5}
-  _trajectoryParticlesTemplates:
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
-  - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f4e7962d32cc0407db97336c8a1f1980, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010329369706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,6 +195,44 @@ MonoBehaviour:
   _particleSprites:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
+--- !u!114 &114000014214154384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013682053586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6284f0600fd34ba8ac9659f90dc4277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprites: []
+  _clips:
+  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
+  - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
+  - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
+  - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
+  - {fileID: 8300000, guid: 5c0baa5d42c134d9cac0c6d850f2ff6d, type: 3}
+  _life: 0
+  _timeToDie: 2
+  _maxTimeToBlink: 2
+  _dragSpeed: 15
+  _dragRadius: 1
+  _launchGravity: 0.48
+  _woodDamage: 1
+  _stoneDamage: 1
+  _iceDamage: 1
+  _jumpForce: 100
+  _launchForce: 5
+  _jumpTimer: 0
+  _maxTimeToJump: 2
+  _trajectoryParticleFrequency: 0.5
+  _trajectoryParticlesTemplates:
+  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+  - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
+  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+  _specialAttackForce: 5
 --- !u!212 &212000011968364006
 SpriteRenderer:
   m_ObjectHideFlags: 1
