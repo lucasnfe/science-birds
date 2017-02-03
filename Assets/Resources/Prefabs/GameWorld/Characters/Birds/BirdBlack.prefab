@@ -20,6 +20,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014263335940}
   - 212: {fileID: 212000012641827448}
+  - 50: {fileID: 50000014223263142}
+  - 60: {fileID: 60000011673546830}
+  - 82: {fileID: 82000012388963484}
+  - 114: {fileID: 114000013173234576}
+  - 114: {fileID: 114000011200320262}
+  - 95: {fileID: 95000013016954250}
   m_Layer: 8
   m_Name: BirdBlack
   m_TagString: Bird
@@ -34,12 +40,214 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012871293140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.2344, y: -0.039562784, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &50000014223263142
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012871293140}
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!60 &60000011673546830
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012871293140}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  m_Points:
+    m_Paths:
+    - - {x: 0.28, y: 0.11}
+      - {x: 0.32, y: 0.16}
+      - {x: 0.32, y: 0.19999999}
+      - {x: 0.08, y: 0.24}
+      - {x: 0.14999999, y: 0.35999998}
+      - {x: 0.089999996, y: 0.42999998}
+      - {x: 0.01, y: 0.42999998}
+      - {x: -0.21, y: 0.19999999}
+      - {x: -0.29, y: 0.08}
+      - {x: -0.32, y: 0.01}
+      - {x: -0.32, y: -0.26}
+      - {x: -0.21, y: -0.38}
+      - {x: -0.12, y: -0.42}
+      - {x: -0.07, y: -0.42999998}
+      - {x: 0.14, y: -0.42999998}
+      - {x: 0.29, y: -0.35}
+      - {x: 0.32, y: -0.28}
+      - {x: 0.32, y: 0.049999997}
+--- !u!82 &82000012388963484
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012871293140}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!95 &95000013016954250
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012871293140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a3bc8bd4e4c74d7f806ab2f411062d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000011200320262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012871293140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1496dfd57e5ea402e9851887ca688cd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minVel: 0
+  _maxVel: 0
+  _minAngle: 0
+  _maxAngle: 0
+  _minMass: 0
+  _maxMass: 0
+  _minLifetime: 0
+  _maxLifetime: 0
+  _systemLifetime: 0
+  _shootingRate: 0
+  _addNoise: 0
+  _applyGravity: 0
+  _shootParticles: 0
+  _particleSprites: []
+--- !u!114 &114000013173234576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012871293140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9915b7f311b974a55aa17e809eda6109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sprites: []
+  _clips:
+  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
+  - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
+  - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
+  - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
+  - {fileID: 8300000, guid: 5c0baa5d42c134d9cac0c6d850f2ff6d, type: 3}
+  _life: 0
+  _timeToDie: 2
+  _maxTimeToBlink: 2
+  _dragSpeed: 15
+  _dragRadius: 1
+  _launchGravity: 0.48
+  _woodDamage: 1
+  _stoneDamage: 1
+  _iceDamage: 1
+  _jumpForce: 100
+  _launchForce: 5
+  _jumpTimer: 0
+  _maxTimeToJump: 2
+  _trajectoryParticleFrequency: 0.5
+  _trajectoryParticlesTemplates:
+  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+  - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
+  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
 --- !u!212 &212000012641827448
 SpriteRenderer:
   m_ObjectHideFlags: 1

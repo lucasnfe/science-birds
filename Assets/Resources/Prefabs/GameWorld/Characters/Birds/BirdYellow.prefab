@@ -20,12 +20,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011058208392}
   - 212: {fileID: 212000011968364006}
-  - 61: {fileID: 61000010238210858}
   - 114: {fileID: 114000010329369706}
   - 82: {fileID: 82000010438361728}
   - 50: {fileID: 50000012102873088}
   - 95: {fileID: 95000013149125606}
   - 114: {fileID: 114000014214154384}
+  - 60: {fileID: 60000012704488256}
   m_Layer: 8
   m_Name: BirdYellow
   m_TagString: Bird
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61000010238210858
-BoxCollider2D:
+--- !u!60 &60000012704488256
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -75,8 +75,21 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 0.56, y: 0.53}
+  m_Points:
+    m_Paths:
+    - - {x: -0.11, y: 0.265}
+      - {x: -0.13, y: 0.24499999}
+      - {x: -0.12, y: 0.21499999}
+      - {x: -0.089999996, y: 0.21499999}
+      - {x: -0.12, y: 0.195}
+      - {x: -0.12, y: 0.175}
+      - {x: -0.28, y: 0.024999999}
+      - {x: -0.28, y: -0.24499999}
+      - {x: -0.19999999, y: -0.265}
+      - {x: 0.22, y: -0.265}
+      - {x: 0.28, y: -0.235}
+      - {x: 0.28, y: -0.024999999}
+      - {x: 0.03, y: 0.265}
 --- !u!82 &82000010438361728
 AudioSource:
   m_ObjectHideFlags: 1
@@ -232,7 +245,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
   - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
   - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
-  _specialAttackForce: 5
+  _specialAttackForce: 4
 --- !u!212 &212000011968364006
 SpriteRenderer:
   m_ObjectHideFlags: 1

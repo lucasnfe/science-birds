@@ -159,6 +159,7 @@ public class HUD : ABSingleton<HUD> {
 				_selectedBird == ABGameWorld.Instance.GetCurrentBird ()) {
 
 				_selectedBird.SelectBird ();
+				_usedSpecialPower = false;
 				return;
 			}
 		} 

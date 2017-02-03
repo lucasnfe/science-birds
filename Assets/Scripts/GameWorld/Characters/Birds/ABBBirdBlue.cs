@@ -34,6 +34,7 @@ public class ABBBirdBlue : ABBird {
 
 			GameObject obj = (GameObject)Instantiate(ABWorldAssets.BIRDS["BirdBlue"], transform.parent);
 			_childrenBirds[i] = obj.GetComponent<ABBBirdBlue> ();
+			_childrenBirds[i].CancelInvoke ("IdleJump");
 			_childrenBirds[i].gameObject.SetActive (false);
 		}
 	}
@@ -45,14 +46,13 @@ public class ABBBirdBlue : ABBird {
 
 		foreach (ABBBirdBlue child in _childrenBirds) {
 
-			child.CancelInvoke ("IdleJump");
-
 			child.IsFlying = IsFlying;
 			child.OutOfSlingShot = OutOfSlingShot;
 			child.JumpToSlingshot = JumpToSlingshot;
 			child.transform.position = transform.position;
 
 			child.gameObject.SetActive (true);
+			child._rigidBody.gravityScale = _rigidBody.gravityScale;
 			child._rigidBody.velocity = direction * _rigidBody.velocity.magnitude;
 
 			direction = Quaternion.AngleAxis(-_angleBetweenBirds, Vector3.forward) * direction.normalized;

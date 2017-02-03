@@ -53,8 +53,8 @@ public class ABBird : ABCharacter {
 
     void IdleJump()
     {
-        if(JumpToSlingshot)
-            return;
+		if (IsFlying || OutOfSlingShot)
+			return;
 
         if(IsIdle() && _rigidBody.gravityScale > 0f) {
 			_rigidBody.AddForce(Vector2.up * _jumpForce);
