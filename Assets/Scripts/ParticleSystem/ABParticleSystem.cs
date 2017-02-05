@@ -58,7 +58,7 @@ public class ABParticleSystem : MonoBehaviour {
 					_shootParticles = false;
 
 					if (_particles.GetUsedObjects ().Count == 0)
-						Destroy (this);
+						_shootParticles = false;
 				}
 			}
 
@@ -97,7 +97,7 @@ public class ABParticleSystem : MonoBehaviour {
 		return inactiveParticle;
 	}
 
-	public void SetParciclesParent(Transform parent) {
+	public void SetParticlesParent(Transform parent) {
 
 		_particles.SetObjectsParent (parent);
 	}

@@ -31,24 +31,27 @@ public class ABBird : ABCharacter {
 	public float _stoneDamage = 1.0f;
 	public float _iceDamage   = 1.0f;
 
-    public float _jumpForce;
+    public float _jumpForce   = 1.0f;
 	public float _launchForce = 1.0f;
 
 	public float _jumpTimer;
     public float _maxTimeToJump;
-	public float _trajectoryParticleFrequency = 0.5f;
-
-    public GameObject[] _trajectoryParticlesTemplates;
 
 	public bool IsSelected      { get; set; }
 	public bool IsFlying        { get; set; }
 	public bool OutOfSlingShot  { get; set; }
 	public bool JumpToSlingshot { get; set; }
 
+	protected ABParticleSystem _trailParticles;
+
 	void Start ()
     {
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
+
+		_trailParticles = gameObject.AddComponent<ABParticleSystem> ();
+		_trailParticles._particleSprites = ABWorldAssets.TRAIL_PARTICLES;
+		_trailParticles._shootingRate = 0.1f;
     }
 
     void IdleJump()
@@ -57,9 +60,14 @@ public class ABBird : ABCharacter {
 			return;
 
         if(IsIdle() && _rigidBody.gravityScale > 0f) {
+
 			_rigidBody.AddForce(Vector2.up * _jumpForce);
-				if(Random.value < 0.5f)
-					_audioSource.PlayOneShot(_clips[Random.Range(4, 6)]);
+
+			if (Random.value < 0.5f) {
+
+				int randomSfx = Random.Range ((int)OBJECTS_SFX.MISC1, (int)OBJECTS_SFX.MISC2 + 1);
+				_audioSource.PlayOneShot (_clips [randomSfx]);
+			}
 		}
 
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
@@ -82,10 +90,10 @@ public class ABBird : ABCharacter {
 		return transform.position.x + _collider.bounds.size.x > slingXPos + _dragRadius * 2f;
 	}
 
-	public override void Die()
+	public override void Die(bool withEffect = true)
 	{
 		ABGameWorld.Instance.KillBird (this);
-		base.Die ();
+		base.Die (withEffect);
 	}
 
     public override void OnCollisionEnter2D(Collision2D collision)
@@ -93,11 +101,11 @@ public class ABBird : ABCharacter {
 		if(OutOfSlingShot && !IsDying)
         {
 			IsFlying = false;
-			_destroyEffect._shootParticles = false;
+			_trailParticles._shootParticles = false;
 
 			ABGameWorld.Instance.RemoveLastTrajectoryParticle ();
 
-			foreach (ABParticle part in _destroyEffect.GetUsedParticles())
+			foreach (ABParticle part in _trailParticles.GetUsedParticles())
 				ABGameWorld.Instance.AddTrajectoryParticle (part);
 
 			InvokeRepeating("CheckVelocityToDie", 3f, 1f);
@@ -109,13 +117,14 @@ public class ABBird : ABCharacter {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
+		// Bird got dragged
         if(collider.tag == "Slingshot")
         {
             if(JumpToSlingshot)
 				ABGameWorld.Instance.SetSlingshotBaseActive(false);
 
 			if(IsSelected && IsFlying)
-				_audioSource.PlayOneShot(_clips[3]);
+				_audioSource.PlayOneShot(_clips[(int)OBJECTS_SFX.DRAGED]);
         }
     }
 
@@ -144,10 +153,10 @@ public class ABBird : ABCharacter {
 		if(collider.tag == "Slingshot")
 		{
 			if(IsSelected && !IsFlying)
-				_audioSource.PlayOneShot(_clips[2]);
+				_audioSource.PlayOneShot(_clips[(int)OBJECTS_SFX.DRAGED]);
 
 			if(!IsSelected && IsFlying)
-				_audioSource.PlayOneShot(_clips[0]);
+				_audioSource.PlayOneShot(_clips[(int)OBJECTS_SFX.FLYING]);
 		}
 	}
 	
@@ -158,7 +167,7 @@ public class ABBird : ABCharacter {
 		
 		IsSelected = true;
 
-		_audioSource.PlayOneShot (_clips[1]);
+		_audioSource.PlayOneShot (_clips[(int)OBJECTS_SFX.MISC1]);
         _animator.Play("selected", 0, 0f);
 
 		ABGameWorld.Instance.SetSlingshotBaseActive(true);
@@ -221,8 +230,8 @@ public class ABBird : ABCharacter {
 		_rigidBody.AddForce(f, ForceMode2D.Impulse);
 
 		if(!ABGameWorld.Instance._isSimulation)
-			_destroyEffect._shootParticles = true;
+			_trailParticles._shootParticles = true;
 
-		_audioSource.PlayOneShot(_clips[3]);
+		_audioSource.PlayOneShot(_clips[(int)OBJECTS_SFX.SHOT]);
 	}
 }

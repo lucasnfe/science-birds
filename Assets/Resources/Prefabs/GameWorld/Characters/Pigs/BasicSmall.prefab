@@ -184,7 +184,6 @@ MonoBehaviour:
   _life: 2
   _timeToDie: 0
   _maxTimeToBlink: 1
-  dustEffect: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
 --- !u!114 &11461714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,10 +201,10 @@ MonoBehaviour:
   _maxAngle: 0
   _minMass: 0
   _maxMass: 0
-  _minLifetime: 0.5
-  _maxLifetime: 0.5
-  _systemLifetime: 0.5
-  _shootingRate: 0
+  _minLifetime: 0.2
+  _maxLifetime: 0.2
+  _systemLifetime: 0.2
+  _shootingRate: 0.2
   _addNoise: 0
   _applyGravity: 0
   _shootParticles: 0

@@ -26,16 +26,18 @@ public class ABBBirdBlue : ABBird {
 	public  float _angleBetweenBirds = 5f;
 	private ABBBirdBlue []_childrenBirds;
 
-	void CreateChildren() {
+	void InitSpecialPower() {
 
 		_childrenBirds = new ABBBirdBlue [_childrenAmount];
 		 
 		for(int i = 0; i < _childrenAmount; i++) {
 
 			GameObject obj = (GameObject)Instantiate(ABWorldAssets.BIRDS["BirdBlue"], transform.parent);
+			obj.name = "BlueBird_Child" + i;
+			obj.transform.position = transform.position;
+
 			_childrenBirds[i] = obj.GetComponent<ABBBirdBlue> ();
-			_childrenBirds[i].CancelInvoke ("IdleJump");
-			_childrenBirds[i].gameObject.SetActive (false);
+			_childrenBirds [i]._spriteRenderer.color = Color.clear;
 		}
 	}
 		
@@ -51,13 +53,18 @@ public class ABBBirdBlue : ABBird {
 			child.JumpToSlingshot = JumpToSlingshot;
 			child.transform.position = transform.position;
 
-			child.gameObject.SetActive (true);
+			child.CancelInvoke ("IdleJump");
+
+			child._spriteRenderer.color = Color.white;
 			child._rigidBody.gravityScale = _rigidBody.gravityScale;
 			child._rigidBody.velocity = direction * _rigidBody.velocity.magnitude;
+
+			if(child._trailParticles)
+				child._trailParticles._shootParticles = true;
 
 			direction = Quaternion.AngleAxis(-_angleBetweenBirds, Vector3.forward) * direction.normalized;
 		}
 
-		Die ();
+		Die (false);
 	}
 }

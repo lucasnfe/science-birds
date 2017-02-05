@@ -21,11 +21,11 @@ GameObject:
   - 4: {fileID: 4000011083339930}
   - 212: {fileID: 212000010736069356}
   - 114: {fileID: 114000012074033354}
-  - 61: {fileID: 61000012532779542}
   - 82: {fileID: 82000010806494896}
   - 50: {fileID: 50000012322913846}
   - 114: {fileID: 114000011519466396}
   - 95: {fileID: 95000010658605864}
+  - 60: {fileID: 60000011336180536}
   m_Layer: 0
   m_Name: BasicMedium
   m_TagString: Untagged
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61000012532779542
-BoxCollider2D:
+--- !u!60 &60000011336180536
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -75,8 +75,23 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 0.78, y: 0.78}
+  m_Points:
+    m_Paths:
+    - - {x: 0.26999998, y: 0.19}
+      - {x: 0.29999998, y: 0.26}
+      - {x: 0.26, y: 0.37}
+      - {x: 0.099999994, y: 0.35}
+      - {x: 0.01, y: 0.38}
+      - {x: -0.13, y: 0.38}
+      - {x: -0.26, y: 0.22}
+      - {x: -0.39, y: 0.049999997}
+      - {x: -0.39, y: -0.21}
+      - {x: -0.32999998, y: -0.32999998}
+      - {x: -0.19999999, y: -0.38}
+      - {x: 0.19999999, y: -0.38}
+      - {x: 0.29999998, y: -0.35}
+      - {x: 0.39, y: -0.22999999}
+      - {x: 0.39, y: 0.07}
 --- !u!82 &82000010806494896
 AudioSource:
   m_ObjectHideFlags: 1
@@ -187,7 +202,6 @@ MonoBehaviour:
   _life: 4
   _timeToDie: 0
   _maxTimeToBlink: 1
-  dustEffect: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
 --- !u!114 &114000012074033354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,10 +219,10 @@ MonoBehaviour:
   _maxAngle: 0
   _minMass: 0
   _maxMass: 0
-  _minLifetime: 0.5
-  _maxLifetime: 0.5
-  _systemLifetime: 0.5
-  _shootingRate: 0
+  _minLifetime: 0.2
+  _maxLifetime: 0.2
+  _systemLifetime: 0.2
+  _shootingRate: 0.2
   _addNoise: 0
   _applyGravity: 0
   _shootParticles: 0

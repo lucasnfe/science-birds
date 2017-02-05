@@ -19,13 +19,13 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012424040856}
-  - 61: {fileID: 61000011498201658}
   - 212: {fileID: 212000013658949888}
   - 114: {fileID: 114000013125672316}
   - 82: {fileID: 82000010781216640}
   - 50: {fileID: 50000010668208364}
   - 114: {fileID: 114000013497111874}
   - 95: {fileID: 95000011568935252}
+  - 60: {fileID: 60000010065554250}
   m_Layer: 0
   m_Name: BasicBig
   m_TagString: Untagged
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61000011498201658
-BoxCollider2D:
+--- !u!60 &60000010065554250
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -75,8 +75,23 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Points:
+    m_Paths:
+    - - {x: 0.345, y: 0.24499999}
+      - {x: 0.39499998, y: 0.305}
+      - {x: 0.315, y: 0.45499998}
+      - {x: 0.175, y: 0.435}
+      - {x: 0.065, y: 0.375}
+      - {x: -0.024999999, y: 0.48499998}
+      - {x: -0.195, y: 0.48499998}
+      - {x: -0.49499997, y: 0.095}
+      - {x: -0.49499997, y: -0.295}
+      - {x: -0.345, y: -0.445}
+      - {x: -0.24499999, y: -0.48499998}
+      - {x: 0.24499999, y: -0.48499998}
+      - {x: 0.36499998, y: -0.435}
+      - {x: 0.49499997, y: -0.265}
+      - {x: 0.49499997, y: 0.065}
 --- !u!82 &82000010781216640
 AudioSource:
   m_ObjectHideFlags: 1
@@ -185,10 +200,10 @@ MonoBehaviour:
   _maxAngle: 0
   _minMass: 0
   _maxMass: 0
-  _minLifetime: 0.5
-  _maxLifetime: 0.5
-  _systemLifetime: 0.5
-  _shootingRate: 0
+  _minLifetime: 0.2
+  _maxLifetime: 0.2
+  _systemLifetime: 0.2
+  _shootingRate: 0.2
   _addNoise: 0
   _applyGravity: 0
   _shootParticles: 0
@@ -213,7 +228,6 @@ MonoBehaviour:
   _life: 6
   _timeToDie: 0
   _maxTimeToBlink: 1
-  dustEffect: {fileID: 100000, guid: 88d87d272fef242d78ce21e1854b07f0, type: 2}
 --- !u!212 &212000013658949888
 SpriteRenderer:
   m_ObjectHideFlags: 1

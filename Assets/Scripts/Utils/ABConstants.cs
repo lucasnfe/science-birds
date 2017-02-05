@@ -53,6 +53,17 @@ public enum BLOCKS {
 	TriangleHole 
 };
 
+public enum OBJECTS_SFX {
+	DAMAGE,
+	DIE,
+	FLYING,
+	SELECTED,
+	DRAGED,
+	SHOT,
+	MISC1,
+	MISC2
+}
+
 public enum SLINGSHOT_LINE_POS
 {
 	SLING,
@@ -89,6 +100,7 @@ public class ABWorldAssets {
 	public static readonly GameObject[] WOOD_DESTRUCTION_EFFECT  = Resources.LoadAll<GameObject>("Prefabs/GameWorld/Particles/Wood");
 	public static readonly GameObject[] STONE_DESTRUCTION_EFFECT = Resources.LoadAll<GameObject>("Prefabs/GameWorld/Particles/Stone");
 	public static readonly GameObject[] ICE_DESTRUCTION_EFFECT   = Resources.LoadAll<GameObject>("Prefabs/GameWorld/Particles/Stone");
+	public static readonly GameObject[] TRAIL_PARTICLES          = Resources.LoadAll<GameObject> ("Prefabs/GameWorld/Particles/BirdTrail");
 
 	public static readonly Dictionary<string, GameObject> BIRDS = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Birds");
 	public static readonly Dictionary<string, GameObject> PIGS = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Pigs");

@@ -2,6 +2,7 @@
 <Level width="2">
   <Camera x="0" y="0" minWidth="20" maxWidth="26">
   <Birds>
+  	<Bird type="BirdRed"/>
   	<Bird type="BirdBlue"/>
   	<Bird type="BirdYellow"/>
   	<Bird type="BirdRed"/>

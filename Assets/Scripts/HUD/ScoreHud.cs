@@ -29,7 +29,7 @@ public class ScoreHud : ABSingleton<ScoreHud> {
 	void Start () {
 	
 		_scoreEmitter = GetComponent<ABParticleSystem> ();
-		_scoreEmitter.SetParciclesParent (transform);
+		_scoreEmitter.SetParticlesParent (transform);
 	}
 
 	public void SpawnScorePoint(uint point, Vector3 position) {

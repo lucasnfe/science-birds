@@ -326,7 +326,7 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 		newGameObject.name = "bird_" + _birds.Count;
 
 		ABBird bird = newGameObject.GetComponent<ABBird>();
-		bird.SendMessage ("CreateChildren", SendMessageOptions.DontRequireReceiver);
+		bird.SendMessage ("InitSpecialPower", SendMessageOptions.DontRequireReceiver);
 
 		if(_birds.Count == 0)
 			bird.GetComponent<Rigidbody2D>().gravityScale = 0f;

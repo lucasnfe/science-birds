@@ -146,7 +146,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -168,7 +168,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95000013016954250
 Animator:
   serializedVersion: 3
@@ -203,14 +203,15 @@ MonoBehaviour:
   _maxAngle: 0
   _minMass: 0
   _maxMass: 0
-  _minLifetime: 0
-  _maxLifetime: 0
-  _systemLifetime: 0
-  _shootingRate: 0
+  _minLifetime: 0.1
+  _maxLifetime: 0.1
+  _systemLifetime: 0.1
+  _shootingRate: 0.1
   _addNoise: 0
   _applyGravity: 0
   _shootParticles: 0
-  _particleSprites: []
+  _particleSprites:
+  - {fileID: 1000012433716616, guid: b47d3e6c7d2bb4ccaa41c5dacf08f78c, type: 2}
 --- !u!114 &114000013173234576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,8 +225,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites: []
   _clips:
-  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
   - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
+  - {fileID: 8300000, guid: 9d3fe5163accd49ddbbdca40362c019e, type: 3}
+  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  - {fileID: 8300000, guid: fd94b77d668aa433c8b2d703cbabfd38, type: 3}
   - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
   - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
   - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
@@ -240,14 +243,12 @@ MonoBehaviour:
   _stoneDamage: 1
   _iceDamage: 1
   _jumpForce: 100
-  _launchForce: 5
+  _launchForce: 10
   _jumpTimer: 0
   _maxTimeToJump: 2
-  _trajectoryParticleFrequency: 0.5
-  _trajectoryParticlesTemplates:
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
-  - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
+  _timeToExplode: 1
+  _explosionArea: 3
+  _explosionPower: 1.5
 --- !u!212 &212000012641827448
 SpriteRenderer:
   m_ObjectHideFlags: 1

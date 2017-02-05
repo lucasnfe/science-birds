@@ -60,8 +60,16 @@ public abstract class ABGameObject : MonoBehaviour
 		DestroyIfOutScreen ();
 	}
 
-	public virtual void Die()
+	public virtual void Die(bool withEffect = true)
 	{
+		if(!ABGameWorld.Instance._isSimulation && withEffect) {
+
+			_destroyEffect._shootParticles = true;
+			ABParticleManager.Instance.AddParticleSystem (_destroyEffect, transform.position);
+
+			ABAudioController.Instance.PlayIndependentSFX(_clips[(int)OBJECTS_SFX.DIE]);
+		}
+
 		Destroy(gameObject);
 	}
 
@@ -78,18 +86,13 @@ public abstract class ABGameObject : MonoBehaviour
 			_spriteRenderer.sprite = _sprites[_spriteChangedTimes];
 
 			if(!ABGameWorld.Instance._isSimulation)
-				_audioSource.PlayOneShot(_clips[0]);
+				_audioSource.PlayOneShot(_clips[(int)OBJECTS_SFX.DAMAGE]);
 
 			_spriteChangedTimes++;
 		}
 
-		if(_spriteChangedTimes >= _sprites.Length || damage > _life) {
-
-			ABAudioController.Instance.PlayIndependentSFX(_clips[1]);
-
-			IsDying = true;
-			Invoke("Die", _timeToDie);
-		}
+		if(_spriteChangedTimes >= _sprites.Length || damage > _life)
+			Die ();
 	}
 
 	void DestroyIfOutScreen() {

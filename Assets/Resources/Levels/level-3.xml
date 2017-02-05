@@ -2,9 +2,9 @@
 <Level>
   <Camera x="0" y="-1" minWidth="15" maxWidth="17.5">
     <Birds>
-  	<Bird type="BirdRed"/>
-  	<Bird type="BirdRed"/>
-  	<Bird type="BirdRed"/>
+  	<Bird type="BirdBlack"/>
+  	<Bird type="BirdBlue"/>
+  	<Bird type="BirdYellow"/>
   	<Bird type="BirdRed"/>
   </Birds>
   <Slingshot x="-5" y="-2.5">
