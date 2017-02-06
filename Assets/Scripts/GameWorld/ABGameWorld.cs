@@ -210,6 +210,14 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 
 			AddPlatform(ABWorldAssets.PLATFORM, pos, rotation, gameObj.scaleX, gameObj.scaleY);
 		}
+
+		foreach(OBjData gameObj in currentLevel.tnts) {
+
+			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
+			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
+
+			AddBlock(ABWorldAssets.TNT, pos, rotation);
+		}
 		
 		StartWorld();
 	}

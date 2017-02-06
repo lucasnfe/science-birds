@@ -142,6 +142,11 @@ public class LevelLoader {
 					level.pigs.Add (new OBjData (type, rotation, x, y));
 					reader.Read ();
 				}
+				else if (nodeName == "TNT") {
+
+					level.tnts.Add (new OBjData (type, rotation, x, y));
+					reader.Read ();
+				}
 				else if (nodeName == "Platform") {
 
 					float scaleX = 1f;
@@ -215,6 +220,16 @@ public class LevelLoader {
 			foreach(OBjData abObj in level.pigs)
 			{
 				writer.WriteStartElement("Pig");
+				writer.WriteAttributeString("type", abObj.type.ToString());
+				writer.WriteAttributeString("x", abObj.x.ToString());
+				writer.WriteAttributeString("y", abObj.y.ToString());
+				writer.WriteAttributeString("rotation", abObj.rotation.ToString());
+				writer.WriteEndElement();
+			}
+
+			foreach(OBjData abObj in level.tnts)
+			{
+				writer.WriteStartElement("TNT");
 				writer.WriteAttributeString("type", abObj.type.ToString());
 				writer.WriteAttributeString("x", abObj.x.ToString());
 				writer.WriteAttributeString("y", abObj.y.ToString());

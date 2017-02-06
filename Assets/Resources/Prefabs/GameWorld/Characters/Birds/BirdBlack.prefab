@@ -233,7 +233,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
   - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
   - {fileID: 8300000, guid: 5c0baa5d42c134d9cac0c6d850f2ff6d, type: 3}
-  _life: 0
+  _life: 1
   _timeToDie: 2
   _maxTimeToBlink: 2
   _dragSpeed: 15

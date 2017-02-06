@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a2cb05b3ed274477b8e34a63b4928cc1
-timeCreated: 1486292692
+timeCreated: 1486345231
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -58,6 +58,7 @@ TextureImporter:
     21300102: effects_31
     21300104: effects_32
     21300106: effects_33
+    21300108: effects_34
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -548,6 +549,19 @@ TextureImporter:
         y: 306
         width: 11
         height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: effects_34
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 28
+        width: 66
+        height: 66
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

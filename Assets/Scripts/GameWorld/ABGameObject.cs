@@ -26,8 +26,10 @@ using System.Collections;
 [RequireComponent (typeof (SpriteRenderer))]
 [RequireComponent (typeof (ABParticleSystem))]
 [RequireComponent (typeof (AudioSource))]
-public abstract class ABGameObject : MonoBehaviour
+public class ABGameObject : MonoBehaviour
 {	
+	private   float _currentLife;
+
 	protected int   _spriteChangedTimes;
 
 	protected Collider2D       _collider;
@@ -52,7 +54,12 @@ public abstract class ABGameObject : MonoBehaviour
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
 		_audioSource    = GetComponent<AudioSource> ();
 
+		_currentLife = _life;
 		IsDying = false;
+	}
+
+	protected virtual void Start() {
+
 	}
 
 	protected virtual void Update() {
@@ -80,10 +87,12 @@ public abstract class ABGameObject : MonoBehaviour
 
 	public void DealDamage(float damage) {
 
-		if(damage >= _life/_sprites.Length)
+		_currentLife -= damage;
+
+		if(_currentLife <= _life - (_life/(_sprites.Length + 1)) * (_spriteChangedTimes + 1))
 		{
-			_spriteChangedTimes = Mathf.Clamp (_spriteChangedTimes, 0, _sprites.Length - 1);
-			_spriteRenderer.sprite = _sprites[_spriteChangedTimes];
+			if(_spriteChangedTimes < _sprites.Length)
+				_spriteRenderer.sprite = _sprites[_spriteChangedTimes];
 
 			if(!ABGameWorld.Instance._isSimulation)
 				_audioSource.PlayOneShot(_clips[(int)OBJECTS_SFX.DAMAGE]);
@@ -91,7 +100,7 @@ public abstract class ABGameObject : MonoBehaviour
 			_spriteChangedTimes++;
 		}
 
-		if(_spriteChangedTimes >= _sprites.Length || damage > _life)
+		if(_currentLife <= 0f)
 			Die ();
 	}
 

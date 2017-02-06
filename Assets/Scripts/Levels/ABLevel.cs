@@ -114,7 +114,8 @@ public class ABLevel
 	public SlingData slingshot;
 
 	public List<OBjData>   pigs;
-	public List<BirdData>   birds;
+	public List<OBjData>   tnts;
+	public List<BirdData>  birds;
 	public List<BlockData> blocks;
 	public List<PlatData>  platforms;
 
@@ -124,9 +125,10 @@ public class ABLevel
 
 		width = 1;
 
-		pigs = new List<OBjData>();
-		blocks = new List<BlockData>();
-		birds = new List<BirdData>();
+		pigs      = new List<OBjData>();
+		tnts      = new List<OBjData>();
+		blocks    = new List<BlockData>();
+		birds     = new List<BirdData>();
 		platforms = new List<PlatData>();
 	}
 }

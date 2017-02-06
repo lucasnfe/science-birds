@@ -44,8 +44,10 @@ public class ABBird : ABCharacter {
 
 	protected ABParticleSystem _trailParticles;
 
-	void Start ()
+	protected override void Start ()
     {
+		base.Start ();
+
         float nextJumpDelay = Random.Range(0.0f, _maxTimeToJump);
         Invoke("IdleJump", nextJumpDelay + 1.0f);
 
