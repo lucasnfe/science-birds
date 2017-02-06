@@ -9,7 +9,7 @@ public class ABBirdBlack : ABBird {
 
 	void SpecialAttack() {
 
-		_animator.Play ("explode");
+		Explode ();
 	}
 
 	// Called via frame event
