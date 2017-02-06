@@ -246,9 +246,9 @@ MonoBehaviour:
   _launchForce: 10
   _jumpTimer: 0
   _maxTimeToJump: 2
-  _timeToExplode: 1
   _explosionArea: 3
-  _explosionPower: 1.5
+  _explosionPower: 0.25
+  _explosionDamage: 1
 --- !u!212 &212000012641827448
 SpriteRenderer:
   m_ObjectHideFlags: 1

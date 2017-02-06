@@ -2,7 +2,7 @@
 <Level>
   <Camera x="0" y="-1" minWidth="15" maxWidth="17.5">
     <Birds>
-  	<Bird type="BirdBlack"/>
+  	<Bird type="BirdWhite"/>
   	<Bird type="BirdBlue"/>
   	<Bird type="BirdYellow"/>
   	<Bird type="BirdRed"/>

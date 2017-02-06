@@ -111,6 +111,7 @@ public class ABWorldAssets {
 	public static readonly GameObject BACKGROUND = (GameObject) Resources.Load ("Prefabs/GameWorld/Background");
 	public static readonly GameObject SLINGSHOT = (GameObject) Resources.Load ("Prefabs/GameWorld/Slingshot");
 	public static readonly GameObject TNT = (GameObject) Resources.Load ("Prefabs/GameWorld/TNT");
+	public static readonly GameObject EGG = (GameObject) Resources.Load ("Prefabs/GameWorld/Particles/Egg");
 	public static readonly GameObject PLATFORM = (GameObject) Resources.Load ("Prefabs/GameWorld/Platform");
 	public static readonly GameObject SCORE_POINT = (GameObject) Resources.Load ("Prefabs/GameWorld/ScorePoints");
 

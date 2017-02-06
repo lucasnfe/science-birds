@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a2cb05b3ed274477b8e34a63b4928cc1
-timeCreated: 1486345231
+timeCreated: 1486358718
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,6 +59,7 @@ TextureImporter:
     21300104: effects_32
     21300106: effects_33
     21300108: effects_34
+    21300110: effects_35
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -82,9 +83,9 @@ TextureImporter:
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -3
-  maxTextureSize: 256
+  maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    filterMode: 1
     aniso: 1
     mipBias: -1
     wrapMode: 1
@@ -562,6 +563,19 @@ TextureImporter:
         y: 28
         width: 66
         height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: effects_35
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 30
+        width: 45
+        height: 58
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

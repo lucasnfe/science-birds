@@ -83,7 +83,7 @@ TextureImporter:
   textureFormat: -3
   maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    filterMode: 1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -100,11 +100,14 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: pig_king_6
+    - serializedVersion: 2
+      name: pig_king_6
       rect:
         serializedVersion: 2
         x: 2
@@ -114,19 +117,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 4.5, y: 67}
-        - {x: 4.5, y: 64}
-        - {x: -4.5, y: 65}
-        - {x: -23.5, y: 64}
-        - {x: -65.5, y: 40}
-        - {x: -65.5, y: -54}
-        - {x: -58.5, y: -67}
-        - {x: 65.5, y: -67}
-        - {x: 65.5, y: 19}
-        - {x: 55.5, y: 62}
-        - {x: 43.5, y: 67}
-    - name: pig_king_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_king_5
       rect:
         serializedVersion: 2
         x: 137
@@ -136,14 +130,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -55.5, y: 71}
-        - {x: -65.5, y: 64}
-        - {x: -65.5, y: -71}
-        - {x: 65.5, y: -71}
-        - {x: 65.5, y: 58}
-        - {x: 55.5, y: 71}
-    - name: pig_king_4
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_king_4
       rect:
         serializedVersion: 2
         x: 272
@@ -153,15 +143,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -56.5, y: 71}
-        - {x: -65.5, y: 51}
-        - {x: -65.5, y: -56}
-        - {x: -52.5, y: -71}
-        - {x: 45.5, y: -71}
-        - {x: 65.5, y: -65}
-        - {x: 65.5, y: 71}
-    - name: pig_king_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_king_3
       rect:
         serializedVersion: 2
         x: 409
@@ -171,19 +156,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -64.5, y: 44}
-        - {x: -64.5, y: -59}
-        - {x: -63.5, y: -64}
-        - {x: -51.5, y: -72}
-        - {x: 41.5, y: -72}
-        - {x: 64.5, y: -68}
-        - {x: 64.5, y: 42}
-        - {x: 62.5, y: 56}
-        - {x: 38.5, y: 72}
-        - {x: -3.5, y: 72}
-        - {x: -25.5, y: 63}
-    - name: pig_king_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_king_2
       rect:
         serializedVersion: 2
         x: 543
@@ -193,15 +169,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 45, y: 72}
-        - {x: -48, y: 72}
-        - {x: -65, y: 51}
-        - {x: -65, y: -71}
-        - {x: -62, y: -72}
-        - {x: 65, y: -72}
-        - {x: 65, y: 57}
-    - name: pig_king_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_king_1
       rect:
         serializedVersion: 2
         x: 679
@@ -211,19 +182,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -64.5, y: 44}
-        - {x: -64.5, y: -59}
-        - {x: -63.5, y: -64}
-        - {x: -51.5, y: -72}
-        - {x: 41.5, y: -72}
-        - {x: 64.5, y: -68}
-        - {x: 64.5, y: 42}
-        - {x: 62.5, y: 56}
-        - {x: 38.5, y: 72}
-        - {x: -3.5, y: 72}
-        - {x: -25.5, y: 63}
-    - name: pig_king_7
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_king_7
       rect:
         serializedVersion: 2
         x: 2
@@ -233,17 +195,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 52.5, y: 67}
-        - {x: -46.5, y: 67}
-        - {x: -65.5, y: 50}
-        - {x: -65.5, y: -45}
-        - {x: -45.5, y: -67}
-        - {x: 48.5, y: -67}
-        - {x: 64.5, y: -50}
-        - {x: 65.5, y: -44}
-        - {x: 65.5, y: 43}
-    - name: pig_mustache_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_8
       rect:
         serializedVersion: 2
         x: 139
@@ -253,19 +208,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 20.5, y: 51}
-        - {x: 10.5, y: 53}
-        - {x: -34.5, y: 53}
-        - {x: -40.5, y: 44}
-        - {x: -39.5, y: 39}
-        - {x: -58.5, y: 10}
-        - {x: -58.5, y: -32}
-        - {x: -43.5, y: -53}
-        - {x: 58.5, y: -53}
-        - {x: 58.5, y: 21}
-        - {x: 36.5, y: 51}
-    - name: pig_mustache_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_3
       rect:
         serializedVersion: 2
         x: 262
@@ -275,15 +221,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -44.5, y: 50}
-        - {x: -58.5, y: 15}
-        - {x: -58.5, y: -50}
-        - {x: 50.5, y: -50}
-        - {x: 58.5, y: -41}
-        - {x: 58.5, y: 30}
-        - {x: 55.5, y: 50}
-    - name: pig_mustache_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_2
       rect:
         serializedVersion: 2
         x: 385
@@ -293,18 +234,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -43.5, y: 50}
-        - {x: -51.5, y: 49}
-        - {x: -58.5, y: 29}
-        - {x: -58.5, y: -38}
-        - {x: -55.5, y: -49}
-        - {x: -54.5, y: -50}
-        - {x: 50.5, y: -50}
-        - {x: 58.5, y: -48}
-        - {x: 58.5, y: 7}
-        - {x: 39.5, y: 50}
-    - name: pig_mustache_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_1
       rect:
         serializedVersion: 2
         x: 508
@@ -314,15 +247,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -44.5, y: 50}
-        - {x: -58.5, y: 15}
-        - {x: -58.5, y: -50}
-        - {x: 50.5, y: -50}
-        - {x: 58.5, y: -41}
-        - {x: 58.5, y: 30}
-        - {x: 55.5, y: 50}
-    - name: pig_basic_big_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_big_9
       rect:
         serializedVersion: 2
         x: 629
@@ -332,14 +260,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -49.5, y: 48.5}
-        - {x: -49.5, y: -48.5}
-        - {x: 48.5, y: -48.5}
-        - {x: 49.5, y: -45.5}
-        - {x: 49.5, y: 36.5}
-        - {x: 42.5, y: 48.5}
-    - name: pig_basic_medium_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_9
       rect:
         serializedVersion: 2
         x: 732
@@ -349,18 +273,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 30, y: 38}
-        - {x: -29, y: 38}
-        - {x: -36, y: 36}
-        - {x: -39, y: 29}
-        - {x: -39, y: -34}
-        - {x: -30, y: -38}
-        - {x: 37, y: -38}
-        - {x: 39, y: -36}
-        - {x: 39, y: 14}
-        - {x: 36, y: 37}
-    - name: pig_mustache_7
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_7
       rect:
         serializedVersion: 2
         x: 137
@@ -370,17 +286,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 29.5, y: 48}
-        - {x: 28.5, y: 50}
-        - {x: -50.5, y: 50}
-        - {x: -59.5, y: 44}
-        - {x: -59.5, y: -46}
-        - {x: -46.5, y: -50}
-        - {x: 59.5, y: -50}
-        - {x: 59.5, y: -1}
-        - {x: 45.5, y: 43}
-    - name: pig_basic_big_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_big_8
       rect:
         serializedVersion: 2
         x: 260
@@ -390,14 +299,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -49.5, y: 48.5}
-        - {x: -49.5, y: -48.5}
-        - {x: 48.5, y: -48.5}
-        - {x: 49.5, y: -45.5}
-        - {x: 49.5, y: 36.5}
-        - {x: 42.5, y: 48.5}
-    - name: pigs_official_15
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_15
       rect:
         serializedVersion: 2
         x: 363
@@ -407,14 +312,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -49.5, y: 48.5}
-        - {x: -49.5, y: -48.5}
-        - {x: 48.5, y: -48.5}
-        - {x: 49.5, y: -45.5}
-        - {x: 49.5, y: 36.5}
-        - {x: 42.5, y: 48.5}
-    - name: pig_basic_big_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_big_3
       rect:
         serializedVersion: 2
         x: 466
@@ -424,16 +325,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -31.5, y: 48.5}
-        - {x: -49.5, y: 11.5}
-        - {x: -49.5, y: -39.5}
-        - {x: -34.5, y: -48.5}
-        - {x: 35.5, y: -48.5}
-        - {x: 49.5, y: -38.5}
-        - {x: 49.5, y: 17.5}
-        - {x: 40.5, y: 48.5}
-    - name: pig_basic_big_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_big_2
       rect:
         serializedVersion: 2
         x: 569
@@ -443,16 +338,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -31.5, y: 48.5}
-        - {x: -49.5, y: 11.5}
-        - {x: -49.5, y: -39.5}
-        - {x: -34.5, y: -48.5}
-        - {x: 35.5, y: -48.5}
-        - {x: 49.5, y: -38.5}
-        - {x: 49.5, y: 17.5}
-        - {x: 40.5, y: 48.5}
-    - name: pig_basic_big_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_big_1
       rect:
         serializedVersion: 2
         x: 672
@@ -462,16 +351,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -31.5, y: 48.5}
-        - {x: -49.5, y: 11.5}
-        - {x: -49.5, y: -39.5}
-        - {x: -34.5, y: -48.5}
-        - {x: 35.5, y: -48.5}
-        - {x: 49.5, y: -38.5}
-        - {x: 49.5, y: 17.5}
-        - {x: 40.5, y: 48.5}
-    - name: pig_basic_small_7
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_7
       rect:
         serializedVersion: 2
         x: 775
@@ -481,15 +364,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15.5, y: 22.5}
-        - {x: -23.5, y: 22.5}
-        - {x: -23.5, y: -22.5}
-        - {x: 18.5, y: -22.5}
-        - {x: 23.5, y: -16.5}
-        - {x: 23.5, y: 5.5}
-        - {x: 22.5, y: 7.5}
-    - name: pig_king_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_king_8
       rect:
         serializedVersion: 2
         x: 2
@@ -499,19 +377,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 4.5, y: 67}
-        - {x: 4.5, y: 64}
-        - {x: -4.5, y: 65}
-        - {x: -23.5, y: 64}
-        - {x: -65.5, y: 40}
-        - {x: -65.5, y: -54}
-        - {x: -58.5, y: -67}
-        - {x: 65.5, y: -67}
-        - {x: 65.5, y: 19}
-        - {x: 55.5, y: 62}
-        - {x: 43.5, y: 67}
-    - name: pig_basic_small_6
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_6
       rect:
         serializedVersion: 2
         x: 775
@@ -521,15 +390,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15.5, y: 22.5}
-        - {x: -23.5, y: 22.5}
-        - {x: -23.5, y: -22.5}
-        - {x: 18.5, y: -22.5}
-        - {x: 23.5, y: -16.5}
-        - {x: 23.5, y: 5.5}
-        - {x: 22.5, y: 7.5}
-    - name: pig_mustache_6
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_6
       rect:
         serializedVersion: 2
         x: 139
@@ -539,16 +403,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -38.5, y: 51}
-        - {x: -58.5, y: 22}
-        - {x: -58.5, y: -44}
-        - {x: -50.5, y: -51}
-        - {x: 41.5, y: -51}
-        - {x: 58.5, y: -47}
-        - {x: 58.5, y: 10}
-        - {x: 34.5, y: 51}
-    - name: pigs_official_23
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_23
       rect:
         serializedVersion: 2
         x: 260
@@ -558,14 +416,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -49.5, y: 48.5}
-        - {x: -49.5, y: -48.5}
-        - {x: 48.5, y: -48.5}
-        - {x: 49.5, y: -45.5}
-        - {x: 49.5, y: 36.5}
-        - {x: 42.5, y: 48.5}
-    - name: pigs_official_24
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_24
       rect:
         serializedVersion: 2
         x: 363
@@ -575,16 +429,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 39.5, y: 43}
-        - {x: -42.5, y: 43}
-        - {x: -51.5, y: 34}
-        - {x: -51.5, y: -43}
-        - {x: 36.5, y: -43}
-        - {x: 51.5, y: -34}
-        - {x: 51.5, y: 3}
-        - {x: 46.5, y: 22}
-    - name: pigs_official_25
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_25
       rect:
         serializedVersion: 2
         x: 470
@@ -594,16 +442,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 39.5, y: 43}
-        - {x: -42.5, y: 43}
-        - {x: -51.5, y: 34}
-        - {x: -51.5, y: -43}
-        - {x: 36.5, y: -43}
-        - {x: 51.5, y: -34}
-        - {x: 51.5, y: 3}
-        - {x: 46.5, y: 22}
-    - name: pigs_official_26
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_26
       rect:
         serializedVersion: 2
         x: 577
@@ -613,16 +455,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 39.5, y: 43}
-        - {x: -42.5, y: 43}
-        - {x: -51.5, y: 34}
-        - {x: -51.5, y: -43}
-        - {x: 36.5, y: -43}
-        - {x: 51.5, y: -34}
-        - {x: 51.5, y: 3}
-        - {x: 46.5, y: 22}
-    - name: pigs_official_27
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_27
       rect:
         serializedVersion: 2
         x: 684
@@ -632,16 +468,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -51.5, y: -42}
-        - {x: -48.5, y: -43}
-        - {x: 32.5, y: -43}
-        - {x: 51.5, y: -37}
-        - {x: 51.5, y: 13}
-        - {x: 40.5, y: 43}
-        - {x: -27.5, y: 43}
-        - {x: -51.5, y: 25}
-    - name: pig_king_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_king_9
       rect:
         serializedVersion: 2
         x: 2
@@ -651,15 +481,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -56.5, y: 71}
-        - {x: -65.5, y: 51}
-        - {x: -65.5, y: -56}
-        - {x: -52.5, y: -71}
-        - {x: 45.5, y: -71}
-        - {x: 65.5, y: -65}
-        - {x: 65.5, y: 71}
-    - name: pig_mustache_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_5
       rect:
         serializedVersion: 2
         x: 139
@@ -669,17 +494,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -42.5, y: 51}
-        - {x: -58.5, y: 15}
-        - {x: -58.5, y: -36}
-        - {x: -41.5, y: -51}
-        - {x: 33.5, y: -51}
-        - {x: 51.5, y: -48}
-        - {x: 58.5, y: -44}
-        - {x: 58.5, y: 16}
-        - {x: 46.5, y: 51}
-    - name: pig_basic_big_6
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_big_6
       rect:
         serializedVersion: 2
         x: 260
@@ -689,14 +507,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -49.5, y: 48.5}
-        - {x: -49.5, y: -48.5}
-        - {x: 48.5, y: -48.5}
-        - {x: 49.5, y: -45.5}
-        - {x: 49.5, y: 36.5}
-        - {x: 42.5, y: 48.5}
-    - name: pigs_official_31
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_31
       rect:
         serializedVersion: 2
         x: 363
@@ -706,16 +520,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 39.5, y: 43}
-        - {x: -42.5, y: 43}
-        - {x: -51.5, y: 34}
-        - {x: -51.5, y: -43}
-        - {x: 36.5, y: -43}
-        - {x: 51.5, y: -34}
-        - {x: 51.5, y: 3}
-        - {x: 46.5, y: 22}
-    - name: pigs_official_32
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_32
       rect:
         serializedVersion: 2
         x: 470
@@ -725,16 +533,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -51.5, y: -42}
-        - {x: -48.5, y: -43}
-        - {x: 32.5, y: -43}
-        - {x: 51.5, y: -37}
-        - {x: 51.5, y: 13}
-        - {x: 40.5, y: 43}
-        - {x: -27.5, y: 43}
-        - {x: -51.5, y: 25}
-    - name: pig_basic_medium_7
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_7
       rect:
         serializedVersion: 2
         x: 576
@@ -744,17 +546,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 22, y: 38}
-        - {x: -28, y: 38}
-        - {x: -35, y: 36}
-        - {x: -39, y: 18}
-        - {x: -39, y: -32}
-        - {x: -35, y: -38}
-        - {x: 39, y: -38}
-        - {x: 39, y: 13}
-        - {x: 34, y: 34}
-    - name: pig_basic_medium_6
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_6
       rect:
         serializedVersion: 2
         x: 659
@@ -764,18 +559,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 30, y: 38}
-        - {x: -29, y: 38}
-        - {x: -36, y: 36}
-        - {x: -39, y: 29}
-        - {x: -39, y: -34}
-        - {x: -30, y: -38}
-        - {x: 37, y: -38}
-        - {x: 39, y: -36}
-        - {x: 39, y: 14}
-        - {x: 36, y: 37}
-    - name: pig_basic_medium_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_5
       rect:
         serializedVersion: 2
         x: 741
@@ -785,18 +572,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 30, y: 38}
-        - {x: -29, y: 38}
-        - {x: -36, y: 36}
-        - {x: -39, y: 29}
-        - {x: -39, y: -34}
-        - {x: -30, y: -38}
-        - {x: 37, y: -38}
-        - {x: 39, y: -36}
-        - {x: 39, y: 14}
-        - {x: 36, y: 37}
-    - name: pig_mustache_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_9
       rect:
         serializedVersion: 2
         x: 2
@@ -806,15 +585,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -58.5, y: 50}
-        - {x: -59.5, y: 49}
-        - {x: -59.5, y: -47}
-        - {x: -46.5, y: -50}
-        - {x: 59.5, y: -50}
-        - {x: 59.5, y: 29}
-        - {x: 50.5, y: 50}
-    - name: pig_mustache_4
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_mustache_4
       rect:
         serializedVersion: 2
         x: 139
@@ -824,15 +598,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -58.5, y: -42}
-        - {x: -54.5, y: -50}
-        - {x: 58.5, y: -50}
-        - {x: 58.5, y: 22}
-        - {x: 43.5, y: 50}
-        - {x: -40.5, y: 50}
-        - {x: -58.5, y: 29}
-    - name: pig_basic_big_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_big_5
       rect:
         serializedVersion: 2
         x: 260
@@ -842,14 +611,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -49.5, y: 48.5}
-        - {x: -49.5, y: -48.5}
-        - {x: 48.5, y: -48.5}
-        - {x: 49.5, y: -45.5}
-        - {x: 49.5, y: 36.5}
-        - {x: 42.5, y: 48.5}
-    - name: pigs_official_39
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_39
       rect:
         serializedVersion: 2
         x: 363
@@ -859,16 +624,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 39.5, y: 43}
-        - {x: -42.5, y: 43}
-        - {x: -51.5, y: 34}
-        - {x: -51.5, y: -43}
-        - {x: 36.5, y: -43}
-        - {x: 51.5, y: -34}
-        - {x: 51.5, y: 3}
-        - {x: 46.5, y: 22}
-    - name: pigs_official_40
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_40
       rect:
         serializedVersion: 2
         x: 470
@@ -878,16 +637,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -51.5, y: -42}
-        - {x: -48.5, y: -43}
-        - {x: 32.5, y: -43}
-        - {x: 51.5, y: -37}
-        - {x: 51.5, y: 13}
-        - {x: 40.5, y: 43}
-        - {x: -27.5, y: 43}
-        - {x: -51.5, y: 25}
-    - name: pig_basic_medium_4
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_4
       rect:
         serializedVersion: 2
         x: 577
@@ -897,18 +650,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 30, y: 38}
-        - {x: -29, y: 38}
-        - {x: -36, y: 36}
-        - {x: -39, y: 29}
-        - {x: -39, y: -34}
-        - {x: -30, y: -38}
-        - {x: 37, y: -38}
-        - {x: 39, y: -36}
-        - {x: 39, y: 14}
-        - {x: 36, y: 37}
-    - name: pig_basic_medium_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_2
       rect:
         serializedVersion: 2
         x: 659
@@ -918,16 +663,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -37, y: -38}
-        - {x: 31, y: -38}
-        - {x: 39, y: -36}
-        - {x: 39, y: 9}
-        - {x: 30, y: 38}
-        - {x: -31, y: 38}
-        - {x: -39, y: 35}
-        - {x: -39, y: -36}
-    - name: pig_basic_medium_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_1
       rect:
         serializedVersion: 2
         x: 741
@@ -937,17 +676,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 24, y: 38}
-        - {x: -20, y: 38}
-        - {x: -39, y: 23}
-        - {x: -39, y: -38}
-        - {x: 27, y: -38}
-        - {x: 31, y: -37}
-        - {x: 39, y: -30}
-        - {x: 39, y: 10}
-        - {x: 33, y: 33}
-    - name: pigs_official_44
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pigs_official_44
       rect:
         serializedVersion: 2
         x: 363
@@ -957,16 +689,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 39.5, y: 43}
-        - {x: -42.5, y: 43}
-        - {x: -51.5, y: 34}
-        - {x: -51.5, y: -43}
-        - {x: 36.5, y: -43}
-        - {x: 51.5, y: -34}
-        - {x: 51.5, y: 3}
-        - {x: 46.5, y: 22}
-    - name: pig_basic_medium_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_8
       rect:
         serializedVersion: 2
         x: 470
@@ -976,18 +702,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 30, y: 38}
-        - {x: -29, y: 38}
-        - {x: -36, y: 36}
-        - {x: -39, y: 29}
-        - {x: -39, y: -34}
-        - {x: -30, y: -38}
-        - {x: 37, y: -38}
-        - {x: 39, y: -36}
-        - {x: 39, y: 14}
-        - {x: 36, y: 37}
-    - name: pig_basic_medium_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_medium_3
       rect:
         serializedVersion: 2
         x: 577
@@ -997,16 +715,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -37, y: -38}
-        - {x: 31, y: -38}
-        - {x: 39, y: -36}
-        - {x: 39, y: 9}
-        - {x: 30, y: 38}
-        - {x: -31, y: 38}
-        - {x: -39, y: 35}
-        - {x: -39, y: -36}
-    - name: pig_basic_small_5
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_5
       rect:
         serializedVersion: 2
         x: 659
@@ -1016,15 +728,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15.5, y: 22.5}
-        - {x: -23.5, y: 22.5}
-        - {x: -23.5, y: -22.5}
-        - {x: 18.5, y: -22.5}
-        - {x: 23.5, y: -16.5}
-        - {x: 23.5, y: 5.5}
-        - {x: 22.5, y: 7.5}
-    - name: pig_basic_small_3
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_3
       rect:
         serializedVersion: 2
         x: 710
@@ -1034,16 +741,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20.5, y: 22.5}
-        - {x: -23.5, y: 21.5}
-        - {x: -23.5, y: -17.5}
-        - {x: -21.5, y: -22.5}
-        - {x: 20.5, y: -22.5}
-        - {x: 23.5, y: -21.5}
-        - {x: 23.5, y: 9.5}
-        - {x: 17.5, y: 22.5}
-    - name: pig_basic_small_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_1
       rect:
         serializedVersion: 2
         x: 761
@@ -1053,16 +754,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20.5, y: 22.5}
-        - {x: -23.5, y: 21.5}
-        - {x: -23.5, y: -17.5}
-        - {x: -21.5, y: -22.5}
-        - {x: 20.5, y: -22.5}
-        - {x: 23.5, y: -21.5}
-        - {x: 23.5, y: 9.5}
-        - {x: 17.5, y: 22.5}
-    - name: pig_basic_small_8
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_8
       rect:
         serializedVersion: 2
         x: 260
@@ -1072,15 +767,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15.5, y: 22.5}
-        - {x: -23.5, y: 22.5}
-        - {x: -23.5, y: -22.5}
-        - {x: 18.5, y: -22.5}
-        - {x: 23.5, y: -16.5}
-        - {x: 23.5, y: 5.5}
-        - {x: 22.5, y: 7.5}
-    - name: pig_basic_small_9
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_9
       rect:
         serializedVersion: 2
         x: 311
@@ -1090,15 +780,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15.5, y: 22.5}
-        - {x: -23.5, y: 22.5}
-        - {x: -23.5, y: -22.5}
-        - {x: 18.5, y: -22.5}
-        - {x: 23.5, y: -16.5}
-        - {x: 23.5, y: 5.5}
-        - {x: 22.5, y: 7.5}
-    - name: pig_basic_small_4
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_4
       rect:
         serializedVersion: 2
         x: 659
@@ -1108,15 +793,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 15.5, y: 22.5}
-        - {x: -23.5, y: 22.5}
-        - {x: -23.5, y: -22.5}
-        - {x: 18.5, y: -22.5}
-        - {x: 23.5, y: -16.5}
-        - {x: 23.5, y: 5.5}
-        - {x: 22.5, y: 7.5}
-    - name: pig_basic_small_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: pig_basic_small_2
       rect:
         serializedVersion: 2
         x: 710
@@ -1126,15 +806,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -20.5, y: 22.5}
-        - {x: -23.5, y: 21.5}
-        - {x: -23.5, y: -17.5}
-        - {x: -21.5, y: -22.5}
-        - {x: 20.5, y: -22.5}
-        - {x: 23.5, y: -21.5}
-        - {x: 23.5, y: 9.5}
-        - {x: 17.5, y: 22.5}
+      outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 

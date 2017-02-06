@@ -225,7 +225,7 @@ MonoBehaviour:
   _clips:
   - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
   - {fileID: 8300000, guid: aa264d28e631f45468baad26e044511f, type: 3}
-  _life: 12
+  _life: 6
   _timeToDie: 0
   _maxTimeToBlink: 1
 --- !u!212 &212000013658949888

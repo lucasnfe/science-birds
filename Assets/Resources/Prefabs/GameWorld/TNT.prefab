@@ -194,7 +194,8 @@ MonoBehaviour:
   _life: 2
   _timeToDie: 0
   _explosionArea: 3
-  _explosionPower: 1.5
+  _explosionPower: 0.25
+  _explosionDamage: 1
 --- !u!212 &212000013692935820
 SpriteRenderer:
   m_ObjectHideFlags: 1
