@@ -72,10 +72,16 @@ public class ABGameObject : MonoBehaviour
 		if(!ABGameWorld.Instance._isSimulation && withEffect) {
 
 			_destroyEffect._shootParticles = true;
-			ABParticleManager.Instance.AddParticleSystem (_destroyEffect, transform.position);
-
 			ABAudioController.Instance.PlayIndependentSFX(_clips[(int)OBJECTS_SFX.DIE]);
 		}
+
+		_collider.enabled = false;
+		_spriteRenderer.color = Color.clear;
+
+		Invoke("WaitParticlesAndDestroy", _destroyEffect._systemLifetime);
+	}
+
+	private void WaitParticlesAndDestroy() {
 
 		Destroy(gameObject);
 	}
@@ -109,7 +115,7 @@ public class ABGameObject : MonoBehaviour
 		if (ABGameWorld.Instance.IsObjectOutOfWorld (transform, _collider)) {
 
 			IsDying = true;
-			Die ();
+			Die (false);
 		}
 	}
 }

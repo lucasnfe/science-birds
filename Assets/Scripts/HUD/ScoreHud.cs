@@ -35,6 +35,9 @@ public class ScoreHud : ABSingleton<ScoreHud> {
 	public void SpawnScorePoint(uint point, Vector3 position) {
 
 		ABParticle scoreParticle = _scoreEmitter.ShootParticle ();
+		if (!scoreParticle)
+			return;
+
 		scoreParticle.transform.rotation = Quaternion.identity;
 		scoreParticle.transform.position = position;
 
