@@ -4,7 +4,7 @@
   <Birds>
   	<Bird type="BirdRed"/>
   	<Bird type="BirdRed"/>
-  	<Bird type="BirdRed"/>
+  	<Bird type="BirdBlue"/>
   </Birds>
   <Slingshot x="-5" y="-2.5">
   <GameObjects>

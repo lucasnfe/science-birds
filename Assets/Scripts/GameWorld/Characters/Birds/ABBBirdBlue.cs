@@ -24,6 +24,7 @@ public class ABBBirdBlue : ABBird {
 
 	public  int   _childrenAmount = 3;
 	public  float _angleBetweenBirds = 5f;
+
 	private ABBBirdBlue []_childrenBirds;
 
 	void InitSpecialPower() {
@@ -65,6 +66,27 @@ public class ABBBirdBlue : ABBird {
 			direction = Quaternion.AngleAxis(-_angleBetweenBirds, Vector3.forward) * direction.normalized;
 		}
 
-		Die (false);
+		_rigidBody.velocity = Vector2.zero;
+		_collider.enabled = false;
+		_spriteRenderer.color = Color.clear;
+		_trailParticles._shootParticles = false;
+	}
+
+	protected override void Update() {
+
+		base.Update ();
+
+		int aliveBirds = 0;
+
+		if (_childrenBirds == null)
+			return;
+
+		foreach (ABBBirdBlue bird in _childrenBirds) {
+			if (bird != null)
+				aliveBirds++;
+		}
+
+		if(aliveBirds == 0)
+			Die (false);
 	}
 }
