@@ -21,6 +21,8 @@ public class ABBirdBlack : ABBird {
 
 	public override void OnCollisionEnter2D(Collision2D collision) {
 
+		_trailParticles._shootParticles = false;
+
 		if(OutOfSlingShot)
 			_animator.Play ("explode");
 	}

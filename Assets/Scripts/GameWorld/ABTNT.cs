@@ -21,7 +21,7 @@ public class ABTNT : ABGameObject {
 
 		foreach (Collider2D coll in colliders) {
 
-			if (coll.attachedRigidbody && coll.gameObject != explosive) {
+			if (coll.attachedRigidbody && coll.gameObject != explosive && coll.GetComponent<ABBird>() == null) {
 
 				float distance = Vector2.Distance ((Vector2)coll.transform.position, position);
 				Vector2 direction = ((Vector2)coll.transform.position - position).normalized;
