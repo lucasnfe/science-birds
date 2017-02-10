@@ -75,8 +75,9 @@ public class ABGameObject : MonoBehaviour
 			ABAudioController.Instance.PlayIndependentSFX(_clips[(int)OBJECTS_SFX.DIE]);
 		}
 
-		_collider.enabled = false;
+		_rigidBody.velocity = Vector2.zero;
 		_spriteRenderer.color = Color.clear;
+		_collider.enabled = false;
 
 		Invoke("WaitParticlesAndDestroy", _destroyEffect._systemLifetime);
 	}

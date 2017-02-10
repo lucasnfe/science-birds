@@ -203,9 +203,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9d3fe5163accd49ddbbdca40362c019e, type: 3}
   _life: 2
   _timeToDie: 0
-  _explosionArea: 3
-  _explosionPower: 0.25
-  _explosionDamage: 1
+  _explosionArea: 2
+  _explosionPower: 3
+  _explosionDamage: 3
 --- !u!212 &212000010909806310
 SpriteRenderer:
   m_ObjectHideFlags: 1

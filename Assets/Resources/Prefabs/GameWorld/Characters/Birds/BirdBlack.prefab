@@ -205,7 +205,7 @@ MonoBehaviour:
   _maxMass: 0
   _minLifetime: 0.1
   _maxLifetime: 0.1
-  _systemLifetime: 0.1
+  _systemLifetime: 0.2
   _shootingRate: 0.1
   _addNoise: 0
   _applyGravity: 0
@@ -246,9 +246,9 @@ MonoBehaviour:
   _launchForce: 10
   _jumpTimer: 0
   _maxTimeToJump: 2
-  _explosionArea: 3
-  _explosionPower: 0.25
-  _explosionDamage: 1
+  _explosionArea: 2
+  _explosionPower: 3
+  _explosionDamage: 3
 --- !u!212 &212000012641827448
 SpriteRenderer:
   m_ObjectHideFlags: 1
