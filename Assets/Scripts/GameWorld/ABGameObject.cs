@@ -26,10 +26,11 @@ using System.Collections;
 [RequireComponent (typeof (SpriteRenderer))]
 [RequireComponent (typeof (ABParticleSystem))]
 [RequireComponent (typeof (AudioSource))]
-public abstract class ABGameObject : MonoBehaviour
+public class ABGameObject : MonoBehaviour
 {	
+	private   float _currentLife;
+
 	protected int   _spriteChangedTimes;
-	protected float _receivedDamage;
 
 	protected Collider2D       _collider;
 	protected Rigidbody2D      _rigidBody;
@@ -53,7 +54,12 @@ public abstract class ABGameObject : MonoBehaviour
 		_spriteRenderer = GetComponent<SpriteRenderer> ();
 		_audioSource    = GetComponent<AudioSource> ();
 
+		_currentLife = _life;
 		IsDying = false;
+	}
+
+	protected virtual void Start() {
+
 	}
 
 	protected virtual void Update() {
@@ -61,33 +67,48 @@ public abstract class ABGameObject : MonoBehaviour
 		DestroyIfOutScreen ();
 	}
 
-	public virtual void Die()
+	public virtual void Die(bool withEffect = true)
 	{
+		if(!ABGameWorld.Instance._isSimulation && withEffect) {
+
+			_destroyEffect._shootParticles = true;
+			ABAudioController.Instance.PlayIndependentSFX(_clips[(int)OBJECTS_SFX.DIE]);
+		}
+
+		_rigidBody.velocity = Vector2.zero;
+		_spriteRenderer.color = Color.clear;
+		_collider.enabled = false;
+
+		Invoke("WaitParticlesAndDestroy", _destroyEffect._systemLifetime);
+	}
+
+	private void WaitParticlesAndDestroy() {
+
 		Destroy(gameObject);
 	}
-		
+
 	public virtual void OnCollisionEnter2D(Collision2D collision)
 	{
-		_receivedDamage += collision.relativeVelocity.magnitude;
-		if(_receivedDamage >= _life/_sprites.Length)
+		DealDamage (collision.relativeVelocity.magnitude);
+	}
+
+	public void DealDamage(float damage) {
+
+		_currentLife -= damage;
+
+		if(_currentLife <= _life - (_life/(_sprites.Length + 1)) * (_spriteChangedTimes + 1))
 		{
-			_spriteChangedTimes = Mathf.Clamp (_spriteChangedTimes, 0, _sprites.Length - 1);
-			_spriteRenderer.sprite = _sprites[_spriteChangedTimes];
+			if(_spriteChangedTimes < _sprites.Length)
+				_spriteRenderer.sprite = _sprites[_spriteChangedTimes];
 
 			if(!ABGameWorld.Instance._isSimulation)
-				_audioSource.PlayOneShot(_clips[0]);
+				_audioSource.PlayOneShot(_clips[(int)OBJECTS_SFX.DAMAGE]);
 
 			_spriteChangedTimes++;
-			_receivedDamage = 0;
 		}
 
-		if(_spriteChangedTimes >= _sprites.Length) {
-			
-			ABAudioController.Instance.PlayIndependentSFX(_clips[1]);
-
-			IsDying = true;
-			Invoke("Die", _timeToDie);
-		}
+		if(_currentLife <= 0f)
+			Die ();
 	}
 
 	void DestroyIfOutScreen() {
@@ -95,7 +116,7 @@ public abstract class ABGameObject : MonoBehaviour
 		if (ABGameWorld.Instance.IsObjectOutOfWorld (transform, _collider)) {
 
 			IsDying = true;
-			Die ();
+			Die (false);
 		}
 	}
 }

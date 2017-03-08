@@ -23,19 +23,22 @@ using System.Collections;
 public class ABGameplayCamera : MonoBehaviour {
 
 	private Rect  _initialCameraRect;
+	private Camera _camera;
 	
 	private bool  _isDraging;
-	private float _minWidth;
 	private float _dragDistance;
 
 	public float _dampTime;
-	public float _cameraMaxWidth;
+	public float _minWidth;
+	public float _maxWidth;
 
 	void Awake()
 	{
 		_dragDistance = 1f;
 		_initialCameraRect = CalculateCameraRect();
 		_minWidth = _initialCameraRect.width;
+
+		_camera = GetComponent<Camera> ();
 	}
 	
 	void Update()
@@ -78,12 +81,12 @@ public class ABGameplayCamera : MonoBehaviour {
 
 	public float LeftBound()
 	{
-		return _initialCameraRect.width/2f - _cameraMaxWidth/2f;
+		return _initialCameraRect.width/2f - _maxWidth/2f;
 	}
 
 	public float RightBound()
 	{
-		return _cameraMaxWidth/2f - _initialCameraRect.width/2f;
+		return _maxWidth/2f - _initialCameraRect.width/2f;
 	}
 	
 	public void DragCamera(Vector3 dragDistance)
@@ -107,7 +110,7 @@ public class ABGameplayCamera : MonoBehaviour {
 	public void SetCameraWidth(float width)
 	{
 		_initialCameraRect.width = width;
-		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _cameraMaxWidth);
+		_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _maxWidth);
 	}
 	
 	public void ZoomCamera(float zoomFactor)
@@ -115,7 +118,7 @@ public class ABGameplayCamera : MonoBehaviour {
 		if(!ABGameWorld.Instance._isSimulation)
 		{
 			_initialCameraRect.width += zoomFactor;
-			_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _cameraMaxWidth);
+			_initialCameraRect.width = Mathf.Clamp(_initialCameraRect.width,  _minWidth, _maxWidth);
 		}
 	}
 
@@ -140,7 +143,7 @@ public class ABGameplayCamera : MonoBehaviour {
 		else
 			orthographicSize = Mathf.Abs(_initialCameraRect.height) / 2f;
 		
-		GetComponent<Camera>().orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, orthographicSize, _dampTime * Time.deltaTime);
+		_camera.orthographicSize = Mathf.Lerp(GetComponent<Camera>().orthographicSize, orthographicSize, _dampTime * Time.deltaTime);
 		
 		return orthographicSize;
 	}

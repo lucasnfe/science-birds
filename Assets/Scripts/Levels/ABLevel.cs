@@ -21,34 +21,114 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public struct OBjData {
+public class OBjData {
 
 	public string type;
-	public string material;
 	public float  rotation;
 	public float  x, y;
+
+	public OBjData () { }
+
+	public OBjData(string type, float rotation, float x, float y) {
+
+		this.type = type;
+		this.rotation = rotation;
+		this.x = x;
+		this.y = y;
+	}
+}
+
+public class BirdData {
+
+	public string type;
+
+	public BirdData(string type) {
+
+		this.type = type;
+	}
+}
+
+public class BlockData: OBjData {
+
+	public string material;
+
+	public BlockData(string type, float rotation, float x, float y, string material) {
+
+		this.type = type;
+		this.rotation = rotation;
+		this.x = x;
+		this.y = y;
+		this.material = material;
+	}
+}
+
+public class PlatData : OBjData {
+
+	public float scaleX;
+	public float scaleY;
+
+	public PlatData () { }
+
+	public PlatData(string type, float rotation, float x, float y, float scaleX, float scaleY) {
+
+		this.type = type;
+		this.rotation = rotation;
+		this.x = x;
+		this.y = y;
+		this.scaleX = scaleX;
+		this.scaleY = scaleY;
+	}
+}
+
+public struct CameraData {
+
+	public float minWidth;
+	public float maxWidth;
+	public float x, y;
+
+	public CameraData(float minWidth, float maxWidth, float x, float y) {
+
+		this.minWidth = minWidth;
+		this.maxWidth = maxWidth;
+		this.x = x;
+		this.y = y;
+	}
 }
 
 public struct SlingData {
 
 	public float x, y;
+
+	public SlingData(float x, float y) {
+
+		this.x = x;
+		this.y = y;
+	}
 }
 
 public class ABLevel 
 {
-	public int birdsAmount;
+	public int width;
 
+	public CameraData camera;
 	public SlingData slingshot;
 
-	public List<OBjData> pigs;
-	public List<OBjData> blocks;
-	public List<OBjData> platforms;
+	public List<OBjData>   pigs;
+	public List<OBjData>   tnts;
+	public List<BirdData>  birds;
+	public List<BlockData> blocks;
+	public List<PlatData>  platforms;
 
 	public static readonly int BIRDS_MAX_AMOUNT = 5;
 
 	public ABLevel() {
-		
-		pigs = new List<OBjData>();
-		blocks = new List<OBjData>();
+
+		width = 1;
+
+		pigs      = new List<OBjData>();
+		tnts      = new List<OBjData>();
+		blocks    = new List<BlockData>();
+		birds     = new List<BirdData>();
+		platforms = new List<PlatData>();
 	}
 }

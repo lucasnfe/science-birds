@@ -253,27 +253,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sprites: []
   _clips:
-  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
   - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
+  - {fileID: 8300000, guid: 9b12cd98cb169494397f3526db91d0be, type: 3}
+  - {fileID: 8300000, guid: a5ee6e817830b4496b302b516efed05c, type: 3}
+  - {fileID: 8300000, guid: fd94b77d668aa433c8b2d703cbabfd38, type: 3}
   - {fileID: 8300000, guid: d1415bfce9f974ddeafd105cfcd46002, type: 3}
   - {fileID: 8300000, guid: c00b9006c8e0647259202c74ffbc9b2e, type: 3}
   - {fileID: 8300000, guid: 887349c0bab8349c29d2b4c9934d3e39, type: 3}
   - {fileID: 8300000, guid: 5c0baa5d42c134d9cac0c6d850f2ff6d, type: 3}
-  _life: 0
+  _life: 1
   _timeToDie: 2
-  _animator: {fileID: 0}
   _maxTimeToBlink: 2
-  _dragRadius: 1
   _dragSpeed: 15
+  _dragRadius: 1
   _launchGravity: 0.48
-  _trajectoryParticleFrequency: 0.5
+  _woodDamage: 1
+  _stoneDamage: 1
+  _iceDamage: 1
   _jumpForce: 100
+  _launchForce: 5
+  _jumpTimer: 0
   _maxTimeToJump: 2
-  _launchForce: {x: 5, y: 5}
-  _trajectoryParticlesTemplates:
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
-  - {fileID: 100000, guid: 9ab20f65b15ec43548aefed46aa9f059, type: 2}
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
 --- !u!114 &11488376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -285,22 +285,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1496dfd57e5ea402e9851887ca688cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minVel: 0
-  _maxVel: 0
+  _minVel: 4
+  _maxVel: 5
   _minAngle: 0
-  _maxAngle: 0
-  _minMass: 0
-  _maxMass: 0
-  _minLifetime: 0
-  _maxLifetime: 0
-  _systemLifetime: 0
-  _shootingRate: 0.1
-  _addNoise: 0
-  _applyGravity: 0
+  _maxAngle: 200
+  _minMass: 0.5
+  _maxMass: 0.65
+  _minLifetime: 1
+  _maxLifetime: 1
+  _systemLifetime: 1
+  _shootingRate: 0.01
+  _addNoise: 1
+  _applyGravity: 1
   _shootParticles: 0
   _particleSprites:
-  - {fileID: 100000, guid: a7ba81676d75046fdb4af2efe2fb149a, type: 2}
-  - {fileID: 100000, guid: 78c5210d6aa364a22ac82117b751c355, type: 2}
+  - {fileID: 1000012550541116, guid: e210780ea2880441b90843b813e1b4af, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

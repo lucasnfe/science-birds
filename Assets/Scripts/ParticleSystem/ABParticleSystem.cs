@@ -43,7 +43,7 @@ public class ABParticleSystem : MonoBehaviour {
 
 	private void Start () {
 	
-		_particles = new ABObjectPool<ABParticle>(25, _particleSprites, InitParticle);
+		_particles = new ABObjectPool<ABParticle>(ABConstants.BLOCK_PARTCICLE_PER_SYSTEM, _particleSprites, InitParticle);
 	}
 	
 	private void Update () {
@@ -56,9 +56,6 @@ public class ABParticleSystem : MonoBehaviour {
 				if (_selfDestructionTimer >= _systemLifetime) {
 
 					_shootParticles = false;
-
-					if (_particles.GetUsedObjects ().Count == 0)
-						Destroy (this);
 				}
 			}
 
@@ -97,7 +94,7 @@ public class ABParticleSystem : MonoBehaviour {
 		return inactiveParticle;
 	}
 
-	public void SetParciclesParent(Transform parent) {
+	public void SetParticlesParent(Transform parent) {
 
 		_particles.SetObjectsParent (parent);
 	}

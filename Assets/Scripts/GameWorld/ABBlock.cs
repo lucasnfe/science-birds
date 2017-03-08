@@ -36,15 +36,10 @@ public class ABBlock : ABGameObject {
 		SetMaterial (_material);
 	}
 	
-	public override void Die()
+	public override void Die(bool withEffect = true)
 	{
 		if(!ABGameWorld.Instance._isSimulation)
-		{
 			ScoreHud.Instance.SpawnScorePoint(_points, transform.position);
-
-			_destroyEffect._shootParticles = true;
-			ABParticleManager.Instance.AddParticleSystem (_destroyEffect, transform.position);
-		}
 
 		base.Die();
 	}
@@ -83,5 +78,36 @@ public class ABBlock : ABGameObject {
 		}
 
 		_spriteRenderer.sprite = _sprites [0];
+	}
+
+	public override void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Bird") {
+
+			ABBird bird = collision.gameObject.GetComponent<ABBird> ();
+			float collisionMagnitude = collision.relativeVelocity.magnitude;
+			float birdDamage = 1f;
+
+			switch (_material) {
+
+			case MATERIALS.wood:
+				birdDamage = bird._woodDamage;
+				break;
+
+			case MATERIALS.stone:
+				birdDamage = bird._stoneDamage;
+				break;
+
+			case MATERIALS.ice:
+				birdDamage = bird._iceDamage;
+				break;
+			}
+
+			DealDamage (collisionMagnitude * birdDamage);
+		} 
+		else {
+
+			base.OnCollisionEnter2D (collision);
+		}
 	}
 }

@@ -36,6 +36,7 @@ public class HUD : ABSingleton<HUD> {
 
 	private bool _isZoomingIn; 
 	private bool _isZoomingOut;
+	private bool _usedSpecialPower;
 
 	private uint _totalScore;
 	private float _simulatedDragTimer;
@@ -151,16 +152,25 @@ public class HUD : ABSingleton<HUD> {
 		Ray ray = Camera.main.ScreenPointToRay(position);
 		RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-		if(hit)
-		{
-			if(hit.transform.tag == "Bird")
-			{
-				_selectedBird = hit.transform.gameObject.GetComponent<ABBird>();
-				if(_selectedBird && !_selectedBird.IsSelected && _selectedBird == ABGameWorld.Instance.GetCurrentBird())
-				{
-					_selectedBird.SelectBird();
-				}
+		if (hit && hit.transform.tag == "Bird") {
+			
+			_selectedBird = hit.transform.gameObject.GetComponent<ABBird> ();
+			if (_selectedBird && !_selectedBird.IsSelected && 
+				_selectedBird == ABGameWorld.Instance.GetCurrentBird ()) {
+
+				_selectedBird.SelectBird ();
+				_usedSpecialPower = false;
+				return;
 			}
+		} 
+			
+		// Trigger special attack
+		if (_selectedBird && _selectedBird.IsInFrontOfSlingshot () &&
+		    _selectedBird == ABGameWorld.Instance.GetCurrentBird () && 
+			!_selectedBird.IsDying && !_usedSpecialPower) {
+
+			_usedSpecialPower = true;
+			_selectedBird.SendMessage ("SpecialAttack", SendMessageOptions.DontRequireReceiver);
 		}
 	}
 
@@ -172,7 +182,6 @@ public class HUD : ABSingleton<HUD> {
 				_selectedBird == ABGameWorld.Instance.GetCurrentBird ()) {
 
 				_selectedBird.LaunchBird ();
-				_selectedBird = null;
 			}
 		}
 	}

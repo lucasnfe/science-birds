@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="utf-16"?>
-<Level>
-  <BirdsAmount>3</BirdsAmount>
-  <Slingshot x="-7.5" y="-2">
+<Level width="2">
+  <Camera x="0" y="0" minWidth="20" maxWidth="26">
+  <Birds>
+  	<Bird type="BirdBlue"/>
+  	<Bird type="BirdBlack"/>
+  	<Bird type="BirdYellow"/>
+  	<Bird type="BirdRed"/>
+  </Birds>
+  <Slingshot x="-9" y="-2.5">
   <GameObjects>
-    <Block    type="RectTiny"    material="wood"  x="2.54" y="-2.73" />
-    <Block    type="RectTiny"    material="wood"  x="1.70" y="-2.73" />
-    <Block    type="SquareHole"  material="wood"  x="2.15" y="-2.18" />
-    <Block    type="SquareHole"  material="stone" x="2.2"  y="0.72"   />
-    <Block    type="RectTiny"    material="stone" x="1.76" y="0.17"   />
-    <Block    type="RectTiny"    material="stone" x="2.6"  y="0.17"   />
-    <Block    type="RectTiny"    material="ice"   x="2.6"  y="2.91"   />
-    <Block    type="RectTiny"    material="ice"   x="1.76" y="2.91"   />
-    <Block    type="SquareHole"  material="ice"   x="2.2"  y="3.46"   />
-    <Pig      type="BasicSmall"  material=""      x="2.15" y="-1.52"  />
-    <Pig      type="BasicSmall"  material=""      x="2.2"  y="1.38"   />
-    <Pig      type="BasicSmall"  material=""      x="2.2"  y="4.12"   />
-    <Platform type="Platform"    material=""      x="1.04" y="-0.31"  />
-    <Platform type="Platform"    material=""      x="1.64" y="-0.31"  />
-    <Platform type="Platform"    material=""      x="2.27" y="-0.31"  />
-    <Platform type="Platform"    material=""      x="3.47" y="-0.31"  />
-    <Platform type="Platform"    material=""      x="2.86" y="-0.31"   />
-    <Platform type="Platform"    material=""      x="2.79" y="2.4"    />
-    <Platform type="Platform"    material=""      x="3.4"  y="2.4"    />
-    <Platform type="Platform"    material=""      x="2.2"  y="2.4"    />
-    <Platform type="Platform"    material=""      x="1.58" y="2.4"    />
-    <Platform type="Platform"    material=""      x="0.97" y="2.4"    />
+    <Pig      type="BasicBig"  x="2"  y="2"  />
+    <Platform type="Platform"  x="2"  y="-1" scaleX="5.5" scaleY="8"/>
   </GameObjects>
 </Level>
