@@ -157,20 +157,20 @@ MonoBehaviour:
   _material: 0
   _points: 25
   _woodSprites:
-  - {fileID: 21300078, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300160, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300162, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300164, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300252, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300254, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300256, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300258, guid: 9ca04232d56aa4135961332683007891, type: 3}
   _stoneSprites:
-  - {fileID: 21300166, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300168, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300090, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300092, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300156, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300158, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300160, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300162, guid: 9ca04232d56aa4135961332683007891, type: 3}
   _iceSprites:
-  - {fileID: 21300070, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300072, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300074, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
-  - {fileID: 21300076, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  - {fileID: 21300038, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300040, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300042, guid: 9ca04232d56aa4135961332683007891, type: 3}
+  - {fileID: 21300044, guid: 9ca04232d56aa4135961332683007891, type: 3}
 --- !u!114 &11492916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,7 +226,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300078, guid: 3a58c58e8a1d8472db7abac811c76ccc, type: 3}
+  m_Sprite: {fileID: 21300252, guid: 9ca04232d56aa4135961332683007891, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
