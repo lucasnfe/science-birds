@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 795e611b5daad49b1a2374cb5a01ec33
-timeCreated: 1455559515
+timeCreated: 1489073120
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -83,23 +83,10 @@ TextureImporter:
       name: hud_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 373
-        width: 50
+        x: 2
+        y: 374
+        width: 44
         height: 46
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: -1
-    - serializedVersion: 2
-      name: hud_7
-      rect:
-        serializedVersion: 2
-        x: 51
-        y: 364
-        width: 109
-        height: 57
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,10 +96,10 @@ TextureImporter:
       name: hud_8
       rect:
         serializedVersion: 2
-        x: 167
-        y: 384
-        width: 24
-        height: 24
+        x: 166
+        y: 383
+        width: 25
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,10 +109,10 @@ TextureImporter:
       name: hud_9
       rect:
         serializedVersion: 2
-        x: 195
-        y: 384
-        width: 24
-        height: 24
+        x: 196
+        y: 383
+        width: 25
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,10 +122,10 @@ TextureImporter:
       name: hud_10
       rect:
         serializedVersion: 2
-        x: 254
-        y: 243
-        width: 229
-        height: 150
+        x: 277
+        y: 262
+        width: 183
+        height: 123
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,10 +226,10 @@ TextureImporter:
       name: hud_18
       rect:
         serializedVersion: 2
-        x: 524
+        x: 518
         y: 288
-        width: 22
-        height: 28
+        width: 33
+        height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,6 +274,19 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: -1
+    - serializedVersion: 2
+      name: hud_2
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 257
+        width: 31
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: ca10f365b40b940babe38d9c9044b70d
+guid: 25857c1173d7a4c4c965f89d98577bea
+timeCreated: 1489072766
+licenseType: Free
 TrueTypeFontImporter:
-  serializedVersion: 3
+  serializedVersion: 4
   fontSize: 16
   forceTextureCase: -2
-  characterSpacing: 1
-  characterPadding: 0
+  characterSpacing: 0
+  characterPadding: 1
   includeFontData: 1
-  fontNames: []
+  fontNames:
+  - Niagaraphobia
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
