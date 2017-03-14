@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: UC Santa Cruz
-  productName: ScienceBirds
+  productName: Weird Aliens
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenStyle: 0
@@ -185,37 +185,37 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: cd0a6ebbf9b834def93899103a750d0e, type: 3}
       m_Width: 128
       m_Height: 128
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 0dc43d09bd62c46e2a6ccfdc98c98652, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 1024
       m_Height: 1024
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: b2a44b5ec23d648908b70bc82af205f9, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 512
       m_Height: 512
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 9375c0912116844f8b4307aada1a60a8, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 256
       m_Height: 256
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 168da1170c7434dd89c86d972d7b6d01, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 128
       m_Height: 128
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 73ab7cb21b7004461ab6cd7a39db09d5, type: 3}
+      m_Icon: {fileID: 2800000, guid: cd0a6ebbf9b834def93899103a750d0e, type: 3}
       m_Width: 48
       m_Height: 48
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 4a4319f169ddc4b738a9d04524381cf3, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 32
       m_Height: 32
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 8e93fdef47e4d41b98a5fec44a36d406, type: 3}
+      m_Icon: {fileID: 0}
       m_Width: 16
       m_Height: 16
   - m_BuildTarget: Android
