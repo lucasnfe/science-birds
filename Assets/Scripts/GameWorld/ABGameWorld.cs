@@ -99,8 +99,11 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 			GetComponent<AudioSource>().PlayOneShot(_clips[1]);
 		}
 
+		GameObject slingshot = GameObject.Find ("Slingshot");
+
 		// If there are objects in the scene, use them to play
-		if (_blocksTransform.childCount > 0 || _birdsTransform.childCount > 0) {
+		if (_blocksTransform.childCount     > 0 || _birdsTransform.childCount > 0 || 
+			_plaftformsTransform.childCount > 0 || slingshot != null ) {
 
 			foreach(Transform bird in _birdsTransform)
 				AddBird (bird.GetComponent<ABBird>());
@@ -112,6 +115,10 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 					_pigs.Add(pig);
 			}
 
+			LevelHeight = ABConstants.LEVEL_ORIGINAL_SIZE.y;
+			LevelWidth = ABConstants.LEVEL_ORIGINAL_SIZE.x;
+
+			_slingshot = GameObject.Find ("Slingshot");
 		} 
 		else {
 			
@@ -123,10 +130,10 @@ public class ABGameWorld : ABSingleton<ABGameWorld> {
 				AdaptCameraWidthToLevel ();
 
 				_levelTimesTried = 0;
-
-				_slingshotBaseTransform = GameObject.Find ("slingshot_base").transform;
 			}
 		}
+
+		_slingshotBaseTransform = GameObject.Find ("slingshot_base").transform;
 	}
 
 	public void DecodeLevel(ABLevel currentLevel)  {

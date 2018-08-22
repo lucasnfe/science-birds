@@ -27,15 +27,10 @@ using UnityEditor.SceneManagement;
 
 class LevelEditor : EditorWindow {
  
-	public static BIRDS  _birdsOps;
-	public static PIGS   _pigsOps;
-	public static BLOCKS _blocksOps;
+	public static BIRDS     _birdsOps;
+	public static PIGS      _pigsOps;
+	public static BLOCKS    _blocksOps;
 	public static MATERIALS _material;
-
-	private static Dictionary<string, GameObject> _birds;
-	private static Dictionary<string, GameObject> _pigs;
-	private static Dictionary<string, GameObject> _blocks;
-	private static GameObject   _platform;
 
 	private static int _birdsAdded = 0;
 	private static int _birdsAmounInARow = 5;
@@ -62,13 +57,7 @@ class LevelEditor : EditorWindow {
 
 	void OnEnable ()
 	{
-		_birds = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Birds");
-		_pigs = LevelLoader.LoadABResource ("Prefabs/GameWorld/Characters/Pigs");
-		_blocks = LevelLoader.LoadABResource ("Prefabs/GameWorld/Blocks");
-		_platform = Resources.Load("Prefabs/GameWorld/Platform") as GameObject;
-
 		_groundPos = new Vector3 (0f, -2.74f, 0f);
-
 		_birdsAdded = GameObject.Find ("Birds").transform.childCount;
 	}
 		
@@ -104,7 +93,7 @@ class LevelEditor : EditorWindow {
 
 		if (GUILayout.Button ("Create Pig", GUILayout.Width (80), GUILayout.Height (20))) {
 
-			GameObject pig = InstantiateGameObject (_pigs[_pigsOps.ToString()]);
+			GameObject pig = InstantiateGameObject (ABWorldAssets.PIGS[_pigsOps.ToString()]);
 			pig.transform.parent = GameObject.Find ("Blocks").transform;
 		}
 
@@ -118,7 +107,7 @@ class LevelEditor : EditorWindow {
 
 		if (GUILayout.Button ("Create Block", GUILayout.Width (80), GUILayout.Height (20))) {
 
-			GameObject block = InstantiateGameObject (_blocks[_blocksOps.ToString()]);
+			GameObject block = InstantiateGameObject (ABWorldAssets.BLOCKS[_blocksOps.ToString()]);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 
 			BlockEditor.UpdateBlockMaterial (block.GetComponent<ABBlock>(), _material);
@@ -128,7 +117,7 @@ class LevelEditor : EditorWindow {
 
 		if (GUILayout.Button ("Create Platform")) {
 
-			GameObject platform = InstantiateGameObject (_platform);
+			GameObject platform = InstantiateGameObject (ABWorldAssets.PLATFORM);
 			platform.transform.parent = GameObject.Find ("Platforms").transform;
 		}
 
@@ -137,6 +126,18 @@ class LevelEditor : EditorWindow {
 		if (GUILayout.Button ("Load Level"))
 			LoadLevel ();
 
+		if (GUILayout.Button ("Save Level"))
+			SaveLevel ();
+
+		if (GUILayout.Button ("Delete Level")) {
+
+			if (EditorUtility.DisplayDialog ("Delete Level", 
+				"Are you sure you want to delete this level?", "Yes", "Cancel")) {
+
+				CleanLevel ();
+			}
+		}
+
 		if (GUILayout.Button ("New Level")) {
 
 			if (EditorUtility.DisplayDialog ("Create New Level",
@@ -144,11 +145,27 @@ class LevelEditor : EditorWindow {
 				"not save the current level in the scene", "Yes", "Cancel")) {
 
 				CleanLevel ();
+
+				Vector3 landscapePos = ABWorldAssets.LANDSCAPE.transform.position;
+				GameObject landscape = InstantiateGameObject(ABWorldAssets.LANDSCAPE);
+				landscape.transform.position = landscapePos;
+				landscape.transform.parent = GameObject.Find ("GameWorld").transform;
+
+				Vector3 backgroundPos = ABWorldAssets.BACKGROUND.transform.position;
+				GameObject background = InstantiateGameObject(ABWorldAssets.BACKGROUND);
+				background.transform.position = backgroundPos;
+				background.transform.parent = GameObject.Find ("Camera").transform;
+
+				GameObject slingshot = InstantiateGameObject(ABWorldAssets.SLINGSHOT);
+				slingshot.transform.position = ABConstants.SLING_STANDARD_POS;
+				slingshot.transform.parent = GameObject.Find ("GameWorld").transform;
+
+				GameObject.Find ("Camera").GetComponent<ABGameplayCamera> ()._maxWidth = ABConstants.CAMERA_STANDARD_MAX_WIDTH;
+				GameObject.Find ("Camera").GetComponent<ABGameplayCamera> ()._minWidth = ABConstants.CAMERA_STANDARD_MIN_WIDTH;
 			}
 		}
 		
-		if (GUILayout.Button ("Save Level"))
-			SaveLevel ();
+
 
 		EditorGUILayout.EndHorizontal ();
 	}
@@ -187,6 +204,10 @@ class LevelEditor : EditorWindow {
 		GameObject plats = new GameObject ();
 		plats.name = "Platforms";
 		plats.transform.parent = GameObject.Find ("GameWorld").transform;
+
+		DestroyImmediate (GameObject.Find ("Landscape"));
+		DestroyImmediate (GameObject.Find ("Slingshot"));
+		DestroyImmediate (GameObject.Find ("Background"));
 	}
 
 	void LoadLevel() {
@@ -220,11 +241,11 @@ class LevelEditor : EditorWindow {
 
 	void CreateBird(string type) {
 
-		GameObject bird = InstantiateGameObject (_birds[type]);
+		GameObject bird = InstantiateGameObject (ABWorldAssets.BIRDS[type]);
 		bird.name = bird.name + "_" + _birdsAdded;
 		bird.transform.parent = GameObject.Find ("Birds").transform;
 
-		Vector3 birdsPos = ABConstants.SLING_SELECT_POS;
+		Vector3 birdsPos = ABConstants.SLING_STANDARD_POS - ABConstants.SLING_SELECT_POS;
 
 		// From the second Bird on, they are added to the ground
 		if(_birdsAdded >= 1)
@@ -252,8 +273,8 @@ class LevelEditor : EditorWindow {
 	{
 		ABLevel level = new ABLevel();
 
-		level.birds = new List<BirdData>(); 
-		level.pigs = new List<OBjData>();
+		level.birds  = new List<BirdData>(); 
+		level.pigs   = new List<OBjData>();
 		level.blocks = new List<BlockData>();
 		level.platforms = new List<PlatData>();
 
@@ -306,7 +327,7 @@ class LevelEditor : EditorWindow {
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
 
-			GameObject pig = InstantiateGameObject (_pigs[gameObj.type]);
+			GameObject pig = InstantiateGameObject (ABWorldAssets.PIGS[gameObj.type]);
 			pig.transform.parent = GameObject.Find ("Blocks").transform;
 			pig.transform.position = pos;
 			pig.transform.rotation = rotation;
@@ -324,7 +345,7 @@ class LevelEditor : EditorWindow {
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
 
-			GameObject block = InstantiateGameObject (_blocks[gameObj.type]);
+			GameObject block = InstantiateGameObject (ABWorldAssets.BLOCKS[gameObj.type]);
 			block.transform.parent = GameObject.Find ("Blocks").transform;
 			block.transform.position = pos;
 			block.transform.rotation = rotation;
@@ -338,7 +359,7 @@ class LevelEditor : EditorWindow {
 			Vector2 pos = new Vector2 (gameObj.x, gameObj.y);
 			Quaternion rotation = Quaternion.Euler (0, 0, gameObj.rotation);
 
-			GameObject platform = InstantiateGameObject (_platform);
+			GameObject platform = InstantiateGameObject (ABWorldAssets.PLATFORM);
 			platform.transform.parent = GameObject.Find ("Platforms").transform;
 			platform.transform.position = pos;
 			platform.transform.rotation = rotation;
