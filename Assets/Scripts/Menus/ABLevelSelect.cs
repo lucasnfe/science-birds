@@ -1,6 +1,6 @@
-// SCIENCE BIRDS: A clone version of the Angry Birds game used for 
+// SCIENCE BIRDS: A clone version of the Angry Birds game used for
 // research purposes
-// 
+//
 // Copyright (C) 2016 - Lucas N. Ferreira - lucasnfe@gmail.com
 //
 // This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ public class ABLevelSelect : ABMenu {
 		string[] resourcesXml = new string[levelsData.Length];
 		for (int i = 0; i < levelsData.Length; i++)
 			resourcesXml [i] = levelsData[i].text;
-			
+
 
 #if UNITY_WEBGL && !UNITY_EDITOR
 
@@ -76,17 +76,20 @@ public class ABLevelSelect : ABMenu {
 
 		for(int i = 0; i < allXmlFiles.Length; i++) {
 
-			Vector2 pos = _startPos + new Vector2 ((i % _lines) * _buttonSize.x, j * _buttonSize.y);
-
-			GameObject obj = Instantiate (_levelSelector, pos, Quaternion.identity) as GameObject;
+			GameObject obj = Instantiate (_levelSelector, Vector2.zero, Quaternion.identity) as GameObject;
 			obj.transform.SetParent(_canvas.transform);
+
+			Vector2 pos = _startPos + new Vector2 ((i % _lines) * _buttonSize.x, j * _buttonSize.y);
+			obj.transform.position = pos;
+
+			Debug.Log(obj.transform.position);
 
 			ABLevelSelector sel = obj.AddComponent<ABLevelSelector> ();
 			sel.LevelIndex = i;
 
 			Button selectButton = obj.GetComponent<Button> ();
 
-			selectButton.onClick.AddListener (delegate { 
+			selectButton.onClick.AddListener (delegate {
 				LoadNextScene("GameWorld", true, sel.UpdateLevelList); });
 
 			Text selectText = selectButton.GetComponentInChildren<Text> ();
