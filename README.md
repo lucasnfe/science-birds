@@ -83,9 +83,6 @@ If you use this clone in your research, please cite:
     booktitle = {Proceedings of the 9th IEEE International Conference on Computational Intelligence in Games},
     series = {CIG'14},
     year = {2014},
-    location = {Dortmund, Germany},
-    numpages = {8},
-	doi = {10.1109/CIG.2014.6932912},
-    url = {http://www.lucasnferreira.com/papers/2014/cig-evoab.pdf}
+    location = {Dortmund, Germany}
 }
 ```
