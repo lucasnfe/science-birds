@@ -2,10 +2,10 @@
 A cover version of the "Angry Birds" game used for research purposes.
 
 <p float="left">
-  <img src="/Docs/MainMenu.png" width="300" />
-  <img src="/Docs/LevelSelect.png" width="300" />
-  <img src="/Docs/Level1.png" width="300" />
-  <img src="/Docs/NextLevel.png" width="300" />
+  <img src="/Docs/MainMenu.png" width="210" />
+  <img src="/Docs/LevelSelect.png" width="210" />
+  <img src="/Docs/Level1.png" width="210" />
+  <img src="/Docs/NextLevel.png" width="210" />
 </p>
 
 ## Game Objects
@@ -53,10 +53,6 @@ coordinates system is the centre of the level.
 
 ![Alt text](/Docs/Level1.png?raw=true "Level 1")
 
-<p float="left">
-  <img src="/Docs/Level1.png" width="300" />
-</p>
-
 ```
 <?xml version="1.0" encoding="utf-16"?>
 <Level>
@@ -78,13 +74,18 @@ coordinates system is the centre of the level.
 
 ## Citing this Work
 
-If you use this method in your research, please cite:
+If you use this clone in your research, please cite:
 
 ```
-@article{ferreira_ismir_2019,
-  title={Learning to Generate Music with Sentiment},
-  author={Ferreira, Lucas N. and Whitehead, Jim},
-  booktitle = {Proceedings of the Conference of the International Society for Music Information Retrieval},
-  series = {ISMIR'19},
-  year={2019},
+@inproceedings{ferreira_2014_a,
+    author = {Lucas Ferreira and Claudio Toledo},
+    title = {A Search-based Approach for Generating Angry Birds Levels},
+    booktitle = {Proceedings of the 9th IEEE International Conference on Computational Intelligence in Games},
+    series = {CIG'14},
+    year = {2014},
+    location = {Dortmund, Germany},
+    numpages = {8},
+	doi = {10.1109/CIG.2014.6932912},
+    url = {http://www.lucasnferreira.com/papers/2014/cig-evoab.pdf}
 }
+```
