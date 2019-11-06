@@ -2,10 +2,10 @@
 A cover version of the "Angry Birds" game used for research purposes.
 
 <p float="left">
-  <img src="/Docs/MainMenu.png" width="180" />
-  <img src="/Docs/LevelSelect.png" width="180" />
-  <img src="/Docs/Level1.png" width="180" />
-  <img src="/Docs/NextLevel.png" width="180" />
+  <img src="/Docs/MainMenu.png" width="300" />
+  <img src="/Docs/LevelSelect.png" width="300" />
+  <img src="/Docs/Level1.png" width="300" />
+  <img src="/Docs/NextLevel.png" width="300" />
 </p>
 
 ## Game Objects
@@ -54,7 +54,7 @@ coordinates system is the centre of the level.
 ![Alt text](/Docs/Level1.png?raw=true "Level 1")
 
 <p float="left">
-  <img src="/Docs/Level1.png" width="180" />
+  <img src="/Docs/Level1.png" width="300" />
 </p>
 
 ```
