@@ -1,4 +1,4 @@
-# ScienceBirds
+# Science Birds
 A cover version of the "Angry Birds" game used for research purposes.
 
 <p float="left">
